@@ -46,7 +46,7 @@ Plumbing,Washing machine (front load) on terrace laundry,0,0,0,0,0,2,2
 Cast-in,Sleeve / cast-in item,3,6,9,9,16,10,53
 
 run,description,"approx length m (route x 1.10, CALCULATED from ASSUMED routes)"
-COND,Conduit (indicative),2722.1
+COND,Conduit (indicative),2745.7
 CW,Cold water 25/20 mm,265.7
 DT,Down-take 40 mm,41.4
 FEED,Feeder / riser cable,48.8

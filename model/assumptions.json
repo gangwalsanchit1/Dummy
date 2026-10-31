@@ -2,65 +2,326 @@
   "_about": "Every value in this file is ASSUMED (not on the AFTER O.C. sheet). Change a value and re-run tools/build_model.py to regenerate the model. See docs/drawing-takeoff.md Q2, Q6, Q7, Q10, Q11.",
   "levels": {
     "ground_road": 0.0,
-    "stilt_ffl": 0.30,
-    "floor_to_floor": 3.00,
+    "stilt_ffl": 0.3,
+    "floor_to_floor": 3.0,
     "slab_thickness": 0.15,
-    "storeys": ["GF", "F1", "F2", "F3", "F4", "TERRACE"]
+    "storeys": [
+      "GF",
+      "F1",
+      "F2",
+      "F3",
+      "F4",
+      "TERRACE"
+    ]
   },
   "heights": {
-    "door_head": 2.10,
-    "window_sill": 0.90,
-    "window_head": 2.10,
-    "ventilator_sill": 1.50,
+    "door_head": 2.1,
+    "window_sill": 0.9,
+    "window_head": 2.1,
+    "ventilator_sill": 1.5,
     "ventilator_max_width": 1.0,
-    "parapet": 1.00,
-    "f4_front_terrace_parapet": 1.00,
+    "parapet": 1.0,
+    "f4_front_terrace_parapet": 1.0,
     "stair_cabin_clear": 2.55,
-    "compound_wall": 1.50,
-    "lift_pit_depth": 1.20,
+    "compound_wall": 1.5,
+    "lift_pit_depth": 1.2,
     "ug_tank_top": 0.0,
     "tank_wall_and_slab": 0.15
   },
   "furniture_sizes": {
-    "single_bed": [2.05, 0.95, 0.45],
-    "queen_bed": [2.05, 1.58, 0.45],
-    "wardrobe_3door_sliding": [1.20, 0.55, 2.10],
-    "wall_desk": [0.90, 0.45, 0.75],
-    "standard_desk": [1.16, 0.57, 0.75],
-    "_note": "Bed, desk and wardrobe widths are from the brief. Wardrobe depth 0.55 matches the drawn grey strips (ASSUMED meaning). Heights ASSUMED."
+    "single_bed": [
+      2.05,
+      0.95,
+      0.45
+    ],
+    "queen_bed": [
+      2.05,
+      1.58,
+      0.45
+    ],
+    "wardrobe_3door_sliding": [
+      1.2,
+      0.55,
+      2.1
+    ],
+    "wall_desk": [
+      0.9,
+      0.45,
+      0.75
+    ],
+    "standard_desk": [
+      1.16,
+      0.57,
+      0.75
+    ],
+    "_note": "Wakefit models chosen by the family (sizes confirmed by the family). Heights ASSUMED."
   },
   "clearances": {
-    "queen_bed_sides": 0.60,
-    "single_bed_access_side": 0.60,
-    "sliding_wardrobe_front": 0.60,
+    "queen_bed_sides": 0.6,
+    "single_bed_access_side": 0.6,
+    "sliding_wardrobe_front": 0.6,
     "desk_chair_zone": 0.75,
     "_note": "Queen 0.60 both sides is from the brief. Others ASSUMED. Door swing zones use the full leaf radius."
   },
   "doors": {
-    "_note": "hinge = plan point; zone = quarter-disc of radius 'width' swept from the hinge into 'quadrant' (signs of dx, dy). DRAWN = arc on drawing; ASSUMED otherwise. Toilet doors ASSUMED to open outwards (Q6d).",
+    "_note": "hinge = plan point; zone = quarter-disc of radius 'width' swept from the hinge into 'quadrant' (signs of dx, dy). ALL doors open INWARDS (family instruction): room doors into rooms, toilet/WC doors into the toilet, terrace door into the suite. Arcs DRAWN on F4 room doors; hinge sides elsewhere ASSUMED, chosen so the open leaf lies against a side wall.",
     "F1-3": [
-      {"id": "F-D3", "hinge": [3.05, 5.40], "width": 0.90, "quadrant": [-1, -1], "leaf_axis": "y", "tag": "ASSUMED"},
-      {"id": "F-D4", "hinge": [4.05, 4.50], "width": 0.90, "quadrant": [-1, -1], "leaf_axis": "x", "tag": "ASSUMED"},
-      {"id": "F-D2", "hinge": [3.05, 6.05], "width": 0.90, "quadrant": [-1, 1], "leaf_axis": "y", "tag": "ASSUMED (copied from F4 drawn arc)"},
-      {"id": "F-D1", "hinge": [4.60, 7.05], "width": 0.90, "quadrant": [1, 1], "leaf_axis": "x", "tag": "ASSUMED (copied from F4 drawn arc)"},
-      {"id": "F-D3T", "hinge": [1.85, 2.05], "width": 0.65, "quadrant": [1, 1], "leaf_axis": "x", "tag": "ASSUMED outward"},
-      {"id": "F-D4T", "hinge": [4.35, 2.05], "width": 0.65, "quadrant": [-1, 1], "leaf_axis": "x", "tag": "ASSUMED outward"},
-      {"id": "F-D2T", "hinge": [2.75, 9.40], "width": 0.65, "quadrant": [1, -1], "leaf_axis": "x", "tag": "ASSUMED outward"},
-      {"id": "F-D1T", "hinge": [5.25, 9.40], "width": 0.65, "quadrant": [-1, -1], "leaf_axis": "x", "tag": "ASSUMED outward"}
+      {
+        "id": "F-D3",
+        "hinge": [
+          3.05,
+          5.4
+        ],
+        "width": 0.9,
+        "quadrant": [
+          -1,
+          -1
+        ],
+        "leaf_axis": "y",
+        "tag": "ASSUMED - opens inwards (family instruction)"
+      },
+      {
+        "id": "F-D4",
+        "hinge": [
+          4.05,
+          4.5
+        ],
+        "width": 0.9,
+        "quadrant": [
+          -1,
+          -1
+        ],
+        "leaf_axis": "x",
+        "tag": "ASSUMED - opens inwards (family instruction)"
+      },
+      {
+        "id": "F-D2",
+        "hinge": [
+          3.05,
+          6.05
+        ],
+        "width": 0.9,
+        "quadrant": [
+          -1,
+          1
+        ],
+        "leaf_axis": "y",
+        "tag": "ASSUMED - opens inwards (family instruction)"
+      },
+      {
+        "id": "F-D1",
+        "hinge": [
+          4.6,
+          7.05
+        ],
+        "width": 0.9,
+        "quadrant": [
+          1,
+          1
+        ],
+        "leaf_axis": "x",
+        "tag": "ASSUMED - opens inwards (family instruction)"
+      },
+      {
+        "id": "F-D3T",
+        "hinge": [
+          1.85,
+          1.95
+        ],
+        "width": 0.65,
+        "quadrant": [
+          1,
+          -1
+        ],
+        "leaf_axis": "x",
+        "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+      },
+      {
+        "id": "F-D4T",
+        "hinge": [
+          4.35,
+          1.95
+        ],
+        "width": 0.65,
+        "quadrant": [
+          -1,
+          -1
+        ],
+        "leaf_axis": "x",
+        "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+      },
+      {
+        "id": "F-D2T",
+        "hinge": [
+          2.75,
+          9.5
+        ],
+        "width": 0.65,
+        "quadrant": [
+          1,
+          1
+        ],
+        "leaf_axis": "x",
+        "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+      },
+      {
+        "id": "F-D1T",
+        "hinge": [
+          5.25,
+          9.5
+        ],
+        "width": 0.65,
+        "quadrant": [
+          -1,
+          1
+        ],
+        "leaf_axis": "x",
+        "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+      }
     ],
     "F4": [
-      {"id": "F4-D3", "hinge": [4.05, 6.05], "width": 0.90, "quadrant": [-1, -1], "leaf_axis": "x", "tag": "DRAWN"},
-      {"id": "F4-D2", "hinge": [3.15, 6.05], "width": 0.90, "quadrant": [-1, 1], "leaf_axis": "y", "tag": "DRAWN"},
-      {"id": "F4-D1", "hinge": [4.60, 7.05], "width": 0.90, "quadrant": [1, 1], "leaf_axis": "x", "tag": "DRAWN"},
-      {"id": "F4-D3T", "hinge": [4.15, 2.20], "width": 0.65, "quadrant": [1, 1], "leaf_axis": "x", "tag": "ASSUMED outward"},
-      {"id": "F4-DT", "hinge": [5.75, 2.20], "width": 0.75, "quadrant": [1, 1], "leaf_axis": "y", "tag": "ASSUMED outward"},
-      {"id": "F4-D2T", "hinge": [2.75, 8.68], "width": 0.65, "quadrant": [1, -1], "leaf_axis": "x", "tag": "ASSUMED outward"},
-      {"id": "F4-D1T", "hinge": [5.25, 8.68], "width": 0.65, "quadrant": [-1, -1], "leaf_axis": "x", "tag": "ASSUMED outward"}
+      {
+        "id": "F4-D3",
+        "hinge": [
+          4.05,
+          6.05
+        ],
+        "width": 0.9,
+        "quadrant": [
+          -1,
+          -1
+        ],
+        "leaf_axis": "x",
+        "tag": "DRAWN"
+      },
+      {
+        "id": "F4-D2",
+        "hinge": [
+          3.15,
+          6.05
+        ],
+        "width": 0.9,
+        "quadrant": [
+          -1,
+          1
+        ],
+        "leaf_axis": "y",
+        "tag": "DRAWN"
+      },
+      {
+        "id": "F4-D1",
+        "hinge": [
+          4.6,
+          7.05
+        ],
+        "width": 0.9,
+        "quadrant": [
+          1,
+          1
+        ],
+        "leaf_axis": "x",
+        "tag": "DRAWN"
+      },
+      {
+        "id": "F4-D3T",
+        "hinge": [
+          4.15,
+          2.1
+        ],
+        "width": 0.65,
+        "quadrant": [
+          1,
+          -1
+        ],
+        "leaf_axis": "x",
+        "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+      },
+      {
+        "id": "F4-DT",
+        "hinge": [
+          5.65,
+          2.95
+        ],
+        "width": 0.75,
+        "quadrant": [
+          -1,
+          -1
+        ],
+        "leaf_axis": "y",
+        "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+      },
+      {
+        "id": "F4-D2T",
+        "hinge": [
+          2.75,
+          8.78
+        ],
+        "width": 0.65,
+        "quadrant": [
+          1,
+          1
+        ],
+        "leaf_axis": "x",
+        "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+      },
+      {
+        "id": "F4-D1T",
+        "hinge": [
+          5.25,
+          8.78
+        ],
+        "width": 0.65,
+        "quadrant": [
+          -1,
+          1
+        ],
+        "leaf_axis": "x",
+        "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+      }
     ],
     "GF": [
-      {"id": "GF-D1", "hinge": [4.05, 0.40], "width": 0.65, "quadrant": [-1, 1], "leaf_axis": "y", "tag": "ASSUMED outward"},
-      {"id": "GF-D2", "hinge": [6.45, 0.40], "width": 0.65, "quadrant": [1, 1], "leaf_axis": "y", "tag": "ASSUMED outward"},
-      {"id": "GF-D3", "hinge": [7.85, 2.95], "width": 0.75, "quadrant": [-1, -1], "leaf_axis": "x", "tag": "ASSUMED into servant room"}
+      {
+        "id": "GF-D1",
+        "hinge": [
+          4.15,
+          1.05
+        ],
+        "width": 0.65,
+        "quadrant": [
+          1,
+          -1
+        ],
+        "leaf_axis": "y",
+        "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+      },
+      {
+        "id": "GF-D2",
+        "hinge": [
+          6.35,
+          0.4
+        ],
+        "width": 0.65,
+        "quadrant": [
+          -1,
+          1
+        ],
+        "leaf_axis": "y",
+        "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+      },
+      {
+        "id": "GF-D3",
+        "hinge": [
+          7.85,
+          2.95
+        ],
+        "width": 0.75,
+        "quadrant": [
+          -1,
+          -1
+        ],
+        "leaf_axis": "x",
+        "tag": "ASSUMED into servant room - opens inwards (family instruction)"
+      }
     ]
   }
 }

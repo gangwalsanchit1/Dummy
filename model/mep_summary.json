@@ -1,7 +1,7 @@
 {
  "points": 533,
  "runs": 472,
- "clashes": 0,
+ "clashes": 1,
  "warnings": 2,
  "totals": {
   "MB": 1,
@@ -62,7 +62,7 @@
   "RWP": 71.1,
   "VENT": 0.0,
   "HW": 54.7,
-  "COND": 2722.1
+  "COND": 2745.7
  },
  "connected_load_W": {
   "F1": 18559,

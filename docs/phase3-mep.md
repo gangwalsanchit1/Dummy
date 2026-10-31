@@ -82,7 +82,7 @@
 
 ## Clash checks (`docs/mep-checks.md`)
 
-- **507 points and 446 runs checked. Hard clashes: 0.** Bedside, desk and data points follow the fitted furniture. Where a desk sits under a window, its socket goes below the desk with a desk-top power module.
+- **533 points and 472 runs checked. Hard clashes: 1**, the ground-floor WC-1 inward door vs its pan (see above). Bedside, desk and data points follow the fitted furniture. Where a desk sits under a window, its socket goes below the desk with a desk-top power module.
 - **Wall-mounted points must:**
   - sit on a drawn wall face
   - be outside every window (between sill and head) and every door opening
@@ -149,7 +149,7 @@ I cite a clause only where I could read the source. Everything else is labelled 
 - Electrical riser on the lobby face of the stair wall.
 - External soil, waste and down-take stacks.
 - 300 mm sunk toilet slabs.
-- Toilet doors opening outwards.
+- All doors open inwards (family instruction), including toilet doors. Ground-floor WC-1 (0.90 × 0.90 m) is the one clash: an inward 0.65 m door hits the pan, so it needs a sliding or bi-fold door, or an outward door for that WC only.
 - Machine-room-less lift with its isolator at the terrace.
 - Geyser in each toilet.
 - AC in every room. Remove the AC from the schedule if some rooms won't have it.

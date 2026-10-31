@@ -267,7 +267,8 @@ def rooms_GF():
                  ("EXH", 4.60, 0.15, 1.80, "+y", "in ventilator GF-W1", "COMMON"), ("WC", 4.60, 0.15, 0.0, "+y", "", ""),
                  ("HF", 4.95, 0.15, 0.45, "+y", "", ""), ("FT", 4.60, 0.90, 0.0, "F", "", "")]
     c["WC-2"] = [("LT", 5.75, 0.60, CEIL, "C", "", "COMMON"), ("EXH", 5.75, 0.15, 1.80, "+y", "in ventilator GF-W2", "COMMON"),
-                 ("WC", 5.75, 0.15, 0.0, "+y", "", ""), ("HF", 6.10, 0.15, 0.45, "+y", "", ""), ("FT", 5.75, 0.90, 0.0, "F", "", "")]
+                 ("WC", 5.50, 0.15, 0.0, "+y", "left of centre, clear of the inward door swing", ""), ("HF", 5.15, 0.60, 0.45, "+x", "", ""),
+                 ("FT", 5.95, 0.75, 0.0, "F", "", "")]
     c["PANTRY"] = [("LT", 4.90, 2.05, CEIL, "C", "", "COMMON"), ("SKT16", 5.65, 1.45, 1.10, "-x", "fridge", "COMMON"),
                    ("SKT16", 5.65, 2.25, 1.10, "-x", "microwave / induction", "COMMON"), ("SINK", 5.35, 2.95, 0.85, "-y", "", ""),
                    ("FT", 5.35, 2.55, 0.0, "F", "under sink", ""), ("RO", 5.65, 2.65, 1.40, "-x", "RO drinking water (amenity)", "COMMON")]
@@ -597,6 +598,21 @@ for p in points:
             warns.append(f"{p['id']} ({p['room']}) ceiling point {d:.2f} m from a wall line - probable beam zone, SE to confirm")
         if p["kind"] == "FAN" and d < 0.6 + 0.15:
             issues.append(f"fan sweep (r 0.60) only {d-0.6:.2f} m from wall")
+    if p["kind"] in ("WC", "BAS", "SINK", "WM", "DISP") and p["face"] != "O":
+        w_, d_, _ = K[p["kind"]][3]
+        x, y, f = p["x"], p["y"], p["face"]
+        fp = {"+x": [x, y - w_ / 2, x + d_, y + w_ / 2], "-x": [x - d_, y - w_ / 2, x, y + w_ / 2],
+              "+y": [x - w_ / 2, y, x + w_ / 2, y + d_], "-y": [x - w_ / 2, y - d_, x + w_ / 2, y]}.get(f, [x - w_ / 2, y - d_ / 2, x + w_ / 2, y + d_ / 2])
+        for d in DOORS.get(pk, []):
+            hx, hy = d["hinge"]
+            qx, qy = d["quadrant"]
+            R_ = d["width"]
+            q = [min(hx, hx + qx * R_), min(hy, hy + qy * R_), max(hx, hx + qx * R_), max(hy, hy + qy * R_)]
+            ix = [max(q[0], fp[0]), max(q[1], fp[1]), min(q[2], fp[2]), min(q[3], fp[3])]
+            if ix[0] < ix[2] - 1e-3 and ix[1] < ix[3] - 1e-3:
+                cx_, cy_ = min(max(hx, ix[0]), ix[2]), min(max(hy, ix[1]), ix[3])
+                if math.hypot(cx_ - hx, cy_ - hy) < R_ - 1e-3:
+                    issues.append(f"fixture footprint inside door swing {d['id']}")
     if p["kind"] == "GZP":
         sh = next((q for q in points if q["storey"] == s and q["room"] == p["room"] and q["kind"] in ("SHM",)), None)
         ft = next((q for q in points if q["storey"] == s and q["room"] == p["room"] and q["kind"] == "FT"), None)

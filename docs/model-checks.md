@@ -37,7 +37,7 @@ Rules: fixed furniture inside the room, clear of walls, other furniture, every c
 |---|---|---|---|---|
 | F1-3 | ROOM-1 | single_bed, single_bed, wardrobe_3door_sliding, wardrobe_3door_sliding, wall_desk, wall_desk | 12 checks | PASS |
 | F1-3 | ROOM-2 | single_bed, single_bed, wardrobe_3door_sliding, wardrobe_3door_sliding, wall_desk, wall_desk | 12 checks | PASS |
-| F1-3 | ROOM-3 | single_bed, single_bed, wardrobe_3door_sliding, wardrobe_3door_sliding, wall_desk, wall_desk | 12 checks | PASS |
+| F1-3 | ROOM-3 | single_bed, single_bed, wardrobe_3door_sliding, wardrobe_3door_sliding, standard_desk, standard_desk | 12 checks | PASS |
 | F1-3 | ROOM-4 | single_bed, wardrobe_3door_sliding, wall_desk | 6 checks | PASS |
 | F4 | ROOM-1 | single_bed, wardrobe_3door_sliding, wall_desk | 6 checks | PASS |
 | F4 | ROOM-2 | single_bed, single_bed, wardrobe_3door_sliding, wardrobe_3door_sliding, wall_desk, wall_desk | 12 checks | PASS |
@@ -47,24 +47,24 @@ Rules: fixed furniture inside the room, clear of walls, other furniture, every c
 
 | Plan | Door | Leaf (m) | Swing source | Result |
 |---|---|---|---|---|
-| GF | GF-D1 | 0.65 | ASSUMED outward | PASS |
-| GF | GF-D2 | 0.65 | ASSUMED outward | PASS |
-| GF | GF-D3 | 0.75 | ASSUMED into servant room | PASS |
-| F1-3 | F-D3 | 0.90 | ASSUMED | PASS |
-| F1-3 | F-D4 | 0.90 | ASSUMED | PASS |
-| F1-3 | F-D2 | 0.90 | ASSUMED (copied from F4 drawn arc) | PASS |
-| F1-3 | F-D1 | 0.90 | ASSUMED (copied from F4 drawn arc) | PASS |
-| F1-3 | F-D3T | 0.65 | ASSUMED outward | PASS |
-| F1-3 | F-D4T | 0.65 | ASSUMED outward | PASS |
-| F1-3 | F-D2T | 0.65 | ASSUMED outward | PASS |
-| F1-3 | F-D1T | 0.65 | ASSUMED outward | PASS |
+| GF | GF-D1 | 0.65 | ASSUMED hinge side; opens INWARDS (family instruction) | PASS |
+| GF | GF-D2 | 0.65 | ASSUMED hinge side; opens INWARDS (family instruction) | PASS |
+| GF | GF-D3 | 0.75 | ASSUMED into servant room - opens inwards (family instruction) | PASS |
+| F1-3 | F-D3 | 0.90 | ASSUMED - opens inwards (family instruction) | PASS |
+| F1-3 | F-D4 | 0.90 | ASSUMED - opens inwards (family instruction) | PASS |
+| F1-3 | F-D2 | 0.90 | ASSUMED - opens inwards (family instruction) | PASS |
+| F1-3 | F-D1 | 0.90 | ASSUMED - opens inwards (family instruction) | PASS |
+| F1-3 | F-D3T | 0.65 | ASSUMED hinge side; opens INWARDS (family instruction) | PASS |
+| F1-3 | F-D4T | 0.65 | ASSUMED hinge side; opens INWARDS (family instruction) | PASS |
+| F1-3 | F-D2T | 0.65 | ASSUMED hinge side; opens INWARDS (family instruction) | PASS |
+| F1-3 | F-D1T | 0.65 | ASSUMED hinge side; opens INWARDS (family instruction) | PASS |
 | F4 | F4-D3 | 0.90 | DRAWN | PASS |
 | F4 | F4-D2 | 0.90 | DRAWN | PASS |
 | F4 | F4-D1 | 0.90 | DRAWN | PASS |
-| F4 | F4-D3T | 0.65 | ASSUMED outward | PASS |
-| F4 | F4-DT | 0.75 | ASSUMED outward | PASS |
-| F4 | F4-D2T | 0.65 | ASSUMED outward | PASS |
-| F4 | F4-D1T | 0.65 | ASSUMED outward | PASS |
+| F4 | F4-D3T | 0.65 | ASSUMED hinge side; opens INWARDS (family instruction) | PASS |
+| F4 | F4-DT | 0.75 | ASSUMED hinge side; opens INWARDS (family instruction) | PASS |
+| F4 | F4-D2T | 0.65 | ASSUMED hinge side; opens INWARDS (family instruction) | PASS |
+| F4 | F4-D1T | 0.65 | ASSUMED hinge side; opens INWARDS (family instruction) | PASS |
 
 **Total violations: 0**
 

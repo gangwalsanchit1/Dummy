@@ -56,11 +56,11 @@ F1-ACI3,F1,ROOM-3,Electrical,AC indoor unit position (~0.90 wide),0.95,0.15,2.4,
 F1-ACS3,F1,ROOM-3,Electrical,AC socket 20A (dedicated circuit),1.55,0.15,2.35,wall +y,AC,,ASSUMED,PASS
 F1-ACO3,F1,ROOM-3,Electrical,AC outdoor unit on bracket,0.95,-0.25,2.3,outside,AC,bracket outside rear wall,ASSUMED,PASS
 F1-BS5,F1,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,1.25,0.15,0.6,wall +y,S,bedside (E),ASSUMED,PASS
-F1-BS6,F1,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,2.4,0.6,wall +x,S,"bedside (long wall, above mattress)",ASSUMED,PASS
-F1-DESK5,F1,ROOM-3,Electrical,Study desk: 2 x 6A socket + USB,3.05,2.35,0.9,wall -x,S,above desk,ASSUMED,PASS
-F1-DATA5,F1,ROOM-3,Electrical,Data outlet (Cat6) at desk,3.05,2.65,0.9,wall -x,DATA,above desk,ASSUMED,PASS
-F1-DESK6,F1,ROOM-3,Electrical,Study desk: 2 x 6A socket + USB,3.05,3.25,0.9,wall -x,S,above desk,ASSUMED,PASS
-F1-DATA6,F1,ROOM-3,Electrical,Data outlet (Cat6) at desk,3.05,3.55,0.9,wall -x,DATA,above desk,ASSUMED,PASS
+F1-BS6,F1,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,3.05,2.25,0.6,wall -x,S,"bedside (long wall, above mattress)",ASSUMED,PASS
+F1-DESK5,F1,ROOM-3,Electrical,Study desk: 2 x 6A socket + USB,0.15,2.63,0.9,wall +x,S,above desk,ASSUMED,PASS
+F1-DATA5,F1,ROOM-3,Electrical,Data outlet (Cat6) at desk,0.15,2.93,0.9,wall +x,DATA,above desk,ASSUMED,PASS
+F1-DESK6,F1,ROOM-3,Electrical,Study desk: 2 x 6A socket + USB,0.15,3.83,0.9,wall +x,S,above desk,ASSUMED,PASS
+F1-DATA6,F1,ROOM-3,Electrical,Data outlet (Cat6) at desk,0.15,4.13,0.9,wall +x,DATA,above desk,ASSUMED,PASS
 F1-RFIDL3,F1,ROOM-3,Electrical,"RFID door lock (battery, no wiring) on room door",3.1,4.55,1.0,outside,,"latch edge of room door (battery lock, amenity)",ASSUMED,PASS
 F1-TSW3,F1,ROOM-3 TOILET,Electrical,"Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)",1.75,1.72,1.2,wall -x,L/F,alcove side of toilet wall,ASSUMED,PASS
 F1-LT10,F1,ROOM-3 TOILET,Electrical,Ceiling light point (LED),2.45,1.4,2.85,ceiling,L/F,,ASSUMED,PASS
@@ -161,11 +161,11 @@ F2-ACI3,F2,ROOM-3,Electrical,AC indoor unit position (~0.90 wide),0.95,0.15,2.4,
 F2-ACS3,F2,ROOM-3,Electrical,AC socket 20A (dedicated circuit),1.55,0.15,2.35,wall +y,AC,,ASSUMED,PASS
 F2-ACO3,F2,ROOM-3,Electrical,AC outdoor unit on bracket,0.95,-0.25,2.3,outside,AC,bracket outside rear wall,ASSUMED,PASS
 F2-BS5,F2,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,1.25,0.15,0.6,wall +y,S,bedside (E),ASSUMED,PASS
-F2-BS6,F2,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,2.4,0.6,wall +x,S,"bedside (long wall, above mattress)",ASSUMED,PASS
-F2-DESK5,F2,ROOM-3,Electrical,Study desk: 2 x 6A socket + USB,3.05,2.35,0.9,wall -x,S,above desk,ASSUMED,PASS
-F2-DATA5,F2,ROOM-3,Electrical,Data outlet (Cat6) at desk,3.05,2.65,0.9,wall -x,DATA,above desk,ASSUMED,PASS
-F2-DESK6,F2,ROOM-3,Electrical,Study desk: 2 x 6A socket + USB,3.05,3.25,0.9,wall -x,S,above desk,ASSUMED,PASS
-F2-DATA6,F2,ROOM-3,Electrical,Data outlet (Cat6) at desk,3.05,3.55,0.9,wall -x,DATA,above desk,ASSUMED,PASS
+F2-BS6,F2,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,3.05,2.25,0.6,wall -x,S,"bedside (long wall, above mattress)",ASSUMED,PASS
+F2-DESK5,F2,ROOM-3,Electrical,Study desk: 2 x 6A socket + USB,0.15,2.63,0.9,wall +x,S,above desk,ASSUMED,PASS
+F2-DATA5,F2,ROOM-3,Electrical,Data outlet (Cat6) at desk,0.15,2.93,0.9,wall +x,DATA,above desk,ASSUMED,PASS
+F2-DESK6,F2,ROOM-3,Electrical,Study desk: 2 x 6A socket + USB,0.15,3.83,0.9,wall +x,S,above desk,ASSUMED,PASS
+F2-DATA6,F2,ROOM-3,Electrical,Data outlet (Cat6) at desk,0.15,4.13,0.9,wall +x,DATA,above desk,ASSUMED,PASS
 F2-RFIDL3,F2,ROOM-3,Electrical,"RFID door lock (battery, no wiring) on room door",3.1,4.55,1.0,outside,,"latch edge of room door (battery lock, amenity)",ASSUMED,PASS
 F2-TSW3,F2,ROOM-3 TOILET,Electrical,"Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)",1.75,1.72,1.2,wall -x,L/F,alcove side of toilet wall,ASSUMED,PASS
 F2-LT10,F2,ROOM-3 TOILET,Electrical,Ceiling light point (LED),2.45,1.4,2.85,ceiling,L/F,,ASSUMED,PASS
@@ -266,11 +266,11 @@ F3-ACI3,F3,ROOM-3,Electrical,AC indoor unit position (~0.90 wide),0.95,0.15,2.4,
 F3-ACS3,F3,ROOM-3,Electrical,AC socket 20A (dedicated circuit),1.55,0.15,2.35,wall +y,AC,,ASSUMED,PASS
 F3-ACO3,F3,ROOM-3,Electrical,AC outdoor unit on bracket,0.95,-0.25,2.3,outside,AC,bracket outside rear wall,ASSUMED,PASS
 F3-BS5,F3,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,1.25,0.15,0.6,wall +y,S,bedside (E),ASSUMED,PASS
-F3-BS6,F3,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,2.4,0.6,wall +x,S,"bedside (long wall, above mattress)",ASSUMED,PASS
-F3-DESK5,F3,ROOM-3,Electrical,Study desk: 2 x 6A socket + USB,3.05,2.35,0.9,wall -x,S,above desk,ASSUMED,PASS
-F3-DATA5,F3,ROOM-3,Electrical,Data outlet (Cat6) at desk,3.05,2.65,0.9,wall -x,DATA,above desk,ASSUMED,PASS
-F3-DESK6,F3,ROOM-3,Electrical,Study desk: 2 x 6A socket + USB,3.05,3.25,0.9,wall -x,S,above desk,ASSUMED,PASS
-F3-DATA6,F3,ROOM-3,Electrical,Data outlet (Cat6) at desk,3.05,3.55,0.9,wall -x,DATA,above desk,ASSUMED,PASS
+F3-BS6,F3,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,3.05,2.25,0.6,wall -x,S,"bedside (long wall, above mattress)",ASSUMED,PASS
+F3-DESK5,F3,ROOM-3,Electrical,Study desk: 2 x 6A socket + USB,0.15,2.63,0.9,wall +x,S,above desk,ASSUMED,PASS
+F3-DATA5,F3,ROOM-3,Electrical,Data outlet (Cat6) at desk,0.15,2.93,0.9,wall +x,DATA,above desk,ASSUMED,PASS
+F3-DESK6,F3,ROOM-3,Electrical,Study desk: 2 x 6A socket + USB,0.15,3.83,0.9,wall +x,S,above desk,ASSUMED,PASS
+F3-DATA6,F3,ROOM-3,Electrical,Data outlet (Cat6) at desk,0.15,4.13,0.9,wall +x,DATA,above desk,ASSUMED,PASS
 F3-RFIDL3,F3,ROOM-3,Electrical,"RFID door lock (battery, no wiring) on room door",3.1,4.55,1.0,outside,,"latch edge of room door (battery lock, amenity)",ASSUMED,PASS
 F3-TSW3,F3,ROOM-3 TOILET,Electrical,"Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)",1.75,1.72,1.2,wall -x,L/F,alcove side of toilet wall,ASSUMED,PASS
 F3-LT10,F3,ROOM-3 TOILET,Electrical,Ceiling light point (LED),2.45,1.4,2.85,ceiling,L/F,,ASSUMED,PASS
@@ -426,14 +426,14 @@ GF-TSW1,GF,SERVANT VESTIBULE,Electrical,"Toilet switchboard outside toilet (ligh
 GF-TSW2,GF,WC-1,Electrical,"Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)",4.05,1.3,1.2,wall -x,COMMON,"outside WC-1, stilt side",ASSUMED,PASS
 GF-LT8,GF,WC-1,Electrical,Ceiling light point (LED),4.6,0.6,2.85,ceiling,COMMON,,ASSUMED,PASS
 GF-EXH1,GF,WC-1,Electrical,"Exhaust fan (in ventilator, IPX4)",4.6,0.15,1.8,wall +y,COMMON,in ventilator GF-W1,ASSUMED,PASS
-GF-WC1,GF,WC-1,Plumbing,"Water closet (EWC, wall-outlet)",4.6,0.15,0.0,wall +y,,,ASSUMED,PASS
+GF-WC1,GF,WC-1,Plumbing,"Water closet (EWC, wall-outlet)",4.6,0.15,0.0,wall +y,,,ASSUMED,fixture footprint inside door swing GF-D1
 GF-HF1,GF,WC-1,Plumbing,Health faucet,4.95,0.15,0.45,wall +y,,,ASSUMED,PASS
 GF-FT2,GF,WC-1,Plumbing,Floor trap 100 mm (nahani),4.6,0.9,0.0,floor/slab,,,ASSUMED,PASS
 GF-LT9,GF,WC-2,Electrical,Ceiling light point (LED),5.75,0.6,2.85,ceiling,COMMON,,ASSUMED,PASS
 GF-EXH2,GF,WC-2,Electrical,"Exhaust fan (in ventilator, IPX4)",5.75,0.15,1.8,wall +y,COMMON,in ventilator GF-W2,ASSUMED,PASS
-GF-WC2,GF,WC-2,Plumbing,"Water closet (EWC, wall-outlet)",5.75,0.15,0.0,wall +y,,,ASSUMED,PASS
-GF-HF2,GF,WC-2,Plumbing,Health faucet,6.1,0.15,0.45,wall +y,,,ASSUMED,PASS
-GF-FT3,GF,WC-2,Plumbing,Floor trap 100 mm (nahani),5.75,0.9,0.0,floor/slab,,,ASSUMED,PASS
+GF-WC2,GF,WC-2,Plumbing,"Water closet (EWC, wall-outlet)",5.5,0.15,0.0,wall +y,,"left of centre, clear of the inward door swing",ASSUMED,PASS
+GF-HF2,GF,WC-2,Plumbing,Health faucet,5.15,0.6,0.45,wall +x,,,ASSUMED,PASS
+GF-FT3,GF,WC-2,Plumbing,Floor trap 100 mm (nahani),5.95,0.75,0.0,floor/slab,,,ASSUMED,PASS
 GF-LT10,GF,PANTRY,Electrical,Ceiling light point (LED),4.9,2.05,2.85,ceiling,COMMON,,ASSUMED,PASS
 GF-SKT163,GF,PANTRY,Electrical,16A power socket,5.65,1.45,1.1,wall -x,COMMON,fridge,ASSUMED,PASS
 GF-SKT164,GF,PANTRY,Electrical,16A power socket,5.65,2.25,1.1,wall -x,COMMON,microwave / induction,ASSUMED,PASS
