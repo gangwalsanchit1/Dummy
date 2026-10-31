@@ -79,7 +79,9 @@ const LAYERS = {
   sleeve:{n:'Pre-slab sleeves & cast-in items', c:0xdc2626, on:false}
 };
 const canvas = document.getElementById('c');
-const renderer = new THREE.WebGLRenderer({canvas, antialias:true, preserveDrawingBuffer:true});
+let renderer = null;
+try { renderer = new THREE.WebGLRenderer({canvas, antialias:true, preserveDrawingBuffer:true}); } catch (e) { renderer = null; }
+if (!renderer) { plan2D(); } else {
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 const scene = new THREE.Scene();
 const dark = matchMedia('(prefers-color-scheme: dark)').matches;
@@ -252,6 +254,79 @@ if (q.get('mep') === 'e') setTimeout(() => preset(['elec','feedL','condL','sleev
 if (q.get('isolate')) { isolate = true; document.getElementById('mode').textContent = 'Mode: this floor only'; }
 frame(); update(); view(q.get('view') || '3d'); loop();
 window.__ready = true;
+}
+
+// ---------- 2D plan fallback (used when the browser gives no WebGL / 3D graphics)
+function plan2D() {
+  const old = document.getElementById('c'); const cv = document.createElement('canvas'); cv.id = 'c'; cv.style.width = '100%'; cv.style.height = '100%'; cv.style.touchAction = 'none'; old.replaceWith(cv);
+  const ctx = cv.getContext('2d'); const info = document.getElementById('info');
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  let floor = 'F1', scale = 40, ox = 330, oy = 40, measuring = false, mpts = [], last = null;
+  document.querySelectorAll('#v3d,#vtop,#vfront,#snap,#mode,#roof').forEach(b => b.hidden = true);
+  document.getElementById('hint').textContent = '2D plan view (this browser has 3D graphics turned off). Drag to pan, wheel or pinch to zoom, click an item for details. Measure: click two points.';
+  const fb = document.getElementById('floors'); fb.innerHTML = '';
+  for (const f of STOREYS) { const b = document.createElement('button'); b.textContent = f; b.onclick = () => { floor = f; draw(); }; b.dataset.s = f; fb.appendChild(b); }
+  const ly = document.getElementById('layers'); ly.innerHTML = '';
+  for (const [k, v] of Object.entries(LAYERS)) { const l = document.createElement('label'); l.innerHTML = `<input type="checkbox" ${v.on ? 'checked' : ''}> <span class="sw" style="background:#${v.c.toString(16).padStart(6, '0')}"></span>${v.n}`;
+    l.querySelector('input').onchange = e => { v.on = e.target.checked; draw(); }; ly.appendChild(l); }
+  const presets = (on) => { const base = ['wall','slab','door','window','stair','lift','furniture','space','tank','water','site','labels'];
+    for (const [k, v] of Object.entries(LAYERS)) v.on = base.includes(k) || on.includes(k); [...ly.querySelectorAll('input')].forEach((c, i) => c.checked = Object.values(LAYERS)[i].on); draw(); };
+  document.getElementById('mepE').onclick = () => presets(['elec','feedL','condL','sleeve']);
+  document.getElementById('mepP').onclick = () => presets(['plumb','drainL','waterL','sleeve']);
+  document.getElementById('mepA').onclick = () => presets([]);
+  document.getElementById('measure').onclick = e => { measuring = !measuring; e.target.classList.toggle('on', measuring); mpts = []; draw(); };
+  document.getElementById('clear').onclick = () => { mpts = []; draw(); };
+  const ORDER = ['site','slab','space','tank','water','wall','window','stair','lift','door','furniture','clearance','plumb','elec','sleeve','drainL','waterL','feedL','condL'];
+  const visible = el => LAYERS[el.layer] && LAYERS[el.layer].on && (el.storey === floor || (el.span && el.line));
+  const X = x => ox + x * scale, Y = y => oy + y * scale;
+  function draw() {
+    for (const b of fb.children) b.classList.toggle('on', b.dataset.s === floor);
+    const W = cv.clientWidth, H = cv.clientHeight, dpr = Math.min(devicePixelRatio, 2);
+    cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = css('--bg'); ctx.fillRect(0, 0, W, H);
+    const els = SC.elements.filter(visible).sort((a, b) => ORDER.indexOf(a.layer) - ORDER.indexOf(b.layer));
+    for (const el of els) {
+      const col = el.col ? '#' + el.col : '#' + LAYERS[el.layer].c.toString(16).padStart(6, '0');
+      if (el.line) { ctx.strokeStyle = col; ctx.lineWidth = el.layer === 'condL' ? 1 : 2; ctx.beginPath();
+        el.line.forEach((p, i) => i ? ctx.lineTo(X(p[0]), Y(p[1])) : ctx.moveTo(X(p[0]), Y(p[1]))); ctx.stroke();
+        const p0 = el.line[0]; if (el.line.every(p => Math.abs(p[0] - p0[0]) < 0.01 && Math.abs(p[1] - p0[1]) < 0.01)) { ctx.beginPath(); ctx.arc(X(p0[0]), Y(p0[1]), 4, 0, 7); ctx.stroke(); }
+        continue; }
+      if (el.swing) { const s = el.swing, a = Math.atan2(s.q[1], s.q[0]); ctx.fillStyle = col + '33'; ctx.strokeStyle = col; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(X(s.hinge[0]), Y(s.hinge[1])); ctx.arc(X(s.hinge[0]), Y(s.hinge[1]), s.r * scale, a - Math.PI / 4, a + Math.PI / 4); ctx.closePath(); ctx.fill(); ctx.stroke(); continue; }
+      const alpha = { space: '55', clearance: '30', slab: '', water: '66' }[el.layer] || '';
+      for (const b of el.boxes) { ctx.fillStyle = col + alpha; ctx.fillRect(X(b[0]), Y(b[1]), (b[3] - b[0]) * scale, (b[4] - b[1]) * scale);
+        if (['wall','furniture','door','elec','plumb','sleeve','tank'].includes(el.layer)) { ctx.strokeStyle = css('--ink') + '99'; ctx.lineWidth = 0.6; ctx.strokeRect(X(b[0]), Y(b[1]), (b[3] - b[0]) * scale, (b[4] - b[1]) * scale); } }
+    }
+    if (LAYERS.labels.on) { ctx.fillStyle = css('--ink'); ctx.textAlign = 'center'; ctx.font = '12px system-ui';
+      for (const el of SC.elements) if (el.cls === 'IfcSpace' && el.storey === floor) { let b = el.boxes[0]; for (const q of el.boxes) if ((q[3]-q[0])*(q[4]-q[1]) > (b[3]-b[0])*(b[4]-b[1])) b = q;
+        ctx.fillText(el.name.replace(/^\S+\s/, ''), X((b[0] + b[3]) / 2), Y((b[1] + b[4]) / 2)); ctx.font = '10px system-ui'; ctx.fillText(`${(b[3]-b[0]).toFixed(2)} × ${(b[4]-b[1]).toFixed(2)} m`, X((b[0] + b[3]) / 2), Y((b[1] + b[4]) / 2) + 13); ctx.font = '12px system-ui'; } }
+    if (last) { ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 2; for (const b of last.boxes || []) ctx.strokeRect(X(b[0]), Y(b[1]), (b[3] - b[0]) * scale, (b[4] - b[1]) * scale); }
+    ctx.fillStyle = '#dc2626'; ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 2;
+    mpts.forEach(p => { ctx.beginPath(); ctx.arc(X(p[0]), Y(p[1]), 4, 0, 7); ctx.fill(); });
+    if (mpts.length === 2) { ctx.beginPath(); ctx.moveTo(X(mpts[0][0]), Y(mpts[0][1])); ctx.lineTo(X(mpts[1][0]), Y(mpts[1][1])); ctx.stroke(); }
+    ctx.fillStyle = css('--muted'); ctx.textAlign = 'left'; ctx.font = '11px system-ui';
+    ctx.fillText(`${floor} · FFL ${FFL[floor].toFixed(2)} m (assumed) · road at the bottom · 1 m grid`, X(0), Y(-0.85));
+    ctx.strokeStyle = css('--line'); ctx.lineWidth = 0.5; for (let g = 0; g <= 8; g++) { ctx.beginPath(); ctx.moveTo(X(g), Y(-0.6)); ctx.lineTo(X(g), Y(-0.75)); ctx.stroke(); }
+  }
+  const toPlan = (cx, cy) => { const r = cv.getBoundingClientRect(); return [(cx - r.left - ox) / scale, (cy - r.top - oy) / scale]; };
+  let drag = null, moved = false;
+  cv.addEventListener('pointerdown', e => { drag = [e.clientX, e.clientY, ox, oy]; moved = false; cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener('pointermove', e => { if (!drag) return; const dx = e.clientX - drag[0], dy = e.clientY - drag[1]; if (Math.hypot(dx, dy) > 4) moved = true; if (moved) { ox = drag[2] + dx; oy = drag[3] + dy; draw(); } });
+  cv.addEventListener('pointerup', e => { const wasDrag = moved; drag = null; if (wasDrag) return; const p = toPlan(e.clientX, e.clientY);
+    if (measuring) { mpts = mpts.length === 2 ? [p] : mpts.concat([p]); if (mpts.length === 2) { const d = Math.hypot(mpts[1][0] - mpts[0][0], mpts[1][1] - mpts[0][1]);
+      info.innerHTML = `<b>Measured ${d.toFixed(3)} m</b><br><span class="k">plan X</span> ${Math.abs(mpts[1][0] - mpts[0][0]).toFixed(3)} · <span class="k">plan Y</span> ${Math.abs(mpts[1][1] - mpts[0][1]).toFixed(3)} m`; } draw(); return; }
+    const hits = SC.elements.filter(visible).filter(el => (el.boxes || []).some(b => p[0] >= b[0] - 0.05 && p[0] <= b[3] + 0.05 && p[1] >= b[1] - 0.05 && p[1] <= b[4] + 0.05))
+      .sort((a, b) => ORDER.indexOf(b.layer) - ORDER.indexOf(a.layer));
+    last = hits[0] || null; if (last) { const b = last.boxes[0];
+      info.innerHTML = `<b>${last.name}</b><br><span class="k">${last.cls} · storey</span> ${last.storey}<br><span class="k">Source:</span> ${last.tag}<br><span class="k">Size</span> ${(b[3]-b[0]).toFixed(3)} × ${(b[4]-b[1]).toFixed(3)} m · <span class="k">height</span> ${b[2].toFixed(2)}–${b[5].toFixed(2)} m` + (last.area ? `<br><span class="k">Area</span> ${last.area} m²` : ''); }
+    draw(); });
+  cv.addEventListener('wheel', e => { e.preventDefault(); const r = cv.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top, k = e.deltaY < 0 ? 1.12 : 1 / 1.12;
+    ox = mx - (mx - ox) * k; oy = my - (my - oy) * k; scale *= k; draw(); }, {passive: false});
+  addEventListener('resize', draw);
+  const W = innerWidth, H = innerHeight; scale = Math.min((W > 700 ? W - 320 : W) / 10.5, H / 15.5); ox = (W > 700 ? 300 : 0) + scale * 1.2; oy = scale * 1.5;
+  info.innerHTML = '<b>2D plan view</b><br>This browser has 3D graphics (WebGL) turned off, so the model is shown as floor plans. To get 3D in Chrome: Settings → System → turn on "Use graphics acceleration when available", then relaunch.';
+  draw(); window.__ready = true;
+}
 </script>
 </body>
 </html>
