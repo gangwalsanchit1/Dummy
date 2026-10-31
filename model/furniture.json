@@ -1,0 +1,42 @@
+{
+  "_about": "Proposed furniture (ASSUMED positions) for the 22-bed mix. Plan coordinates as in takeoff.json. rect = [x0,y0,x1,y1]. 'access' = side(s) where the clearance zone is placed: N = towards smaller plan-Y (rear), S = towards larger plan-Y (road), W = smaller X, E = larger X. Wardrobes sit in the drawn grey 0.55 m strips (Q7). Checked by tools/build_model.py.",
+  "F1-3": {
+    "ROOM-1": [
+      {"type": "single_bed", "rect": [5.80, 10.65, 7.85, 11.60], "access": ["N"]},
+      {"type": "wardrobe_3door_sliding", "rect": [4.05, 8.10, 4.60, 9.30], "access": ["E"]},
+      {"type": "wall_desk", "rect": [7.40, 7.40, 7.85, 8.30], "access": ["W"]}
+    ],
+    "ROOM-2": [
+      {"type": "single_bed", "rect": [0.15, 10.65, 2.20, 11.60], "access": ["N"]},
+      {"type": "wardrobe_3door_sliding", "rect": [3.40, 7.20, 3.95, 8.40], "access": ["W"]},
+      {"type": "wall_desk", "rect": [0.15, 7.40, 0.60, 8.30], "access": ["E"]}
+    ],
+    "ROOM-3": [
+      {"type": "queen_bed", "rect": [0.15, 2.85, 2.20, 4.43], "access": ["N", "S"]},
+      {"type": "wardrobe_3door_sliding", "rect": [0.25, 5.40, 1.45, 5.95], "access": ["N"]},
+      {"type": "standard_desk", "rect": [0.30, 0.15, 1.46, 0.72], "access": ["S"]}
+    ],
+    "ROOM-4": [
+      {"type": "queen_bed", "rect": [5.80, 0.76, 7.85, 2.34], "access": ["N", "S"]},
+      {"type": "wardrobe_3door_sliding", "rect": [4.45, 0.35, 5.00, 1.55], "access": ["E"]},
+      {"type": "standard_desk", "rect": [4.64, 2.38, 5.80, 2.95], "access": ["N"]}
+    ]
+  },
+  "F4": {
+    "ROOM-1": [
+      {"type": "single_bed", "rect": [5.80, 9.75, 7.85, 10.70], "access": ["N"]},
+      {"type": "wardrobe_3door_sliding", "rect": [4.05, 7.30, 4.60, 8.50], "access": ["E"]},
+      {"type": "wall_desk", "rect": [7.40, 7.40, 7.85, 8.30], "access": ["W"]}
+    ],
+    "ROOM-2": [
+      {"type": "single_bed", "rect": [0.15, 9.75, 2.20, 10.70], "access": ["N"]},
+      {"type": "wardrobe_3door_sliding", "rect": [3.40, 7.25, 3.95, 8.45], "access": ["W"]},
+      {"type": "wall_desk", "rect": [0.15, 7.20, 0.60, 8.10], "access": ["E"]}
+    ],
+    "ROOM-3 (suite)": [
+      {"type": "queen_bed", "rect": [0.15, 2.00, 2.20, 3.58], "access": ["N", "S"]},
+      {"type": "wardrobe_3door_sliding", "rect": [0.30, 5.40, 1.50, 5.95], "access": ["N"]},
+      {"type": "standard_desk", "rect": [2.70, 0.15, 3.86, 0.72], "access": ["S"]}
+    ]
+  }
+}
