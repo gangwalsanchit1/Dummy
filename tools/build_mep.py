@@ -30,7 +30,7 @@ K = {
     "MB": ("E", "elec", "Utility meter board (3-phase)", [0.30, 0.20, 0.60], "IfcElectricDistributionBoard"),
     "MDB": ("E", "elec", "Main distribution board", [0.30, 0.20, 0.60], "IfcElectricDistributionBoard"),
     "CDB": ("E", "elec", "Common-services DB (lift, pump, common lights, CCTV, Wi-Fi)", [0.30, 0.15, 0.45], "IfcElectricDistributionBoard"),
-    "DB": ("E", "elec", "Floor DB (TPN, RCBO per room)", [0.45, 0.12, 0.50], "IfcElectricDistributionBoard"),
+    "DB": ("E", "elec", "Floor DB (TPN, RCBO + prepaid energy sub-meter per room)", [0.45, 0.12, 0.50], "IfcElectricDistributionBoard"),
     "SB": ("E", "elec", "Room switchboard at door (incl. 2-way for light)", [0.25, 0.05, 0.15], "IfcSwitchingDevice"),
     "TSW": ("E", "elec", "Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)", [0.20, 0.05, 0.12], "IfcSwitchingDevice"),
     "BS": ("E", "elec", "Bedside: 6A socket + USB + 2-way light switch", [0.20, 0.05, 0.10], "IfcOutlet"),
@@ -51,6 +51,13 @@ K = {
     "LIFTISO": ("E", "elec", "Lift isolator / controller supply (3-phase)", [0.25, 0.15, 0.30], "IfcSwitchingDevice"),
     "PUMPP": ("E", "elec", "Pump starter panel + level controller", [0.30, 0.15, 0.40], "IfcElectricDistributionBoard"),
     "RISER": ("E", "elec", "Electrical riser trunking 200x100", [0.20, 0.10, 0.10], "IfcCableCarrierSegment"),
+    "INV": ("E", "elec", "Power backup: inverter + Li-ion battery (common lights, CCTV, Wi-Fi, RFID, lift ARD)", [0.35, 0.25, 1.20], "IfcElectricFlowStorageDevice"),
+    "RFID": ("E", "elec", "RFID card reader (entry access)", [0.10, 0.04, 0.15], "IfcSensor"),
+    "MLOCK": ("E", "elec", "Electromagnetic lock + exit button (entry door)", [0.25, 0.05, 0.05], "IfcActuator"),
+    "RFIDL": ("E", "elec", "RFID door lock (battery, no wiring) on room door", [0.07, 0.07, 0.25], "IfcDiscreteAccessory"),
+    "DISP": ("E", "elec", "Drinking-water dispenser (floor) + 16A socket", [0.35, 0.35, 1.00], "IfcElectricAppliance"),
+    "WM": ("P", "plumb", "Washing machine (front load) on terrace laundry", [0.60, 0.60, 0.85], "IfcElectricAppliance"),
+    "RO": ("P", "plumb", "RO purifier (under/over pantry sink)", [0.30, 0.15, 0.40], "IfcElectricAppliance"),
     "WC": ("P", "plumb", "Water closet (EWC, wall-outlet)", [0.38, 0.65, 0.40], "IfcSanitaryTerminal"),
     "BAS": ("P", "plumb", "Wash basin (compact)", [0.45, 0.35, 0.80], "IfcSanitaryTerminal"),
     "SHM": ("P", "plumb", "Shower mixer + overhead shower", [0.15, 0.10, 0.15], "IfcSanitaryTerminal"),
@@ -172,6 +179,8 @@ def rooms_F13(s):
         ("DB", 5.60, 5.07, 1.75, "-x", "on stair wall, lobby side", ""), ("RISER", 5.55, 5.50, 0.0, "-x", "full height", ""),
         ("LT", 3.85, 5.85, CEIL, "C", "motion sensor", "COMMON"), ("LT", 4.95, 5.85, CEIL, "C", "motion sensor", "COMMON"),
         ("AP", 4.40, 5.30, CEIL, "C", "", "COMMON"), ("CCTV", 3.35, 6.80, CEIL - 0.1, "C", "views lift and stair", "COMMON"),
+        ("DISP", 4.255, 6.775, 0.0, "F", "floor footprint x 4.08-4.43, y 6.60-6.95 (amenity: drinking water)", "COMMON"),
+        ("SKT16", 4.25, 6.95, 1.20, "-y", "for water dispenser", "COMMON"),
     ]
     c["STAIR"] = [
         ("WL", 7.85, 6.40, 2.30, "-x", "floor landing", "COMMON"), ("WL", 6.80, 3.10, 1.5 + 2.2, "+y", "mid-landing", "COMMON"),
@@ -237,8 +246,11 @@ def rooms_GF():
     c["METER NICHE"] = [
         ("MB", 4.05, 5.30, 1.20, "-x", "in grey niche (Q9), road-accessible", ""), ("MDB", 4.05, 5.90, 1.20, "-x", "", ""),
         ("CDB", 4.05, 6.50, 1.40, "-x", "", ""),
+        ("INV", 4.05, 3.60, 0.90, "-x", "wall-mounted in grey niche, ventilated (amenity: power backup)", "BACKUP"),
     ]
-    c["LIFT LOBBY"] = [("RISER", 5.55, 5.50, 0.0, "-x", "riser start", ""), ("LT", 4.88, 5.90, CEIL, "C", "", "COMMON"),
+    c["LIFT LOBBY"] = [("RFID", 5.65, 7.05, 1.20, "+y", "stilt side, beside lobby entry (amenity: RFID access)", "BACKUP"),
+                       ("MLOCK", 4.80, 7.05, 2.15, "+y", "on entry door head (entry ASSUMED, Q8)", "BACKUP"),
+                       ("RISER", 5.55, 5.50, 0.0, "-x", "riser start", ""), ("LT", 4.88, 5.90, CEIL, "C", "", "COMMON"),
                        ("CCTV", 4.30, 6.90, CEIL - 0.1, "C", "", "COMMON")]
     c["STAIR"] = [("WL", 7.85, 6.40, 2.30, "-x", "", "COMMON"), ("WL", 6.80, 3.10, 3.70, "+y", "", "COMMON")]
     c["STILT (parking)"] = [
@@ -258,7 +270,7 @@ def rooms_GF():
                  ("WC", 5.75, 0.15, 0.0, "+y", "", ""), ("HF", 6.10, 0.15, 0.45, "+y", "", ""), ("FT", 5.75, 0.90, 0.0, "F", "", "")]
     c["PANTRY"] = [("LT", 4.90, 2.05, CEIL, "C", "", "COMMON"), ("SKT16", 5.65, 1.45, 1.10, "-x", "fridge", "COMMON"),
                    ("SKT16", 5.65, 2.25, 1.10, "-x", "microwave / induction", "COMMON"), ("SINK", 5.35, 2.95, 0.85, "-y", "", ""),
-                   ("FT", 5.35, 2.55, 0.0, "F", "under sink", "")]
+                   ("FT", 5.35, 2.55, 0.0, "F", "under sink", ""), ("RO", 5.65, 2.65, 1.40, "-x", "RO drinking water (amenity)", "COMMON")]
     c["FRONT MARGIN"] = [
         ("PUMP", 6.55, 12.10, 0.0, "F", "on U.G. tank roof slab, front margin", ""), ("PUMP", 7.15, 12.10, 0.0, "F", "standby", ""),
         ("PUMPP", 7.85, 12.20, 1.20, "-x", "on compound wall", "COMMON"), ("METER", 6.00, 12.60, 0.30, "-y", "municipal inlet", ""),
@@ -266,6 +278,7 @@ def rooms_GF():
         ("TCON", 7.60, 12.40, -0.40, "F", "U.G. overflow", ""), ("IC", 4.00, 12.25, -0.30, "F", "front IC, to municipal sewer", ""),
         ("IC", 3.20, -0.30, -0.30, "F", "rear IC (rear margin)", ""),
         ("CCTV", 5.60, 12.60, 2.20, "-y", "gate camera on compound wall", "COMMON"), ("WL", 2.30, 12.60, 2.00, "-y", "gate light", "COMMON"),
+        ("WL", 1.50, 11.80, 2.90, "O", "name-board / signage light under F1 slab edge", "COMMON"),
     ]
     # GF ceiling points sit at the F1 slab soffit; GF z relative to GF FFL
     return c
@@ -278,6 +291,14 @@ def rooms_TERRACE():
         ("WPS", 7.30, 7.05, 0.45, "+y", "", "COMMON"), ("CCTV", 7.80, 7.05, 2.60, "+y", "terrace", "COMMON"),
         ("LIFTISO", 4.20, 4.75, 1.50, "+y", "lift machine/controller supply (MRL assumed)", "LIFT"),
         ("WL", 7.85, 6.40, 2.30, "-x", "stair cabin", "COMMON"),
+        ("WM", 3.75, 0.45, 0.0, "F", "terrace laundry, against rear parapet (amenity)", ""), ("WM", 4.40, 0.45, 0.0, "F", "terrace laundry", ""),
+        ("TAP", 3.75, 0.15, 0.95, "+y", "washing machine inlet", ""), ("TAP", 4.40, 0.15, 0.95, "+y", "washing machine inlet", ""),
+        ("WPS", 4.08, 0.15, 1.20, "+y", "washing machines (2 x 16A)", "COMMON"), ("FT", 4.08, 0.90, 0.0, "F", "laundry floor trap -> W1 (kerbed area)", ""),
+        ("SINK", 5.10, 0.15, 0.80, "+y", "cleaner's sink (IS 1172 Table 11 vi) at terrace laundry", ""), ("TAP", 5.10, 0.15, 1.05, "+y", "cleaner's sink", ""),
+        ("WL", 4.00, 0.15, 2.00, "+y", "laundry light on parapet", "COMMON"),
+        ("WL", 0.15, 4.50, 1.00, "+x", "terrace lounge bollard/parapet light", "COMMON"), ("WL", 0.15, 8.00, 1.00, "+x", "terrace lounge light", "COMMON"),
+        ("WPS", 0.15, 6.20, 0.45, "+x", "terrace lounge (study / gaming)", "COMMON"), ("WPS", 4.05, 4.20, 0.45, "-x", "terrace lounge", "COMMON"),
+        ("AP", 5.60, 5.20, 2.30, "-x", "outdoor Wi-Fi AP for terrace lounge", "COMMON"),
         ("RWO", 0.40, 0.40, 0.0, "F", "roof outlet, cast in", ""), ("RWO", 0.45, 10.40, 0.0, "F", "roof outlet, cast in", ""),
         ("RWO", 5.30, 10.40, 0.0, "F", "roof outlet, cast in", ""), ("RWO", 7.60, 0.40, -3.0, "F", "F4 private terrace outlet, cast in F4 slab", ""),
         ("TCON", 7.60, 6.85, CABIN_TOP - FFL["TERRACE"] + 1.80, "F", "O.H.T. inlet (rising main)", ""),
@@ -331,6 +352,12 @@ for s in ["F1", "F2", "F3", "F4"]:
                     wx, face = (r[2], "-x") if side == "W" else (r[0], "+x")
                     LAYOUT[s][room] += [("DESK", wx, cy - 0.15, 0.9, face, "above desk", "S"), ("DATA", wx, cy + 0.15, 0.9, face, "", "DATA")]
 
+RLOCK = {"F1-3": {"ROOM-1": (5.45, 7.00), "ROOM-2": (3.10, 6.90), "ROOM-3": (3.10, 4.55), "ROOM-4": (3.20, 4.50)},
+         "F4": {"ROOM-1": (5.45, 7.00), "ROOM-2": (3.15, 6.90), "ROOM-3 (suite)": (3.20, 6.05)}}
+for s in ["F1", "F2", "F3", "F4"]:
+    for room, (x, y) in RLOCK["F1-3" if s != "F4" else "F4"].items():
+        LAYOUT[s][room].append(("RFIDL", x, y, 1.00, "O", "latch edge of room door (battery lock, amenity)", ""))
+
 for s, rooms in LAYOUT.items():
     for room, items in rooms.items():
         for it in items:
@@ -369,6 +396,8 @@ R("DT", "TERRACE", "O.H.T. outlet header on terrace -> rear and front down-takes
 R("DT", "TERRACE", "header -> front down-take", [[3.80, 4.65, TOP + 0.3], [3.80, YF4, TOP + 0.3]])
 R("DT", "F1", "Down-take DT-R (rear) F4 -> F1", [[2.95, YR, TOP + 0.3], [2.95, YR, Z("F1", 2.4)]])
 R("DT", "F1", "Down-take DT-F (front) with F4 offset", [[3.80, YF4, TOP + 0.3], [3.80, YF4, Z("F4", 0.6)], [3.80, YF, Z("F4", 0.6)], [3.80, YF, Z("F1", 2.4)]])
+R("WASTE", "TERRACE", "Terrace laundry floor trap + cleaner's sink -> W1 (through parapet sleeve)", [[5.10, 0.30, TOP + 0.5], [5.10, 0.30, TOP - 0.05], [4.08, 0.90, TOP - 0.05], [3.30, 0.90, TOP - 0.10], [3.30, YR, TOP - 0.15]])
+R("CW", "TERRACE", "Laundry + cleaner's sink supply from O.H.T. header", [[2.95, 0.40, TOP + 0.3], [5.10, 0.40, TOP + 0.3], [5.10, 0.15, TOP + 1.05]])
 R("RWP", "TERRACE", "RWP-1 rear-left corner", [[0.40, 0.40, TOP], [0.40, 0.25, TOP - 0.1], [0.08, 0.25, TOP - 0.1], [0.08, YR, TOP - 0.2], [0.08, YR, 0.0]])
 R("RWP", "TERRACE", "RWP-2 front-left (offset at F4)", [[0.45, 10.40, TOP], [0.45, YF4, TOP - 0.2], [0.45, YF4, zoff], [0.45, YF, zoff], [0.45, YF, 0.0]])
 R("RWP", "TERRACE", "RWP-3 roof + F4 front terrace", [[5.30, 10.40, TOP], [5.30, YF4, TOP - 0.2], [5.30, YF4, zoff + 0.2], [2.40, YF4, zoff + 0.2], [2.40, YF, zoff], [2.40, YF, 0.0]])
@@ -437,13 +466,14 @@ SLEEVES.append(("F4", 3.80, 11.70, "Parapet sleeve: down-take DT-F offset", "par
 SLEEVES.append(("F4", 7.60, 11.70, "Parapet sleeve: rising main offset", "parapet"))
 SLEEVES.append(("F4", 0.45, 11.70, "Parapet sleeve: RWP-2 offset", "parapet"))
 SLEEVES.append(("F4", 2.40, 11.70, "Parapet sleeve: RWP-3 offset", "parapet"))
+SLEEVES.append(("TERRACE", 3.30, 0.08, "Rear parapet sleeve: terrace laundry waste -> W1; kerb + slope for laundry area", "parapetT"))
 SLEEVES.append(("TERRACE", 6.00, 4.85, "O.H.T. outlet puddle flange (tank base)", "tank"))
 SLEEVES.append(("TERRACE", 7.60, 6.85, "O.H.T. inlet / overflow / drain puddle flanges (tank walls)", "tank"))
 SLEEVES.append(("GF", 6.55, 11.90, "U.G. tank suction, inlet, overflow, manhole, puddle flanges", "tank"))
 SLEEVES.append(("GF", 3.20, 6.00, "Underground drain + service cable ducts before GF slab-on-grade", "ground"))
 SLEEVES.append(("GF", 4.90, 3.85, "Lift pit: sump/drain + pit light/socket conduit", "lift"))
 for s, x, y, txt, cat in SLEEVES:
-    z = FFL.get(s, 0.0) - 0.075 if cat not in ("parapet",) else FFL["F4"] + 0.35
+    z = FFL["F4"] + 0.35 if cat == "parapet" else (FFL["TERRACE"] + 0.05 if cat == "parapetT" else FFL.get(s, 0.0) - 0.075)
     P("SLV", s, cat, x, y, z - FFL.get(s, 0.0), "F", txt)
 
 # ===================================================================== clash checks
@@ -586,7 +616,7 @@ water_beds = 22
 staff = 2
 
 # electrical connected load (ASSUMED ratings, W)
-RATE = {"LT": 12, "WL": 12, "FAN": 50, "EXH": 30, "AP": 15, "CCTV": 8, "DESK": 200, "BS": 100, "SKT16": 1000, "WPS": 500,
+RATE = {"DISP": 500, "INV": 0, "RFID": 10, "MLOCK": 10, "WM": 0, "RO": 60, "LT": 12, "WL": 12, "FAN": 50, "EXH": 30, "AP": 15, "CCTV": 8, "DESK": 200, "BS": 100, "SKT16": 1000, "WPS": 500,
         "ACS": 1600, "GZP": 2000}
 conn = Counter()
 for p in points:
