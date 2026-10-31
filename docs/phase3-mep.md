@@ -32,7 +32,7 @@
 - **Room:**
   - switchboard at the door's latch side, 1.20 m
   - ceiling fan (box cast in the slab), 2–3 LED lights
-  - bedside socket, USB and 2-way light switch at 0.60 m (both sides for queen beds)
+  - bedside socket, USB and 2-way light switch at 0.60 m (one per bed; two in twin rooms)
   - desk socket group, USB and Cat6 data point at 0.90 m
   - AC indoor unit and 20 A socket at about 2.4 m, always on an external wall, with the outdoor unit on a bracket outside (Floor 4: on the terraces)
 - **Toilet:**
@@ -118,7 +118,7 @@ These come from `quantities.csv`. Lengths are CALCULATED from the ASSUMED routes
 - **Electrical:**
   - 16 room switchboards and 17 toilet switchboards
   - 16 fans, 71 ceiling lights and 16 wall lights
-  - 22 bedside points, 15 desk points and 15 data points
+  - one bedside point per bed (26), and one desk and one data point per study table (26 each); see `quantities.csv`
   - 15 AC positions, 15 geyser outlets and 17 exhaust fans
   - 4 Wi-Fi access points and 9 CCTV cameras
   - 4 floor distribution boards, plus the meter board, MDB and common-services DB
