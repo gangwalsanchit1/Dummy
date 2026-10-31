@@ -20,3 +20,7 @@ def ftin(m, step=8):
 
 def size(w, d):
     return f"{ftin(w)} x {ftin(d)}"
+
+
+def sqft(m2):
+    return f"{m2 * 10.7639:.0f} sq ft"

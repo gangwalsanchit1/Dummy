@@ -50,7 +50,7 @@
     </div>
     <div class="btns" style="margin-top:5px"><button id="v3d">3D view</button><button id="vtop">Top view</button><button id="vfront">Road side</button></div>
     <div class="btns" style="margin-top:5px"><button id="mepE">Electrical set</button><button id="mepP">Plumbing set</button><button id="mepA">Architecture only</button></div>
-    <div id="hint">Drag to orbit, right-drag to pan, wheel to zoom. Click any object to see its name and source tag (DRAWN, CALCULATED or ASSUMED).</div>
+    <div id="hint">Drag to orbit, right-drag to pan, wheel to zoom. Click any object to see its name, size in feet and inches, and source tag (DRAWN, CALCULATED or ASSUMED).</div>
   </div>
   <div class="grp"><b>Status</b>
     <div style="font-size:11px;color:var(--muted)">Plans are DRAWN from the AFTER O.C. sheet (03-08-2026). Floor heights, sills, door swings marked ASSUMED, furniture and all electrical/plumbing points are ASSUMED proposals for consultant review. <b style="display:inline;color:#b91c1c;text-transform:none;letter-spacing:0">No columns or beams are shown</b>: no structural drawing was supplied.</div>
@@ -63,6 +63,8 @@
 <script type="module">
 const THREE = await import(URL.createObjectURL(new Blob([document.getElementById('three-src').textContent], {type:'text/javascript'})));
 const OrbitControls = new Function('THREE', document.getElementById('orbit-src').textContent + '\nreturn OrbitControls;')(THREE);
+const FTIN = m => { const sg = m < 0 ? '-' : ''; let t = Math.round(Math.abs(m) / 0.0254 * 8) / 8; let ft = Math.floor(t / 12); let inch = t - ft * 12; let w = Math.floor(inch + 1e-9); let f = Math.round((inch - w) * 8); if (f === 8) { w += 1; f = 0; } if (w === 12) { ft += 1; w = 0; } const fr = f ? ' ' + (f % 4 === 0 ? (f / 4) + '/2' : f % 2 === 0 ? (f / 2) + '/4' : f + '/8') : ''; return `${sg}${ft}'-${w}${fr}"`; };
+const SQFT = a => `${Math.round(a * 10.7639)} sq ft`;
 const SC = JSON.parse(document.getElementById('scene').textContent);
 const STOREYS = SC.storeys, FFL = SC.ffl;
 
@@ -130,7 +132,7 @@ for (const el of SC.elements) if (el.cls === 'IfcSpace') {
   let best = el.boxes[0]; for (const b of el.boxes) if ((b[3]-b[0])*(b[4]-b[1]) > (best[3]-best[0])*(best[4]-best[1])) best = b;
   const d = document.createElement('div'); d.className = 'lab';
   const nm = el.name.replace(/^\S+\s/, '');
-  d.innerHTML = `${nm}<br><small>${(best[3]-best[0]).toFixed(2)} × ${(best[4]-best[1]).toFixed(2)} m · ${el.area} m²</small>`;
+  d.innerHTML = `${nm}<br><small>${FTIN(best[3]-best[0])} × ${FTIN(best[4]-best[1])} · ${SQFT(el.area)}</small>`;
   labDiv.appendChild(d);
   labels.push({d, el, p: new THREE.Vector3((best[0]+best[3])/2, best[2]+0.05, (best[1]+best[4])/2)});
 }
@@ -222,17 +224,17 @@ canvas.addEventListener('pointerup', e => {
       const ln = new THREE.Line(g, new THREE.LineBasicMaterial({color:0xdc2626, depthTest:false})); ln.renderOrder = 10; mGroup.add(ln);
       const d = document.createElement('div'); d.className = 'mlab';
       const dx = Math.abs(b.x-a.x), dy = Math.abs(b.z-a.z), dz = Math.abs(b.y-a.y);
-      d.textContent = `${a.distanceTo(b).toFixed(3)} m`; labDiv.appendChild(d);
+      d.textContent = FTIN(a.distanceTo(b)); labDiv.appendChild(d);
       mLabels.push({d, p: a.clone().add(b).multiplyScalar(0.5)});
-      info.innerHTML = `<b>Measured ${a.distanceTo(b).toFixed(3)} m</b><br><span class="k">plan X</span> ${dx.toFixed(3)} · <span class="k">plan Y</span> ${dy.toFixed(3)} · <span class="k">height</span> ${dz.toFixed(3)} m<br><span class="k">${snap ? 'Snapped to box corners/mid-points within 0.15 m' : 'Free points'}</span>`;
+      info.innerHTML = `<b>Measured ${FTIN(a.distanceTo(b))}</b><br><span class="k">across</span> ${FTIN(dx)} · <span class="k">along</span> ${FTIN(dy)} · <span class="k">height</span> ${FTIN(dz)}<br><span class="k">${snap ? 'Snapped to corners and mid-points within 6"' : 'Free points'}</span>`;
       pts = [];
     }
     return;
   }
   const b = hit.object.userData.box;
   info.innerHTML = `<b>${el.name}</b><br><span class="k">${el.cls} · storey</span> ${el.storey}<br><span class="k">Source:</span> ${el.tag}` +
-    (b ? `<br><span class="k">This box:</span> ${(b[3]-b[0]).toFixed(3)} × ${(b[4]-b[1]).toFixed(3)} × ${(b[5]-b[2]).toFixed(3)} m (X × Y × H)<br><span class="k">Plan X</span> ${b[0].toFixed(2)}–${b[3].toFixed(2)} · <span class="k">Y</span> ${b[1].toFixed(2)}–${b[4].toFixed(2)} · <span class="k">Z</span> ${b[2].toFixed(2)}–${b[5].toFixed(2)}` : '') +
-    (el.area ? `<br><span class="k">Area</span> ${el.area} m² · <span class="k">label</span> ${el.label || '-'}` : '');
+    (b ? `<br><span class="k">Size:</span> ${FTIN(b[3]-b[0])} × ${FTIN(b[4]-b[1])} × ${FTIN(b[5]-b[2])} high<br><span class="k">Height above road</span> ${FTIN(b[2])} to ${FTIN(b[5])}` : '') +
+    (el.area ? `<br><span class="k">Area</span> ${SQFT(el.area)} · <span class="k">drawing label</span> ${el.label || '-'}` : '');
 });
 
 function resize() { const w = innerWidth, h = innerHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); }
@@ -300,13 +302,13 @@ function plan2D() {
     }
     if (LAYERS.labels.on) { ctx.fillStyle = css('--ink'); ctx.textAlign = 'center'; ctx.font = '12px system-ui';
       for (const el of SC.elements) if (el.cls === 'IfcSpace' && el.storey === floor) { let b = el.boxes[0]; for (const q of el.boxes) if ((q[3]-q[0])*(q[4]-q[1]) > (b[3]-b[0])*(b[4]-b[1])) b = q;
-        ctx.fillText(el.name.replace(/^\S+\s/, ''), X((b[0] + b[3]) / 2), Y((b[1] + b[4]) / 2)); ctx.font = '10px system-ui'; ctx.fillText(`${(b[3]-b[0]).toFixed(2)} × ${(b[4]-b[1]).toFixed(2)} m`, X((b[0] + b[3]) / 2), Y((b[1] + b[4]) / 2) + 13); ctx.font = '12px system-ui'; } }
+        ctx.fillText(el.name.replace(/^\S+\s/, ''), X((b[0] + b[3]) / 2), Y((b[1] + b[4]) / 2)); ctx.font = '10px system-ui'; ctx.fillText(`${FTIN(b[3]-b[0])} × ${FTIN(b[4]-b[1])}`, X((b[0] + b[3]) / 2), Y((b[1] + b[4]) / 2) + 13); ctx.font = '12px system-ui'; } }
     if (last) { ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 2; for (const b of last.boxes || []) ctx.strokeRect(X(b[0]), Y(b[1]), (b[3] - b[0]) * scale, (b[4] - b[1]) * scale); }
     ctx.fillStyle = '#dc2626'; ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 2;
     mpts.forEach(p => { ctx.beginPath(); ctx.arc(X(p[0]), Y(p[1]), 4, 0, 7); ctx.fill(); });
     if (mpts.length === 2) { ctx.beginPath(); ctx.moveTo(X(mpts[0][0]), Y(mpts[0][1])); ctx.lineTo(X(mpts[1][0]), Y(mpts[1][1])); ctx.stroke(); }
     ctx.fillStyle = css('--muted'); ctx.textAlign = 'left'; ctx.font = '11px system-ui';
-    ctx.fillText(`${floor} · FFL ${FFL[floor].toFixed(2)} m (assumed) · road at the bottom · 1 m grid`, X(0), Y(-0.85));
+    ctx.fillText(`${floor} · floor level ${FTIN(FFL[floor])} above road (assumed) · road at the bottom`, X(0), Y(-0.85));
     ctx.strokeStyle = css('--line'); ctx.lineWidth = 0.5; for (let g = 0; g <= 8; g++) { ctx.beginPath(); ctx.moveTo(X(g), Y(-0.6)); ctx.lineTo(X(g), Y(-0.75)); ctx.stroke(); }
   }
   const toPlan = (cx, cy) => { const r = cv.getBoundingClientRect(); return [(cx - r.left - ox) / scale, (cy - r.top - oy) / scale]; };
@@ -315,11 +317,11 @@ function plan2D() {
   cv.addEventListener('pointermove', e => { if (!drag) return; const dx = e.clientX - drag[0], dy = e.clientY - drag[1]; if (Math.hypot(dx, dy) > 4) moved = true; if (moved) { ox = drag[2] + dx; oy = drag[3] + dy; draw(); } });
   cv.addEventListener('pointerup', e => { const wasDrag = moved; drag = null; if (wasDrag) return; const p = toPlan(e.clientX, e.clientY);
     if (measuring) { mpts = mpts.length === 2 ? [p] : mpts.concat([p]); if (mpts.length === 2) { const d = Math.hypot(mpts[1][0] - mpts[0][0], mpts[1][1] - mpts[0][1]);
-      info.innerHTML = `<b>Measured ${d.toFixed(3)} m</b><br><span class="k">plan X</span> ${Math.abs(mpts[1][0] - mpts[0][0]).toFixed(3)} · <span class="k">plan Y</span> ${Math.abs(mpts[1][1] - mpts[0][1]).toFixed(3)} m`; } draw(); return; }
+      info.innerHTML = `<b>Measured ${FTIN(d)}</b><br><span class="k">across</span> ${FTIN(Math.abs(mpts[1][0] - mpts[0][0]))} · <span class="k">along</span> ${FTIN(Math.abs(mpts[1][1] - mpts[0][1]))}`; } draw(); return; }
     const hits = SC.elements.filter(visible).filter(el => (el.boxes || []).some(b => p[0] >= b[0] - 0.05 && p[0] <= b[3] + 0.05 && p[1] >= b[1] - 0.05 && p[1] <= b[4] + 0.05))
       .sort((a, b) => ORDER.indexOf(b.layer) - ORDER.indexOf(a.layer));
     last = hits[0] || null; if (last) { const b = last.boxes[0];
-      info.innerHTML = `<b>${last.name}</b><br><span class="k">${last.cls} · storey</span> ${last.storey}<br><span class="k">Source:</span> ${last.tag}<br><span class="k">Size</span> ${(b[3]-b[0]).toFixed(3)} × ${(b[4]-b[1]).toFixed(3)} m · <span class="k">height</span> ${b[2].toFixed(2)}–${b[5].toFixed(2)} m` + (last.area ? `<br><span class="k">Area</span> ${last.area} m²` : ''); }
+      info.innerHTML = `<b>${last.name}</b><br><span class="k">${last.cls} · storey</span> ${last.storey}<br><span class="k">Source:</span> ${last.tag}<br><span class="k">Size</span> ${FTIN(b[3]-b[0])} × ${FTIN(b[4]-b[1])} × ${FTIN(b[5]-b[2])} high` + (last.area ? `<br><span class="k">Area</span> ${SQFT(last.area)}` : ''); }
     draw(); });
   cv.addEventListener('wheel', e => { e.preventDefault(); const r = cv.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top, k = e.deltaY < 0 ? 1.12 : 1 / 1.12;
     ox = mx - (mx - ox) * k; oy = my - (my - oy) * k; scale *= k; draw(); }, {passive: false});

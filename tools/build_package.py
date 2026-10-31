@@ -145,7 +145,7 @@ def build_dxf(name, storey, pk, title):
         lay = {"E": "E-POINT", "P": "P-FIXT", "S": "S-SLEEVE"}[p["sys"]]
         tl = {"E": "E-TEXT", "P": "P-TEXT", "S": "S-SLEEVE"}[p["sys"]]
         ms.add_circle((p["x"], Y(p["y"])), 0.07, dxfattribs={"layer": lay})
-        ms.add_text(f"{CODE[p['kind']]} {p['zrel']:.2f}" if p["face"] not in ("C", "F") else CODE[p["kind"]], height=0.06,
+        ms.add_text(f"{CODE[p['kind']]} {ftin(p['zrel'])}" if p["face"] not in ("C", "F") else CODE[p["kind"]], height=0.06,
                     dxfattribs={"layer": tl}).set_placement((p["x"] + 0.09, Y(p["y"]) + 0.03))
     lines, verts = runs_for(storey, set(PIPECOL))
     for sysn, a, b, nm in lines:
@@ -156,8 +156,18 @@ def build_dxf(name, storey, pk, title):
         ms.add_circle((x, Y(y)), 0.06, dxfattribs={"layer": lay})
         if stack_label(nm):
             ms.add_text(stack_label(nm), height=0.08, dxfattribs={"layer": lay}).set_placement((x + 0.08, Y(y) - 0.12))
-    ms.add_text(f"BELLA VITA 2 - {title} - COORDINATION, NOT FOR CONSTRUCTION - units m - FFL {FFL[storey]:.2f} (ASSUMED)",
+    ms.add_text(f"BELLA VITA 2 - {title} - COORDINATION, NOT FOR CONSTRUCTION - units: feet and inches - floor level {ftin(FFL[storey])} above road (ASSUMED)",
                 height=0.25, dxfattribs={"layer": "A-TEXT"}).set_placement((0, Y(14.0)))
+    from ezdxf.math import Matrix44
+    m = Matrix44.scale(1 / 0.0254)                         # metres -> inches; CAD reads feet-inches
+    for e in list(ms):
+        try:
+            e.transform(m)
+        except Exception:
+            pass
+    doc.header["$INSUNITS"] = 1                              # inches
+    doc.header["$LUNITS"] = 4                                # architectural (feet-inches)
+    doc.header["$MEASUREMENT"] = 0                           # imperial
     doc.saveas(OUT / "dxf" / f"{name}.dxf")
 
 
@@ -236,7 +246,7 @@ def sheet(name, storey, pk, title, kind):
         if kind == "A":
             a = sum((q[2] - q[0]) * (q[3] - q[1]) for q in sp["rects"])
             s.append(f'<text x="{cx:.1f}" y="{cy-2:.1f}" font-size="2.4" font-weight="bold" text-anchor="middle">{esc(sp["name"])}</text>')
-            s.append(f'<text x="{cx:.1f}" y="{cy+1:.1f}" font-size="2" text-anchor="middle">{r[2]-r[0]:.2f} x {r[3]-r[1]:.2f} m · {a:.2f} m²</text>')
+            s.append(f'<text x="{cx:.1f}" y="{cy+1:.1f}" font-size="2" text-anchor="middle">{ftin(r[2]-r[0])} x {ftin(r[3]-r[1])} · {a * 10.7639:.0f} sq ft</text>')
             if sp.get("label"):
                 s.append(f'<text x="{cx:.1f}" y="{cy+3.6:.1f}" font-size="1.7" text-anchor="middle" fill="#666">drawn label {esc(sp["label"])[:40]}</text>')
         else:
@@ -245,10 +255,10 @@ def sheet(name, storey, pk, title, kind):
         # overall dimensions
         y = -0.55
         s.append(f'<line x1="{X_(0):.2f}" y1="{Y_(y):.2f}" x2="{X_(8):.2f}" y2="{Y_(y):.2f}" stroke="#111" stroke-width="0.2"/>')
-        s.append(f'<text x="{X_(4):.1f}" y="{Y_(y)-1:.1f}" font-size="2.2" text-anchor="middle">8.000 (DRAWN)</text>')
+        s.append(f'<text x="{X_(4):.1f}" y="{Y_(y)-1:.1f}" font-size="2.2" text-anchor="middle">{ftin(8.0)} (DRAWN)</text>')
         dep = fl["outline"][3]
         s.append(f'<line x1="{X_(-0.2):.2f}" y1="{Y_(0):.2f}" x2="{X_(-0.2):.2f}" y2="{Y_(dep):.2f}" stroke="#111" stroke-width="0.2"/>')
-        s.append(f'<text x="{X_(-0.25):.1f}" y="{Y_(dep/2):.1f}" font-size="2.2" text-anchor="middle" transform="rotate(-90 {X_(-0.25):.1f} {Y_(dep/2):.1f})">{dep:.3f} (DRAWN)</text>')
+        s.append(f'<text x="{X_(-0.25):.1f}" y="{Y_(dep/2):.1f}" font-size="2.2" text-anchor="middle" transform="rotate(-90 {X_(-0.25):.1f} {Y_(dep/2):.1f})">{ftin(dep)} (DRAWN)</text>')
     # MEP
     legend = Counter()
     if kind in ("E", "P"):
@@ -286,28 +296,29 @@ def sheet(name, storey, pk, title, kind):
                 continue
             col = "#b45309" if p["sys"] == "E" else "#0369a1"
             s.append(f'<circle cx="{X_(p["x"]):.2f}" cy="{Y_(p["y"]):.2f}" r="0.9" fill="{col}"/>')
-            lab = CODE[p["kind"]] + ("" if p["face"] in ("C", "F") else f" {p['zrel']:.2f}")
+            lab = CODE[p["kind"]] + ("" if p["face"] in ("C", "F") else f" {ftin(p['zrel'])}")
             s.append(f'<text x="{X_(p["x"])+1.2:.1f}" y="{Y_(p["y"])+0.7:.1f}" font-size="1.7" fill="{col}">{esc(lab)}</text>')
             legend[p["kind"]] += 1
     s.insert(1, '<defs><pattern id="hatch" width="1.5" height="1.5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="1.5" stroke="#fca5a5" stroke-width="0.5"/></pattern></defs>')
     # scale bar
     sx, sy = X_(0), 287 - 12
-    for i in range(5):
-        s.append(f'<rect x="{sx + i*KMM:.2f}" y="{sy}" width="{KMM:.2f}" height="1.2" fill="{"#111" if i % 2 == 0 else "#fff"}" stroke="#111" stroke-width="0.15"/>')
-    s.append(f'<text x="{sx:.1f}" y="{sy+4}" font-size="2">0</text><text x="{sx+5*KMM:.1f}" y="{sy+4}" font-size="2">5 m</text><text x="{sx+5*KMM+8:.1f}" y="{sy+1.5}" font-size="2.2">Scale 1:60 at A3</text>')
+    FT4 = 4 * 0.3048 * KMM                                  # 4 ft per segment
+    for i in range(4):
+        s.append(f'<rect x="{sx + i*FT4:.2f}" y="{sy}" width="{FT4:.2f}" height="1.2" fill="{"#111" if i % 2 == 0 else "#fff"}" stroke="#111" stroke-width="0.15"/>')
+    s.append(f'<text x="{sx:.1f}" y="{sy+4}" font-size="2">0</text><text x="{sx+4*FT4:.1f}" y="{sy+4}" font-size="2">16 ft</text><text x="{sx+4*FT4+8:.1f}" y="{sy+1.5}" font-size="2.2">Scale 1:60 at A3</text>')
     # right panel: title block, legend, notes
     px = 200
     kindname = {"A": "Architectural layout & furniture", "E": "Electrical points, riser & conduits (proposal)", "P": "Plumbing & drainage (proposal)"}[kind]
     s.append(f'<text x="{px}" y="24" font-size="7" font-weight="bold">BELLA VITA 2 · {esc(title.upper())}</text>')
     s.append(f'<text x="{px}" y="32" font-size="4.2">{esc(kindname)}</text>')
     s.append(f'<text x="{px}" y="39" font-size="2.8" fill="#555">Plot C-89, Sector 12, Kharghar, Navi Mumbai · student PG · source: AFTER O.C. sheet 03-08-2026</text>')
-    s.append(f'<text x="{px}" y="44" font-size="2.8" fill="#555">FFL {FFL[storey]:.2f} m above road (ASSUMED) · plan origin = rear-left outer wall corner · units m</text>')
+    s.append(f'<text x="{px}" y="44" font-size="2.8" fill="#555">floor level {ftin(FFL[storey])} above road (ASSUMED) · all dimensions in feet and inches</text>')
     s.append(f'<rect x="{px}" y="48" width="200" height="8" fill="#fee2e2"/><text x="{px+2}" y="53.5" font-size="3.2" fill="#991b1b" font-weight="bold">COORDINATION DRAWING – NOT FOR CONSTRUCTION. Structure &amp; final MEP by licensed consultants.</text>')
     yy = 64
     if kind == "A":
-        rows = ["Walls, doors, windows, rooms: DRAWN from the PDF vectors (±0.01 m).",
+        rows = ["Walls, doors, windows, rooms: DRAWN from the PDF vectors (to about 1/2 inch).",
                 "Door swings: DRAWN on F4, ASSUMED elsewhere (takeoff Q6). Furniture: ASSUMED positions, brief sizes.",
-                "Room labels show measured main rectangle and total area; 'drawn label' = text on architect's sheet.",
+                "Room labels show the main rectangle in feet and inches and the total area in sq ft.",
                 "No columns or beams are drawn on the source sheet; none shown (takeoff Q1).",
                 "Wardrobes sit in the drawn grey 0.55 m strips (takeoff Q7)."]
         if pk == "F1-3":
@@ -338,7 +349,7 @@ def sheet(name, storey, pk, title, kind):
             yy += 4.2
         s.append(f'<text x="{px}" y="{yy+1}" font-size="2.5">○ = vertical pipe/riser passing this floor (S1/W1 rear soil/waste, S2/W2 front, DT down-take, RM rising main, ER electrical riser)</text>')
         yy += 6
-        notes = {"E": ["Numbers after a code = mounting height above FFL (m), ASSUMED practice, not verified code values.",
+        notes = {"E": ["Numbers after a code = mounting height above floor in feet and inches (ASSUMED practice).",
                        "Conduits shown are indicative routes in the slab above (pre-slab item) and wall chases.",
                        "Each room: lights+fan 10A, sockets 16A, AC 20A, geyser 20A circuits; RCBO per room (CEA Reg. 44).",
                        "All positions checked: on a wall, clear of windows, door openings, door swings and furniture (docs/mep-checks.md)."],
@@ -358,19 +369,16 @@ def sheet(name, storey, pk, title, kind):
 
 def furniture_schedule():
     cat = AS.get("wakefit_catalog", {})
-    rows = [["floor", "room", "item", "product", "link", "plan_x0_m", "plan_y0_m", "W_m", "D_m", "H_m", "W_ftin", "D_ftin", "H_ftin", "clearance", "clearance_ftin"]]
+    rows = [["floor", "room", "item", "Wakefit product", "link", "width", "depth", "height", "clearance"]]
     clr = {"bed": AS["clearances"]["queen_bed_sides"], "wardrobe": AS["clearances"]["sliding_wardrobe_front"], "desk": AS["clearances"]["desk_chair_zone"]}
-    for pk in ("F1-3", "F4"):
-        for room, items in FU.get(pk, {}).items():
-            for it in items:
-                r = it["rect"]
-                w_, d_ = r[2] - r[0], r[3] - r[1]
-                h_ = AS["furniture_sizes"][it["type"]][2]
-                key = "bed" if it["type"].endswith("_bed") else "wardrobe" if "wardrobe" in it["type"] else "desk" if it["type"].endswith("desk") else None
-                c = cat.get(it["type"], {})
-                cl = clr.get(key)
-                rows.append([pk, room, it["type"], c.get("product", ""), c.get("link", ""), r[0], r[1], round(w_, 3), round(d_, 3), h_, ftin(w_), ftin(d_), ftin(h_),
-                             f"{cl:.2f} m {'per open side' if key == 'bed' else 'in front'}" if cl else "", ftin(cl) if cl else ""])
+    for room, items in FU.get("F1-3", {}).items():                   # floor 1 only (family: work on floor 1 for now)
+        for it in items:
+            w_, d_, h_ = AS["furniture_sizes"][it["type"]]
+            key = "bed" if it["type"].endswith("_bed") else "wardrobe" if "wardrobe" in it["type"] else "desk" if it["type"].endswith("desk") else None
+            c = cat.get(it["type"], {})
+            cl = clr.get(key)
+            rows.append(["F1", room, it["type"].replace("_", " "), c.get("product", ""), c.get("link", ""), ftin(w_), ftin(d_), ftin(h_),
+                         (ftin(cl) + (" each open side" if key == "bed" else " in front" if key == "wardrobe" else " chair pull-out")) if cl else ""])
     with open(ROOT / "docs/schedules/furniture_schedule.csv", "w", newline="") as fh:
         csv.writer(fh).writerows(rows)
     return rows
@@ -394,9 +402,9 @@ def schedules_html():
         tag = "th" if i == 0 or r[0] == "run" else "td"
         h.append("<tr>" + "".join(f"<{tag}>{esc(c)}</{tag}>" for c in r) + "</tr>")
     h.append("</table>")
-    h.append("<h2>2. Furniture schedule (Wakefit, sizes in feet and inches)</h2><table>")
+    h.append("<h2>2. Furniture schedule, floor 1 (Wakefit, feet and inches)</h2><table>")
     for i, r in enumerate(furniture_schedule()):
-        cells = [r[0], r[1], r[3] or r[2], r[10], r[11], r[12], r[14]] if i else ["Floor", "Room", "Item", "W", "D", "H", "Clearance"]
+        cells = [r[0], r[1], r[3] or r[2], r[5], r[6], r[7], r[8]] if i else ["Floor", "Room", "Item", "Width", "Depth", "Height", "Clearance"]
         tag = "th" if i == 0 else "td"
         h.append("<tr>" + "".join(f"<{tag}>{esc(c)}</{tag}>" for c in cells) + "</tr>")
     h.append("</table>")

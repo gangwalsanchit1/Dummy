@@ -8,9 +8,10 @@ This is a student PG at Plot C-89, Sector 12, Kharghar, Navi Mumbai: stilt, four
 
 | I want to… | Open | How |
 |---|---|---|
+| **Floor 1 summary (current focus, feet and inches)** | `docs/floor1.md` | Rooms, Wakefit furniture, checks, AC results, open decisions |
 | Walk around the building in 3D | `viewer/bella-vita-2.html` | Download it and double-click it. It works **offline** in Chrome, Edge, Firefox or Safari (see the controls below). |
 | Print or share floor plans | `package/pdf/GF.pdf`, `F1-3.pdf`, `F4.pdf`, `TERRACE.pdf` | Any PDF reader. Each file has 3 A3 sheets: **A** architecture and furniture, **E** electrical, **P** plumbing. Scale 1:60 at A3. |
-| Give the contractor CAD files | `package/dxf/*.dxf` | Free tools: LibreCAD, QCAD, DraftSight, or the free online viewer at sharecad.org. Units are metres. Layers are listed below. |
+| Give the contractor CAD files | `package/dxf/*.dxf` | Free tools: LibreCAD, QCAD, DraftSight, or the free online viewer at sharecad.org. Units are feet and inches (drawn in inches, architectural units). Layers are listed below. |
 | See every point, room by room | `package/pdf/schedules.pdf` or `docs/schedules/points_schedule.csv` | PDF reader, or Excel / Google Sheets |
 | Count points and pipe lengths | `docs/schedules/quantities.csv` (also in `schedules.pdf`) | Excel / Google Sheets. Lengths are approximate and no prices are given. |
 | Know what must happen **before each slab pour** | `docs/pre-slab-checklist.md` (also in `schedules.pdf`) | Any Markdown viewer, or GitHub |

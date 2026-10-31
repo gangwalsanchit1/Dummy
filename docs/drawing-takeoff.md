@@ -264,13 +264,13 @@ The family has decided that **every room is single occupancy**, furnished with W
 
 ### ROOM-4 (F1–F3) key dimensions, feet and inches (DRAWN)
 
-| Item | Metres | Feet and inches |
-|---|---|---|
-| Main room clear (W × D) | 3.40 × 2.80 | 11'-1 7/8" × 9'-2 1/4" |
-| Study wall (west wall, where the wardrobe was) | 1.90 | 6'-2 3/4" |
-| Entry passage width | 0.90 | 2'-11 3/8" |
-| Entry door F-D4 / toilet door F-D4T | 0.90 / 0.65 | 2'-11 3/8" / 2'-1 5/8" |
-| Rear window F-W4 (room) / F-W3 (toilet) | 1.50 / 0.60 | 4'-11" / 1'-11 5/8" |
-| Room window sill (ASSUMED) | 0.90 | 2'-11 3/8" |
+| Item | Feet and inches |
+|---|---|
+| Main room clear (W × D) | 11'-1 7/8" × 9'-2 1/4" |
+| Study wall (west wall, where the wardrobe was) | 6'-2 3/4" |
+| Entry passage width | 2'-11 3/8" |
+| Entry door F-D4 / toilet door F-D4T | 2'-11 3/8" / 2'-1 5/8" |
+| Rear window F-W4 (room) / F-W3 (toilet) | 4'-11" / 1'-11 5/8" |
+| Room window sill (ASSUMED) | 2'-11 3/8" |
 
-The Orion headboard (2'-10 5/8", 87.8 cm, from listings) sits **7/8" below** the ASSUMED 2'-11 3/8" sill of window F-W4, which the bed head is placed under. If the real sill is lower, the bed must turn or move. This needs the architect's sill height (Q2).
+The Orion headboard (2'-10 5/8", from listings) sits **7/8" below** the ASSUMED 2'-11 3/8" sill of window F-W4, which the bed head is placed under. If the real sill is lower, the bed must turn or move. This needs the architect's sill height (Q2).
