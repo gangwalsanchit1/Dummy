@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 1568" width="1020" height="1568" font-family="Arial, Helvetica, sans-serif">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}</style>
+<defs><marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#111"/></marker></defs>
+<text x="70" y="34" font-size="22" font-weight="bold" fill="#111">Bella Vita 2 · Floor 1 (floors 2 and 3 identical)</text>
+<text x="70" y="58" font-size="13" fill="#444">2D plan · single occupancy · Wakefit furniture · all dimensions in feet and inches · rear at top, road at bottom</text>
+<rect x="85.8" y="340.2" width="304.5" height="409.5" fill="#eef2ff"/>
+<rect x="85.8" y="140.8" width="168.0" height="199.5" fill="#eef2ff"/>
+<rect x="264.2" y="140.8" width="126.0" height="189.0" fill="#ecfeff"/>
+<rect x="537.2" y="140.8" width="357.0" height="294.0" fill="#eef2ff"/>
+<rect x="400.8" y="340.2" width="136.5" height="94.5" fill="#eef2ff"/>
+<rect x="400.8" y="434.8" width="94.5" height="162.7" fill="#eef2ff"/>
+<rect x="400.8" y="140.8" width="126.0" height="189.0" fill="#ecfeff"/>
+<rect x="400.8" y="597.5" width="94.5" height="26.2" fill="#f5f5f4"/>
+<rect x="400.8" y="623.8" width="257.2" height="231.0" fill="#f5f5f4"/>
+<rect x="511.0" y="450.5" width="147.0" height="157.5" fill="#f5f5f4"/>
+<rect x="673.8" y="450.5" width="220.5" height="404.2" fill="#f5f5f4"/>
+<rect x="85.8" y="760.2" width="304.5" height="105.0" fill="#eef2ff"/>
+<rect x="85.8" y="865.2" width="399.0" height="246.8" fill="#eef2ff"/>
+<rect x="85.8" y="1112.0" width="262.5" height="231.0" fill="#eef2ff"/>
+<rect x="358.8" y="1122.5" width="126.0" height="220.5" fill="#ecfeff"/>
+<rect x="495.2" y="865.2" width="399.0" height="246.8" fill="#eef2ff"/>
+<rect x="631.8" y="1112.0" width="262.5" height="231.0" fill="#eef2ff"/>
+<rect x="495.2" y="1122.5" width="126.0" height="220.5" fill="#ecfeff"/>
+<line x1="673.8" y1="555.5" x2="778.8" y2="555.5" stroke="#a8a29e"/>
+<line x1="789.2" y1="555.5" x2="894.2" y2="555.5" stroke="#a8a29e"/>
+<line x1="673.8" y1="581.8" x2="778.8" y2="581.8" stroke="#a8a29e"/>
+<line x1="789.2" y1="581.8" x2="894.2" y2="581.8" stroke="#a8a29e"/>
+<line x1="673.8" y1="608.0" x2="778.8" y2="608.0" stroke="#a8a29e"/>
+<line x1="789.2" y1="608.0" x2="894.2" y2="608.0" stroke="#a8a29e"/>
+<line x1="673.8" y1="634.2" x2="778.8" y2="634.2" stroke="#a8a29e"/>
+<line x1="789.2" y1="634.2" x2="894.2" y2="634.2" stroke="#a8a29e"/>
+<line x1="673.8" y1="660.5" x2="778.8" y2="660.5" stroke="#a8a29e"/>
+<line x1="789.2" y1="660.5" x2="894.2" y2="660.5" stroke="#a8a29e"/>
+<line x1="673.8" y1="686.8" x2="778.8" y2="686.8" stroke="#a8a29e"/>
+<line x1="789.2" y1="686.8" x2="894.2" y2="686.8" stroke="#a8a29e"/>
+<line x1="673.8" y1="713.0" x2="778.8" y2="713.0" stroke="#a8a29e"/>
+<line x1="789.2" y1="713.0" x2="894.2" y2="713.0" stroke="#a8a29e"/>
+<line x1="673.8" y1="739.2" x2="778.8" y2="739.2" stroke="#a8a29e"/>
+<line x1="789.2" y1="739.2" x2="894.2" y2="739.2" stroke="#a8a29e"/>
+<rect x="631.8" y="1174.5" width="234.4" height="168.5" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="748.9" y="1256.7" font-size="12" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Orion queen bed</text>
+<text x="748.9" y="1270.7" font-size="11" text-anchor="middle" fill="#1e1b4b">7'-3⅞" × 5'-3¼"</text>
+<rect x="631.8" y="1129.3" width="31.5" height="45.1" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="647.5" y="1154.9" font-size="9" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 647.5 1151.9)">Tinker</text>
+<rect x="495.2" y="865.2" width="50.0" height="85.1" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="520.2" y="905.8" font-size="12" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 520.2 907.8)">Gingham</text>
+<text x="520.2" y="919.8" font-size="11" text-anchor="middle" fill="#1e1b4b" transform="rotate(-90 520.2 907.8)">2'-7⅞" × 1'-6¾"</text>
+<rect x="647.5" y="865.2" width="126.0" height="63.0" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="710.5" y="894.8" font-size="12" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Study table</text>
+<text x="710.5" y="908.8" font-size="11" text-anchor="middle" fill="#1e1b4b">3'-11¼" × 1'-11⅝"</text>
+<rect x="85.8" y="828.5" width="234.4" height="168.5" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="202.9" y="910.8" font-size="12" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Orion queen bed</text>
+<text x="202.9" y="924.8" font-size="11" text-anchor="middle" fill="#1e1b4b">7'-3⅞" × 5'-3¼"</text>
+<rect x="85.8" y="783.3" width="31.5" height="45.2" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="101.5" y="808.9" font-size="9" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 101.5 805.9)">Tinker</text>
+<rect x="434.8" y="865.2" width="50.0" height="85.1" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="459.8" y="905.8" font-size="12" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 459.8 907.8)">Gingham</text>
+<text x="459.8" y="919.8" font-size="11" text-anchor="middle" fill="#1e1b4b" transform="rotate(-90 459.8 907.8)">2'-7⅞" × 1'-6¾"</text>
+<rect x="85.8" y="1280.0" width="126.0" height="63.0" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="148.8" y="1309.5" font-size="12" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Study table</text>
+<text x="148.8" y="1323.5" font-size="11" text-anchor="middle" fill="#1e1b4b">3'-11¼" × 1'-11⅝"</text>
+<rect x="85.8" y="403.2" width="234.4" height="168.5" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="202.9" y="485.5" font-size="12" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Orion queen bed</text>
+<text x="202.9" y="499.5" font-size="11" text-anchor="middle" fill="#1e1b4b">7'-3⅞" × 5'-3¼"</text>
+<rect x="85.8" y="358.1" width="31.5" height="45.1" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="101.5" y="383.7" font-size="9" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 101.5 380.7)">Tinker</text>
+<rect x="85.8" y="699.8" width="85.0" height="50.0" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="128.3" y="722.8" font-size="12" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Gingham</text>
+<text x="128.3" y="736.8" font-size="11" text-anchor="middle" fill="#1e1b4b">2'-7⅞" × 1'-6¾"</text>
+<rect x="85.8" y="140.8" width="126.0" height="63.0" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="148.8" y="170.2" font-size="12" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Study table</text>
+<text x="148.8" y="184.2" font-size="11" text-anchor="middle" fill="#1e1b4b">3'-11¼" × 1'-11⅝"</text>
+<rect x="725.7" y="140.8" width="168.5" height="234.4" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="810.0" y="255.9" font-size="12" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 810.0 257.9)">Orion queen bed</text>
+<text x="810.0" y="269.9" font-size="11" text-anchor="middle" fill="#1e1b4b" transform="rotate(-90 810.0 257.9)">7'-3⅞" × 5'-3¼"</text>
+<rect x="680.6" y="140.8" width="45.1" height="31.5" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="703.1" y="159.5" font-size="9" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Tinker</text>
+<rect x="537.2" y="140.8" width="50.0" height="63.0" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="562.2" y="170.2" font-size="12" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Twill</text>
+<text x="562.2" y="184.2" font-size="11" text-anchor="middle" fill="#1e1b4b">1'-11⅝" × 1'-6¾"</text>
+<rect x="537.2" y="203.8" width="63.0" height="126.0" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="568.8" y="264.8" font-size="12" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 568.8 266.8)">Study table</text>
+<text x="568.8" y="278.8" font-size="11" text-anchor="middle" fill="#1e1b4b" transform="rotate(-90 568.8 266.8)">3'-11¼" × 1'-11⅝"</text>
+<rect x="70.0" y="125.0" width="840.0" height="15.8" fill="#292524"/>
+<rect x="70.0" y="1343.0" width="840.0" height="15.8" fill="#292524"/>
+<rect x="70.0" y="125.0" width="15.8" height="1233.8" fill="#292524"/>
+<rect x="894.2" y="125.0" width="15.8" height="1233.8" fill="#292524"/>
+<rect x="253.8" y="140.8" width="10.5" height="199.5" fill="#292524"/>
+<rect x="390.2" y="140.8" width="10.5" height="456.7" fill="#292524"/>
+<rect x="390.2" y="692.0" width="10.5" height="68.2" fill="#292524"/>
+<rect x="332.5" y="329.8" width="57.7" height="10.5" fill="#292524"/>
+<rect x="400.8" y="329.8" width="57.8" height="10.5" fill="#292524"/>
+<rect x="526.8" y="140.8" width="10.5" height="199.5" fill="#292524"/>
+<rect x="85.8" y="749.8" width="315.0" height="10.5" fill="#292524"/>
+<rect x="495.2" y="434.8" width="399.0" height="15.7" fill="#292524"/>
+<rect x="495.2" y="434.8" width="15.8" height="189.0" fill="#292524"/>
+<rect x="658.0" y="450.5" width="15.8" height="288.7" fill="#292524"/>
+<rect x="511.0" y="608.0" width="8.4" height="15.8" fill="#292524"/>
+<rect x="634.9" y="608.0" width="23.1" height="15.8" fill="#292524"/>
+<rect x="778.8" y="555.5" width="10.5" height="183.8" fill="#292524"/>
+<rect x="390.2" y="854.8" width="162.7" height="10.5" fill="#292524"/>
+<rect x="647.5" y="854.8" width="246.7" height="10.5" fill="#292524"/>
+<rect x="484.8" y="865.2" width="10.5" height="477.8" fill="#292524"/>
+<rect x="427.0" y="1112.0" width="57.8" height="10.5" fill="#292524"/>
+<rect x="495.2" y="1112.0" width="57.7" height="10.5" fill="#292524"/>
+<rect x="348.2" y="1112.0" width="10.5" height="231.0" fill="#292524"/>
+<rect x="621.2" y="1112.0" width="10.5" height="231.0" fill="#292524"/>
+<rect x="91.0" y="125.0" width="157.5" height="15.8" fill="#bfdbfe" stroke="#1d4ed8"/>
+<text x="169.8" y="112.4" font-size="10" text-anchor="middle" fill="#1d4ed8">window 4'-11"</text>
+<rect x="301.0" y="125.0" width="63.0" height="15.8" fill="#bfdbfe" stroke="#1d4ed8"/>
+<text x="332.5" y="112.4" font-size="10" text-anchor="middle" fill="#1d4ed8">window 1'-11⅝"</text>
+<rect x="432.2" y="125.0" width="63.0" height="15.8" fill="#bfdbfe" stroke="#1d4ed8"/>
+<text x="463.8" y="112.4" font-size="10" text-anchor="middle" fill="#1d4ed8">window 1'-11⅝"</text>
+<rect x="631.8" y="125.0" width="157.5" height="15.8" fill="#bfdbfe" stroke="#1d4ed8"/>
+<text x="710.5" y="112.4" font-size="10" text-anchor="middle" fill="#1d4ed8">window 4'-11"</text>
+<rect x="138.2" y="1343.0" width="157.5" height="15.8" fill="#bfdbfe" stroke="#1d4ed8"/>
+<text x="217.0" y="1379.8" font-size="10" text-anchor="middle" fill="#1d4ed8">window 4'-11"</text>
+<rect x="390.2" y="1343.0" width="63.0" height="15.8" fill="#bfdbfe" stroke="#1d4ed8"/>
+<text x="421.7" y="1379.8" font-size="10" text-anchor="middle" fill="#1d4ed8">window 1'-11⅝"</text>
+<rect x="526.8" y="1343.0" width="63.0" height="15.8" fill="#bfdbfe" stroke="#1d4ed8"/>
+<text x="558.2" y="1379.8" font-size="10" text-anchor="middle" fill="#1d4ed8">window 1'-11⅝"</text>
+<rect x="684.2" y="1343.0" width="157.5" height="15.8" fill="#bfdbfe" stroke="#1d4ed8"/>
+<text x="763.0" y="1379.8" font-size="10" text-anchor="middle" fill="#1d4ed8">window 4'-11"</text>
+<path d="M390.2,692.0 L295.8,692.0 A94.5,94.5 0 0 0 390.2,597.5 Z" fill="#fde68a" fill-opacity="0.5" stroke="#92400e"/>
+<line x1="390.2" y1="692.0" x2="295.8" y2="692.0" stroke="#92400e" stroke-width="2.5"/>
+<path d="M495.2,597.5 L495.2,503.0 A94.5,94.5 0 0 1 400.8,597.5 Z" fill="#fde68a" fill-opacity="0.5" stroke="#92400e"/>
+<line x1="495.2" y1="597.5" x2="495.2" y2="503.0" stroke="#92400e" stroke-width="2.5"/>
+<path d="M390.2,760.2 L295.8,760.2 A94.5,94.5 0 0 1 390.2,854.8 Z" fill="#fde68a" fill-opacity="0.5" stroke="#92400e"/>
+<line x1="390.2" y1="760.2" x2="295.8" y2="760.2" stroke="#92400e" stroke-width="2.5"/>
+<path d="M553.0,865.2 L553.0,959.8 A94.5,94.5 0 0 1 647.5,865.2 Z" fill="#fde68a" fill-opacity="0.5" stroke="#92400e"/>
+<line x1="553.0" y1="865.2" x2="553.0" y2="959.8" stroke="#92400e" stroke-width="2.5"/>
+<path d="M264.2,329.8 L264.2,261.5 A68.2,68.2 0 0 0 332.5,329.8 Z" fill="#fde68a" fill-opacity="0.5" stroke="#92400e"/>
+<line x1="264.2" y1="329.8" x2="264.2" y2="261.5" stroke="#92400e" stroke-width="2.5"/>
+<path d="M526.8,329.8 L526.8,261.5 A68.2,68.2 0 0 1 458.5,329.8 Z" fill="#fde68a" fill-opacity="0.5" stroke="#92400e"/>
+<line x1="526.8" y1="329.8" x2="526.8" y2="261.5" stroke="#92400e" stroke-width="2.5"/>
+<path d="M358.8,1122.5 L358.8,1190.8 A68.2,68.2 0 0 1 427.0,1122.5 Z" fill="#fde68a" fill-opacity="0.5" stroke="#92400e"/>
+<line x1="358.8" y1="1122.5" x2="358.8" y2="1190.8" stroke="#92400e" stroke-width="2.5"/>
+<path d="M621.2,1122.5 L621.2,1190.8 A68.2,68.2 0 0 0 553.0,1122.5 Z" fill="#fde68a" fill-opacity="0.5" stroke="#92400e"/>
+<line x1="621.2" y1="1122.5" x2="621.2" y2="1190.8" stroke="#92400e" stroke-width="2.5"/>
+<text x="248.9" y="659.8" font-size="16" text-anchor="middle" font-weight="bold" fill="#111">ROOM-3</text>
+<text x="248.9" y="676.8" font-size="12" text-anchor="middle" fill="#111">9'-6⅛" × 12'-9½"</text>
+<text x="248.9" y="691.8" font-size="11" text-anchor="middle" fill="#444">154 sq ft</text>
+<text x="327.2" y="229.2" font-size="11" text-anchor="middle" font-weight="bold" fill="#0e7490">TOILET</text>
+<text x="327.2" y="243.2" font-size="10" text-anchor="middle" fill="#0e7490">3'-11¼" ×</text>
+<text x="327.2" y="255.2" font-size="10" text-anchor="middle" fill="#0e7490">5'-10⅞"</text>
+<text x="656.2" y="355.2" font-size="16" text-anchor="middle" font-weight="bold" fill="#111">ROOM-4</text>
+<text x="656.2" y="372.2" font-size="12" text-anchor="middle" fill="#111">11'-1⅞" × 9'-2¼"</text>
+<text x="656.2" y="387.2" font-size="11" text-anchor="middle" fill="#444">130 sq ft</text>
+<text x="463.8" y="229.2" font-size="11" text-anchor="middle" font-weight="bold" fill="#0e7490">TOILET</text>
+<text x="463.8" y="243.2" font-size="10" text-anchor="middle" fill="#0e7490">3'-11¼" ×</text>
+<text x="463.8" y="255.2" font-size="10" text-anchor="middle" fill="#0e7490">5'-10⅞"</text>
+<text x="529.4" y="733.2" font-size="16" text-anchor="middle" font-weight="bold" fill="#111">LOBBY</text>
+<text x="529.4" y="750.2" font-size="12" text-anchor="middle" fill="#111">8'-0½" × 7'-2⅝"</text>
+<text x="529.4" y="765.2" font-size="11" text-anchor="middle" fill="#444">60 sq ft</text>
+<text x="584.5" y="523.2" font-size="16" text-anchor="middle" font-weight="bold" fill="#111">LIFT</text>
+<text x="584.5" y="540.2" font-size="12" text-anchor="middle" fill="#111">4'-7⅛" × 4'-11"</text>
+<text x="584.5" y="555.2" font-size="11" text-anchor="middle" fill="#444">23 sq ft</text>
+<text x="784.0" y="646.6" font-size="16" text-anchor="middle" font-weight="bold" fill="#111">STAIR</text>
+<text x="784.0" y="663.6" font-size="12" text-anchor="middle" fill="#111">6'-10⅝" × 12'-7⅝"</text>
+<text x="784.0" y="678.6" font-size="11" text-anchor="middle" fill="#444">87 sq ft</text>
+<text x="253.8" y="1194.0" font-size="16" text-anchor="middle" font-weight="bold" fill="#111">ROOM-2</text>
+<text x="253.8" y="1211.0" font-size="12" text-anchor="middle" fill="#111">12'-5⅝" × 7'-8½"</text>
+<text x="253.8" y="1226.0" font-size="11" text-anchor="middle" fill="#444">187 sq ft</text>
+<text x="421.8" y="1226.8" font-size="11" text-anchor="middle" font-weight="bold" fill="#0e7490">TOILET</text>
+<text x="421.8" y="1240.8" font-size="10" text-anchor="middle" fill="#0e7490">3'-11¼" ×</text>
+<text x="421.8" y="1252.8" font-size="10" text-anchor="middle" fill="#0e7490">6'-10⅝"</text>
+<text x="613.9" y="1009.4" font-size="16" text-anchor="middle" font-weight="bold" fill="#111">ROOM-1</text>
+<text x="613.9" y="1026.4" font-size="12" text-anchor="middle" fill="#111">12'-5⅝" × 7'-8½"</text>
+<text x="613.9" y="1041.4" font-size="11" text-anchor="middle" fill="#444">155 sq ft</text>
+<text x="558.2" y="1226.8" font-size="11" text-anchor="middle" font-weight="bold" fill="#0e7490">TOILET</text>
+<text x="558.2" y="1240.8" font-size="10" text-anchor="middle" fill="#0e7490">3'-11¼" ×</text>
+<text x="558.2" y="1252.8" font-size="10" text-anchor="middle" fill="#0e7490">6'-10⅝"</text>
+<line x1="70.0" y1="77.8" x2="910.0" y2="77.8" stroke="#111" marker-start="url(#a)" marker-end="url(#a)"/>
+<text x="490.0" y="72.8" font-size="13" font-weight="bold" text-anchor="middle">26'-3" overall</text>
+<line x1="33.2" y1="125.0" x2="33.2" y2="1358.8" stroke="#111" marker-start="url(#a)" marker-end="url(#a)"/>
+<text x="27.2" y="741.9" font-size="13" font-weight="bold" text-anchor="middle" transform="rotate(-90 27.2 741.9)">38'-6⅝" overall</text>
+<text x="490.0" y="1432.2" font-size="14" text-anchor="middle" fill="#57534e">ROAD (19'-8¼" wide) · front of building</text>
+<text x="70" y="1474" font-size="12" fill="#333">Blue = Wakefit furniture (Orion queen bed, Tinker side table, Gingham / Twill wardrobe, study table placeholder).</text>
+<text x="70" y="1492" font-size="12" fill="#333">Yellow = door swing; every door opens inwards. Light blue on walls = windows.</text>
+<text x="70" y="1510" font-size="12" fill="#333">Walls, doors and windows from the architect's AFTER O.C. drawing. Furniture positions are proposals.</text>
+</svg>
