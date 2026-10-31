@@ -84,6 +84,21 @@
       1.2,
       0.6,
       0.75
+    ],
+    "centaur_single_bed": [
+      2.133,
+      1.05,
+      0.96
+    ],
+    "sage_desk": [
+      1.0,
+      0.57,
+      1.343
+    ],
+    "amata_sofa": [
+      1.9,
+      0.96,
+      0.88
     ]
   },
   "clearances": {
@@ -93,7 +108,9 @@
     "desk_chair_zone": 0.75,
     "_note": "Single occupancy, queen bed: 0.60 m on both long sides where it fits (otherwise reported). Wardrobe front 0.60 m (hinged doors). Desk chair zone 0.75 m. Walking path 0.55 m. All ASSUMED except the family's ROOM-4 rule.",
     "_room4_rule": "F1-3 ROOM-4 (family): queen bed with one long side against a wall, Tinker side table on the open side touching the head wall; study wall = west wall (x 4.45) with the study table and the wardrobe.",
-    "queen_head_table_trim": 0.35
+    "queen_head_table_trim": 0.35,
+    "sofa_legroom": 0.45,
+    "_sofa_note": "Sofa: 1'-5 3/4\" (0.45 m) legroom in front (ASSUMED). Bed mode (4'-0\" deep) needs the front clear to 4'-0\" from the wall - reported, not required."
   },
   "doors": {
     "_note": "hinge = plan point; zone = quarter-disc of radius 'width' swept from the hinge into 'quadrant' (signs of dx, dy). ALL doors open INWARDS (family instruction): room doors into rooms, toilet/WC doors into the toilet, terrace door into the suite. Arcs DRAWN on F4 room doors; hinge sides elsewhere ASSUMED, chosen so the open leaf lies against a side wall.",
@@ -396,6 +413,27 @@
       "product": "Wakefit wall desk (earlier family choice)",
       "size_cm": "90 x 45",
       "status": "family-confirmed size (earlier)"
+    },
+    "centaur_single_bed": {
+      "product": "Wakefit Centaur Single size Storage bed, 78 x 36, Frosty White",
+      "link": "https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR",
+      "size_cm": "213.3 L x 105 W overall, headboard 96 H, bed 37.5 H",
+      "source": "family screenshot of the Wakefit product page",
+      "status": "from Wakefit page (family screenshot)"
+    },
+    "sage_desk": {
+      "product": "Wakefit Sage Study Table, Columbian Walnut",
+      "link": "https://www.wakefit.co/study-tables/sage-study-table/WSTSAGER1",
+      "size_cm": "100 W x 57 D, desk top 74 H, hutch 134.3 H",
+      "source": "family screenshot of the Wakefit product page",
+      "status": "from Wakefit page (family screenshot)"
+    },
+    "amata_sofa": {
+      "product": "AMATA sofa cum bed (Aqua Blue)",
+      "link": "https://www.amazon.in/dp/B0B68JZTDP",
+      "size_cm": "190 L x 96 D x 88 H (sofa); 189.2 x 121.9 x 43.2 H (bed mode)",
+      "source": "family screenshot of the Amazon listing",
+      "status": "from listing (family screenshot)"
     }
   }
 }

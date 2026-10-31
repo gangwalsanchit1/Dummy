@@ -38,7 +38,7 @@ s = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}"
      '<style>text{paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}</style>',
      '<defs><marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#111"/></marker></defs>']
 s.append(f'<text x="{MX}" y="34" font-size="22" font-weight="bold" fill="#111">Bella Vita 2 · Floor 1 (floors 2 and 3 identical)</text>')
-s.append(f'<text x="{MX}" y="58" font-size="13" fill="#444">2D plan · single occupancy · Wakefit furniture · all dimensions in feet and inches · rear at top, road at bottom</text>')
+s.append(f'<text x="{MX}" y="58" font-size="13" fill="#444">2D plan · ROOM-1 and ROOM-4 single (queen) · ROOM-2 and ROOM-3 twin · all dimensions in feet and inches · rear at top, road at bottom</text>')
 # room floors
 for sp in fl["spaces"]:
     col = "#eef2ff" if sp["name"].startswith("ROOM-") and "TOILET" not in sp["name"] else "#ecfeff" if "TOILET" in sp["name"] else "#f5f5f4"
@@ -50,7 +50,7 @@ for y in [4.10 + 0.25 * i for i in range(8)]:
         s.append(f'<line x1="{X(x0):.1f}" y1="{Y(y):.1f}" x2="{X(x1):.1f}" y2="{Y(y):.1f}" stroke="#a8a29e"/>')
 # furniture
 NAME = {"orion_queen_bed": "Orion queen bed", "tinker_side_table": "Tinker", "gingham_wardrobe": "Gingham",
-        "twill_wardrobe": "Twill", "notiq_desk": "Study table"}
+        "twill_wardrobe": "Twill", "notiq_desk": "Study table", "sage_desk": "Sage study table", "wall_desk": "Wall desk", "centaur_single_bed": "Centaur single bed", "amata_sofa": "AMATA sofa"}
 furn = []
 for room, items in FU["F1-3"].items():
     for it in items:
@@ -132,7 +132,7 @@ dim(0, -0.45, 8.0, -0.45, f"{ft(8.0)} overall")
 dim(-0.35, 0, -0.35, 11.75, f"{ft(11.75)} overall", False)
 s.append(f'<text x="{X(4):.1f}" y="{Y(12.45):.1f}" font-size="14" text-anchor="middle" fill="#57534e">ROAD ({ft(6.0)} wide) · front of building</text>')
 lg = Y(12.85)
-for i, t in enumerate(["Blue = Wakefit furniture (Orion queen bed, Tinker side table, Gingham / Twill wardrobe, study table placeholder).",
+for i, t in enumerate(["Blue = furniture: Wakefit Orion queen / Centaur single beds, Tinker side tables, Gingham / Twill wardrobes, Sage study tables; AMATA sofa (Amazon).",
                        "Yellow = door swing; every door opens inwards. Light blue on walls = windows.",
                        "Walls, doors and windows from the architect's AFTER O.C. drawing. Furniture positions are proposals."]):
     s.append(f'<text x="{MX}" y="{lg + i*18:.0f}" font-size="12" fill="#333">{t}</text>')

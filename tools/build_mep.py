@@ -167,7 +167,7 @@ def rooms_F13(s):
         ("ACI", 7.35, 0.15, 2.40, "+y", "solid wall right of window", "AC"), ("ACS", 6.80, 0.15, 2.35, "+y", "", "AC"),
     ]
     c["ROOM-4 TOILET"] = [
-        ("TSW", 4.45, 1.78, 1.2, "+x", "room side, beyond wardrobe", "L/F"),
+        ("TSW", 3.15, 2.30, 1.2, "+x", "entry band, beside the toilet door (study wall has wardrobe + desk)", "L/F"),
         ("LT", 3.75, 1.40, CEIL, "C", "", "L/F"), ("EXH", 3.75, 0.15, 1.80, "+y", "in ventilator F-W3", "L/F"),
         ("GZP", 3.15, 1.45, 2.20, "+x", "", "GZ"),
         ("WC", 3.15, 1.15, 0.0, "+x", "on left wall", ""), ("HF", 3.15, 0.88, 0.45, "+x", "", ""),
@@ -315,6 +315,7 @@ LAYOUT["F4"] = rooms_F4("F4")
 LAYOUT["GF"] = rooms_GF()
 LAYOUT["TERRACE"] = rooms_TERRACE()
 # bedside, desk and data points follow the fitted furniture (model/furniture.json)
+FS_ = AS["furniture_sizes"]
 FWALLS = {pk: TK["floors"][pk]["walls"] for pk in ("F1-3", "F4")}
 
 
@@ -361,6 +362,30 @@ for s in ["F1", "F2", "F3", "F4"]:
                 side = it["access"][0]
                 cx, cy = (r[0] + r[2]) / 2, (r[1] + r[3]) / 2
                 zd, note = 0.9, "above desk"
+                if it["type"] == "sage_desk":            # hutch desk: sockets on the back wall just beside the hutch
+                    ws = FWALLS[pk]
+                    placed = False
+                    tall = [o["rect"] for o in items if o is not it and FS_[o["type"]][2] > 0.85]
+
+                    def free(px, py):
+                        return not any(t[0] - 0.06 <= px <= t[2] + 0.06 and t[1] - 0.06 <= py <= t[3] + 0.06 for t in tall)
+                    if side in ("N", "S"):
+                        wy, face = (r[3], "-y") if side == "N" else (r[1], "+y")
+                        for xa, xb in ((r[2] + 0.12, r[2] + 0.30), (r[0] - 0.12, r[0] - 0.30)):
+                            if touches("y", wy, min(xa, xb) - 0.06, max(xa, xb) + 0.06, ws) and free(xa, wy) and free(xb, wy):
+                                LAYOUT[s][room] += [("DESK", xa, wy, 0.9, face, "beside the Sage hutch, desk height", "S"), ("DATA", xb, wy, 0.9, face, "beside the Sage hutch", "DATA")]
+                                placed = True
+                                break
+                    else:
+                        wx, face = (r[2], "-x") if side == "W" else (r[0], "+x")
+                        for ya, yb in ((r[3] + 0.12, r[3] + 0.30), (r[1] - 0.12, r[1] - 0.30)):
+                            if touches("x", wx, min(ya, yb) - 0.06, max(ya, yb) + 0.06, ws) and free(wx, ya) and free(wx, yb):
+                                LAYOUT[s][room] += [("DESK", wx, ya, 0.9, face, "beside the Sage hutch, desk height", "S"), ("DATA", wx, yb, 0.9, face, "beside the Sage hutch", "DATA")]
+                                placed = True
+                                break
+                    if placed:
+                        continue
+                    zd, note = 0.30, "Sage hutch covers the wall: socket below the desk + desk-top power module"
                 if side in ("N", "S"):
                     wy, face = (r[3], "-y") if side == "N" else (r[1], "+y")
                     for wdw in TK["floors"][pk]["windows"]:
@@ -639,7 +664,7 @@ def furniture_clash(p, pk):
         for it in items:
             r = it["rect"]
             hgt = FS[it["type"]][2]
-            if p["kind"] in ("DESK", "DATA") and it["type"].endswith("desk") and "under window" in p["note"]:
+            if p["kind"] in ("DESK", "DATA") and it["type"].endswith("desk") and ("under window" in p["note"] or "below the desk" in p["note"]):
                 continue
             if r[0] - 0.05 <= p["x"] <= r[2] + 0.05 and r[1] - 0.05 <= p["y"] <= r[3] + 0.05 and p["zrel"] < hgt + 0.05 and p["face"] not in ("C",):
                 out.append(f"hidden by {it['type']} in {room}")

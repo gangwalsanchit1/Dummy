@@ -5,9 +5,9 @@ F1-LT1,F1,ROOM-1,Electrical,Ceiling light point (LED downlight),6.95,8.225,2.85,
 F1-LT2,F1,ROOM-1,Electrical,Ceiling light point (LED downlight),6.6,10.5,2.85,ceiling,L/F,front part,ASSUMED,PASS
 F1-ACI1,F1,ROOM-1,Electrical,"AC indoor unit position (about 3'-0"" wide)",6.6,11.6,2.4,wall -y,AC,above front window,ASSUMED,PASS
 F1-ACS1,F1,ROOM-1,Electrical,AC socket 20A (dedicated circuit),7.2,11.6,2.35,wall -y,AC,,ASSUMED,PASS
-F1-BS1,F1,ROOM-1,Electrical,Bedside: 6A socket + USB + 2-way light switch,5.35,9.845,0.7,wall +x,S,"bedside (N) above bedside table, for lamp + phone",ASSUMED,PASS
-F1-DESK1,F1,ROOM-1,Electrical,Study desk: 2 x 6A socket + USB,5.95,7.05,0.9,wall +y,S,above desk,ASSUMED,PASS
-F1-DATA1,F1,ROOM-1,Electrical,Data outlet (Cat6) at desk,6.25,7.05,0.9,wall +y,DATA,above desk,ASSUMED,PASS
+F1-BS1,F1,ROOM-1,Electrical,Bedside: 6A socket + USB + 2-way light switch,7.85,8.805,0.7,wall -x,S,"bedside (S) above bedside table, for lamp + phone",ASSUMED,PASS
+F1-DESK1,F1,ROOM-1,Electrical,Study desk: 2 x 6A socket + USB,7.85,10.42,0.9,wall -x,S,"beside the Sage hutch, desk height",ASSUMED,PASS
+F1-DATA1,F1,ROOM-1,Electrical,Data outlet (Cat6) at desk,7.85,10.6,0.9,wall -x,DATA,beside the Sage hutch,ASSUMED,PASS
 F1-COVE1,F1,ROOM-1,Electrical,"LED cove strip over window (pelmet/cornice, warm white)",6.6,11.35,2.85,ceiling,L/F,LED cove strip over F-W8,ASSUMED,PASS
 F1-RFIDL1,F1,ROOM-1,Electrical,"RFID door lock (battery, no wiring) on room door",5.45,7.0,1.0,outside,,"latch edge of room door (battery lock, amenity)",ASSUMED,PASS
 F1-TSW1,F1,ROOM-1 TOILET,Electrical,"Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)",5.35,9.68,1.2,wall +x,L/F,"outside toilet, room side",ASSUMED,PASS
@@ -27,10 +27,12 @@ F1-LT5,F1,ROOM-2,Electrical,Ceiling light point (LED downlight),1.4,10.5,2.85,ce
 F1-LT6,F1,ROOM-2,Electrical,Ceiling light point (LED downlight),1.6,6.55,2.85,ceiling,L/F,entry strip,ASSUMED,PASS
 F1-ACI2,F1,ROOM-2,Electrical,"AC indoor unit position (about 3'-0"" wide)",1.4,11.6,2.4,wall -y,AC,above front window,ASSUMED,PASS
 F1-ACS2,F1,ROOM-2,Electrical,AC socket 20A (dedicated circuit),0.8,11.6,2.35,wall -y,AC,,ASSUMED,PASS
-F1-BS2,F1,ROOM-2,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,6.55,0.7,wall +x,S,"bedside (N) above bedside table, for lamp + phone",ASSUMED,PASS
-F1-BS3,F1,ROOM-2,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,8.455,0.7,wall +x,S,"bedside (S) above bedside table, for lamp + phone",ASSUMED,PASS
-F1-DESK2,F1,ROOM-2,Electrical,Study desk: 2 x 6A socket + USB,0.6,11.6,0.3,wall -y,S,desk under window: socket below desk + desk-top grommet power module,ASSUMED,PASS
-F1-DATA2,F1,ROOM-2,Electrical,Data outlet (Cat6) at desk,0.9,11.6,0.3,wall -y,DATA,desk under window: socket below desk + desk-top grommet power module,ASSUMED,PASS
+F1-BS2,F1,ROOM-2,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,10.4,0.7,wall +x,S,"bedside (N) above bedside table, for lamp + phone",ASSUMED,PASS
+F1-BS3,F1,ROOM-2,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,6.5,0.7,wall +x,S,"bedside (N) above bedside table, for lamp + phone",ASSUMED,PASS
+F1-DESK2,F1,ROOM-2,Electrical,Study desk: 2 x 6A socket + USB,0.15,8.05,0.3,wall +x,S,Sage hutch covers the wall: socket below the desk + desk-top power module,ASSUMED,PASS
+F1-DATA2,F1,ROOM-2,Electrical,Data outlet (Cat6) at desk,0.15,8.35,0.3,wall +x,DATA,Sage hutch covers the wall: socket below the desk + desk-top power module,ASSUMED,PASS
+F1-DESK3,F1,ROOM-2,Electrical,Study desk: 2 x 6A socket + USB,0.15,9.82,0.9,wall +x,S,"beside the Sage hutch, desk height",ASSUMED,PASS
+F1-DATA3,F1,ROOM-2,Electrical,Data outlet (Cat6) at desk,0.15,10.0,0.9,wall +x,DATA,beside the Sage hutch,ASSUMED,PASS
 F1-COVE2,F1,ROOM-2,Electrical,"LED cove strip over window (pelmet/cornice, warm white)",1.4,11.35,2.85,ceiling,L/F,LED cove strip over F-W5,ASSUMED,PASS
 F1-RFIDL2,F1,ROOM-2,Electrical,"RFID door lock (battery, no wiring) on room door",3.1,6.9,1.0,outside,,"latch edge of room door (battery lock, amenity)",ASSUMED,PASS
 F1-TSW2,F1,ROOM-2 TOILET,Electrical,"Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)",2.65,9.68,1.2,wall -x,L/F,"outside toilet, room side",ASSUMED,PASS
@@ -49,10 +51,10 @@ F1-LT8,F1,ROOM-3,Electrical,Ceiling light point (LED downlight),2.4,3.0,2.85,cei
 F1-LT9,F1,ROOM-3,Electrical,Ceiling light point (LED downlight),0.95,1.1,2.85,ceiling,L/F,alcove,ASSUMED,PASS
 F1-ACI3,F1,ROOM-3,Electrical,"AC indoor unit position (about 3'-0"" wide)",0.95,0.15,2.4,wall +y,AC,above alcove window,ASSUMED,PASS
 F1-ACS3,F1,ROOM-3,Electrical,AC socket 20A (dedicated circuit),1.55,0.15,2.35,wall +y,AC,,ASSUMED,PASS
-F1-BS4,F1,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,2.5,0.7,wall +x,S,"bedside (N) above bedside table, for lamp + phone",ASSUMED,PASS
-F1-BS5,F1,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,4.405,0.7,wall +x,S,"bedside (S) above bedside table, for lamp + phone",ASSUMED,PASS
-F1-DESK3,F1,ROOM-3,Electrical,Study desk: 2 x 6A socket + USB,0.6,0.15,0.3,wall +y,S,desk under window: socket below desk + desk-top grommet power module,ASSUMED,PASS
-F1-DATA3,F1,ROOM-3,Electrical,Data outlet (Cat6) at desk,0.9,0.15,0.3,wall +y,DATA,desk under window: socket below desk + desk-top grommet power module,ASSUMED,PASS
+F1-BS4,F1,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,3.25,0.7,wall +x,S,"bedside (S) above bedside table, for lamp + phone",ASSUMED,PASS
+F1-BS5,F1,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,4.9,0.7,wall +x,S,"bedside (S) above bedside table, for lamp + phone",ASSUMED,PASS
+F1-DESK4,F1,ROOM-3,Electrical,Study desk: 2 x 6A socket + USB,1.95,5.95,0.9,wall -y,S,above desk,ASSUMED,PASS
+F1-DATA4,F1,ROOM-3,Electrical,Data outlet (Cat6) at desk,2.25,5.95,0.9,wall -y,DATA,above desk,ASSUMED,PASS
 F1-COVE3,F1,ROOM-3,Electrical,"LED cove strip over window (pelmet/cornice, warm white)",0.95,0.4,2.85,ceiling,L/F,LED cove strip over F-W1,ASSUMED,PASS
 F1-RFIDL3,F1,ROOM-3,Electrical,"RFID door lock (battery, no wiring) on room door",3.1,4.55,1.0,outside,,"latch edge of room door (battery lock, amenity)",ASSUMED,PASS
 F1-TSW3,F1,ROOM-3 TOILET,Electrical,"Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)",1.75,1.72,1.2,wall -x,L/F,alcove side of toilet wall,ASSUMED,PASS
@@ -72,12 +74,12 @@ F1-FAN4,F1,ROOM-4,Electrical,"Ceiling fan point (48"" sweep, fan box cast in sla
 F1-LT13,F1,ROOM-4,Electrical,Ceiling light point (LED downlight),5.25,1.55,2.85,ceiling,L/F,,ASSUMED,PASS
 F1-ACI4,F1,ROOM-4,Electrical,"AC indoor unit position (about 3'-0"" wide)",7.35,0.15,2.4,wall +y,AC,solid wall right of window,ASSUMED,PASS
 F1-ACS4,F1,ROOM-4,Electrical,AC socket 20A (dedicated circuit),6.8,0.15,2.35,wall +y,AC,,ASSUMED,PASS
-F1-BS6,F1,ROOM-4,Electrical,Bedside: 6A socket + USB + 2-way light switch,6.095,0.15,0.7,wall +y,S,"bedside (W) above bedside table, for lamp + phone",ASSUMED,PASS
-F1-DESK4,F1,ROOM-4,Electrical,Study desk: 2 x 6A socket + USB,4.45,1.2,0.9,wall +x,S,above desk,ASSUMED,PASS
-F1-DATA4,F1,ROOM-4,Electrical,Data outlet (Cat6) at desk,4.45,1.5,0.9,wall +x,DATA,above desk,ASSUMED,PASS
+F1-BS6,F1,ROOM-4,Electrical,Bedside: 6A socket + USB + 2-way light switch,7.85,1.195,0.7,wall -x,S,"bedside (N) above bedside table, for lamp + phone",ASSUMED,PASS
+F1-DESK5,F1,ROOM-4,Electrical,Study desk: 2 x 6A socket + USB,4.45,0.5,0.3,wall +x,S,Sage hutch covers the wall: socket below the desk + desk-top power module,ASSUMED,PASS
+F1-DATA5,F1,ROOM-4,Electrical,Data outlet (Cat6) at desk,4.45,0.8,0.3,wall +x,DATA,Sage hutch covers the wall: socket below the desk + desk-top power module,ASSUMED,PASS
 F1-COVE4,F1,ROOM-4,Electrical,"LED cove strip over window (pelmet/cornice, warm white)",6.1,0.4,2.85,ceiling,L/F,LED cove strip over F-W4,ASSUMED,PASS
 F1-RFIDL4,F1,ROOM-4,Electrical,"RFID door lock (battery, no wiring) on room door",3.2,4.5,1.0,outside,,"latch edge of room door (battery lock, amenity)",ASSUMED,PASS
-F1-TSW4,F1,ROOM-4 TOILET,Electrical,"Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)",4.45,1.78,1.2,wall +x,L/F,"room side, beyond wardrobe",ASSUMED,PASS
+F1-TSW4,F1,ROOM-4 TOILET,Electrical,"Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)",3.15,2.3,1.2,wall +x,L/F,"entry band, beside the toilet door (study wall has wardrobe + desk)",ASSUMED,PASS
 F1-LT14,F1,ROOM-4 TOILET,Electrical,Ceiling light point (LED downlight),3.75,1.4,2.85,ceiling,L/F,,ASSUMED,PASS
 F1-EXH4,F1,ROOM-4 TOILET,Electrical,"Exhaust fan (in ventilator, IPX4)",3.75,0.15,1.8,wall +y,L/F,in ventilator F-W3,ASSUMED,PASS
 F1-GZP4,F1,ROOM-4 TOILET,Electrical,Geyser connection unit 20A (switched outside toilet),3.15,1.45,2.2,wall +x,GZ,,ASSUMED,PASS
@@ -103,9 +105,9 @@ F2-LT1,F2,ROOM-1,Electrical,Ceiling light point (LED downlight),6.95,8.225,2.85,
 F2-LT2,F2,ROOM-1,Electrical,Ceiling light point (LED downlight),6.6,10.5,2.85,ceiling,L/F,front part,ASSUMED,PASS
 F2-ACI1,F2,ROOM-1,Electrical,"AC indoor unit position (about 3'-0"" wide)",6.6,11.6,2.4,wall -y,AC,above front window,ASSUMED,PASS
 F2-ACS1,F2,ROOM-1,Electrical,AC socket 20A (dedicated circuit),7.2,11.6,2.35,wall -y,AC,,ASSUMED,PASS
-F2-BS1,F2,ROOM-1,Electrical,Bedside: 6A socket + USB + 2-way light switch,5.35,9.845,0.7,wall +x,S,"bedside (N) above bedside table, for lamp + phone",ASSUMED,PASS
-F2-DESK1,F2,ROOM-1,Electrical,Study desk: 2 x 6A socket + USB,5.95,7.05,0.9,wall +y,S,above desk,ASSUMED,PASS
-F2-DATA1,F2,ROOM-1,Electrical,Data outlet (Cat6) at desk,6.25,7.05,0.9,wall +y,DATA,above desk,ASSUMED,PASS
+F2-BS1,F2,ROOM-1,Electrical,Bedside: 6A socket + USB + 2-way light switch,7.85,8.805,0.7,wall -x,S,"bedside (S) above bedside table, for lamp + phone",ASSUMED,PASS
+F2-DESK1,F2,ROOM-1,Electrical,Study desk: 2 x 6A socket + USB,7.85,10.42,0.9,wall -x,S,"beside the Sage hutch, desk height",ASSUMED,PASS
+F2-DATA1,F2,ROOM-1,Electrical,Data outlet (Cat6) at desk,7.85,10.6,0.9,wall -x,DATA,beside the Sage hutch,ASSUMED,PASS
 F2-COVE1,F2,ROOM-1,Electrical,"LED cove strip over window (pelmet/cornice, warm white)",6.6,11.35,2.85,ceiling,L/F,LED cove strip over F-W8,ASSUMED,PASS
 F2-RFIDL1,F2,ROOM-1,Electrical,"RFID door lock (battery, no wiring) on room door",5.45,7.0,1.0,outside,,"latch edge of room door (battery lock, amenity)",ASSUMED,PASS
 F2-TSW1,F2,ROOM-1 TOILET,Electrical,"Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)",5.35,9.68,1.2,wall +x,L/F,"outside toilet, room side",ASSUMED,PASS
@@ -125,10 +127,12 @@ F2-LT5,F2,ROOM-2,Electrical,Ceiling light point (LED downlight),1.4,10.5,2.85,ce
 F2-LT6,F2,ROOM-2,Electrical,Ceiling light point (LED downlight),1.6,6.55,2.85,ceiling,L/F,entry strip,ASSUMED,PASS
 F2-ACI2,F2,ROOM-2,Electrical,"AC indoor unit position (about 3'-0"" wide)",1.4,11.6,2.4,wall -y,AC,above front window,ASSUMED,PASS
 F2-ACS2,F2,ROOM-2,Electrical,AC socket 20A (dedicated circuit),0.8,11.6,2.35,wall -y,AC,,ASSUMED,PASS
-F2-BS2,F2,ROOM-2,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,6.55,0.7,wall +x,S,"bedside (N) above bedside table, for lamp + phone",ASSUMED,PASS
-F2-BS3,F2,ROOM-2,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,8.455,0.7,wall +x,S,"bedside (S) above bedside table, for lamp + phone",ASSUMED,PASS
-F2-DESK2,F2,ROOM-2,Electrical,Study desk: 2 x 6A socket + USB,0.6,11.6,0.3,wall -y,S,desk under window: socket below desk + desk-top grommet power module,ASSUMED,PASS
-F2-DATA2,F2,ROOM-2,Electrical,Data outlet (Cat6) at desk,0.9,11.6,0.3,wall -y,DATA,desk under window: socket below desk + desk-top grommet power module,ASSUMED,PASS
+F2-BS2,F2,ROOM-2,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,10.4,0.7,wall +x,S,"bedside (N) above bedside table, for lamp + phone",ASSUMED,PASS
+F2-BS3,F2,ROOM-2,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,6.5,0.7,wall +x,S,"bedside (N) above bedside table, for lamp + phone",ASSUMED,PASS
+F2-DESK2,F2,ROOM-2,Electrical,Study desk: 2 x 6A socket + USB,0.15,8.05,0.3,wall +x,S,Sage hutch covers the wall: socket below the desk + desk-top power module,ASSUMED,PASS
+F2-DATA2,F2,ROOM-2,Electrical,Data outlet (Cat6) at desk,0.15,8.35,0.3,wall +x,DATA,Sage hutch covers the wall: socket below the desk + desk-top power module,ASSUMED,PASS
+F2-DESK3,F2,ROOM-2,Electrical,Study desk: 2 x 6A socket + USB,0.15,9.82,0.9,wall +x,S,"beside the Sage hutch, desk height",ASSUMED,PASS
+F2-DATA3,F2,ROOM-2,Electrical,Data outlet (Cat6) at desk,0.15,10.0,0.9,wall +x,DATA,beside the Sage hutch,ASSUMED,PASS
 F2-COVE2,F2,ROOM-2,Electrical,"LED cove strip over window (pelmet/cornice, warm white)",1.4,11.35,2.85,ceiling,L/F,LED cove strip over F-W5,ASSUMED,PASS
 F2-RFIDL2,F2,ROOM-2,Electrical,"RFID door lock (battery, no wiring) on room door",3.1,6.9,1.0,outside,,"latch edge of room door (battery lock, amenity)",ASSUMED,PASS
 F2-TSW2,F2,ROOM-2 TOILET,Electrical,"Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)",2.65,9.68,1.2,wall -x,L/F,"outside toilet, room side",ASSUMED,PASS
@@ -147,10 +151,10 @@ F2-LT8,F2,ROOM-3,Electrical,Ceiling light point (LED downlight),2.4,3.0,2.85,cei
 F2-LT9,F2,ROOM-3,Electrical,Ceiling light point (LED downlight),0.95,1.1,2.85,ceiling,L/F,alcove,ASSUMED,PASS
 F2-ACI3,F2,ROOM-3,Electrical,"AC indoor unit position (about 3'-0"" wide)",0.95,0.15,2.4,wall +y,AC,above alcove window,ASSUMED,PASS
 F2-ACS3,F2,ROOM-3,Electrical,AC socket 20A (dedicated circuit),1.55,0.15,2.35,wall +y,AC,,ASSUMED,PASS
-F2-BS4,F2,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,2.5,0.7,wall +x,S,"bedside (N) above bedside table, for lamp + phone",ASSUMED,PASS
-F2-BS5,F2,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,4.405,0.7,wall +x,S,"bedside (S) above bedside table, for lamp + phone",ASSUMED,PASS
-F2-DESK3,F2,ROOM-3,Electrical,Study desk: 2 x 6A socket + USB,0.6,0.15,0.3,wall +y,S,desk under window: socket below desk + desk-top grommet power module,ASSUMED,PASS
-F2-DATA3,F2,ROOM-3,Electrical,Data outlet (Cat6) at desk,0.9,0.15,0.3,wall +y,DATA,desk under window: socket below desk + desk-top grommet power module,ASSUMED,PASS
+F2-BS4,F2,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,3.25,0.7,wall +x,S,"bedside (S) above bedside table, for lamp + phone",ASSUMED,PASS
+F2-BS5,F2,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,4.9,0.7,wall +x,S,"bedside (S) above bedside table, for lamp + phone",ASSUMED,PASS
+F2-DESK4,F2,ROOM-3,Electrical,Study desk: 2 x 6A socket + USB,1.95,5.95,0.9,wall -y,S,above desk,ASSUMED,PASS
+F2-DATA4,F2,ROOM-3,Electrical,Data outlet (Cat6) at desk,2.25,5.95,0.9,wall -y,DATA,above desk,ASSUMED,PASS
 F2-COVE3,F2,ROOM-3,Electrical,"LED cove strip over window (pelmet/cornice, warm white)",0.95,0.4,2.85,ceiling,L/F,LED cove strip over F-W1,ASSUMED,PASS
 F2-RFIDL3,F2,ROOM-3,Electrical,"RFID door lock (battery, no wiring) on room door",3.1,4.55,1.0,outside,,"latch edge of room door (battery lock, amenity)",ASSUMED,PASS
 F2-TSW3,F2,ROOM-3 TOILET,Electrical,"Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)",1.75,1.72,1.2,wall -x,L/F,alcove side of toilet wall,ASSUMED,PASS
@@ -170,12 +174,12 @@ F2-FAN4,F2,ROOM-4,Electrical,"Ceiling fan point (48"" sweep, fan box cast in sla
 F2-LT13,F2,ROOM-4,Electrical,Ceiling light point (LED downlight),5.25,1.55,2.85,ceiling,L/F,,ASSUMED,PASS
 F2-ACI4,F2,ROOM-4,Electrical,"AC indoor unit position (about 3'-0"" wide)",7.35,0.15,2.4,wall +y,AC,solid wall right of window,ASSUMED,PASS
 F2-ACS4,F2,ROOM-4,Electrical,AC socket 20A (dedicated circuit),6.8,0.15,2.35,wall +y,AC,,ASSUMED,PASS
-F2-BS6,F2,ROOM-4,Electrical,Bedside: 6A socket + USB + 2-way light switch,6.095,0.15,0.7,wall +y,S,"bedside (W) above bedside table, for lamp + phone",ASSUMED,PASS
-F2-DESK4,F2,ROOM-4,Electrical,Study desk: 2 x 6A socket + USB,4.45,1.2,0.9,wall +x,S,above desk,ASSUMED,PASS
-F2-DATA4,F2,ROOM-4,Electrical,Data outlet (Cat6) at desk,4.45,1.5,0.9,wall +x,DATA,above desk,ASSUMED,PASS
+F2-BS6,F2,ROOM-4,Electrical,Bedside: 6A socket + USB + 2-way light switch,7.85,1.195,0.7,wall -x,S,"bedside (N) above bedside table, for lamp + phone",ASSUMED,PASS
+F2-DESK5,F2,ROOM-4,Electrical,Study desk: 2 x 6A socket + USB,4.45,0.5,0.3,wall +x,S,Sage hutch covers the wall: socket below the desk + desk-top power module,ASSUMED,PASS
+F2-DATA5,F2,ROOM-4,Electrical,Data outlet (Cat6) at desk,4.45,0.8,0.3,wall +x,DATA,Sage hutch covers the wall: socket below the desk + desk-top power module,ASSUMED,PASS
 F2-COVE4,F2,ROOM-4,Electrical,"LED cove strip over window (pelmet/cornice, warm white)",6.1,0.4,2.85,ceiling,L/F,LED cove strip over F-W4,ASSUMED,PASS
 F2-RFIDL4,F2,ROOM-4,Electrical,"RFID door lock (battery, no wiring) on room door",3.2,4.5,1.0,outside,,"latch edge of room door (battery lock, amenity)",ASSUMED,PASS
-F2-TSW4,F2,ROOM-4 TOILET,Electrical,"Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)",4.45,1.78,1.2,wall +x,L/F,"room side, beyond wardrobe",ASSUMED,PASS
+F2-TSW4,F2,ROOM-4 TOILET,Electrical,"Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)",3.15,2.3,1.2,wall +x,L/F,"entry band, beside the toilet door (study wall has wardrobe + desk)",ASSUMED,PASS
 F2-LT14,F2,ROOM-4 TOILET,Electrical,Ceiling light point (LED downlight),3.75,1.4,2.85,ceiling,L/F,,ASSUMED,PASS
 F2-EXH4,F2,ROOM-4 TOILET,Electrical,"Exhaust fan (in ventilator, IPX4)",3.75,0.15,1.8,wall +y,L/F,in ventilator F-W3,ASSUMED,PASS
 F2-GZP4,F2,ROOM-4 TOILET,Electrical,Geyser connection unit 20A (switched outside toilet),3.15,1.45,2.2,wall +x,GZ,,ASSUMED,PASS
@@ -201,9 +205,9 @@ F3-LT1,F3,ROOM-1,Electrical,Ceiling light point (LED downlight),6.95,8.225,2.85,
 F3-LT2,F3,ROOM-1,Electrical,Ceiling light point (LED downlight),6.6,10.5,2.85,ceiling,L/F,front part,ASSUMED,PASS
 F3-ACI1,F3,ROOM-1,Electrical,"AC indoor unit position (about 3'-0"" wide)",6.6,11.6,2.4,wall -y,AC,above front window,ASSUMED,PASS
 F3-ACS1,F3,ROOM-1,Electrical,AC socket 20A (dedicated circuit),7.2,11.6,2.35,wall -y,AC,,ASSUMED,PASS
-F3-BS1,F3,ROOM-1,Electrical,Bedside: 6A socket + USB + 2-way light switch,5.35,9.845,0.7,wall +x,S,"bedside (N) above bedside table, for lamp + phone",ASSUMED,PASS
-F3-DESK1,F3,ROOM-1,Electrical,Study desk: 2 x 6A socket + USB,5.95,7.05,0.9,wall +y,S,above desk,ASSUMED,PASS
-F3-DATA1,F3,ROOM-1,Electrical,Data outlet (Cat6) at desk,6.25,7.05,0.9,wall +y,DATA,above desk,ASSUMED,PASS
+F3-BS1,F3,ROOM-1,Electrical,Bedside: 6A socket + USB + 2-way light switch,7.85,8.805,0.7,wall -x,S,"bedside (S) above bedside table, for lamp + phone",ASSUMED,PASS
+F3-DESK1,F3,ROOM-1,Electrical,Study desk: 2 x 6A socket + USB,7.85,10.42,0.9,wall -x,S,"beside the Sage hutch, desk height",ASSUMED,PASS
+F3-DATA1,F3,ROOM-1,Electrical,Data outlet (Cat6) at desk,7.85,10.6,0.9,wall -x,DATA,beside the Sage hutch,ASSUMED,PASS
 F3-COVE1,F3,ROOM-1,Electrical,"LED cove strip over window (pelmet/cornice, warm white)",6.6,11.35,2.85,ceiling,L/F,LED cove strip over F-W8,ASSUMED,PASS
 F3-RFIDL1,F3,ROOM-1,Electrical,"RFID door lock (battery, no wiring) on room door",5.45,7.0,1.0,outside,,"latch edge of room door (battery lock, amenity)",ASSUMED,PASS
 F3-TSW1,F3,ROOM-1 TOILET,Electrical,"Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)",5.35,9.68,1.2,wall +x,L/F,"outside toilet, room side",ASSUMED,PASS
@@ -223,10 +227,12 @@ F3-LT5,F3,ROOM-2,Electrical,Ceiling light point (LED downlight),1.4,10.5,2.85,ce
 F3-LT6,F3,ROOM-2,Electrical,Ceiling light point (LED downlight),1.6,6.55,2.85,ceiling,L/F,entry strip,ASSUMED,PASS
 F3-ACI2,F3,ROOM-2,Electrical,"AC indoor unit position (about 3'-0"" wide)",1.4,11.6,2.4,wall -y,AC,above front window,ASSUMED,PASS
 F3-ACS2,F3,ROOM-2,Electrical,AC socket 20A (dedicated circuit),0.8,11.6,2.35,wall -y,AC,,ASSUMED,PASS
-F3-BS2,F3,ROOM-2,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,6.55,0.7,wall +x,S,"bedside (N) above bedside table, for lamp + phone",ASSUMED,PASS
-F3-BS3,F3,ROOM-2,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,8.455,0.7,wall +x,S,"bedside (S) above bedside table, for lamp + phone",ASSUMED,PASS
-F3-DESK2,F3,ROOM-2,Electrical,Study desk: 2 x 6A socket + USB,0.6,11.6,0.3,wall -y,S,desk under window: socket below desk + desk-top grommet power module,ASSUMED,PASS
-F3-DATA2,F3,ROOM-2,Electrical,Data outlet (Cat6) at desk,0.9,11.6,0.3,wall -y,DATA,desk under window: socket below desk + desk-top grommet power module,ASSUMED,PASS
+F3-BS2,F3,ROOM-2,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,10.4,0.7,wall +x,S,"bedside (N) above bedside table, for lamp + phone",ASSUMED,PASS
+F3-BS3,F3,ROOM-2,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,6.5,0.7,wall +x,S,"bedside (N) above bedside table, for lamp + phone",ASSUMED,PASS
+F3-DESK2,F3,ROOM-2,Electrical,Study desk: 2 x 6A socket + USB,0.15,8.05,0.3,wall +x,S,Sage hutch covers the wall: socket below the desk + desk-top power module,ASSUMED,PASS
+F3-DATA2,F3,ROOM-2,Electrical,Data outlet (Cat6) at desk,0.15,8.35,0.3,wall +x,DATA,Sage hutch covers the wall: socket below the desk + desk-top power module,ASSUMED,PASS
+F3-DESK3,F3,ROOM-2,Electrical,Study desk: 2 x 6A socket + USB,0.15,9.82,0.9,wall +x,S,"beside the Sage hutch, desk height",ASSUMED,PASS
+F3-DATA3,F3,ROOM-2,Electrical,Data outlet (Cat6) at desk,0.15,10.0,0.9,wall +x,DATA,beside the Sage hutch,ASSUMED,PASS
 F3-COVE2,F3,ROOM-2,Electrical,"LED cove strip over window (pelmet/cornice, warm white)",1.4,11.35,2.85,ceiling,L/F,LED cove strip over F-W5,ASSUMED,PASS
 F3-RFIDL2,F3,ROOM-2,Electrical,"RFID door lock (battery, no wiring) on room door",3.1,6.9,1.0,outside,,"latch edge of room door (battery lock, amenity)",ASSUMED,PASS
 F3-TSW2,F3,ROOM-2 TOILET,Electrical,"Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)",2.65,9.68,1.2,wall -x,L/F,"outside toilet, room side",ASSUMED,PASS
@@ -245,10 +251,10 @@ F3-LT8,F3,ROOM-3,Electrical,Ceiling light point (LED downlight),2.4,3.0,2.85,cei
 F3-LT9,F3,ROOM-3,Electrical,Ceiling light point (LED downlight),0.95,1.1,2.85,ceiling,L/F,alcove,ASSUMED,PASS
 F3-ACI3,F3,ROOM-3,Electrical,"AC indoor unit position (about 3'-0"" wide)",0.95,0.15,2.4,wall +y,AC,above alcove window,ASSUMED,PASS
 F3-ACS3,F3,ROOM-3,Electrical,AC socket 20A (dedicated circuit),1.55,0.15,2.35,wall +y,AC,,ASSUMED,PASS
-F3-BS4,F3,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,2.5,0.7,wall +x,S,"bedside (N) above bedside table, for lamp + phone",ASSUMED,PASS
-F3-BS5,F3,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,4.405,0.7,wall +x,S,"bedside (S) above bedside table, for lamp + phone",ASSUMED,PASS
-F3-DESK3,F3,ROOM-3,Electrical,Study desk: 2 x 6A socket + USB,0.6,0.15,0.3,wall +y,S,desk under window: socket below desk + desk-top grommet power module,ASSUMED,PASS
-F3-DATA3,F3,ROOM-3,Electrical,Data outlet (Cat6) at desk,0.9,0.15,0.3,wall +y,DATA,desk under window: socket below desk + desk-top grommet power module,ASSUMED,PASS
+F3-BS4,F3,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,3.25,0.7,wall +x,S,"bedside (S) above bedside table, for lamp + phone",ASSUMED,PASS
+F3-BS5,F3,ROOM-3,Electrical,Bedside: 6A socket + USB + 2-way light switch,0.15,4.9,0.7,wall +x,S,"bedside (S) above bedside table, for lamp + phone",ASSUMED,PASS
+F3-DESK4,F3,ROOM-3,Electrical,Study desk: 2 x 6A socket + USB,1.95,5.95,0.9,wall -y,S,above desk,ASSUMED,PASS
+F3-DATA4,F3,ROOM-3,Electrical,Data outlet (Cat6) at desk,2.25,5.95,0.9,wall -y,DATA,above desk,ASSUMED,PASS
 F3-COVE3,F3,ROOM-3,Electrical,"LED cove strip over window (pelmet/cornice, warm white)",0.95,0.4,2.85,ceiling,L/F,LED cove strip over F-W1,ASSUMED,PASS
 F3-RFIDL3,F3,ROOM-3,Electrical,"RFID door lock (battery, no wiring) on room door",3.1,4.55,1.0,outside,,"latch edge of room door (battery lock, amenity)",ASSUMED,PASS
 F3-TSW3,F3,ROOM-3 TOILET,Electrical,"Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)",1.75,1.72,1.2,wall -x,L/F,alcove side of toilet wall,ASSUMED,PASS
@@ -268,12 +274,12 @@ F3-FAN4,F3,ROOM-4,Electrical,"Ceiling fan point (48"" sweep, fan box cast in sla
 F3-LT13,F3,ROOM-4,Electrical,Ceiling light point (LED downlight),5.25,1.55,2.85,ceiling,L/F,,ASSUMED,PASS
 F3-ACI4,F3,ROOM-4,Electrical,"AC indoor unit position (about 3'-0"" wide)",7.35,0.15,2.4,wall +y,AC,solid wall right of window,ASSUMED,PASS
 F3-ACS4,F3,ROOM-4,Electrical,AC socket 20A (dedicated circuit),6.8,0.15,2.35,wall +y,AC,,ASSUMED,PASS
-F3-BS6,F3,ROOM-4,Electrical,Bedside: 6A socket + USB + 2-way light switch,6.095,0.15,0.7,wall +y,S,"bedside (W) above bedside table, for lamp + phone",ASSUMED,PASS
-F3-DESK4,F3,ROOM-4,Electrical,Study desk: 2 x 6A socket + USB,4.45,1.2,0.9,wall +x,S,above desk,ASSUMED,PASS
-F3-DATA4,F3,ROOM-4,Electrical,Data outlet (Cat6) at desk,4.45,1.5,0.9,wall +x,DATA,above desk,ASSUMED,PASS
+F3-BS6,F3,ROOM-4,Electrical,Bedside: 6A socket + USB + 2-way light switch,7.85,1.195,0.7,wall -x,S,"bedside (N) above bedside table, for lamp + phone",ASSUMED,PASS
+F3-DESK5,F3,ROOM-4,Electrical,Study desk: 2 x 6A socket + USB,4.45,0.5,0.3,wall +x,S,Sage hutch covers the wall: socket below the desk + desk-top power module,ASSUMED,PASS
+F3-DATA5,F3,ROOM-4,Electrical,Data outlet (Cat6) at desk,4.45,0.8,0.3,wall +x,DATA,Sage hutch covers the wall: socket below the desk + desk-top power module,ASSUMED,PASS
 F3-COVE4,F3,ROOM-4,Electrical,"LED cove strip over window (pelmet/cornice, warm white)",6.1,0.4,2.85,ceiling,L/F,LED cove strip over F-W4,ASSUMED,PASS
 F3-RFIDL4,F3,ROOM-4,Electrical,"RFID door lock (battery, no wiring) on room door",3.2,4.5,1.0,outside,,"latch edge of room door (battery lock, amenity)",ASSUMED,PASS
-F3-TSW4,F3,ROOM-4 TOILET,Electrical,"Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)",4.45,1.78,1.2,wall +x,L/F,"room side, beyond wardrobe",ASSUMED,PASS
+F3-TSW4,F3,ROOM-4 TOILET,Electrical,"Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)",3.15,2.3,1.2,wall +x,L/F,"entry band, beside the toilet door (study wall has wardrobe + desk)",ASSUMED,PASS
 F3-LT14,F3,ROOM-4 TOILET,Electrical,Ceiling light point (LED downlight),3.75,1.4,2.85,ceiling,L/F,,ASSUMED,PASS
 F3-EXH4,F3,ROOM-4 TOILET,Electrical,"Exhaust fan (in ventilator, IPX4)",3.75,0.15,1.8,wall +y,L/F,in ventilator F-W3,ASSUMED,PASS
 F3-GZP4,F3,ROOM-4 TOILET,Electrical,Geyser connection unit 20A (switched outside toilet),3.15,1.45,2.2,wall +x,GZ,,ASSUMED,PASS

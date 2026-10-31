@@ -1,6 +1,6 @@
 {
- "points": 522,
- "runs": 473,
+ "points": 528,
+ "runs": 479,
  "clashes": 1,
  "warnings": 2,
  "totals": {
@@ -34,8 +34,8 @@
   "ACI": 15,
   "ACS": 15,
   "BS": 22,
-  "DESK": 15,
-  "DATA": 15,
+  "DESK": 18,
+  "DATA": 18,
   "COVE": 15,
   "RFIDL": 15,
   "GZP": 15,
@@ -63,18 +63,18 @@
   "RWP": 71.1,
   "VENT": 0.0,
   "HW": 54.7,
-  "COND": 2605.9,
+  "COND": 2688.8,
   "ACP": 53.3
  },
  "connected_load_W": {
-  "F1": 17919,
-  "F2": 17919,
-  "F3": 17919,
+  "F1": 18119,
+  "F2": 18119,
+  "F3": 18119,
   "F4": 12812,
   "GF": 4390,
   "TERRACE": 2095
  },
  "lift_kW": 5.5,
  "pump_kW": 1.5,
- "water_demand_L_day": 2295
+ "water_demand_L_day": 3105
 }
