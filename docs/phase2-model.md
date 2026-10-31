@@ -71,22 +71,32 @@
 
 ## Furniture and clearance checks
 
-**Updated after the family's instruction:** use Wakefit furniture (the sizes from the brief) and put a double (shared queen) only where there is enough space, otherwise a single. Drawn rooms and toilets are unchanged.
+**Updated after the family's instructions:**
+- Use Wakefit furniture (the sizes from the brief).
+- **"Double" means two students sharing: 2 single beds, 2 study tables and 2 wardrobes.** A room is double where that fits; otherwise it is single, with 1 bed, 1 study table and 1 wardrobe.
+- Drawn rooms and toilets are unchanged.
 
-The layout is now **generated** by `tools/fit_furniture.py`; the results are in `docs/furniture-fit.md`. A layout passes only if all of these hold:
-- every item is inside the room and clear of the walls, the other items, every door swing and every clearance zone
-- the wardrobe sits in the drawn grey strip
-- a **0.55 m walking path** (ASSUMED) reaches every bed side, the wardrobe front, the desk chair zone and the toilet or terrace door
+The layout is **generated** by `tools/fit_furniture.py`, and the full result is in `docs/furniture-fit.md`. Each room tries, in order:
+1. twin with standard desks
+2. twin with wall desks
+3. single
 
-| Floor | ROOM-1 | ROOM-2 | ROOM-3 | ROOM-4 | Beds |
+A layout passes only if all of these hold:
+- every item is inside the room and clear of walls, the other items, every door swing and every clearance zone
+- each bed has 0.60 m clear on its open side, each wardrobe 0.60 m in front, and each desk a 0.75 m chair zone
+- the first wardrobe sits in the architect's grey strip
+- a **0.55 m walking path** (ASSUMED) reaches every bed side, wardrobe, chair zone and the toilet or terrace door
+
+| Floor | ROOM-1 | ROOM-2 | ROOM-3 | ROOM-4 | Students |
 |---|---|---|---|---|---|
-| F1–F3 (each) | single | **double** | **double** | single | 6 × 3 = 18 |
-| F4 | single | single | **double** (suite) | n/a | 4 |
-| **Total** | | | | | **22** |
+| F1–F3 (each) | **double** (wall desks) | **double** (wall desks) | **double** (wall desks) | single | 7 × 3 = 21 |
+| F4 | single | **double** (wall desks) | **double** suite (standard desks) | n/a | 5 |
+| **Total** | | | | | **26** |
 
-- **ROOM-4 on F1–F3 is single.** A queen needs 2.78 m across and the room has 2.80 m. With the wardrobe and either desk in place, the corners of the bed and desk leave no 0.55 m route to one side of the bed. My earlier manual layout did not check walking paths, so it was wrong to call ROOM-4 a double.
-- **ROOM-2 on F1–F3 is double.** The queen sits across the 1.0 m entry strip and the main area, with the headboard on the left wall.
-- **Checks re-run with the new layout:** 0 furniture or clearance violations, and all 18 door swings pass (`docs/model-checks.md`).
+- **F1–F3 ROOM-4 cannot take two students.** A complete search finds no arrangement of 2 beds, 2 wardrobes and 2 desks with clear walking paths. Its main area is 3.40 × 2.80 m, and the 0.90 m entry passage cannot hold furniture.
+- **F4 ROOM-1 cannot take two students.** Its main part is only 1.63 m deep.
+- **The standard 1.16 m desk fits two-to-a-room only in the F4 suite.** Every other double uses 0.90 m wall desks.
+- **Re-checked:** 0 furniture or clearance violations, and all 18 door swings pass (`docs/model-checks.md`).
 
 ## Uncertain, or needs your input
 

@@ -339,7 +339,7 @@ def sheet(name, storey, pk, title, kind):
                        "Each room: lights+fan 10A, sockets 16A, AC 20A, geyser 20A circuits; RCBO per room (CEA Reg. 44).",
                        "All positions checked: on a wall, clear of windows, door openings, door swings and furniture (docs/mep-checks.md)."],
                  "P": ["External stacks (no shaft drawn). F4 front offset across F4 terrace in parapet sleeves (ASSUMED).",
-                       "Water demand 3,240 L/day = 24 persons x 135 L (IS 1172:1993 Table 1, hostels).",
+                       f"Water demand {json.loads((ROOT / 'model/mep_summary.json').read_text())['water_demand_L_day']:,} L/day = (students + 2 staff) x 135 L (IS 1172:1993 Table 1, hostels).",
                        "Top-floor pressure only ~0.5 bar from O.H.T. (CALCULATED from ASSUMED levels): consider booster.",
                        "Fixture heights and pipe sizes: ASSUMED practice, plumbing consultant to confirm."]}[kind]
         for t in notes:

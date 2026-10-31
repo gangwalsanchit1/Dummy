@@ -62,9 +62,9 @@
 
 | Item | Value | Basis |
 |---|---|---|
-| Demand | 24 persons (22 beds + 2 staff) × 135 L/day = **3,240 L/day** | **IS 1172:1993, clause 4.2, Table 1, item (v) Hostels: 135 L per head per day** (verified from the standard's text) |
-| U.G. tank, 10,000 L | about 3.1 days of demand | CALCULATED |
-| O.H. tank, 6,500 L | about 2.0 days of demand | CALCULATED |
+| Demand | 28 persons (26 students + 2 staff) × 135 L/day = **3,780 L/day** | **IS 1172:1993, clause 4.2, Table 1, item (v) Hostels: 135 L per head per day** (verified from the standard's text) |
+| U.G. tank, 10,000 L | about 2.6 days of demand | CALCULATED |
+| O.H. tank, 6,500 L | about 1.7 days of demand | CALCULATED |
 | WCs, basins and baths | 1 per room (en-suite) is far better than **IS 1172 Table 11, Hostels (clause 5.3): 1 WC, 1 basin and 1 bath per 8 males or 6 females** | Verified |
 | Cleaner's sink | IS 1172 Table 11 (vi) lists **1 cleaner's sink per floor (minimum)**. **None is drawn, and the lobby has no room for one.** | Raised for your decision |
 

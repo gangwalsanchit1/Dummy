@@ -216,7 +216,7 @@ def rooms_F4(s):
         ("FT", 3.35, 10.40, 0.0, "F", "", ""), ("GZ", 3.95, 9.70, 1.85, "-x", "above WC", ""),
     ]
     c["ROOM-3 (suite)"] = [
-        ("SB", 2.92, 5.95, 1.2, "-y", "latch side of F4-D3", "L/F"),
+        ("SB", 4.05, 4.92, 1.2, "-x", "hinge-side wall just beyond the open leaf of F4-D3 (latch-side wall holds the wardrobes)", "L/F"),
         ("FAN", 2.10, 3.05, CEIL, "C", "", "L/F"), ("LT", 2.10, 1.30, CEIL, "C", "", "L/F"), ("LT", 2.10, 4.80, CEIL, "C", "", "L/F"),
         ("LT", 4.90, 2.58, CEIL, "C", "terrace passage", "L/F"),
         ("ACI", 0.75, 0.15, 2.40, "+y", "solid wall left of window", "AC"), ("ACS", 1.27, 0.15, 2.35, "+y", "", "AC"),
@@ -335,7 +335,15 @@ for s in ["F1", "F2", "F3", "F4"]:
             if it["type"].endswith("_bed"):
                 long_x = (r[2] - r[0]) > (r[3] - r[1])
                 ws = FWALLS[pk]
-                if long_x:
+                head_x = touches("x", r[2], r[1], r[3], ws) or touches("x", r[0], r[1], r[3], ws)
+                head_y = touches("y", r[3], r[0], r[2], ws) or touches("y", r[1], r[0], r[2], ws)
+                if long_x and not head_x:          # long side against a wall: socket on that wall near the pillow end
+                    wy, face = (r[1], "+y") if touches("y", r[1], r[0], r[2], ws) else (r[3], "-y")
+                    LAYOUT[s][room].append(("BS", r[0] + 0.20, wy, 0.6, face, "bedside (long wall, above mattress)", "S"))
+                elif not long_x and not head_y:
+                    wx, face = (r[0], "+x") if touches("x", r[0], r[1], r[3], ws) else (r[2], "-x")
+                    LAYOUT[s][room].append(("BS", wx, r[1] + 0.20, 0.6, face, "bedside (long wall, above mattress)", "S"))
+                elif long_x:
                     hx, face = (r[2], "-x") if touches("x", r[2], r[1], r[3], ws) else (r[0], "+x")
                     for side in it["access"]:
                         y = r[1] - 0.15 if side == "N" else r[3] + 0.15
@@ -626,7 +634,7 @@ runlen = defaultdict(float)
 for r in runs:
     runlen[r["sys"]] += length(r)
 WASTAGE = 1.10
-water_beds = 22
+water_beds = sum((3 if pk == 'F1-3' else 1) * sum(1 for it in items if it['type'].endswith('_bed')) for pk in ('F1-3', 'F4') for items in FU[pk].values())
 staff = 2
 
 # electrical connected load (ASSUMED ratings, W)

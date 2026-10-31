@@ -13,7 +13,7 @@ Nothing here changes walls, rooms, toilets, slabs or structure. All positions ar
 
 | Amenity at Bella Vita | Bella Vita 2 proposal | Where |
 |---|---|---|
-| Single bed + wardrobe | Wakefit furniture (sizes from the brief) in every room. A double (queen) only where it fits with clearances and paths; otherwise a single. See `docs/furniture-fit.md`. | All rooms |
+| Single bed + wardrobe | Wakefit furniture (sizes from the brief). Each student gets their own bed, study table and wardrobe. Rooms are twin sharing where everything fits with clearances and walking paths, otherwise single: 26 students in total. See `docs/furniture-fit.md`. | All rooms |
 | Air conditioning | AC unit and 20 A socket in every room, outdoor units on brackets or terraces | All rooms |
 | CCTV | 9 cameras: stilt, gate, terrace and every lobby | Common areas |
 | RFID access | RFID reader and magnetic lock at the ground-floor lobby entry. Battery RFID locks on every room door (no wiring). | GF entry, all room doors |

@@ -177,7 +177,9 @@ def bed_candidates(room, kind):
                 long_x = lx > ly
                 # headboard = a short side against a wall
                 heads = [("x", r[0], r[1], r[3]), ("x", r[2], r[1], r[3])] if long_x else [("y", r[1], r[0], r[2]), ("y", r[3], r[0], r[2])]
-                if not any(touches_wall(h, room.walls) for h in heads):
+                longs = [("y", r[1], r[0], r[2]), ("y", r[3], r[0], r[2])] if long_x else [("x", r[0], r[1], r[3]), ("x", r[2], r[1], r[3])]
+                head_ok = any(touches_wall(h, room.walls) for h in heads)
+                if not head_ok and not (kind == "single_bed" and any(touches_wall(e, room.walls) for e in longs)):
                     continue
                 if not room.ok_fixed(r, [], []):
                     continue
@@ -204,77 +206,133 @@ def desk_candidates(room, wd):
     return out
 
 
-def solve(room, double, wd=None):
-    bed = "queen_bed" if double else "single_bed"
-    wd = wd or ("standard_desk" if double else "wall_desk")
-    desks = desk_candidates(room, wd)
-    best = None
-    tried = 0
-    for r, sides in bed_candidates(room, bed):
-        side_sets = [sides] if double else [[sides[0]], [sides[1]]]
-        for ss in side_sets:
-            bz = [(f"bed side {s}", zone(r, s, CL["queen_bed_sides" if double else "single_bed_access_side"])) for s in ss]
-            if not all(inside(z, room.rects) for _, z in bz) or any(ovl(z, w) for _, z in bz for w in room.walls):
+def items_beds(room):
+    out = []
+    for r, sides in bed_candidates(room, "single_bed"):
+        if any(ovl(r, g) for g in room.grey):
+            continue
+        walls_long = sum(touches_wall(e, room.walls) for e in ((("y", r[1], r[0], r[2]), ("y", r[3], r[0], r[2])) if sides == ["N", "S"] else (("x", r[0], r[1], r[3]), ("x", r[2], r[1], r[3]))))
+        for sd in sides:
+            z = zone(r, sd, CL["single_bed_access_side"])
+            if inside(z, room.rects) and not any(ovl(z, w) for w in room.walls):
+                out.append({"type": "single_bed", "rect": r, "access": [sd], "zones": [z], "score": walls_long})
+    out.sort(key=lambda it: -it["score"])
+    return out
+
+
+def items_wardrobes(room):
+    Ww, Wd, _ = FS["wardrobe_3door_sliding"]
+    grey, other = [], []
+    for g in room.grey:
+        vertical = (g[3] - g[1]) > (g[2] - g[0])
+        if vertical:
+            face = "E" if not touches_wall(("x", g[2], g[1], g[3]), room.walls) else "W"
+            for y in grid_vals(g[1], g[3] - Ww):
+                grey.append(([g[0], y, g[0] + Wd, round(y + Ww, 3)] if face == "E" else [g[2] - Wd, y, g[2], round(y + Ww, 3)], face))
+        else:
+            face = "N" if touches_wall(("y", g[3], g[0], g[2]), room.walls) else "S"
+            for x in grid_vals(g[0], g[2] - Ww):
+                grey.append(([x, g[3] - Wd, round(x + Ww, 3), g[3]] if face == "N" else [x, g[1], round(x + Ww, 3), g[1] + Wd], face))
+    for (dx, dy) in ((Ww, Wd), (Wd, Ww)):
+        for x in grid_vals(room.bb[0], room.bb[2] - dx):
+            for y in grid_vals(room.bb[1], room.bb[3] - dy):
+                r = [x, y, round(x + dx, 3), round(y + dy, 3)]
+                backs = [("y", r[1], r[0], r[2], "S"), ("y", r[3], r[0], r[2], "N")] if dx > dy else [("x", r[0], r[1], r[3], "E"), ("x", r[2], r[1], r[3], "W")]
+                bk = [bb for bb in backs if touches_wall(bb[:4], room.walls)]
+                if bk and not any(ovl(r, g) for g in room.grey):
+                    other.append((r, bk[0][4]))
+    out = []
+    for lst, tag in ((grey, 1), (other, 0)):
+        for r, f in lst:
+            z = zone(r, f, CL["sliding_wardrobe_front"])
+            if room.ok_fixed(r, [], []) and inside(z, room.rects) and not any(ovl(z, w) for w in room.walls):
+                out.append({"type": "wardrobe_3door_sliding", "rect": r, "access": [f], "zones": [z], "grey": tag})
+    return out
+
+
+def items_desks(room, wd):
+    fl = TK["floors"][room.pk]
+    out = []
+    for dr, side, dz in desk_candidates(room, wd):
+        dmin = 9
+        for wdw in fl["windows"]:
+            wy = 0.0 if wdw["wall"] == "rear" else fl["outline"][3]
+            dmin = min(dmin, math.hypot((dr[0] + dr[2]) / 2 - (wdw["span_x"][0] + wdw["span_x"][1]) / 2, (dr[1] + dr[3]) / 2 - wy))
+        out.append({"type": wd, "rect": dr, "access": [side], "zones": [dz], "score": -dmin})
+    out.sort(key=lambda it: -it["score"])
+    return out
+
+
+def compat(a, b):
+    if ovl(a["rect"], b["rect"]):
+        return False
+    return not any(ovl(a["rect"], z) for z in b["zones"]) and not any(ovl(b["rect"], z) for z in a["zones"])
+
+
+def solve_layout(room, nbeds, wd, max_walk=20000, want=4):
+    beds, wards, desks = items_beds(room), items_wardrobes(room), items_desks(room, wd)
+    if room.grey:                                   # first wardrobe must use the architect's grey strip
+        ward1 = [w for w in wards if w["grey"]]
+    else:
+        ward1 = wards
+    slots = [("bed", beds)] * nbeds + [("ward1", ward1)] + [("ward", wards)] * (nbeds - 1) + [("desk", desks)] * nbeds
+    found, walks = [], [0]
+
+    def walk_ok(placed):
+        walks[0] += 1
+        ok, _ = room.walkable([p["rect"] for p in placed], [(p["type"], z) for p in placed for z in p["zones"]])
+        return ok
+
+    def dfs(i, placed, last_idx):
+        if len(found) >= want or walks[0] > max_walk:
+            return
+        if i == len(slots):
+            if walk_ok(placed):
+                found.append(list(placed))
+            return
+        kind, cands = slots[i]
+        start = last_idx.get(kind, -1) + 1 if kind in ("bed", "desk", "ward") else 0
+        for j in range(start, len(cands)):
+            c = cands[j]
+            if kind == "ward" and any(p is c for p in placed):
                 continue
-            # wardrobe: in the grey strip if one exists, front facing into the room
-            wcands = []
-            Ww, Wd, _ = FS["wardrobe_3door_sliding"]
-            strips = room.grey or []
-            for g in strips:
-                vertical = (g[3] - g[1]) > (g[2] - g[0])
-                if vertical:
-                    face = "E" if not touches_wall(("x", g[2], g[1], g[3]), room.walls) else "W"
-                    for y in grid_vals(g[1], g[3] - Ww):
-                        wcands.append(([g[0], y, g[0] + Wd, round(y + Ww, 3)] if face == "E" else [g[2] - Wd, y, g[2], round(y + Ww, 3)], face))
-                else:
-                    face = "N" if touches_wall(("y", g[3], g[0], g[2]), room.walls) else "S"
-                    for x in grid_vals(g[0], g[2] - Ww):
-                        wcands.append(([x, g[3] - Wd, round(x + Ww, 3), g[3]] if face == "N" else [x, g[1], round(x + Ww, 3), g[1] + Wd], face))
-            for wr, wf in wcands:
-                wz = ("wardrobe access", zone(wr, wf, CL["sliding_wardrobe_front"]))
-                if not room.ok_fixed(wr, [r], [z for _, z in bz]) or not inside(wz[1], room.rects) or ovl(wz[1], r):
-                    continue
-                for dr, dside, dzr in desks:
-                    if True:
-                        if True:
-                            zones = [z for _, z in bz] + [wz[1]]
-                            if ovl(dr, r) or ovl(dr, wr) or any(ovl(dr, z) for z in zones):
-                                continue
-                            if ovl(dzr, r) or ovl(dzr, wr):
-                                continue
-                            dz = ("desk chair zone", dzr)
-                            bk = [(None, None, None, None, dside)]
-                            tried += 1
-                            ok, why = room.walkable([r, wr, dr], bz + [wz, dz])
-                            if not ok:
-                                continue
-                            # score: desk near a window, bed far from the room door
-                            hx, hy = room.door["hinge"]
-                            sc = math.hypot((r[0] + r[2]) / 2 - hx, (r[1] + r[3]) / 2 - hy)
-                            fl = TK["floors"][room.pk]
-                            for wdw in fl["windows"]:
-                                wy = 0.0 if wdw["wall"] == "rear" else fl["outline"][3]
-                                d = math.hypot((dr[0] + dr[2]) / 2 - (wdw["span_x"][0] + wdw["span_x"][1]) / 2, (dr[1] + dr[3]) / 2 - wy)
-                                sc -= 0.5 * min(d, 4) / 4
-                            if best is None or sc > best[0]:
-                                best = (sc, [{"type": bed, "rect": r, "access": ss}, {"type": "wardrobe_3door_sliding", "rect": wr, "access": [wf]},
-                                             {"type": wd, "rect": dr, "access": [bk[0][4]]}])
-                            if tried > 150 and best:
-                                return best[1]
-                            if tried > 3000:
-                                return best[1] if best else None
-    return best[1] if best else None
+            if all(compat(c, p) for p in placed):
+                placed.append(c)
+                prune = (kind == "bed" and sum(1 for p in placed if p["type"] == "single_bed") == nbeds) or (i == len(slots) - nbeds - 1)
+                if not prune or walk_ok(placed):
+                    li = dict(last_idx)
+                    li[kind] = j
+                    dfs(i + 1, placed, li)
+                placed.pop()
+                if len(found) >= want or walks[0] > max_walk:
+                    return
+
+    dfs(0, [], {})
+    if not found:
+        return None
+    hx, hy = room.door["hinge"]
+
+    def score(sol):
+        sc = sum(it.get("score", 0) for it in sol if it["type"].endswith("desk"))
+        sc += 0.3 * sum(it.get("score", 0) for it in sol if it["type"] == "single_bed")
+        sc += sum(0.5 for it in sol if it.get("grey"))
+        return sc
+    best = max(found, key=score)
+    return [{"type": it["type"], "rect": it["rect"], "access": it["access"]} for it in best]
 
 
 def main():
-    out = {"_about": "GENERATED by tools/fit_furniture.py - double (shared queen) where it fits, else single. Sizes from the brief (Wakefit per PG chat). Positions ASSUMED; drawn rooms unchanged."}
+    out = {"_about": "GENERATED by tools/fit_furniture.py - DOUBLE = twin sharing (2 single beds, 2 desks, 2 wardrobes) where it fits, else SINGLE. Sizes from the brief (Wakefit per PG chat). Positions ASSUMED; drawn rooms unchanged."}
     rep = ["# Furniture fit (generated by tools/fit_furniture.py)", "",
-           "Rule from the family: **double (shared queen bed) where there is enough space, otherwise single.** Room and toilet geometry is exactly as DRAWN.",
-           "Furniture sizes are from the brief, taken as the Wakefit models from the PG chat: single bed 2.05×0.95, queen 2.05×1.58, 3-door sliding wardrobe 1.20 wide (0.55 deep, fits the drawn grey strips), wall desk 0.90×0.45, standard desk 1.16×0.57. "
-           "These were not independently verified against Wakefit's catalogue, so please send the exact model links if they differ.", "",
-           "A layout passes only if every item is inside the room and clear of walls, the other items, every door swing and every clearance zone. "
-           "It also needs a **0.55 m walking path** (ASSUMED) from the room door to every bed side, the wardrobe front, the desk chair zone, and the toilet or terrace door.", "",
-           "| Floor | Room | Result | Furniture | Beds |", "|---|---|---|---|---|"]
+           "Rule from the family: **double = two students sharing (2 single beds, 2 study tables, 2 wardrobes) where there is enough space, otherwise single** "
+           "(1 bed, 1 study table, 1 wardrobe). Room and toilet geometry is exactly as DRAWN.",
+           "Furniture sizes are from the brief, taken as the Wakefit models from the PG chat: single bed 2.05×0.95, 3-door sliding wardrobe 1.20 wide (0.55 deep, fits the drawn grey strips), "
+           "standard desk 1.16×0.57, wall desk 0.90×0.45. These were not independently verified against Wakefit's catalogue.", "",
+           "A layout passes only if every item is inside the room and clear of walls, the other items, every door swing and every clearance zone "
+           "(each bed 0.60 m on its open side, each wardrobe 0.60 m in front, each desk a 0.75 m chair zone). It also needs a **0.55 m walking path** (ASSUMED) "
+           "from the room door to every bed side, wardrobe front, chair zone, and the toilet or terrace door. The first wardrobe goes in the architect's grey strip (takeoff Q7). "
+           "Order tried: twin with standard desks, then twin with wall desks, then single.", "",
+           "| Floor | Room | Result | Furniture | Students |", "|---|---|---|---|---|"]
     beds_total = 0
     only = sys.argv[1:]
     for pk, rooms in ROOMS.items():
@@ -283,37 +341,32 @@ def main():
             if only and f"{pk}:{name}" not in only:
                 continue
             room = Room(pk, name, door, others)
-            sol = solve(room, True)
-            kind = "DOUBLE (queen + standard desk)"
-            why = ""
+            sol, kind = solve_layout(room, 2, "standard_desk"), "DOUBLE (2 beds, 2 standard desks, 2 wardrobes)"
             if sol is None:
-                sol = solve(room, True, "wall_desk")
-                kind = "DOUBLE (queen + wall desk; standard desk does not fit)"
+                sol, kind = solve_layout(room, 2, "wall_desk"), "DOUBLE (2 beds, 2 wall desks, 2 wardrobes)"
             if sol is None:
-                why = "no queen position with 0.60 m on both sides + wardrobe + desk + 0.55 m paths"
-                sol = solve(room, False)
-                kind = "SINGLE"
+                sol, kind = solve_layout(room, 1, "wall_desk"), "SINGLE (twin sharing does not fit)"
             if sol is None:
                 rep.append(f"| {pk} | {name} | NO LAYOUT FOUND | - | 0 |")
+                print(pk, name, "NO LAYOUT", flush=True)
                 continue
             out[pk][name] = sol
             nb = (2 if kind.startswith("DOUBLE") else 1) * (3 if pk == "F1-3" else 1)
             beds_total += nb
             desc = "; ".join(f"{i['type'].replace('_', ' ')} {i['rect']}" for i in sol)
-            rep.append(f"| {pk} | {name} | {kind}{' - ' + why if why else ''} | {desc} | {nb} |")
+            rep.append(f"| {pk} | {name} | {kind} | {desc} | {nb} |")
             print(pk, name, kind, flush=True)
-    rep += ["", f"**Total beds: {beds_total}** (F1-3 counted × 3)."]
-    if only:                              # merge into existing results
+    rep += ["", f"**Total students: {beds_total}** (F1-3 counted × 3)."]
+    if only:
         prev = json.loads((ROOT / "model/furniture.json").read_text())
         for pk in ROOMS:
             prev.setdefault(pk, {}).update(out.get(pk, {}))
+        prev["_about"] = out["_about"]
         out = prev
-        print("\n".join(rep[-len(only) - 2:]))
-        (ROOT / "model/furniture.json").write_text(json.dumps(out, indent=1))
-        return
     (ROOT / "model/furniture.json").write_text(json.dumps(out, indent=1))
-    (ROOT / "docs/furniture-fit.md").write_text("\n".join(rep) + "\n")
-    print("beds", beds_total)
+    if not only:
+        (ROOT / "docs/furniture-fit.md").write_text("\n".join(rep) + "\n")
+    print("students", beds_total)
 
 
 if __name__ == "__main__":
