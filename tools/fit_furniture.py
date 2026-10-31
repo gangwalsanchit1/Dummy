@@ -17,7 +17,10 @@ Writes model/furniture.json and docs/furniture-fit.md.
 """
 import json
 import math
+import sys
 from collections import deque
+
+import numpy as np
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -113,32 +116,28 @@ class Room:
         return int((x - self.bb[0]) / STEP), int((y - self.bb[1]) / STEP)
 
     def walkable(self, fixed, zones):
-        free = [row[:] for row in self.base]
+        free = np.array(self.base, dtype=bool)
         for r in fixed:
             i0, j0 = self.cell(r[0] + 1e-6, r[1] + 1e-6)
             i1, j1 = self.cell(r[2] - 1e-6, r[3] - 1e-6)
-            for i in range(max(i0, 0), min(i1 + 1, self.nx)):
-                for j in range(max(j0, 0), min(j1 + 1, self.ny)):
-                    free[i][j] = False
+            free[max(i0, 0):i1 + 1, max(j0, 0):j1 + 1] = False
         k = int(round(PATH_R / STEP))
-        # erosion via summed-area table: passable if the (2k-1)^2 cell square around it is all free
-        nx, ny = self.nx, self.ny
-        S = [[0] * (ny + 1) for _ in range(nx + 1)]
-        for i in range(nx):
-            run = 0
-            for j in range(ny):
-                run += 0 if free[i][j] else 1
-                S[i + 1][j + 1] = S[i][j + 1] + run
-        pas = [[False] * ny for _ in range(nx)]
-        for i in range(k - 1, nx - k + 1):
-            for j in range(k - 1, ny - k + 1):
-                if free[i][j]:
-                    a0, a1, b0, b1 = i - k + 1, i + k, j - k + 1, j + k
-                    pas[i][j] = (S[a1][b1] - S[a0][b1] - S[a1][b0] + S[a0][b0]) == 0
-        def seeds(rect):
-            i0, j0 = self.cell(rect[0] + 1e-6, rect[1] + 1e-6)
-            i1, j1 = self.cell(rect[2] - 1e-6, rect[3] - 1e-6)
-            return {(i, j) for i in range(max(i0, 0), min(i1 + 1, self.nx)) for j in range(max(j0, 0), min(j1 + 1, self.ny)) if pas[i][j]}
+        w = 2 * k - 1
+        blocked = (~free).astype(np.int32)
+        S = np.zeros((self.nx + 1, self.ny + 1), dtype=np.int32)
+        S[1:, 1:] = blocked.cumsum(0).cumsum(1)
+        pas = np.zeros_like(free)
+        if self.nx >= w and self.ny >= w:
+            win = S[w:, w:] - S[:-w, w:] - S[w:, :-w] + S[:-w, :-w]
+            pas[k - 1:k - 1 + win.shape[0], k - 1:k - 1 + win.shape[1]] = (win == 0)
+        pas &= free
+
+        def region(rect, grow=0.0):
+            i0, j0 = self.cell(rect[0] - grow + 1e-6, rect[1] - grow + 1e-6)
+            i1, j1 = self.cell(rect[2] + grow - 1e-6, rect[3] + grow - 1e-6)
+            m = np.zeros_like(pas)
+            m[max(i0, 0):max(min(i1 + 1, self.nx), 0), max(j0, 0):max(min(j1 + 1, self.ny), 0)] = True
+            return m & pas
 
         def sq(d):
             hx, hy = d["hinge"]
@@ -146,21 +145,24 @@ class Room:
             R = d["width"]
             return [min(hx, hx + qx * R), min(hy, hy + qy * R), max(hx, hx + qx * R), max(hy, hy + qy * R)]
 
-        start = seeds(sq(self.door))
-        if not start:
-            return False, "door swing area not passable"
-        seen, dq = set(start), deque(start)
-        while dq:
-            i, j = dq.popleft()
-            for a, b in ((i + 1, j), (i - 1, j), (i, j + 1), (i, j - 1)):
-                if 0 <= a < self.nx and 0 <= b < self.ny and pas[a][b] and (a, b) not in seen:
-                    seen.add((a, b))
-                    dq.append((a, b))
+        reach = region(sq(self.door), 0.45)
+        if not reach.any():
+            return False, "door area not passable"
+        while True:                       # flood fill by 4-neighbour dilation
+            g = reach.copy()
+            g[1:, :] |= reach[:-1, :]
+            g[:-1, :] |= reach[1:, :]
+            g[:, 1:] |= reach[:, :-1]
+            g[:, :-1] |= reach[:, 1:]
+            g &= pas
+            if (g == reach).all():
+                break
+            reach = g
         for nm, z in zones:
-            if not (seeds(z) & seen):
+            if not (region(z) & reach).any():
                 return False, f"no 0.55 m path to {nm}"
-        for d in self.targets_doors:
-            if not (seeds(sq(d)) & seen):
+        for d in self.targets_doors:      # target = room-side area around the door (door may swing out of the room)
+            if not (region(sq(d), 0.45) & reach).any():
                 return False, f"no 0.55 m path to {d['id']}"
         return True, ""
 
@@ -259,7 +261,7 @@ def solve(room, double, wd=None):
                                              {"type": wd, "rect": dr, "access": [bk[0][4]]}])
                             if tried > 150 and best:
                                 return best[1]
-                            if tried > 6000:
+                            if tried > 3000:
                                 return best[1] if best else None
     return best[1] if best else None
 
@@ -274,9 +276,12 @@ def main():
            "It also needs a **0.55 m walking path** (ASSUMED) from the room door to every bed side, the wardrobe front, the desk chair zone, and the toilet or terrace door.", "",
            "| Floor | Room | Result | Furniture | Beds |", "|---|---|---|---|---|"]
     beds_total = 0
+    only = sys.argv[1:]
     for pk, rooms in ROOMS.items():
         out[pk] = {}
         for name, (door, others) in rooms.items():
+            if only and f"{pk}:{name}" not in only:
+                continue
             room = Room(pk, name, door, others)
             sol = solve(room, True)
             kind = "DOUBLE (queen + standard desk)"
@@ -296,8 +301,16 @@ def main():
             beds_total += nb
             desc = "; ".join(f"{i['type'].replace('_', ' ')} {i['rect']}" for i in sol)
             rep.append(f"| {pk} | {name} | {kind}{' - ' + why if why else ''} | {desc} | {nb} |")
-            print(pk, name, kind)
+            print(pk, name, kind, flush=True)
     rep += ["", f"**Total beds: {beds_total}** (F1-3 counted × 3)."]
+    if only:                              # merge into existing results
+        prev = json.loads((ROOT / "model/furniture.json").read_text())
+        for pk in ROOMS:
+            prev.setdefault(pk, {}).update(out.get(pk, {}))
+        out = prev
+        print("\n".join(rep[-len(only) - 2:]))
+        (ROOT / "model/furniture.json").write_text(json.dumps(out, indent=1))
+        return
     (ROOT / "model/furniture.json").write_text(json.dumps(out, indent=1))
     (ROOT / "docs/furniture-fit.md").write_text("\n".join(rep) + "\n")
     print("beds", beds_total)

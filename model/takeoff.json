@@ -158,7 +158,7 @@
         {"id": "F4-W6", "wall": "front", "span_x": [5.85, 7.36], "width": 1.51, "serves": "ROOM-1"}
       ],
       "spaces": [
-        {"name": "ROOM-3 (suite)", "rects": [[0.15, 0.15, 4.05, 5.95], [3.15, 5.95, 4.05, 6.05], [4.15, 2.2, 5.65, 2.95]], "label": "12'9\"x19'0\"", "label_m": [3.886, 5.791], "measured_main": [3.9, 5.8]},
+        {"name": "ROOM-3 (suite)", "rects": [[0.15, 0.15, 4.05, 5.95], [3.15, 5.95, 4.05, 6.05], [4.15, 2.2, 5.65, 2.95], [4.05, 2.2, 4.15, 2.95]], "label": "12'9\"x19'0\"", "label_m": [3.886, 5.791], "measured_main": [3.9, 5.8]},
         {"name": "ROOM-3 TOILET", "rects": [[4.15, 0.15, 5.65, 2.1]], "label": "3'11\"x5'11\"", "label_m": [1.194, 1.803], "measured": [1.5, 1.95], "conflict": "drawn 1.50 x 1.95"},
         {"name": "PRIVATE TERRACE (ROOM-3)", "rects": [[5.75, 0.15, 7.85, 2.95]], "label": "6'10\"x9'2\"", "label_m": [2.083, 2.794], "measured": [2.1, 2.8], "open_to_sky": true},
         {"name": "LOBBY", "rects": [[4.15, 4.75, 5.6, 6.95], [3.15, 6.05, 4.15, 6.95]], "label": "8'4\"x7'3\" (copied from F1-3)", "label_m": [2.54, 2.21], "measured": "L-shape: 1.45 x 2.20 + 1.00 x 0.90", "conflict": "smaller than label"},
