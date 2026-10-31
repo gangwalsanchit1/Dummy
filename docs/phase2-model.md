@@ -71,34 +71,22 @@
 
 ## Furniture and clearance checks
 
-All 7 room types pass, and all 18 door swings pass. **Total violations: 0.**
+**Updated after the family's instruction:** use Wakefit furniture (the sizes from the brief) and put a double (shared queen) only where there is enough space, otherwise a single. Drawn rooms and toilets are unchanged.
 
-**Rules checked:**
-- Fixed furniture must be:
-  - inside the room
-  - clear of walls and other furniture
-  - clear of every clearance zone and every door-swing quarter-disc
-- Every clearance zone must be inside the room. Clearance zones are allowed to overlap each other.
+The layout is now **generated** by `tools/fit_furniture.py`; the results are in `docs/furniture-fit.md`. A layout passes only if all of these hold:
+- every item is inside the room and clear of the walls, the other items, every door swing and every clearance zone
+- the wardrobe sits in the drawn grey strip
+- a **0.55 m walking path** (ASSUMED) reaches every bed side, the wardrobe front, the desk chair zone and the toilet or terrace door
 
-**Clearances used:**
-- Queen beds: 0.60 m on both sides
-- Single beds: 0.60 m on the open side
-- Sliding wardrobes: 0.60 m in front
-- Desks: a 0.75 m chair zone
+| Floor | ROOM-1 | ROOM-2 | ROOM-3 | ROOM-4 | Beds |
+|---|---|---|---|---|---|
+| F1–F3 (each) | single | **double** | **double** | single | 6 × 3 = 18 |
+| F4 | single | single | **double** (suite) | n/a | 4 |
+| **Total** | | | | | **22** |
 
-**Room by room:**
-
-| Room | Layout | Fit |
-|---|---|---|
-| F1–3 ROOM-3, queen | Bed across the room, headboard on the left wall. Wardrobe in the grey strip. Standard desk in the window alcove. | 0.12 m to spare across the width |
-| F1–3 ROOM-4, queen | Bed headboard on the right wall. Wardrobe in the grey strip. Standard desk beside the bed. | **2.78 m needed in a 2.80 m room: only 20 mm to spare.** Any finish or skirting thickness will remove that. |
-| F1–3 ROOM-1/2, single | Bed along the front wall under the window. Wardrobe in the grey strip. Wall desk. | Fits |
-| F4 ROOM-1/2, single | Same pattern as Floors 1–3 | Fits even though these rooms are 0.90 m shallower |
-| F4 suite, queen | Queen bed, wardrobe, standard desk under the rear window | Fits |
-
-**Two things to know about the furniture:**
-- **Desks:** each double room has one standard desk. Ask if you want a second desk for the second occupant.
-- **Bed under the window:** in every single room the bed sits under the front window. It keeps every door swing and the wardrobe access clear, but it does mean the bed is under the window.
+- **ROOM-4 on F1–F3 is single.** A queen needs 2.78 m across and the room has 2.80 m. With the wardrobe and either desk in place, the corners of the bed and desk leave no 0.55 m route to one side of the bed. My earlier manual layout did not check walking paths, so it was wrong to call ROOM-4 a double.
+- **ROOM-2 on F1–F3 is double.** The queen sits across the 1.0 m entry strip and the main area, with the headboard on the left wall.
+- **Checks re-run with the new layout:** 0 furniture or clearance violations, and all 18 door swings pass (`docs/model-checks.md`).
 
 ## Uncertain, or needs your input
 

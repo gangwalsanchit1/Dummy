@@ -14,6 +14,8 @@
   - Checks: `docs/mep-checks.md`
   - **Pre-slab checklist: `docs/pre-slab-checklist.md`**
 
+**Amenities matched to the existing Bella Vita** (RFID entry, power backup, RO water, terrace laundry and lounge, room sub-meters) are listed in `docs/amenities.md`.
+
 ## Electrical concept
 
 | Item | Proposal | Where |
@@ -80,7 +82,7 @@
 
 ## Clash checks (`docs/mep-checks.md`)
 
-- **466 points and 420 runs checked. Hard clashes: 0.**
+- **507 points and 446 runs checked. Hard clashes: 0.** Bedside, desk and data points follow the fitted furniture. Where a desk sits under a window, its socket goes below the desk with a desk-top power module.
 - **Wall-mounted points must:**
   - sit on a drawn wall face
   - be outside every window (between sill and head) and every door opening
@@ -112,7 +114,7 @@ These come from `quantities.csv`. Lengths are CALCULATED from the ASSUMED routes
 | Underground drain | about 19 m |
 | Riser and feeders | about 49 m |
 
-**Point totals:**
+**Point totals** (before the amenity additions; see `docs/schedules/quantities.csv` for current counts):
 - **Electrical:**
   - 16 room switchboards and 17 toilet switchboards
   - 16 fans, 71 ceiling lights and 16 wall lights

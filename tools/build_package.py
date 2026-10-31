@@ -34,7 +34,7 @@ CODE = {"SB": "SB", "TSW": "TS", "BS": "BS", "DESK": "DK", "DATA": "D", "SKT16":
         "LT": "L", "WL": "WL", "FAN": "F", "EXH": "EX", "ACI": "AC", "ACO": "ODU", "AP": "AP", "CCTV": "CC", "LIFTISO": "LI",
         "PUMPP": "PP", "RISER": "R", "DB": "DB", "MB": "MB", "MDB": "MDB", "CDB": "CDB", "WC": "WC", "BAS": "B", "SHM": "SH",
         "HF": "HF", "FT": "FT", "GZ": "GZ", "SINK": "SK", "TAP": "T", "PUMP": "P", "IC": "IC", "RWO": "RWO", "METER": "M",
-        "TCON": "TC", "SLV": "SL"}
+        "TCON": "TC", "SLV": "SL", "INV": "INV", "RFID": "RF", "MLOCK": "ML", "RFIDL": "RL", "DISP": "WD", "WM": "WM", "RO": "RO"}
 PIPECOL = {"SOIL": "#8b4513", "WASTE": "#d97706", "VENT": "#9ca3af", "RWP": "#16a34a", "UGD": "#78350f", "CW": "#2563eb",
            "HW": "#dc2626", "DT": "#1d4ed8", "RM": "#7c3aed", "SUP": "#0891b2", "FEED": "#ca8a04", "COND": "#fb923c"}
 ACI = {"SOIL": 30, "WASTE": 40, "VENT": 8, "RWP": 3, "UGD": 32, "CW": 5, "HW": 1, "DT": 150, "RM": 6, "SUP": 4, "FEED": 50, "COND": 30}

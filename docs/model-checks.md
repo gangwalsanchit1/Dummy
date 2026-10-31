@@ -36,9 +36,9 @@ Rules: fixed furniture inside the room, clear of walls, other furniture, every c
 | Plan | Room | Furniture | Checks | Result |
 |---|---|---|---|---|
 | F1-3 | ROOM-1 | single_bed, wardrobe_3door_sliding, wall_desk | 6 checks | PASS |
-| F1-3 | ROOM-2 | single_bed, wardrobe_3door_sliding, wall_desk | 6 checks | PASS |
+| F1-3 | ROOM-2 | queen_bed, wardrobe_3door_sliding, standard_desk | 7 checks | PASS |
 | F1-3 | ROOM-3 | queen_bed, wardrobe_3door_sliding, standard_desk | 7 checks | PASS |
-| F1-3 | ROOM-4 | queen_bed, wardrobe_3door_sliding, standard_desk | 7 checks | PASS |
+| F1-3 | ROOM-4 | single_bed, wardrobe_3door_sliding, wall_desk | 6 checks | PASS |
 | F4 | ROOM-1 | single_bed, wardrobe_3door_sliding, wall_desk | 6 checks | PASS |
 | F4 | ROOM-2 | single_bed, wardrobe_3door_sliding, wall_desk | 6 checks | PASS |
 | F4 | ROOM-3 (suite) | queen_bed, wardrobe_3door_sliding, standard_desk | 7 checks | PASS |

@@ -85,8 +85,9 @@ Everything below must be fixed, marked or cast in **before that slab is poured**
 | 5 | RWO in roof slab | 0.40, 0.40 | rwo |
 | 6 | RWO in roof slab | 0.45, 10.40 | rwo |
 | 7 | RWO in roof slab | 5.30, 10.40 | rwo |
-| 8 | O.H.T. outlet puddle flange (tank base) | 6.00, 4.85 | tank |
-| 9 | O.H.T. inlet / overflow / drain puddle flanges (tank walls) | 7.60, 6.85 | tank |
+| 8 | Rear parapet sleeve: terrace laundry waste -> W1; kerb + slope for laundry area | 3.30, 0.08 | parapetT |
+| 9 | O.H.T. outlet puddle flange (tank base) | 6.00, 4.85 | tank |
+| 10 | O.H.T. inlet / overflow / drain puddle flanges (tank walls) | 7.60, 6.85 | tank |
 | + | Embedded conduits + junction boxes for 18 ceiling points of F4: 3 x Ceiling fan point (1200 mm sweep, fan box cast in slab), 13 x Ceiling light point (LED), 1 x Wi-Fi access point (ceiling), 1 x CCTV camera (PoE) (see points_schedule.csv) | various | conduit |
 
 ## Also before the relevant slab or wall work

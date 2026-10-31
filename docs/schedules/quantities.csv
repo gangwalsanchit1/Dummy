@@ -2,44 +2,52 @@ system,item,GF,F1,F2,F3,F4,TERRACE,total
 Electrical,AC indoor unit position (~0.90 wide),0,4,4,4,3,0,15
 Electrical,AC outdoor unit on bracket,0,4,4,4,3,0,15
 Electrical,AC socket 20A (dedicated circuit),0,4,4,4,3,0,15
-Electrical,Wi-Fi access point (ceiling),0,1,1,1,1,0,4
+Electrical,Wi-Fi access point (ceiling),0,1,1,1,1,1,5
 Electrical,Bedside: 6A socket + USB + 2-way light switch,0,6,6,6,4,0,22
 Electrical,CCTV camera (PoE),4,1,1,1,1,1,9
 Electrical,"Common-services DB (lift, pump, common lights, CCTV, Wi-Fi)",1,0,0,0,0,0,1
 Electrical,Data outlet (Cat6) at desk,0,4,4,4,3,0,15
-Electrical,"Floor DB (TPN, RCBO per room)",0,1,1,1,1,0,4
+Electrical,"Floor DB (TPN, RCBO + prepaid energy sub-meter per room)",0,1,1,1,1,0,4
 Electrical,Study desk: 2 x 6A socket + USB,0,4,4,4,3,0,15
+Electrical,Drinking-water dispenser (floor) + 16A socket,0,1,1,1,0,0,3
 Electrical,"Exhaust fan (in ventilator, IPX4)",2,4,4,4,3,0,17
 Electrical,"Ceiling fan point (1200 mm sweep, fan box cast in slab)",1,4,4,4,3,0,16
 Electrical,Geyser connection unit 20A (switched outside toilet),0,4,4,4,3,0,15
+Electrical,"Power backup: inverter + Li-ion battery (common lights, CCTV, Wi-Fi, RFID, lift ARD)",1,0,0,0,0,0,1
 Electrical,Lift isolator / controller supply (3-phase),0,0,0,0,0,1,1
 Electrical,Ceiling light point (LED),10,16,16,16,13,0,71
 Electrical,Utility meter board (3-phase),1,0,0,0,0,0,1
 Electrical,Main distribution board,1,0,0,0,0,0,1
+Electrical,Electromagnetic lock + exit button (entry door),1,0,0,0,0,0,1
 Electrical,Pump starter panel + level controller,1,0,0,0,0,0,1
+Electrical,RFID card reader (entry access),1,0,0,0,0,0,1
+Electrical,"RFID door lock (battery, no wiring) on room door",0,4,4,4,3,0,15
 Electrical,Electrical riser trunking 200x100,1,1,1,1,1,0,5
 Electrical,Room switchboard at door (incl. 2-way for light),1,4,4,4,3,0,16
-Electrical,16A power socket,4,0,0,0,0,0,4
+Electrical,16A power socket,4,1,1,1,0,0,7
 Electrical,"Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator)",2,4,4,4,3,0,17
-Electrical,Wall light point,3,2,2,2,4,3,16
-Electrical,Weatherproof 16A socket (IP55),0,0,0,0,1,1,2
+Electrical,Wall light point,4,2,2,2,4,6,20
+Electrical,Weatherproof 16A socket (IP55),0,0,0,0,1,4,5
 Plumbing,Wash basin (compact),1,4,4,4,3,0,16
-Plumbing,Floor trap 100 mm (nahani),4,4,4,4,3,0,19
+Plumbing,Floor trap 100 mm (nahani),4,4,4,4,3,1,20
 Plumbing,Geyser 15 L (wall-mounted),0,4,4,4,3,0,15
 Plumbing,Health faucet,2,4,4,4,3,0,17
 Plumbing,Inspection chamber,2,0,0,0,0,0,2
 Plumbing,Municipal water meter + valve,1,0,0,0,0,0,1
 Plumbing,Transfer pump (1 duty + 1 standby),2,0,0,0,0,0,2
+Plumbing,RO purifier (under/over pantry sink),1,0,0,0,0,0,1
 Plumbing,"Rainwater outlet (khurra), cast in slab",0,0,0,0,1,4,5
 Plumbing,Shower mixer + overhead shower,0,4,4,4,3,0,15
-Plumbing,Pantry sink,1,0,0,0,0,0,1
+Plumbing,Pantry sink,1,0,0,0,0,1,2
+Plumbing,Bib tap,0,0,0,0,0,3,3
 Plumbing,"Tank connection (puddle flange, cast in)",3,0,0,0,0,3,6
 Plumbing,"Water closet (EWC, wall-outlet)",2,4,4,4,3,0,17
-Cast-in,Sleeve / cast-in item,3,6,9,9,16,9,52
+Plumbing,Washing machine (front load) on terrace laundry,0,0,0,0,0,2,2
+Cast-in,Sleeve / cast-in item,3,6,9,9,16,10,53
 
 run,description,"approx length m (route x 1.10, CALCULATED from ASSUMED routes)"
-COND,Conduit (indicative),2290.0
-CW,Cold water 25/20 mm,262.4
+COND,Conduit (indicative),2473.5
+CW,Cold water 25/20 mm,265.7
 DT,Down-take 40 mm,41.4
 FEED,Feeder / riser cable,48.8
 HW,Hot water 20/15 mm,54.7
@@ -49,4 +57,4 @@ SOIL,Soil stack/branch 110 mm,66.6
 SUP,Municipal supply 25 mm,1.3
 UGD,Underground drain 150 mm,19.4
 VENT,Vent pipe 75 mm,0.0
-WASTE,Waste stack/branch 75 mm,75.1
+WASTE,Waste stack/branch 75 mm,79.0

@@ -249,7 +249,7 @@ def rooms_GF():
         ("INV", 4.05, 3.60, 0.90, "-x", "wall-mounted in grey niche, ventilated (amenity: power backup)", "BACKUP"),
     ]
     c["LIFT LOBBY"] = [("RFID", 5.65, 7.05, 1.20, "+y", "stilt side, beside lobby entry (amenity: RFID access)", "BACKUP"),
-                       ("MLOCK", 4.80, 7.05, 2.15, "+y", "on entry door head (entry ASSUMED, Q8)", "BACKUP"),
+                       ("MLOCK", 4.80, 7.05, 2.15, "O", "on entry door head / header (entry ASSUMED, Q8)", "BACKUP"),
                        ("RISER", 5.55, 5.50, 0.0, "-x", "riser start", ""), ("LT", 4.88, 5.90, CEIL, "C", "", "COMMON"),
                        ("CCTV", 4.30, 6.90, CEIL - 0.1, "C", "", "COMMON")]
     c["STAIR"] = [("WL", 7.85, 6.40, 2.30, "-x", "", "COMMON"), ("WL", 6.80, 3.10, 3.70, "+y", "", "COMMON")]
@@ -334,23 +334,35 @@ for s in ["F1", "F2", "F3", "F4"]:
             r = it["rect"]
             if it["type"].endswith("_bed"):
                 long_x = (r[2] - r[0]) > (r[3] - r[1])
+                ws = FWALLS[pk]
                 if long_x:
-                    hx, face = (r[2], "-x") if touches("x", r[2], r[1], r[3], FWALLS[pk]) else (r[0], "+x")
+                    hx, face = (r[2], "-x") if touches("x", r[2], r[1], r[3], ws) else (r[0], "+x")
                     for side in it["access"]:
-                        LAYOUT[s][room].append(("BS", hx, r[1] - 0.15 if side == "N" else r[3] + 0.15, 0.6, face, f"bedside ({side})", "S"))
+                        y = r[1] - 0.15 if side == "N" else r[3] + 0.15
+                        if not touches("x", hx, y - 0.05, y + 0.05, ws):          # no wall beside the bed: on head wall above mattress
+                            y = r[1] + 0.12 if side == "N" else r[3] - 0.12
+                        LAYOUT[s][room].append(("BS", hx, y, 0.6, face, f"bedside ({side})", "S"))
                 else:
-                    hy, face = (r[3], "-y") if touches("y", r[3], r[0], r[2], FWALLS[pk]) else (r[1], "+y")
+                    hy, face = (r[3], "-y") if touches("y", r[3], r[0], r[2], ws) else (r[1], "+y")
                     for side in it["access"]:
-                        LAYOUT[s][room].append(("BS", r[0] - 0.15 if side == "W" else r[2] + 0.15, hy, 0.6, face, f"bedside ({side})", "S"))
+                        x = r[0] - 0.15 if side == "W" else r[2] + 0.15
+                        if not touches("y", hy, x - 0.05, x + 0.05, ws):
+                            x = r[0] + 0.12 if side == "W" else r[2] - 0.12
+                        LAYOUT[s][room].append(("BS", x, hy, 0.6, face, f"bedside ({side})", "S"))
             if it["type"].endswith("desk"):
                 side = it["access"][0]
                 cx, cy = (r[0] + r[2]) / 2, (r[1] + r[3]) / 2
+                zd, note = 0.9, "above desk"
                 if side in ("N", "S"):
                     wy, face = (r[3], "-y") if side == "N" else (r[1], "+y")
-                    LAYOUT[s][room] += [("DESK", cx - 0.15, wy, 0.9, face, "above desk", "S"), ("DATA", cx + 0.15, wy, 0.9, face, "", "DATA")]
+                    for wdw in TK["floors"][pk]["windows"]:
+                        wyy = 0.15 if wdw["wall"] == "rear" else TK["floors"][pk]["outline"][3] - 0.15
+                        if abs(wyy - wy) < 0.05 and wdw["span_x"][0] - 0.2 < cx < wdw["span_x"][1] + 0.2:
+                            zd, note = 0.30, "desk under window: socket below desk + desk-top grommet power module"
+                    LAYOUT[s][room] += [("DESK", cx - 0.15, wy, zd, face, note, "S"), ("DATA", cx + 0.15, wy, zd, face, note, "DATA")]
                 else:
                     wx, face = (r[2], "-x") if side == "W" else (r[0], "+x")
-                    LAYOUT[s][room] += [("DESK", wx, cy - 0.15, 0.9, face, "above desk", "S"), ("DATA", wx, cy + 0.15, 0.9, face, "", "DATA")]
+                    LAYOUT[s][room] += [("DESK", wx, cy - 0.15, zd, face, note, "S"), ("DATA", wx, cy + 0.15, zd, face, note, "DATA")]
 
 RLOCK = {"F1-3": {"ROOM-1": (5.45, 7.00), "ROOM-2": (3.10, 6.90), "ROOM-3": (3.10, 4.55), "ROOM-4": (3.20, 4.50)},
          "F4": {"ROOM-1": (5.45, 7.00), "ROOM-2": (3.15, 6.90), "ROOM-3 (suite)": (3.20, 6.05)}}
@@ -542,6 +554,8 @@ def furniture_clash(p, pk):
         for it in items:
             r = it["rect"]
             hgt = FS[it["type"]][2]
+            if p["kind"] in ("DESK", "DATA") and it["type"].endswith("desk") and "under window" in p["note"]:
+                continue
             if r[0] - 0.05 <= p["x"] <= r[2] + 0.05 and r[1] - 0.05 <= p["y"] <= r[3] + 0.05 and p["zrel"] < hgt + 0.05 and p["face"] not in ("C",):
                 out.append(f"hidden by {it['type']} in {room}")
     return out
