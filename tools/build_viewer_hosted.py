@@ -33,7 +33,8 @@ t = t.replace("#info { position:fixed; right:10px; bottom:10px;",
               "#info { position:fixed; right:calc(10px + env(safe-area-inset-right, 0px)); bottom:calc(10px + env(safe-area-inset-bottom, 0px));")
 t = t.replace('<script type="text/plain" id="three-src">__THREE__</script>\n<script type="text/plain" id="orbit-src">__ORBIT__</script>\n',
               "<script>\n" + three + "\n</script>\n<script>\n" + orbit + "\n</script>\n")
-a, b = t.index("const THREE = await import("), t.index("const SC = JSON.parse(")
+a = t.index("const THREE = await import(")
+b = min(i for i in (t.find("const FTIN"), t.index("const SC = JSON.parse(")) if i >= 0)
 t = t[:a] + "const OrbitControls = THREE.OrbitControls;\n" + t[b:]
 t = t.replace("new THREE.HemisphereLight(0xffffff, 0x8a8f99, 1.6)", "new THREE.HemisphereLight(0xffffff, 0x8a8f99, 0.85)")
 t = t.replace("new THREE.DirectionalLight(0xffffff, 1.4)", "new THREE.DirectionalLight(0xffffff, 0.7)")
