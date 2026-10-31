@@ -19,8 +19,8 @@ This is a student PG at Plot C-89, Sector 12, Kharghar, Navi Mumbai: stilt, four
 ## Status
 
 - [x] Phase 1: drawing takeoff
-- [x] Phase 2: architectural 3D model (IFC and viewer). **Awaiting approval.**
-- [ ] Phase 3: electrical and plumbing layers
+- [x] Phase 2: architectural 3D model (IFC and viewer)
+- [x] Phase 3: electrical and plumbing layers (`docs/phase3-mep.md`, `docs/pre-slab-checklist.md`)
 - [ ] Phase 4: DXF/PDF package and schedules
 
 ## Rebuild after changing an assumption

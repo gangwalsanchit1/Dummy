@@ -17,7 +17,13 @@ orbit = (pkg / "examples/jsm/controls/OrbitControls.js").read_text()
 m = re.search(r"import\s*\{([^}]*)\}\s*from\s*'three';", orbit)
 orbit = orbit.replace(m.group(0), "const {" + m.group(1) + "} = THREE;")
 orbit = re.sub(r"export\s*\{\s*OrbitControls\s*\};?", "", orbit)
-scene = (ROOT / "model/scene.json").read_text()
+import json
+sys.path.insert(0, str(ROOT / "tools"))
+from mep_elements import mep_elements  # noqa: E402
+
+SC = json.loads((ROOT / "model/scene.json").read_text())
+SC["elements"] = SC["elements"] + mep_elements()
+scene = json.dumps(SC, separators=(",", ":"))
 for name, txt in (("three", three), ("orbit", orbit), ("scene", scene)):
     assert "</script" not in txt.lower(), name
 html = (ROOT / "tools/viewer_template.html").read_text()

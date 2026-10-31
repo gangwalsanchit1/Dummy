@@ -90,33 +90,61 @@ def make(cls, name, storey, boxes, layer, tag, extra=None):
 
 n = 0
 windows_by_wall = {}
+# pass 1: walls that host windows (create the opening voids first)
 for e in SC["elements"]:
-    cls = e["cls"]
-    if cls == "IfcSite":
-        cls = "IfcGeographicElement"
-    if e["layer"] == "clearance":
-        continue                                  # clearance zones stay viewer-only
-    extra = {k: e[k] for k in ("label", "area", "width", "sill", "head", "volume_L", "riser", "risers") if k in e}
     if e["cls"] == "IfcWall" and "ifc_box" in e:
-        w = make("IfcWall", e["name"], e["storey"], [e["ifc_box"]], "wall", e["tag"], extra)
+        w = make("IfcWall", e["name"], e["storey"], [e["ifc_box"]], "wall", e["tag"])
         for v in e["voids"]:
             op = api.root.create_entity(f, ifc_class="IfcOpeningElement", name=f"Opening {v['window']}")
             op.ObjectPlacement = f.createIfcLocalPlacement(None, origin)
             api.geometry.assign_representation(f, product=op, representation=rep([v["box"]], None))
             api.feature.add_feature(f, feature=op, element=w)
-            windows_by_wall.setdefault(v["window"] + e["storey"], op)
+            windows_by_wall[v["window"] + e["storey"]] = op
         n += 1
-        continue
+# pass 2: everything else; windows fill their openings
+for e in SC["elements"]:
+    cls = e["cls"]
+    if cls == "IfcSite":
+        cls = "IfcGeographicElement"
+    if e["layer"] == "clearance" or (e["cls"] == "IfcWall" and "ifc_box" in e):
+        continue                                  # clearance zones stay viewer-only
+    extra = {k: e[k] for k in ("label", "area", "width", "sill", "head", "volume_L", "riser", "risers") if k in e}
     if cls == "IfcWindow":
         el = make("IfcWindow", e["name"], e["storey"], e["boxes"], "window", e["tag"], extra)
-        key = e["name"].split()[1] + e["storey"]
-        op = windows_by_wall.get(key)
+        op = windows_by_wall.get(e["name"].split()[1] + e["storey"])
         if op is not None:
             api.feature.add_filling(f, opening=op, element=el)
         n += 1
         continue
     make(cls, e["name"], e["storey"], e["boxes"], e["layer"], e["tag"], extra)
     n += 1
+
+# pass 3: proposed MEP (Phase 3): points as boxes, runs as swept-disk pipes along polylines
+sys.path.insert(0, str(ROOT / "tools"))
+from mep_elements import mep_elements  # noqa: E402
+for k, c in {"elec": (0.96, 0.62, 0.04), "plumb": (0.05, 0.65, 0.91), "sleeve": (0.86, 0.15, 0.15),
+             "drainL": (0.55, 0.27, 0.07), "waterL": (0.15, 0.39, 0.92), "feedL": (0.92, 0.70, 0.03), "condL": (0.98, 0.57, 0.24)}.items():
+    st = api.style.add_style(f, name=k)
+    api.style.add_surface_style(f, style=st, ifc_class="IfcSurfaceStyleShading",
+                                attributes={"SurfaceColour": {"Name": None, "Red": c[0], "Green": c[1], "Blue": c[2]}, "Transparency": 0.0})
+    styles[k] = st
+nm = 0
+for e in mep_elements():
+    if e.get("line"):
+        pts = [f.createIfcCartesianPoint((float(p[0]), float(Y0 - p[1]), float(p[2]))) for p in e["line"]]
+        sd = f.createIfcSweptDiskSolid(f.createIfcPolyline(pts), max(e.get("dia", 0.02), 0.012) / 2, None, None, None)
+        r = f.createIfcShapeRepresentation(body, "Body", "AdvancedSweptSolid", [sd])
+        api.style.assign_item_style(f, item=sd, style=styles[e["layer"]])
+        el = api.root.create_entity(f, ifc_class=e["cls"], name=e["name"][:255])
+        api.geometry.assign_representation(f, product=el, representation=r)
+        api.spatial.assign_container(f, relating_structure=storeys.get(e["storey"], storeys["GF"]), products=[el])
+        el.ObjectPlacement = f.createIfcLocalPlacement(None, origin)
+        ps = api.pset.add_pset(f, product=el, name="BV2_Coordination")
+        api.pset.edit_pset(f, pset=ps, properties={"Source": e["tag"], "Layer": e["layer"], "Status": "PROPOSAL - licensed consultant to design/approve"})
+    else:
+        make(e["cls"], e["name"], e["storey"], e["boxes"], e["layer"], e["tag"], {"Room": e.get("room", ""), "Status": "PROPOSAL - licensed consultant to design/approve"})
+    nm += 1
+print("MEP elements", nm)
 
 out = ROOT / "model/bella-vita-2.ifc"
 f.write(str(out))

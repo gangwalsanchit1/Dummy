@@ -36,7 +36,7 @@
 <div id="labels"></div>
 <div id="panel">
   <h1>Bella Vita 2</h1>
-  <div class="sub">Plot C-89, Sec-12, Kharghar · Phase 2 coordination model · not a stamped design</div>
+  <div class="sub">Plot C-89, Sec-12, Kharghar · Phase 3 coordination model (architecture + proposed MEP) · not a stamped design</div>
   <div class="grp"><b>Floor</b><div class="btns" id="floors"></div>
     <div class="btns" style="margin-top:5px">
       <button id="mode">Mode: stack below</button>
@@ -49,10 +49,11 @@
       <button id="measure">Measure</button><button id="snap" class="on">Snap to corners</button><button id="clear">Clear</button>
     </div>
     <div class="btns" style="margin-top:5px"><button id="v3d">3D view</button><button id="vtop">Top view</button><button id="vfront">Road side</button></div>
+    <div class="btns" style="margin-top:5px"><button id="mepE">Electrical set</button><button id="mepP">Plumbing set</button><button id="mepA">Architecture only</button></div>
     <div id="hint">Drag to orbit, right-drag to pan, wheel to zoom. Click any object to see its name and source tag (DRAWN, CALCULATED or ASSUMED).</div>
   </div>
   <div class="grp"><b>Status</b>
-    <div style="font-size:11px;color:var(--muted)">Plans are DRAWN from the AFTER O.C. sheet (03-08-2026). Floor heights, sills, door swings marked ASSUMED, and furniture positions are ASSUMED. <b style="display:inline;color:#b91c1c;text-transform:none;letter-spacing:0">No columns or beams are shown</b>: no structural drawing was supplied.</div>
+    <div style="font-size:11px;color:var(--muted)">Plans are DRAWN from the AFTER O.C. sheet (03-08-2026). Floor heights, sills, door swings marked ASSUMED, furniture and all electrical/plumbing points are ASSUMED proposals for consultant review. <b style="display:inline;color:#b91c1c;text-transform:none;letter-spacing:0">No columns or beams are shown</b>: no structural drawing was supplied.</div>
   </div>
 </div>
 <div id="info"></div>
@@ -71,7 +72,11 @@ const LAYERS = {
   furniture:{n:'Furniture', c:0x5b7fd1, on:true}, clearance:{n:'Clearance zones & door swings', c:0xef4444, on:true, op:0.28},
   space:{n:'Room floors', c:0xf6e7a1, on:true, op:0.55}, tank:{n:'Tanks', c:0x3b82f6, on:true}, water:{n:'Water', c:0x1d4ed8, on:true, op:0.45},
   site:{n:'Site, road, compound', c:0x9aa58a, on:true},
-  labels:{n:'Room labels', c:0x111111, on:true}
+  labels:{n:'Room labels', c:0x111111, on:true},
+  elec:{n:'Electrical points', c:0xf59e0b, on:false}, plumb:{n:'Plumbing fixtures & points', c:0x0ea5e9, on:false},
+  drainL:{n:'Soil / waste / vent / rainwater', c:0x8b4513, on:false}, waterL:{n:'Cold / hot water, rising main', c:0x2563eb, on:false},
+  feedL:{n:'Electrical riser & feeders', c:0xeab308, on:false}, condL:{n:'Conduits (indicative)', c:0xfb923c, on:false},
+  sleeve:{n:'Pre-slab sleeves & cast-in items', c:0xdc2626, on:false}
 };
 const canvas = document.getElementById('c');
 const renderer = new THREE.WebGLRenderer({canvas, antialias:true, preserveDrawingBuffer:true});
@@ -95,7 +100,11 @@ const pickables = [];
 for (const el of SC.elements) {
   const layer = LAYERS[el.layer] ? el.layer : 'wall';
   const grp = new THREE.Group();
-  if (el.swing) {
+  if (el.line) {
+    const g = new THREE.BufferGeometry().setFromPoints(el.line.map(p => new THREE.Vector3(p[0], p[2], p[1])));
+    const m = new THREE.Line(g, new THREE.LineBasicMaterial({color: parseInt(el.col, 16)}));
+    m.userData.el = el; grp.add(m); pickables.push(m);
+  } else if (el.swing) {
     const sw = el.swing, ang = Math.atan2(-sw.q[1], sw.q[0]);
     const g = new THREE.CircleGeometry(sw.r, 24, ang - Math.PI/4, Math.PI/2);
     const m = new THREE.Mesh(g, mats.clearance); m.rotation.x = -Math.PI/2; m.position.set(sw.hinge[0], sw.z, sw.hinge[1]);
@@ -137,7 +146,7 @@ document.getElementById('mode').onclick = e => { isolate = !isolate; e.target.te
 document.getElementById('roof').onclick = e => { roofOff = !roofOff; e.target.classList.toggle('on', roofOff); update(); };
 const idx = s => s === 'SITE' ? -1 : STOREYS.indexOf(s);
 function visibleStorey(o) {
-  if (floor === 'ALL') return true;
+  if (floor === 'ALL' || (o.el && o.el.span)) return true;
   const f = idx(floor), s = idx(o.storey);
   if (o.storey === 'SITE') return !isolate;
   if (isolate) return s === f || (!roofOff && o.isSlab && s === f + 1);
@@ -162,11 +171,18 @@ function view(kind) {
   controls.update();
 }
 document.getElementById('v3d').onclick = () => view('3d');
+function preset(on) { const base = ['wall','slab','door','window','stair','lift','furniture','space','tank','water','site','labels'];
+  for (const [k,v] of Object.entries(LAYERS)) v.on = base.includes(k) || on.includes(k);
+  if (on.length) { LAYERS.furniture.on = true; LAYERS.clearance.on = false; LAYERS.space.on = false; }
+  [...ly.querySelectorAll('input')].forEach((c,i) => c.checked = Object.values(LAYERS)[i].on); update(); }
+document.getElementById('mepE').onclick = () => preset(['elec','feedL','condL','sleeve']);
+document.getElementById('mepP').onclick = () => preset(['plumb','drainL','waterL','sleeve']);
+document.getElementById('mepA').onclick = () => preset([]);
 document.getElementById('vtop').onclick = () => view('top');
 document.getElementById('vfront').onclick = () => view('front');
 
 // ---------- picking and measuring
-const ray = new THREE.Raycaster(), mouse = new THREE.Vector2();
+const ray = new THREE.Raycaster(), mouse = new THREE.Vector2(); ray.params.Line.threshold = 0.04;
 const info = document.getElementById('info');
 let measuring = false, snap = true, pts = [], mGroup = new THREE.Group(), mLabels = [];
 scene.add(mGroup);
@@ -232,6 +248,7 @@ function loop() {
 }
 const q = new URLSearchParams(location.hash.slice(1));
 if (q.get('floor')) floor = q.get('floor');
+if (q.get('mep') === 'e') setTimeout(() => preset(['elec','feedL','condL','sleeve'])); if (q.get('mep') === 'p') setTimeout(() => preset(['plumb','drainL','waterL','sleeve']));
 if (q.get('isolate')) { isolate = true; document.getElementById('mode').textContent = 'Mode: this floor only'; }
 frame(); update(); view(q.get('view') || '3d'); loop();
 window.__ready = true;
