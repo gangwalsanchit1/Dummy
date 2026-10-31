@@ -11,9 +11,12 @@ rear outer face towards road), Z (m above road level, ASSUMED datum).
 """
 import json
 import math
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "tools"))
+from units import ftin, size  # noqa: E402
 TK = json.loads((ROOT / "model/takeoff.json").read_text())
 AS = json.loads((ROOT / "model/assumptions.json").read_text())
 FU = json.loads((ROOT / "model/furniture.json").read_text())
@@ -333,8 +336,8 @@ for pk, rooms in FU.items():
                 report.append(f"| {pk} | {room} | {it['type']} | SIZE | rect {dims} != catalogue {want} |")
                 violations += 1
             fixed.append((it["type"], r))
-            dep = {"queen_bed": CL["queen_bed_sides"], "single_bed": CL["single_bed_access_side"],
-                   "wardrobe_3door_sliding": CL["sliding_wardrobe_front"]}.get(it["type"], CL["desk_chair_zone"])
+            dep = {"queen_bed": CL["queen_bed_sides"], "queen_bed_wf": CL["queen_bed_sides"], "single_bed": CL["single_bed_access_side"],
+                   "wardrobe_3door_sliding": CL["sliding_wardrobe_front"], "wardrobe_tartan_2door": CL["sliding_wardrobe_front"]}.get(it["type"], CL["desk_chair_zone"])
             if it.get("zones"):                    # explicit (trimmed) zones, e.g. bed with a bedside table at its head
                 zones += [(f"{it['type']} access {it['access'][0]}", z) for z in it["zones"]]
             else:
@@ -369,10 +372,10 @@ for pk, rooms in FU.items():
             z0 = FFL[s]
             for nm, r in fixed:
                 hgt = FS[nm][2]
-                add("IfcFurniture", f"{s} {room} {nm.replace('_', ' ')}", s, "furniture",
+                add("IfcFurniture", f"{s} {room} {nm.replace('_', ' ')} {size(r[2] - r[0], r[3] - r[1])} ({r[2] - r[0]:.3f} x {r[3] - r[1]:.3f} m)", s, "furniture",
                     [[r[0], r[1], z0, r[2], r[3], z0 + hgt]], "ASSUMED position / brief size")
             for zn, zr in zones:
-                add("IfcBuildingElementProxy", f"{s} {room} clearance: {zn}", s, "clearance",
+                add("IfcBuildingElementProxy", f"{s} {room} clearance: {zn} {size(zr[2] - zr[0], zr[3] - zr[1])}", s, "clearance",
                     [[zr[0], zr[1], z0 + 0.01, zr[2], zr[3], z0 + 0.02]], "ASSUMED")
 
 # door swings vs walls (every door swing must work)

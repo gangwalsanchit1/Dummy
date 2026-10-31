@@ -59,6 +59,31 @@
       0.4,
       0.4,
       0.55
+    ],
+    "queen_bed_wf": [
+      2.084,
+      1.594,
+      0.45
+    ],
+    "wardrobe_tartan_2door": [
+      0.8,
+      0.472,
+      1.815
+    ],
+    "study_table_notiq160": [
+      1.6,
+      0.6,
+      0.75
+    ],
+    "study_table_notiq120": [
+      1.2,
+      0.6,
+      0.75
+    ],
+    "side_table": [
+      0.4,
+      0.4,
+      0.55
     ]
   },
   "clearances": {
@@ -66,7 +91,8 @@
     "single_bed_access_side": 0.6,
     "sliding_wardrobe_front": 0.6,
     "desk_chair_zone": 0.75,
-    "_note": "Queen 0.60 both sides is from the brief. Others ASSUMED. Door swing zones use the full leaf radius."
+    "_note": "Queen 0.60 both sides is from the brief. Others ASSUMED. Door swing zones use the full leaf radius.",
+    "_room4_rule": "F1-3 ROOM-4 only (family instruction): queen bed with one long side against the wall and a side table on the open side touching the head wall; replaces the 0.60 m both-sides queen rule for this room."
   },
   "doors": {
     "_note": "hinge = plan point; zone = quarter-disc of radius 'width' swept from the hinge into 'quadrant' (signs of dx, dy). ALL doors open INWARDS (family instruction): room doors into rooms, toilet/WC doors into the toilet, terrace door into the suite. Arcs DRAWN on F4 room doors; hinge sides elsewhere ASSUMED, chosen so the open leaf lies against a side wall.",
@@ -328,5 +354,42 @@
         "tag": "ASSUMED into servant room - opens inwards (family instruction)"
       }
     ]
+  },
+  "wakefit_catalog": {
+    "_note": "wakefit.co blocks automated access (HTTP 403), so the product pages could not be opened directly. Sizes below come from search-indexed text of the listed pages; 'PROVISIONAL' items need the family to confirm the exact overall size from the product page before ordering.",
+    "queen_bed_wf": {
+      "product": "Wakefit Solid Wood Queen Bed",
+      "size_cm": "208.4 L x 159.4 W (overall frame)",
+      "source": "Flipkart listing of the Wakefit product (not wakefit.co)",
+      "link": "https://www.flipkart.com/wakefit-solid-wood-queen-bed/p/itm6c23ba49e4349",
+      "status": "PROVISIONAL - confirm overall frame L x W on the wakefit.co product page of the chosen model",
+      "wakefit_queen_category": "https://www.wakefit.co/bed/queen-size-bed"
+    },
+    "wardrobe_tartan_2door": {
+      "product": "Wakefit Tartan 2 Door Wardrobe with Drawer",
+      "size_cm": "80 W x 47.2 D x 181.5 H (hinged doors)",
+      "source": "wakefit.co product page (quoted in search index)",
+      "link": "https://www.wakefit.co/wardrobes/tartan-2-door-wardrobe-with-drawer",
+      "status": "from Wakefit page text"
+    },
+    "study_table_notiq160": {
+      "product": "Wakefit Notiq Electric Adjustable Study Table - 160 cm",
+      "size_cm": "160 W x 60 D (depth PROVISIONAL), height adjustable",
+      "source": "wakefit.co lists only the 160 cm size; depth taken from the 120 cm Amazon listing",
+      "link": "https://www.wakefit.co/study-tables/notiq-study-table/WSTNOTIQ160FW",
+      "status": "PROVISIONAL depth"
+    },
+    "study_table_notiq120": {
+      "product": "Wakefit Notiq Electric Adjustable Study Table - 120 cm",
+      "size_cm": "120 W x 60 D, height 70-120",
+      "source": "Amazon.in listing (not found on wakefit.co)",
+      "link": "https://www.amazon.in/Wakefit-adjustable-Installation-Ergonomic-Wobble-Free/dp/B0GZW8F9D6",
+      "status": "PROVISIONAL - not on wakefit.co"
+    },
+    "side_table": {
+      "product": "Side table (not specified)",
+      "size_cm": "40 x 40 (ASSUMED)",
+      "status": "ASSUMED"
+    }
   }
 }

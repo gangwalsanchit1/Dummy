@@ -416,6 +416,13 @@ def main():
         for name, (door, others) in rooms.items():
             if only and f"{pk}:{name}" not in only:
                 continue
+            ov = json.loads((ROOT / "model/furniture_overrides.json").read_text()) if (ROOT / "model/furniture_overrides.json").exists() else {}
+            if name in ov.get(pk, {}):
+                out[pk][name] = ov[pk][name]
+                rep.append(f"| {pk} | {name} | FAMILY LAYOUT (see docs/room4-check.md) | {'; '.join(i['type'] for i in ov[pk][name])} | 2 |")
+                beds_total += 2 * (3 if pk == "F1-3" else 1)
+                print(pk, name, "family layout kept", flush=True)
+                continue
             room = Room(pk, name, door, others)
             sol, kind = solve_layout(room, 2, "standard_desk"), "DOUBLE (2 beds, 2 standard desks, 2 wardrobes)"
             if sol is None:

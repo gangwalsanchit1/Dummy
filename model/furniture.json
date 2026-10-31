@@ -323,58 +323,62 @@
   ],
   "ROOM-4": [
    {
-    "type": "single_bed",
+    "type": "queen_bed_wf",
     "rect": [
-     5.0,
-     2.0,
-     7.05,
-     2.95
-    ],
-    "access": [
-     "N"
-    ],
-    "zones": [
-     [
-      5.0,
-      1.4,
-      6.6,
-      2.0
-     ]
-    ]
-   },
-   {
-    "type": "wardrobe_3door_sliding",
-    "rect": [
-     4.45,
+     5.766,
      0.15,
-     5.0,
-     1.35
-    ],
-    "access": [
-     "E"
-    ]
-   },
-   {
-    "type": "wall_desk",
-    "rect": [
-     5.65,
-     0.15,
-     6.55,
-     0.6
+     7.85,
+     1.744
     ],
     "access": [
      "S"
-    ]
+    ],
+    "zones": [
+     [
+      5.766,
+      1.744,
+      7.45,
+      2.344
+     ]
+    ],
+    "note": "long side against rear wall, headboard on east wall"
    },
    {
-    "type": "bedside_table",
+    "type": "side_table",
     "rect": [
-     6.65,
-     1.6,
-     7.05,
-     2.0
+     7.45,
+     1.744,
+     7.85,
+     2.144
     ],
-    "access": []
+    "access": [],
+    "note": "open side, touching head wall"
+   },
+   {
+    "type": "wardrobe_tartan_2door",
+    "rect": [
+     4.45,
+     0.15,
+     4.922,
+     0.95
+    ],
+    "access": [
+     "E"
+    ],
+    "note": "twin wardrobe 1 on study wall"
+   },
+   {
+    "type": "wardrobe_tartan_2door",
+    "rect": [
+     4.45,
+     0.95,
+     4.922,
+     1.75
+    ],
+    "access": [
+     "E"
+    ],
+    "note": "twin wardrobe 2 on study wall"
    }
   ]
  },

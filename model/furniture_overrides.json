@@ -1,0 +1,65 @@
+{
+ "_about": "Rooms laid out by the family's instructions; tools/fit_furniture.py keeps these and does not regenerate them.",
+ "F1-3": {
+  "ROOM-4": [
+   {
+    "type": "queen_bed_wf",
+    "rect": [
+     5.766,
+     0.15,
+     7.85,
+     1.744
+    ],
+    "access": [
+     "S"
+    ],
+    "zones": [
+     [
+      5.766,
+      1.744,
+      7.45,
+      2.344
+     ]
+    ],
+    "note": "long side against rear wall, headboard on east wall"
+   },
+   {
+    "type": "side_table",
+    "rect": [
+     7.45,
+     1.744,
+     7.85,
+     2.144
+    ],
+    "access": [],
+    "note": "open side, touching head wall"
+   },
+   {
+    "type": "wardrobe_tartan_2door",
+    "rect": [
+     4.45,
+     0.15,
+     4.922,
+     0.95
+    ],
+    "access": [
+     "E"
+    ],
+    "note": "twin wardrobe 1 on study wall"
+   },
+   {
+    "type": "wardrobe_tartan_2door",
+    "rect": [
+     4.45,
+     0.95,
+     4.922,
+     1.75
+    ],
+    "access": [
+     "E"
+    ],
+    "note": "twin wardrobe 2 on study wall"
+   }
+  ]
+ }
+}
