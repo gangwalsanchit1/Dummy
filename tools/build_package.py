@@ -15,6 +15,9 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 import ezdxf
+import sys as _sys
+_sys.path.insert(0, str(Path(__file__).resolve().parent))
+from units import ftin, size as ftsize  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 TK = json.loads((ROOT / "model/takeoff.json").read_text())
@@ -35,9 +38,9 @@ CODE = {"SB": "SB", "TSW": "TS", "BS": "BS", "DESK": "DK", "DATA": "D", "SKT16":
         "PUMPP": "PP", "RISER": "R", "DB": "DB", "MB": "MB", "MDB": "MDB", "CDB": "CDB", "WC": "WC", "BAS": "B", "SHM": "SH",
         "HF": "HF", "FT": "FT", "GZ": "GZ", "SINK": "SK", "TAP": "T", "PUMP": "P", "IC": "IC", "RWO": "RWO", "METER": "M",
         "TCON": "TC", "SLV": "SL", "INV": "INV", "RFID": "RF", "MLOCK": "ML", "RFIDL": "RL", "DISP": "WD", "WM": "WM", "RO": "RO", "COVE": "CV"}
-PIPECOL = {"SOIL": "#8b4513", "WASTE": "#d97706", "VENT": "#9ca3af", "RWP": "#16a34a", "UGD": "#78350f", "CW": "#2563eb",
+PIPECOL = {"ACP": "#0d9488", "SOIL": "#8b4513", "WASTE": "#d97706", "VENT": "#9ca3af", "RWP": "#16a34a", "UGD": "#78350f", "CW": "#2563eb",
            "HW": "#dc2626", "DT": "#1d4ed8", "RM": "#7c3aed", "SUP": "#0891b2", "FEED": "#ca8a04", "COND": "#fb923c"}
-ACI = {"SOIL": 30, "WASTE": 40, "VENT": 8, "RWP": 3, "UGD": 32, "CW": 5, "HW": 1, "DT": 150, "RM": 6, "SUP": 4, "FEED": 50, "COND": 30}
+ACI = {"ACP": 4, "SOIL": 30, "WASTE": 40, "VENT": 8, "RWP": 3, "UGD": 32, "CW": 5, "HW": 1, "DT": 150, "RM": 6, "SUP": 4, "FEED": 50, "COND": 30}
 
 
 def band(storey):
@@ -119,7 +122,7 @@ def build_dxf(name, storey, pk, title):
         for it in items:
             r = it["rect"]
             ms.add_lwpolyline([(r[0], Y(r[1])), (r[2], Y(r[1])), (r[2], Y(r[3])), (r[0], Y(r[3]))], close=True, dxfattribs={"layer": "A-FURN"})
-            ms.add_text(it["type"].replace("_", " "), height=0.07, dxfattribs={"layer": "A-FURN"}).set_placement(
+            ms.add_text(f'{it["type"].replace("_", " ")} {ftsize(r[2] - r[0], r[3] - r[1])}', height=0.07, dxfattribs={"layer": "A-FURN"}).set_placement(
                 ((r[0] + r[2]) / 2, Y((r[1] + r[3]) / 2)), align=ezdxf.enums.TextEntityAlignment.MIDDLE_CENTER)
     for sp in fl.get("spaces", []):
         r = max(sp["rects"], key=lambda q: (q[2] - q[0]) * (q[3] - q[1]))
@@ -207,7 +210,8 @@ def sheet(name, storey, pk, title, kind):
             r = it["rect"]
             s.append(f'<rect x="{X_(r[0]):.2f}" y="{Y_(r[1]):.2f}" width="{(r[2]-r[0])*KMM:.2f}" height="{(r[3]-r[1])*KMM:.2f}" fill="{"#c7d2fe" if kind == "A" else "#f1f5f9"}" stroke="#94a3b8" stroke-width="0.2"/>')
             if kind == "A":
-                s.append(f'<text x="{X_((r[0]+r[2])/2):.1f}" y="{Y_((r[1]+r[3])/2)+0.8:.1f}" font-size="1.8" text-anchor="middle" fill="#334155">{esc(it["type"].replace("_", " ").replace("3door sliding", "1.2 m"))}</text>')
+                s.append(f'<text x="{X_((r[0]+r[2])/2):.1f}" y="{Y_((r[1]+r[3])/2)+0.8:.1f}" font-size="1.8" text-anchor="middle" fill="#334155">{esc(it["type"].replace("_", " "))}</text>')
+                s.append(f'<text x="{X_((r[0]+r[2])/2):.1f}" y="{Y_((r[1]+r[3])/2)+3.0:.1f}" font-size="1.6" text-anchor="middle" fill="#334155">{esc(ftsize(r[2]-r[0], r[3]-r[1]))}</text>')
     for w in fl["walls"] + fl.get("railings", []):
         s.append(f'<rect x="{X_(w[0]):.2f}" y="{Y_(w[1]):.2f}" width="{(w[2]-w[0])*KMM:.2f}" height="{(w[3]-w[1])*KMM:.2f}" fill="#374151"/>')
     for wdw in fl.get("windows", []):
@@ -248,7 +252,7 @@ def sheet(name, storey, pk, title, kind):
     # MEP
     legend = Counter()
     if kind in ("E", "P"):
-        systems = {"E": {"FEED", "COND"}, "P": {"SOIL", "WASTE", "VENT", "RWP", "UGD", "CW", "HW", "DT", "RM", "SUP"}}[kind]
+        systems = {"E": {"FEED", "COND", "ACP"}, "P": {"SOIL", "WASTE", "VENT", "RWP", "UGD", "CW", "HW", "DT", "RM", "SUP"}}[kind]
         lines, verts = runs_for(storey, systems)
         for sysn, a, b, nm in lines:
             dash = ' stroke-dasharray="1.2 0.8"' if sysn in ("COND", "UGD") else ""
@@ -352,6 +356,26 @@ def sheet(name, storey, pk, title, kind):
     (OUT / "sheets" / f"{name}-{kind}.svg").write_text("\n".join(s))
 
 
+def furniture_schedule():
+    cat = AS.get("wakefit_catalog", {})
+    rows = [["floor", "room", "item", "product", "link", "plan_x0_m", "plan_y0_m", "W_m", "D_m", "H_m", "W_ftin", "D_ftin", "H_ftin", "clearance", "clearance_ftin"]]
+    clr = {"bed": AS["clearances"]["queen_bed_sides"], "wardrobe": AS["clearances"]["sliding_wardrobe_front"], "desk": AS["clearances"]["desk_chair_zone"]}
+    for pk in ("F1-3", "F4"):
+        for room, items in FU.get(pk, {}).items():
+            for it in items:
+                r = it["rect"]
+                w_, d_ = r[2] - r[0], r[3] - r[1]
+                h_ = AS["furniture_sizes"][it["type"]][2]
+                key = "bed" if it["type"].endswith("_bed") else "wardrobe" if "wardrobe" in it["type"] else "desk" if it["type"].endswith("desk") else None
+                c = cat.get(it["type"], {})
+                cl = clr.get(key)
+                rows.append([pk, room, it["type"], c.get("product", ""), c.get("link", ""), r[0], r[1], round(w_, 3), round(d_, 3), h_, ftin(w_), ftin(d_), ftin(h_),
+                             f"{cl:.2f} m {'per open side' if key == 'bed' else 'in front'}" if cl else "", ftin(cl) if cl else ""])
+    with open(ROOT / "docs/schedules/furniture_schedule.csv", "w", newline="") as fh:
+        csv.writer(fh).writerows(rows)
+    return rows
+
+
 def schedules_html():
     rows = list(csv.DictReader(open(ROOT / "docs/schedules/points_schedule.csv")))
     q = list(csv.reader(open(ROOT / "docs/schedules/quantities.csv")))
@@ -370,7 +394,13 @@ def schedules_html():
         tag = "th" if i == 0 or r[0] == "run" else "td"
         h.append("<tr>" + "".join(f"<{tag}>{esc(c)}</{tag}>" for c in r) + "</tr>")
     h.append("</table>")
-    h.append("<h2>2. Room-by-room point schedule</h2>")
+    h.append("<h2>2. Furniture schedule (Wakefit, sizes in feet and inches)</h2><table>")
+    for i, r in enumerate(furniture_schedule()):
+        cells = [r[0], r[1], r[3] or r[2], r[10], r[11], r[12], r[14]] if i else ["Floor", "Room", "Item", "W", "D", "H", "Clearance"]
+        tag = "th" if i == 0 else "td"
+        h.append("<tr>" + "".join(f"<{tag}>{esc(c)}</{tag}>" for c in cells) + "</tr>")
+    h.append("</table>")
+    h.append("<h2>3. Room-by-room point schedule</h2>")
     by = defaultdict(list)
     for r in rows:
         by[(r["storey"], r["room"])].append(r)
@@ -382,7 +412,7 @@ def schedules_html():
         for r in rs:
             h.append("<tr>" + "".join(f"<td>{esc(r[k])}</td>" for k in ("point_id", "system", "item", "plan_x_m", "plan_y_m", "height_above_FFL_m", "mounting", "circuit", "note", "clash_check")) + "</tr>")
         h.append("</table></div>")
-    h.append("<h2>3. Pre-slab checklist</h2>")
+    h.append("<h2>4. Pre-slab checklist</h2>")
     for line in pre.splitlines():
         if line.startswith("## "):
             h.append(f"<h2>{esc(line[3:])}</h2>")

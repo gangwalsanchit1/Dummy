@@ -192,8 +192,8 @@ def desk_candidates(room, wd):
     Dl, Dd, _ = FS[wd]
     out = []
     for (dx, dy) in ((Dl, Dd), (Dd, Dl)):
-        for x in grid_vals(room.bb[0], room.bb[2] - dx):
-            for y in grid_vals(room.bb[1], room.bb[3] - dy):
+        for x in (wall_vals(room, room.bb[0], room.bb[2] - dx, dx, "x") if "wall_vals" in globals() else grid_vals(room.bb[0], room.bb[2] - dx)):
+            for y in (wall_vals(room, room.bb[1], room.bb[3] - dy, dy, "y") if "wall_vals" in globals() else grid_vals(room.bb[1], room.bb[3] - dy)):
                 dr = [x, y, round(x + dx, 3), round(y + dy, 3)]
                 backs = [("y", dr[1], dr[0], dr[2], "S"), ("y", dr[3], dr[0], dr[2], "N")] if dx > dy else [("x", dr[0], dr[1], dr[3], "E"), ("x", dr[2], dr[1], dr[3], "W")]
                 bk = [b for b in backs if touches_wall(b[:4], room.walls)]
@@ -454,5 +454,177 @@ def main():
     print("students", beds_total)
 
 
+
+
+# ====================================================================== single occupancy, ultra-luxury (family decision)
+LUX_ORDER = [("gingham_wardrobe", "notiq_desk"), ("twill_wardrobe", "notiq_desk"), ("gingham_wardrobe", "wall_desk"), ("twill_wardrobe", "wall_desk")]
+
+
+def wall_vals(room, lo, hi, length, axis):
+    """Grid positions plus every position that puts either edge of an item exactly on a wall face."""
+    faces = {w[i] for w in room.walls for i in ((0, 2) if axis == "x" else (1, 3))}
+    vals = set(grid_vals(lo, hi))
+    for f in faces:
+        for v in (f, f - length):
+            if lo - 1e-9 <= v <= hi + 1e-9:
+                vals.add(round(v, 3))
+    return sorted(vals)
+
+
+def lux_beds(room, rule):
+    L, W, _ = FS["orion_queen_bed"]
+    TW, TD, _ = FS["tinker_side_table"]
+    trim = CL["queen_head_table_trim"]
+    out = []
+    for (lx, ly) in ((L, W), (W, L)):
+        long_x = lx > ly
+        for x in wall_vals(room, room.bb[0], room.bb[2] - lx, lx, "x"):
+            for y in wall_vals(room, room.bb[1], room.bb[3] - ly, ly, "y"):
+                r = [x, y, round(x + lx, 3), round(y + ly, 3)]
+                if any(ovl(r, g) for g in room.grey) or not room.ok_fixed(r, [], []):
+                    continue
+                heads = [("W", ("x", r[0], r[1], r[3])), ("E", ("x", r[2], r[1], r[3]))] if long_x else [("N", ("y", r[1], r[0], r[2])), ("S", ("y", r[3], r[0], r[2]))]
+                longs = [("N", ("y", r[1], r[0], r[2])), ("S", ("y", r[3], r[0], r[2]))] if long_x else [("W", ("x", r[0], r[1], r[3])), ("E", ("x", r[2], r[1], r[3]))]
+                for hd, hedge in heads:
+                    if not touches_wall(hedge, room.walls):
+                        continue
+                    if rule == "both":
+                        side_sets = [([s for s, _ in longs], s_t) for s_t in [s for s, _ in longs]]
+                    else:                                   # family ROOM-4 rule: one long side on a wall
+                        side_sets = []
+                        for s, e in longs:
+                            if touches_wall(e, room.walls):
+                                other = [o for o, _ in longs if o != s][0]
+                                side_sets.append(([other], other))
+                    for sides, tside in side_sets:
+                        zones = []
+                        for sd in sides:
+                            z = zone(r, sd, CL["queen_bed_sides"])
+                            if sd == tside:                 # side table sits at the head in this zone: trim it
+                                z = {"W": [z[0] + trim, z[1], z[2], z[3]], "E": [z[0], z[1], z[2] - trim, z[3]],
+                                     "N": [z[0], z[1] + trim, z[2], z[3]], "S": [z[0], z[1], z[2], z[3] - trim]}[hd]
+                            zones.append(z)
+                        full = [zone(r, sd, CL["queen_bed_sides"]) for sd in sides]
+                        if not all(inside(z, room.rects) for z in full) or any(ovl(z, w) for z in full for w in room.walls):
+                            continue
+                        # Tinker at the head wall on the table side (back to the head wall, width along it)
+                        if long_x:
+                            tx0 = r[0] if hd == "W" else r[2] - TD
+                            ty0 = r[3] if tside == "S" else r[1] - TW
+                            t = [tx0, ty0, round(tx0 + TD, 3), round(ty0 + TW, 3)]
+                        else:
+                            ty0 = r[1] if hd == "N" else r[3] - TD
+                            tx0 = r[2] if tside == "E" else r[0] - TW
+                            t = [tx0, ty0, round(tx0 + TW, 3), round(ty0 + TD, 3)]
+                        t = [round(v, 3) for v in t]
+                        if not room.ok_fixed(t, [r], []):
+                            continue
+                        out.append({"bed": {"type": "orion_queen_bed", "rect": r, "access": sides, "zones": [[round(v, 3) for v in z] for z in zones], "head": hd},
+                                    "table": {"type": "tinker_side_table", "rect": t, "access": []}})
+    return out
+
+
+def lux_wardrobes(room, wtype, study_wall):
+    Ww, Wd, _ = FS[wtype]
+    out = []
+    for (dx, dy) in ((Ww, Wd), (Wd, Ww)):
+        for x in wall_vals(room, room.bb[0], room.bb[2] - dx, dx, "x"):
+            for y in wall_vals(room, room.bb[1], room.bb[3] - dy, dy, "y"):
+                r = [x, y, round(x + dx, 3), round(y + dy, 3)]
+                backs = [("y", r[1], r[0], r[2], "S"), ("y", r[3], r[0], r[2], "N")] if dx > dy else [("x", r[0], r[1], r[3], "E"), ("x", r[2], r[1], r[3], "W")]
+                bk = [b for b in backs if touches_wall(b[:4], room.walls)]
+                if not bk:
+                    continue
+                if study_wall and not (abs(r[0] - study_wall) < 1e-3 and bk[0][4] == "E"):
+                    continue
+                in_grey = any(r[0] >= g[0] - 1e-3 and r[2] <= g[2] + 1e-3 and r[1] >= g[1] - 1e-3 and r[3] <= g[3] + 1e-3 for g in room.grey)
+                if not in_grey and any(ovl(r, g) for g in room.grey):
+                    continue
+                z = zone(r, bk[0][4], CL["sliding_wardrobe_front"])
+                if room.ok_fixed(r, [], []) and inside(z, room.rects) and not any(ovl(z, w) for w in room.walls):
+                    out.append({"type": wtype, "rect": r, "access": [bk[0][4]], "zones": [z], "grey": in_grey})
+    out.sort(key=lambda it: -it["grey"])
+    return out
+
+
+def solve_lux(room, rule, wtype, dtype, study_wall=None, max_walk=6000):
+    beds = lux_beds(room, rule)
+    wards = lux_wardrobes(room, wtype, study_wall)
+    if study_wall:                                   # family rule: table on the study wall (may use the grey strip)
+        Dl, Dd, _ = FS[dtype]
+        desks = []
+        for y in wall_vals(room, room.bb[1], room.bb[3] - Dl, Dl, "y"):
+            dr = [study_wall, y, round(study_wall + Dd, 3), round(y + Dl, 3)]
+            dz = zone(dr, "E", CL["desk_chair_zone"])
+            if touches_wall(("x", study_wall, dr[1], dr[3]), room.walls) and room.ok_fixed(dr, [], []) and inside(dz, room.rects):
+                desks.append({"type": dtype, "rect": dr, "access": ["E"], "zones": [dz]})
+    else:
+        desks = [{"type": dtype, "rect": dr, "access": [sd], "zones": [dz]} for dr, sd, dz in desk_candidates(room, dtype)]
+    walks = 0
+    hx, hy = room.door["hinge"]
+    best = None
+    for b in beds:
+        B, T = b["bed"], b["table"]
+        for w in wards:
+            if ovl(w["rect"], B["rect"]) or ovl(w["rect"], T["rect"]) or any(ovl(w["rect"], z) for z in B["zones"]) or any(ovl(B["rect"], z) or ovl(T["rect"], z) for z in w["zones"]):
+                continue
+            for d in desks:
+                dr = d["rect"]
+                if any(ovl(dr, q) for q in (B["rect"], T["rect"], w["rect"])) or any(ovl(dr, z) for z in B["zones"] + w["zones"]):
+                    continue
+                if any(ovl(q, z) for q in (B["rect"], T["rect"], w["rect"]) for z in d["zones"]):
+                    continue
+                walks += 1
+                zs = [("bed side", z) for z in B["zones"]] + [("wardrobe front", w["zones"][0]), ("chair", d["zones"][0])]
+                ok, _ = room.walkable([B["rect"], T["rect"], w["rect"], dr], zs)
+                if ok:
+                    sc = (1 if w["grey"] else 0) + math.hypot((B["rect"][0] + B["rect"][2]) / 2 - hx, (B["rect"][1] + B["rect"][3]) / 2 - hy) / 10
+                    if best is None or sc > best[0]:
+                        best = (sc, [B, T, {k: v for k, v in w.items() if k != "grey"}, d])
+                if walks > max_walk or (best and walks > 400):
+                    return best[1] if best else None
+    return best[1] if best else None
+
+
+def main_lux():
+    out = {"_about": "GENERATED by tools/fit_furniture.py (main_lux) - SINGLE OCCUPANCY, ultra-luxury: Wakefit Orion queen bed + Tinker side table + Gingham (or Twill) wardrobe + study table per room. Positions ASSUMED; drawn rooms unchanged."}
+    rep = ["# Furniture fit: single occupancy, ultra-luxury (generated by tools/fit_furniture.py)", "",
+           "Family decision: **every room is single occupancy** with the Wakefit **Orion queen bed**, a **Tinker** side table, a **Gingham** 2-door mirrored wardrobe "
+           "(or the compact **Twill** where the Gingham does not fit) and a study table. Rooms and toilets are exactly as DRAWN; all doors open inwards.", "",
+           "Rules: queen bed with **0.60 m (1'-11 5/8\") on both long sides** where possible. ROOM-4 uses the family rule instead: one long side on a wall, side table on the open side at the head, "
+           "and the study table and wardrobe on the study wall (the west wall where the wardrobe was). Wardrobe front 0.60 m (1'-11 5/8\"). Desk chair zone 0.75 m (2'-5 1/2\"). "
+           "Walking path 0.55 m (1'-9 5/8\") from the door to every clearance and the toilet door.", "",
+           "| Floor | Room | Bed rule | Wardrobe | Study table | Result |", "|---|---|---|---|---|---|"]
+    n = 0
+    for pk, rooms in ROOMS.items():
+        out[pk] = {}
+        for name, (door, others) in rooms.items():
+            room = Room(pk, name, door, others)
+            is_r4 = pk == "F1-3" and name == "ROOM-4"
+            rules = ["wall"] if is_r4 else ["both", "wall"]
+            sol = None
+            for rule in rules:
+                for wt, dt in LUX_ORDER:
+                    sol = solve_lux(room, rule, wt, dt, study_wall=4.45 if is_r4 else None)
+                    if sol:
+                        break
+                if sol:
+                    break
+            if not sol:
+                rep.append(f"| {pk} | {name} | - | - | - | **NO LAYOUT FOUND** (see room check) |")
+                print(pk, name, "NO LAYOUT", flush=True)
+                continue
+            out[pk][name] = sol
+            n += 3 if pk == "F1-3" else 1
+            rl = "family rule (long side on wall)" if rule == "wall" else "0.60 m both sides"
+            flag = "" if (rule == "both" or is_r4) else " - **deviation: both-sides rule did not fit; long side on wall used**"
+            rep.append(f"| {pk} | {name} | {rl}{flag} | {wt.split('_')[0].title()} | {'Notiq 120 (adjustable)' if dt == 'notiq_desk' else 'wall desk 0.90'} | PASS |")
+            print(pk, name, rule, wt, dt, flush=True)
+    rep += ["", f"**Total: {n} students** (single occupancy; F1-3 counted x 3)."]
+    (ROOT / "model/furniture.json").write_text(json.dumps(out, indent=1))
+    (ROOT / "docs/furniture-fit.md").write_text("\n".join(rep) + "\n")
+    print("students", n)
+
+
 if __name__ == "__main__":
-    main()
+    main_lux()

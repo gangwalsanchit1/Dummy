@@ -76,7 +76,8 @@ const LAYERS = {
   elec:{n:'Electrical points', c:0xf59e0b, on:false}, plumb:{n:'Plumbing fixtures & points', c:0x0ea5e9, on:false},
   drainL:{n:'Soil / waste / vent / rainwater', c:0x8b4513, on:false}, waterL:{n:'Cold / hot water, rising main', c:0x2563eb, on:false},
   feedL:{n:'Electrical riser & feeders', c:0xeab308, on:false}, condL:{n:'Conduits (indicative)', c:0xfb923c, on:false},
-  sleeve:{n:'Pre-slab sleeves & cast-in items', c:0xdc2626, on:false}
+  sleeve:{n:'Pre-slab sleeves & cast-in items', c:0xdc2626, on:false},
+  acL:{n:'AC lines (F1-F3, below bathroom windows)', c:0x0d9488, on:false}
 };
 const canvas = document.getElementById('c');
 let renderer = null;
@@ -177,7 +178,7 @@ function preset(on) { const base = ['wall','slab','door','window','stair','lift'
   for (const [k,v] of Object.entries(LAYERS)) v.on = base.includes(k) || on.includes(k);
   if (on.length) { LAYERS.furniture.on = true; LAYERS.clearance.on = false; LAYERS.space.on = false; }
   [...ly.querySelectorAll('input')].forEach((c,i) => c.checked = Object.values(LAYERS)[i].on); update(); }
-document.getElementById('mepE').onclick = () => preset(['elec','feedL','condL','sleeve']);
+document.getElementById('mepE').onclick = () => preset(['elec','feedL','condL','sleeve','acL']);
 document.getElementById('mepP').onclick = () => preset(['plumb','drainL','waterL','sleeve']);
 document.getElementById('mepA').onclick = () => preset([]);
 document.getElementById('vtop').onclick = () => view('top');
@@ -250,7 +251,7 @@ function loop() {
 }
 const q = new URLSearchParams(location.hash.slice(1));
 if (q.get('floor')) floor = q.get('floor');
-if (q.get('mep') === 'e') setTimeout(() => preset(['elec','feedL','condL','sleeve'])); if (q.get('mep') === 'p') setTimeout(() => preset(['plumb','drainL','waterL','sleeve']));
+if (q.get('mep') === 'e') setTimeout(() => preset(['elec','feedL','condL','sleeve','acL'])); if (q.get('mep') === 'p') setTimeout(() => preset(['plumb','drainL','waterL','sleeve']));
 if (q.get('isolate')) { isolate = true; document.getElementById('mode').textContent = 'Mode: this floor only'; }
 frame(); update(); view(q.get('view') || '3d'); loop();
 window.__ready = true;
@@ -276,7 +277,7 @@ function plan2D() {
   document.getElementById('mepA').onclick = () => presets([]);
   document.getElementById('measure').onclick = e => { measuring = !measuring; e.target.classList.toggle('on', measuring); mpts = []; draw(); };
   document.getElementById('clear').onclick = () => { mpts = []; draw(); };
-  const ORDER = ['site','slab','space','tank','water','wall','window','stair','lift','door','furniture','clearance','plumb','elec','sleeve','drainL','waterL','feedL','condL'];
+  const ORDER = ['site','slab','space','tank','water','wall','window','stair','lift','door','furniture','clearance','plumb','elec','sleeve','drainL','waterL','feedL','condL','acL'];
   const visible = el => LAYERS[el.layer] && LAYERS[el.layer].on && (el.storey === floor || (el.span && el.line));
   const X = x => ox + x * scale, Y = y => oy + y * scale;
   function draw() {

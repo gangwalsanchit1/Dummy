@@ -12,6 +12,7 @@ All final electrical and plumbing design must be done/approved by licensed consu
 import csv
 import json
 import math
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -85,6 +86,7 @@ PIPE = {  # run system -> (layer, nominal dia m, colour key, description)
     "RWP": ("plumb", 0.110, "rwp", "Rainwater pipe 110 mm"),
     "UGD": ("plumb", 0.150, "soil", "Underground drain 150 mm"),
     "SUP": ("plumb", 0.025, "cw", "Municipal supply 25 mm"),
+    "ACP": ("ac", 0.060, "ac", "AC refrigerant + drain line bundle (insulated, ~60 mm)"),
     "FEED": ("elec", 0.050, "feed", "Feeder / riser cable"),
     "COND": ("conduit", 0.020, "cond", "Conduit (indicative)"),
 }
@@ -122,7 +124,6 @@ def rooms_F13(s):
         ("SB", 5.78, 7.05, 1.2, "+y", "latch side of F-D1", "L/F"),
         ("FAN", 5.95, 8.225, CEIL, "C", "", "L/F"), ("LT", 6.95, 8.225, CEIL, "C", "", "L/F"), ("LT", 6.60, 10.50, CEIL, "C", "front part", "L/F"),
         ("ACI", 6.60, 11.60, 2.40, "-y", "above front window", "AC"), ("ACS", 7.20, 11.60, 2.35, "-y", "", "AC"),
-        ("ACO", 6.60, 11.90, 2.30, "O", "bracket outside front wall", "AC"),
     ]
     c["ROOM-1 TOILET"] = [
         ("TSW", 5.35, 9.68, 1.2, "+x", "outside toilet, room side", "L/F"),
@@ -137,7 +138,6 @@ def rooms_F13(s):
         ("FAN", 2.05, 8.225, CEIL, "C", "", "L/F"), ("LT", 1.05, 8.225, CEIL, "C", "", "L/F"), ("LT", 1.40, 10.50, CEIL, "C", "front part", "L/F"),
         ("LT", 1.60, 6.55, CEIL, "C", "entry strip", "L/F"),
         ("ACI", 1.40, 11.60, 2.40, "-y", "above front window", "AC"), ("ACS", 0.80, 11.60, 2.35, "-y", "", "AC"),
-        ("ACO", 1.40, 11.90, 2.30, "O", "bracket outside front wall", "AC"),
     ]
     c["ROOM-2 TOILET"] = [
         ("TSW", 2.65, 9.68, 1.2, "-x", "outside toilet, room side", "L/F"),
@@ -151,7 +151,6 @@ def rooms_F13(s):
         ("SB", 3.05, 4.22, 1.2, "-x", "latch side of F-D3", "L/F"),
         ("FAN", 1.60, 4.00, CEIL, "C", "", "L/F"), ("LT", 2.40, 3.00, CEIL, "C", "", "L/F"), ("LT", 0.95, 1.10, CEIL, "C", "alcove", "L/F"),
         ("ACI", 0.95, 0.15, 2.40, "+y", "above alcove window", "AC"), ("ACS", 1.55, 0.15, 2.35, "+y", "", "AC"),
-        ("ACO", 0.95, -0.25, 2.30, "O", "bracket outside rear wall", "AC"),
     ]
     c["ROOM-3 TOILET"] = [
         ("TSW", 1.75, 1.72, 1.2, "-x", "alcove side of toilet wall", "L/F"),
@@ -166,7 +165,6 @@ def rooms_F13(s):
         ("LT", 3.60, 3.30, CEIL, "C", "passage", "L/F"), ("LT", 3.80, 2.50, CEIL, "C", "entry", "L/F"),
         ("FAN", 6.15, 1.55, CEIL, "C", "", "L/F"), ("LT", 5.25, 1.55, CEIL, "C", "", "L/F"),
         ("ACI", 7.35, 0.15, 2.40, "+y", "solid wall right of window", "AC"), ("ACS", 6.80, 0.15, 2.35, "+y", "", "AC"),
-        ("ACO", 7.35, -0.25, 2.30, "O", "bracket outside rear wall", "AC"),
     ]
     c["ROOM-4 TOILET"] = [
         ("TSW", 4.45, 1.78, 1.2, "+x", "room side, beyond wardrobe", "L/F"),
@@ -513,6 +511,68 @@ for s, x, y, txt, cat in SLEEVES:
     z = FFL["F4"] + 0.35 if cat == "parapet" else (FFL["TERRACE"] + 0.05 if cat == "parapetT" else FFL.get(s, 0.0) - 0.075)
     P("SLV", s, cat, x, y, z - FFL.get(s, 0.0), "F", txt)
 
+# ===================================================================== AC lines F1-F3: routed below the bathroom windows (family instruction)
+sys.path.insert(0, str(ROOT / "tools"))
+from units import ftin  # noqa: E402
+AC_TOILET_WIN = {"ROOM-1": "F-W7", "ROOM-2": "F-W6", "ROOM-3": "F-W2", "ROOM-4": "F-W3"}
+ODU_W, ODU_H = K["ACO"][3][0], K["ACO"][3][2]
+VSILL = AS["heights"]["ventilator_sill"]
+ac_rows = []
+fl13 = TK["floors"]["F1-3"]
+win13 = {w["id"]: w for w in fl13["windows"]}
+VERT = []                                     # vertical pipes on facades: (name, x, face)
+for nm, x, face in [("soil stack S1", 3.10, "rear"), ("waste stack W1", 3.30, "rear"), ("down-take DT-R", 2.95, "rear"), ("RWP-1", 0.08, "rear"),
+                    ("RWP-4", 7.75, "rear"), ("soil stack S2", 4.00, "front"), ("waste stack W2", 4.20, "front"), ("down-take DT-F", 3.80, "front"),
+                    ("rising main", 7.60, "front"), ("RWP-2", 0.45, "front"), ("RWP-3", 2.40, "front")]:
+    VERT.append((nm, x, face, PIPE["SOIL"][1] if "S" in nm.split()[-1][:1] else 0.075))
+for s_ in ["F1", "F2", "F3"]:
+    for room, wid in AC_TOILET_WIN.items():
+        idu = next(q for q in points if q["storey"] == s_ and q["room"] == room and q["kind"] == "ACI")
+        tw = win13[wid]
+        face = tw["wall"]
+        yo = -0.10 if face == "rear" else 11.85                       # pipe line just outside the wall
+        yodu = -0.25 if face == "rear" else 12.00
+        z0 = FFL[s_]
+        zi = idu["z"]
+        zl = z0 + VSILL - 0.10 - ODU_H / 2 - 0.10                      # run below the toilet window sill
+        xw = (tw["span_x"][0] + tw["span_x"][1]) / 2
+        xd = tw["span_x"][1] + 0.10 if idu["x"] > xw else tw["span_x"][0] - 0.10   # drop beside the window, on the IDU side
+        pts = [[idu["x"], idu["y"], zi], [idu["x"], yo, zi], [xd, yo, zi], [xd, yo, zl], [xw, yo, zl], [xw, yodu, zl]]
+        R("ACP", s_, f"{room} AC line: indoor unit -> below bathroom window {wid} -> outdoor unit", pts, "family instruction: route below bathroom window")
+        P("ACO", s_, room, xw, yodu, zl - z0, "O", f"outdoor unit on bracket below bathroom window {wid}", "AC")
+        issues = []
+        r_ = PIPE["ACP"][1] / 2 + 0.05
+        # windows on this facade (all floors F1-3 identical): crossing any opening between sill and head
+        for w in fl13["windows"]:
+            if w["wall"] != face:
+                continue
+            sill = AS["heights"]["ventilator_sill"] if w["width"] < AS["heights"]["ventilator_max_width"] else AS["heights"]["window_sill"]
+            head = AS["heights"]["window_head"]
+            wz0, wz1 = z0 + sill, z0 + head
+            for a, b in zip(pts[1:], pts[2:]):
+                xa, xb = sorted([a[0], b[0]])
+                za, zb = sorted([a[2], b[2]])
+                if xb + r_ > w["span_x"][0] and xa - r_ < w["span_x"][1] and zb + r_ > wz0 and za - r_ < wz1:
+                    issues.append(f"line crosses window {w['id']}")
+            if abs(zl - (z0 + sill)) < ODU_H / 2 + 0.02 and w["span_x"][0] < xw + ODU_W / 2 and w["span_x"][1] > xw - ODU_W / 2 and w["id"] != wid:
+                issues.append(f"outdoor unit overlaps window {w['id']}")
+        # vertical pipes on the same facade
+        for nm, x, f2, dia in VERT:
+            if f2 != face:
+                continue
+            for a, b in zip(pts[1:], pts[2:]):
+                xa, xb = sorted([a[0], b[0]])
+                if xa - 0.05 - dia / 2 <= x <= xb + 0.05 + dia / 2:
+                    issues.append(f"line crosses {nm} (x {x:.2f})")
+                    break
+            gap = abs(x - xw) - ODU_W / 2 - dia / 2
+            if gap < 0.05:
+                issues.append(f"outdoor unit {'overlaps' if gap < 0 else 'only ' + ftin(gap) + ' from'} {nm}")
+        issues = sorted(set(issues))
+        if s_ == "F1":
+            L = sum(math.dist(a, b) for a, b in zip(pts, pts[1:]))
+            ac_rows.append((room, wid, face, idu["x"], xd, xw, L, issues))
+
 # ===================================================================== clash checks
 walls = {s: TK["floors"][PLAN_OF[s]]["walls"] for s in PLAN_OF}
 wins = {pk: fl.get("windows", []) for pk, fl in TK["floors"].items()}
@@ -753,3 +813,20 @@ print(json.dumps({k: summary[k] for k in ("points", "runs", "clashes", "warnings
 print("\n".join(rows[:40]))
 print("\n".join(stack_rows))
 print("\n".join(warns[:20]))
+
+md = ["# AC lines, floors 1-3: routed below the bathroom windows (generated by tools/build_mep.py)", "",
+      "Family instruction: route every AC line on floors 1-3 below the bathroom window; report clashes instead of moving the line.", "",
+      "Route used for each room (same on F1, F2 and F3): from the indoor unit straight through its external wall at the unit's height, "
+      "along the outside of the wall above the window heads, down beside the bathroom window (on the indoor-unit side), "
+      "then under the bathroom window sill to an outdoor unit on a bracket centred below that window.", "",
+      "| Room | Bathroom window | Facade | Line length (F1) | Result |", "|---|---|---|---|---|"]
+for room, wid, face, xi, xd, xw, L, iss in ac_rows:
+    md.append(f"| {room} | {wid} ({ftin(win13[wid]['width'])} wide) | {face} | {ftin(L)} | {'clear of windows and pipes' if not iss else '**CLASH:** ' + '; '.join(iss)} |")
+md += ["", "## Cannot be checked",
+       "- **Beams and columns:** none are drawn on the AFTER O.C. sheet, so beam and column clashes cannot be checked. "
+       "Each line passes through its external wall about 2.4 m (7'-10 1/2\") above floor, close to where a perimeter beam would sit. "
+       "The structural engineer must confirm the sleeve level clears the beam.",
+       "- **Outdoor units below a ventilator** blow warm air up past the bathroom window; screen or louvre if needed.", "",
+       "Nothing has been moved to avoid the clashes above, as instructed."]
+(ROOT / "docs/ac-routing.md").write_text("\n".join(md) + "\n")
+print("\n".join(f"{r[0]} {r[1]} {r[7]}" for r in ac_rows))

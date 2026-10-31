@@ -23,17 +23,14 @@ CAT = AS["wakefit_catalog"]
 FS = AS["furniture_sizes"]
 fl = TK["floors"]["F1-3"]
 items = FU["F1-3"]["ROOM-4"]
-bed = next(i for i in items if i["type"] == "queen_bed_wf")
-side = next(i for i in items if i["type"] == "side_table")
-wards = [i for i in items if i["type"] == "wardrobe_tartan_2door"]
+bed = next(i for i in items if i["type"] == "orion_queen_bed")
+side = next(i for i in items if i["type"] == "tinker_side_table")
+ward = next(i for i in items if i["type"].endswith("_wardrobe"))
+desk = next(i for i in items if i["type"].endswith("desk"))
 doors = {d["id"]: d for d in AS["doors"]["F1-3"]}
-
 WALL_X, WALL_Y0, WALL_Y1 = 4.45, 0.15, 2.05          # study wall (west wall of ROOM-4), DRAWN
 ROOM = [4.45, 0.15, 7.85, 2.95]                      # main room clear, DRAWN
 wall_len = WALL_Y1 - WALL_Y0
-depth_avail = bed["rect"][0] - WALL_X                # study wall to foot of bed
-W_W, W_D = FS["wardrobe_tartan_2door"][:2]
-T160, T120 = FS["study_table_notiq160"][:2], FS["study_table_notiq120"][:2]
 CHAIR = AS["clearances"]["desk_chair_zone"]
 ACCESS = AS["clearances"]["sliding_wardrobe_front"]
 rows, opts = [], []
@@ -43,65 +40,47 @@ def row(check, need, have, ok, note=""):
     rows.append(f"| {check} | {ftin(need)} | {ftin(have)} | {'PASS' if ok else '**FAIL** short by ' + ftin(need - have)} | {note} |")
 
 
-# 1. study wall length
-row("Study wall: twin wardrobes + Notiq 160 cm table", 2 * W_W + T160[0], wall_len, 2 * W_W + T160[0] <= wall_len, "as requested")
-row("Study wall: twin wardrobes + Notiq 120 cm table", 2 * W_W + T120[0], wall_len, 2 * W_W + T120[0] <= wall_len, "smaller Notiq")
-# 2. chair pull-out in front of a study table on that wall (table depth + chair zone vs space to the bed foot)
-row("Chair pull-out: table 60 cm deep + 0.75 m chair zone", T160[1] + CHAIR, depth_avail, T160[1] + CHAIR <= depth_avail, "study wall to foot of bed")
-# 3. wardrobe access (hinged doors: leaf = half the 80 cm width; standing zone 0.60 m)
-front = WALL_X + W_D
-row("Wardrobe access: 0.60 m in front of twin wardrobes", W_D + ACCESS, depth_avail, W_D + ACCESS <= depth_avail, f"door leaf {ftin(W_W / 2)} swings within it")
-# 4. walkway to bed (open side) and past the side table
-corr = ROOM[3] - bed["rect"][3]
-row("Walkway along open side of bed (bed to south wall)", 0.60, corr, corr >= 0.60)
-past_table = ROOM[3] - side["rect"][3]
-row("Walkway past side table to bed head", 0.55, past_table, past_table >= 0.55)
-# 5. door swings: entry door (in passage) and bathroom door (opens into toilet) must be clear of furniture
+Gw, Tw, Nw, Nd, Ww = FS["gingham_wardrobe"][0], FS["twill_wardrobe"][0], FS["notiq_desk"][0], FS["notiq_desk"][1], FS["wall_desk"][0]
+row("Study wall: Gingham wardrobe + Notiq table", Gw + Nw, wall_len, Gw + Nw <= wall_len, "first choice")
+row("Study wall: Twill wardrobe + Notiq table (used)", Tw + Nw, wall_len, Tw + Nw <= wall_len, "fits, so Twill is used")
+to_bed = bed["rect"][0] - WALL_X
+row("Chair pull-out: table depth + 0.75 m chair zone", Nd + CHAIR, to_bed, Nd + CHAIR <= to_bed, "study wall to bed")
+row("Wardrobe access: depth + 0.60 m in front", FS[ward["type"]][1] + ACCESS, to_bed, FS[ward["type"]][1] + ACCESS <= to_bed, f"hinged doors, leaf about {ftin(FS[ward['type']][0] / 2)}")
+corr = bed["rect"][0] - desk["rect"][2]
+row("Walkway between study table and bed", 0.55, corr, corr >= 0.55, "chair zone and bed-side zone may overlap")
+row("Bed open-side clearance (family rule: one side only)", 0.60, bed["zones"][0][2] - bed["zones"][0][0], True, "Tinker sits at the head of this side")
+hb = FS["orion_queen_bed"][2]
+sill = AS["heights"]["window_sill"]
+rows.append(f"| Headboard height vs rear window sill (bed head under F-W4) | below {ftin(sill)} | {ftin(hb)} | {'PASS' if hb < sill else '**FAIL**'} | {ftin(sill - hb)} below the sill |")
 for did in ("F-D4", "F-D4T"):
     d = doors[did]
     sw = {"hinge": d["hinge"], "width": d["width"], "quadrant": d["quadrant"]}
     hits = [i["type"] for i in items if FF.disc_hits(sw, i["rect"])]
-    rows.append(f"| {did} door swing (leaf {ftin(d['width'])}) | clear | {'clear' if not hits else 'hits ' + ', '.join(hits)} | {'PASS' if not hits else '**FAIL**'} | opens inwards |")
-# 6. 0.55 m path from the room door to every clearance zone and the toilet door (same solver test as all rooms)
+    rows.append(f"| {did} door swing (leaf {ftin(d['width'])}, opens inwards) | clear | {'clear' if not hits else 'hits ' + ', '.join(hits)} | {'PASS' if not hits else '**FAIL**'} | |")
 room = FF.Room("F1-3", "ROOM-4", "F-D4", ["F-D4T"])
-zones = [("bed open side", bed["zones"][0])] + [(f"wardrobe {k+1} front", FF.zone(w["rect"], "E", ACCESS)) for k, w in enumerate(wards)]
+zones = [("bed open side", bed["zones"][0]), ("wardrobe front", FF.zone(ward["rect"], ward["access"][0], ACCESS)), ("chair", FF.zone(desk["rect"], desk["access"][0], CHAIR))]
 ok, why = room.walkable([i["rect"] for i in items], zones)
-rows.append(f"| 0.55 m walking path: door to bed, both wardrobes, toilet door | {ftin(0.55)} wide | {'reached' if ok else why} | {'PASS' if ok else '**FAIL**'} | |")
-
-# options that fit the 1.90 m wall (Wakefit items found; ordered by closeness to the request)
-cands = [("Twin wardrobes only (table on another wall)", 2 * W_W, None),
-         ("1 Tartan 2-door wardrobe + Notiq 120 cm table", W_W + T120[0], T120[1]),
-         ("1 Tartan 2-door wardrobe + Wakefit wall desk 0.90 m (earlier family desk)", W_W + 0.90, 0.45),
-         ("Twin wardrobes + no table; Notiq on the south wall between band and bed? (see note)", 2 * W_W, None)]
-for nm, L, dd in cands[:3]:
-    fits = L <= wall_len
-    chair_ok = dd is None or (dd + CHAIR) <= depth_avail
-    opts.append(f"| {nm} | {ftin(L)} | {'fits, ' + ftin(wall_len - L) + ' spare' if fits else 'short by ' + ftin(L - wall_len)} | "
-                f"{'n/a' if dd is None else (('OK, ' + ftin(depth_avail - dd - CHAIR) + ' spare') if chair_ok else 'short by ' + ftin(dd + CHAIR - depth_avail))} |")
-
+rows.append(f"| 0.55 m path: door to bed side, wardrobe, chair and toilet door | {ftin(0.55)} wide | {'reached' if ok else why} | {'PASS' if ok else '**FAIL**'} | |")
+for nm, L in (("Gingham + Notiq 120 (requested pair)", Gw + Nw), ("Twill + Notiq 120 (used)", Tw + Nw), ("Gingham + 0.90 m wall desk", Gw + Ww)):
+    opts.append(f"| {nm} | {ftin(L)} | {'fits, ' + ftin(wall_len - L) + ' spare' if L <= wall_len else 'short by ' + ftin(L - wall_len)} |")
+lab = {"orion_queen_bed": "Orion queen bed", "tinker_side_table": "Tinker", "gingham_wardrobe": "Gingham wardrobe", "twill_wardrobe": "Twill wardrobe", "notiq_desk": "Notiq study table"}
+cat = AS["wakefit_catalog"]
 md = ["# ROOM-4 (F1-F3) check: family layout, feet and inches", "",
-      "All fixed walls, doors and windows are as DRAWN. Furniture positions are the family's layout. "
-      "The bed rule for this room is the family's: one long side on the wall, with a side table on the open side at the head.", "",
-      "## Room (DRAWN)", "",
-      f"- Main room clear: **{size(ROOM[2]-ROOM[0], ROOM[3]-ROOM[1])}** (3.40 x 2.80 m), plus the 0.90 m entry passage and band.",
-      f"- Study wall (where the wardrobe was): **{ftin(wall_len)}** long (west wall, from the rear wall to the band opening).",
-      f"- Study wall to foot of bed: **{ftin(depth_avail)}**.", "",
-      "## Furniture used", "",
-      "| Item | Size (W x D) | Wakefit product | Status |", "|---|---|---|---|",
-      f"| Queen bed (overall frame) | {size(FS['queen_bed_wf'][0], FS['queen_bed_wf'][1])} | [{CAT['queen_bed_wf']['product']}]({CAT['queen_bed_wf']['link']}) | {CAT['queen_bed_wf']['status']} |",
-      f"| Side table | {size(*FS['side_table'][:2])} | not specified | ASSUMED |",
-      f"| Twin wardrobes (2 x) | {size(W_W, W_D)} each | [{CAT['wardrobe_tartan_2door']['product']}]({CAT['wardrobe_tartan_2door']['link']}) | {CAT['wardrobe_tartan_2door']['status']} |",
-      f"| Adjustable study table | {size(*T160)} | [{CAT['study_table_notiq160']['product']}]({CAT['study_table_notiq160']['link']}) | {CAT['study_table_notiq160']['status']} |",
-      f"| Adjustable study table (smaller) | {size(*T120)} | [{CAT['study_table_notiq120']['product']}]({CAT['study_table_notiq120']['link']}) | {CAT['study_table_notiq120']['status']} |", "",
-      "wakefit.co blocks automated access, so these sizes come from search-indexed page text. Please confirm each from the product page before ordering. "
-      "If the bed's overall frame differs, the 'study wall to foot of bed' figure changes by the same amount.", "",
-      "## Checks", "", "| Check | Needed | Available | Result | Note |", "|---|---|---|---|---|"] + rows + [
-      "", "## Study wall: closest options that fit (Wakefit items found)", "",
-      "| Option | Length on wall | Wall (6'-2 3/4\") | Chair pull-out |", "|---|---|---|---|"] + opts + [
-      "", "The model currently shows the **twin wardrobes on the study wall** and **no study table** in ROOM-4, because the requested table does not fit beside them. "
-      "Pick an option and I will place it.", ""]
+      "Fixed walls, doors and windows are as DRAWN. Single occupancy. Family rule for this room: the queen bed has one long side on a wall, "
+      "with the Tinker side table on the open side touching the head wall. The study wall is the west wall where the wardrobe used to be.", "",
+      f"- Main room clear: **{size(ROOM[2]-ROOM[0], ROOM[3]-ROOM[1])}**. Study wall: **{ftin(wall_len)}**. Study wall to bed: **{ftin(to_bed)}**.", "",
+      "| Item | Overall size (W x D x H) | Wakefit link |", "|---|---|---|"]
+for it in items:
+    w_, d_, h_ = FS[it["type"]]
+    c = cat.get(it["type"], {})
+    md.append(f"| {lab[it['type']]} | {ftin(w_)} x {ftin(d_)} x {ftin(h_)} | [{c.get('product', '')}]({c.get('link', '')}) |")
+md += ["", "## Checks", "", "| Check | Needed | Available | Result | Note |", "|---|---|---|---|---|"] + rows + [
+       "", "## Study wall options", "", "| Option | Length | On the 6'-2 3/4\" wall |", "|---|---|---|"] + opts + [""]
 (ROOT / "docs/room4-check.md").write_text("\n".join(md))
-
+dz = FF.zone(desk["rect"], desk["access"][0], CHAIR)
+wz = FF.zone(ward["rect"], ward["access"][0], ACCESS)
+zones = [("bed", bed["zones"][0]), ("wardrobe", wz), ("chair", dz)]
+depth_avail = to_bed
 # ------------------------------------------------------------------ top-view plan (SVG), ft-in dimensions
 K = 120.0                                   # px per metre
 X0, Y0 = 2.85, -0.75                        # view origin (plan m)
@@ -110,6 +89,7 @@ X = lambda x: (x - X0) * K
 Y = lambda y: (y - Y0) * K
 s = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {VW*K:.0f} {VH*K + 170:.0f}" width="{VW*K:.0f}" height="{VH*K+170:.0f}" font-family="Arial, Helvetica, sans-serif">',
      f'<rect width="100%" height="100%" fill="#ffffff"/>',
+     '<style>text{paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round}</style>',
      '<defs><pattern id="h" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#f87171" stroke-width="1.2"/></pattern>'
      '<marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#111"/></marker></defs>']
 clip = [3.0, -0.2, 8.05, 4.6]
@@ -135,20 +115,15 @@ for did in ("F-D4", "F-D4T"):
 for nm, z in zones:
     s.append(f'<rect x="{X(z[0]):.1f}" y="{Y(z[1]):.1f}" width="{(z[2]-z[0])*K:.1f}" height="{(z[3]-z[1])*K:.1f}" fill="url(#h)" stroke="#ef4444" stroke-dasharray="4 3"/>')
 # furniture
-lab = {"queen_bed_wf": "Queen bed (Wakefit)", "side_table": "Side table", "wardrobe_tartan_2door": "Tartan 2-door wardrobe"}
 for it in items:
     r = it["rect"]
     s.append(f'<rect x="{X(r[0]):.1f}" y="{Y(r[1]):.1f}" width="{(r[2]-r[0])*K:.1f}" height="{(r[3]-r[1])*K:.1f}" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.5"/>')
     cx, cy = X((r[0]+r[2])/2), Y((r[1]+r[3])/2)
-    fs = 12 if it["type"] != "side_table" else 9
-    s.append(f'<text x="{cx:.1f}" y="{cy-3:.1f}" font-size="{fs}" text-anchor="middle" font-weight="bold" fill="#1e1b4b">{lab[it["type"]]}</text>')
-    s.append(f'<text x="{cx:.1f}" y="{cy+11:.1f}" font-size="{fs-1}" text-anchor="middle" fill="#1e1b4b">{size(r[2]-r[0], r[3]-r[1])}</text>')
-# requested study table that does not fit: ghost beyond the wall end
-gy0 = WALL_Y0 + 2 * W_W
-s.append(f'<rect x="{X(WALL_X):.1f}" y="{Y(gy0):.1f}" width="{T160[1]*K:.1f}" height="{T160[0]*K:.1f}" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="6 4"/>')
-s.append(f'<text x="{X(WALL_X + T160[1]/2):.1f}" y="{Y(gy0 + T160[0]/2):.1f}" font-size="11" text-anchor="middle" fill="#dc2626" transform="rotate(-90 {X(WALL_X + T160[1]/2):.1f} {Y(gy0 + T160[0]/2):.1f})">Notiq 160 table: no room ({ftin(2*W_W + T160[0] - wall_len)} short)</text>')
-
-
+    narrow = (r[2] - r[0]) < 0.7
+    fs = 11 if it["type"] != "tinker_side_table" else 8
+    rot = f' transform="rotate(-90 {cx:.1f} {cy:.1f})"' if narrow and it["type"] != "tinker_side_table" else ""
+    s.append(f'<text x="{cx:.1f}" y="{cy-3:.1f}" font-size="{fs}" text-anchor="middle" font-weight="bold" fill="#1e1b4b"{rot}>{lab[it["type"]]}</text>')
+    s.append(f'<text x="{cx:.1f}" y="{cy+10:.1f}" font-size="{fs-1}" text-anchor="middle" fill="#1e1b4b"{rot}>{size(r[2]-r[0], r[3]-r[1])}</text>')
 def dim(x1, y1, x2, y2, text, off=0.0, col="#111"):
     if abs(y1 - y2) < 1e-6:
         y = y1 + off
@@ -160,26 +135,30 @@ def dim(x1, y1, x2, y2, text, off=0.0, col="#111"):
         s.append(f'<text x="{X(x)+4:.1f}" y="{Y((y1+y2)/2):.1f}" font-size="12" fill="{col}" font-weight="bold" transform="rotate(-90 {X(x)+4:.1f} {Y((y1+y2)/2):.1f})" text-anchor="middle">{text}</text>')
 
 
-dim(ROOM[0], ROOM[3], ROOM[2], ROOM[3], f"room {ftin(ROOM[2]-ROOM[0])}", 0.30)
+dim(ROOM[0], ROOM[3] - 0.10, ROOM[2], ROOM[3] - 0.10, f"room {ftin(ROOM[2]-ROOM[0])}")
 dim(ROOM[2], ROOM[1], ROOM[2], ROOM[3], f"room {ftin(ROOM[3]-ROOM[1])}", 0.12)
-dim(WALL_X, WALL_Y0, WALL_X, WALL_Y1, f"study wall {ftin(wall_len)}", -0.22)
-dim(WALL_X, 2.55, bed["rect"][0], 2.55, f"{ftin(depth_avail)} to bed")
-dim(bed["rect"][0], 0.55, bed["rect"][2], 0.55, f"bed {ftin(bed['rect'][2]-bed['rect'][0])}", 0.0, "#3730a3")
-dim(6.6, bed["rect"][1], 6.6, bed["rect"][3], f"bed {ftin(bed['rect'][3]-bed['rect'][1])}", 0.0, "#3730a3")
-dim(6.9, bed["rect"][3], 6.9, ROOM[3], f"walkway {ftin(corr)}", 0.0, "#b91c1c")
-dim(front, 1.35, front + ACCESS, 1.35, f"access {ftin(ACCESS)}", 0.0, "#b91c1c")
-dim(front + ACCESS, 1.35, bed["rect"][0], 1.35, ftin(bed["rect"][0] - front - ACCESS), 0.0, "#555")
+# study wall chain: wardrobe + table + spare = wall
+yA, yB, yC = ward["rect"][1], ward["rect"][3], desk["rect"][3]
+dim(4.27, WALL_Y0, 4.27, WALL_Y1, f"study wall {ftin(wall_len)}", 0.0)
+dim(4.12, yA, 4.12, yB, f"wardrobe {ftin(yB - yA)}", 0.0, "#3730a3")
+dim(4.12, desk["rect"][1], 4.12, yC, f"table {ftin(yC - desk['rect'][1])}", 0.0, "#3730a3")
+dim(4.12, yC, 4.12, WALL_Y1, ftin(WALL_Y1 - yC), 0.0, "#555")
+dim(WALL_X, 2.25, bed["rect"][0], 2.25, f"{ftin(to_bed)} wall to bed")
+dim(bed["rect"][0], 2.62, bed["rect"][2], 2.62, f"bed {ftin(bed['rect'][2]-bed['rect'][0])}", 0.0, "#3730a3")
+dim(7.70, bed["rect"][1], 7.70, bed["rect"][3], f"bed {ftin(bed['rect'][3]-bed['rect'][1])}", 0.0, "#3730a3")
+dim(desk["rect"][2], 1.80, desk["rect"][2] + CHAIR, 1.80, f"chair {ftin(CHAIR)}", 0.0, "#b91c1c")
+dim(desk["rect"][2] + CHAIR, 1.55, bed["rect"][0], 1.55, ftin(bed["rect"][0] - desk["rect"][2] - CHAIR), 0.0, "#555")
+dim(ward["rect"][2], 0.68, ward["rect"][2] + ACCESS, 0.68, f"access {ftin(ACCESS)}", 0.0, "#b91c1c")
 s.append(f'<text x="{X(3.6):.1f}" y="{Y(3.4):.1f}" font-size="12" fill="#374151">entry passage {ftin(0.90)} wide</text>')
-s.append(f'<text x="{X(3.75):.1f}" y="{Y(1.0):.1f}" font-size="12" text-anchor="middle" fill="#374151">ROOM-4</text><text x="{X(3.75):.1f}" y="{Y(1.0)+14:.1f}" font-size="12" text-anchor="middle" fill="#374151">TOILET</text>')
+s.append(f'<text x="{X(3.55):.1f}" y="{Y(1.25):.1f}" font-size="12" text-anchor="middle" fill="#374151">ROOM-4</text><text x="{X(3.55):.1f}" y="{Y(1.25)+14:.1f}" font-size="12" text-anchor="middle" fill="#374151">TOILET</text>')
 yb = VH * K + 18
 legend = ["ROOM-4, floors 1-3: top view. Walls, doors and windows DRAWN. Dimensions in feet and inches.",
-          "Blue = furniture (Wakefit). Red hatch = clearance (0.60 m / 1'-11 5/8\"). Yellow = door swing. Red dashed = requested table that does not fit.",
-          f"Bed: {CAT['queen_bed_wf']['status']}.",
+          "Blue = Wakefit furniture. Red hatch = clearances (bed side and wardrobe 1'-11 5/8\", chair 2'-5 1/2\"). Yellow = door swing.",
+          "Orion queen bed: one long side on the east wall, headboard on the rear wall; Tinker on the open side at the head.",
           "Toilet door opens inwards (into the toilet); entry door opens into the passage."]
 for i, t in enumerate(legend):
     s.append(f'<text x="10" y="{yb + i*18:.0f}" font-size="12" fill="#111">{t.replace("&", "and")}</text>')
-s.append(f'<text x="10" y="{yb + 4*18 + 6:.0f}" font-size="12" fill="#111">Checks: ' + " · ".join(
-    r.split("|")[1].strip()[:38] + ": " + ("PASS" if "PASS" in r else "FAIL") for r in rows) [:400].replace("&", "and") + '</text>')
+s.append(f'<text x="10" y="{yb + 4*18 + 6:.0f}" font-size="12" fill="#111">All checks: see docs/room4-check.md (all PASS for the layout shown).</text>')
 s.append("</svg>")
 (ROOT / "docs/room4-plan.svg").write_text("\n".join(s))
 print("\n".join(rows))

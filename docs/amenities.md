@@ -13,8 +13,8 @@ The family shared a photo of a Bella Vita twin room. It shows two single beds wi
 
 | Item in the photo | Bella Vita 2 | Status |
 |---|---|---|
-| 2 single beds (Wakefit) | Twin rooms: 2 beds, 2 study tables, 2 wardrobes (26 students in total) | In the model and fit-checked |
-| Bedside table + lamp | 0.40 m bedside table at the head of each bed (shared where two beds meet), with a socket and USB at 0.70 m above it | In the model. **F1–3 ROOM-1 and F4 ROOM-2: one bed has no space for a floor table without blocking its walking path, so use a wall-mounted floating bedside shelf there.** |
+| 2 single beds (Wakefit) | **Upgraded: single occupancy with a Wakefit Orion queen bed in every room** (15 students) | In the model and fit-checked |
+| Bedside table + lamp | Wakefit Tinker side table at the bed head in every room, with a socket and USB above it | In the model |
 | Split AC high on the wall | AC unit and 20 A socket at about 2.4 m on an external wall in every room | In the model |
 | Ceiling fan | Fan box cast in the slab, 1200 mm fan | In the model (pre-slab item) |
 | 2 downlights | 2–3 LED downlights per room | In the model |
@@ -29,7 +29,7 @@ Nothing here changes walls, rooms, toilets, slabs or structure. All positions ar
 
 | Amenity at Bella Vita | Bella Vita 2 proposal | Where |
 |---|---|---|
-| Single bed + wardrobe | Wakefit furniture (measurements confirmed by the family). Each student gets their own bed, study table and wardrobe. Rooms are twin sharing where everything fits with clearances and walking paths, otherwise single: 26 students in total. See `docs/furniture-fit.md`. | All rooms |
+| Single bed + wardrobe | Wakefit furniture (measurements confirmed by the family). Single occupancy (ultra-luxury): Orion queen bed, Tinker side table, Gingham or Twill wardrobe and a study table in every room, 15 students in total. See `docs/furniture-fit.md`. | All rooms |
 | Air conditioning | AC unit and 20 A socket in every room, outdoor units on brackets or terraces | All rooms |
 | CCTV | 9 cameras: stilt, gate, terrace and every lobby | Common areas |
 | RFID access | RFID reader and magnetic lock at the ground-floor lobby entry. Battery RFID locks on every room door (no wiring). | GF entry, all room doors |

@@ -16,6 +16,8 @@
 
 **Amenities matched to the existing Bella Vita** (RFID entry, power backup, RO water, terrace laundry and lounge, room sub-meters) are listed in `docs/amenities.md`.
 
+**AC lines on floors 1–3** are routed below the bathroom windows, as the family asked. Results and clashes are in `docs/ac-routing.md`.
+
 ## Electrical concept
 
 | Item | Proposal | Where |
@@ -62,9 +64,9 @@
 
 | Item | Value | Basis |
 |---|---|---|
-| Demand | 28 persons (26 students + 2 staff) × 135 L/day = **3,780 L/day** | **IS 1172:1993, clause 4.2, Table 1, item (v) Hostels: 135 L per head per day** (verified from the standard's text) |
-| U.G. tank, 10,000 L | about 2.6 days of demand | CALCULATED |
-| O.H. tank, 6,500 L | about 1.7 days of demand | CALCULATED |
+| Demand | 17 persons (15 students, single occupancy, + 2 staff) × 135 L/day = **2,295 L/day** | **IS 1172:1993, clause 4.2, Table 1, item (v) Hostels: 135 L per head per day** (verified from the standard's text) |
+| U.G. tank, 10,000 L | about 4.4 days of demand | CALCULATED |
+| O.H. tank, 6,500 L | about 2.8 days of demand | CALCULATED |
 | WCs, basins and baths | 1 per room (en-suite) is far better than **IS 1172 Table 11, Hostels (clause 5.3): 1 WC, 1 basin and 1 bath per 8 males or 6 females** | Verified |
 | Cleaner's sink | IS 1172 Table 11 (vi) lists **1 cleaner's sink per floor (minimum)**. **None is drawn, and the lobby has no room for one.** | Raised for your decision |
 

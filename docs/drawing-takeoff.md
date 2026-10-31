@@ -258,15 +258,19 @@ These are raised for safety only. They are not comments on approvals.
 
 ---
 
-## 14. Room mix check (for Phase 2 furniture)
+## 14. Room mix (updated: single occupancy, ultra-luxury)
 
-| Floor | ROOM-1 | ROOM-2 | ROOM-3 | ROOM-4 | Beds |
-|---|---|---|---|---|---|
-| Floors 1–3 (×3) | single | single | queen double | queen double | 6 × 3 = 18 |
-| Floor 4 | single | single | queen suite | n/a | 4 |
-| **Total** | | | | | **22 ✔** |
+The family has decided that **every room is single occupancy**, furnished with Wakefit pieces they chose: an Orion queen bed, a Tinker side table, a Gingham 2-door mirrored wardrobe (or the compact Twill where the Gingham does not fit) and a study table. That gives **15 students** in total. Layouts and checks are in `docs/furniture-fit.md`, and the ROOM-4 check is in `docs/room4-check.md`.
 
-**Early fit check (CALCULATED):**
-- ROOM-3 on Floors 1–3 takes a queen across its width with 0.60 m on both sides: 1.58 + 1.20 = 2.78 ≤ 2.90 m. That leaves 0.12 m to spare.
-- ROOM-4 takes the same: 2.78 ≤ 2.85 m once the grey 0.55 m strip is excluded.
-- Both are tight. Phase 2 will place the furniture and check every clearance.
+### ROOM-4 (F1–F3) key dimensions, feet and inches (DRAWN)
+
+| Item | Metres | Feet and inches |
+|---|---|---|
+| Main room clear (W × D) | 3.40 × 2.80 | 11'-1 7/8" × 9'-2 1/4" |
+| Study wall (west wall, where the wardrobe was) | 1.90 | 6'-2 3/4" |
+| Entry passage width | 0.90 | 2'-11 3/8" |
+| Entry door F-D4 / toilet door F-D4T | 0.90 / 0.65 | 2'-11 3/8" / 2'-1 5/8" |
+| Rear window F-W4 (room) / F-W3 (toilet) | 1.50 / 0.60 | 4'-11" / 1'-11 5/8" |
+| Room window sill (ASSUMED) | 0.90 | 2'-11 3/8" |
+
+The Orion headboard (2'-10 5/8", 87.8 cm, from listings) sits **7/8" below** the ASSUMED 2'-11 3/8" sill of window F-W4, which the bed head is placed under. If the real sill is lower, the bed must turn or move. This needs the architect's sill height (Q2).

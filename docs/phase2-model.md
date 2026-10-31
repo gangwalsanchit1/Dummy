@@ -71,34 +71,19 @@
 
 ## Furniture and clearance checks
 
-**Updated after the family's instructions:**
-- All furniture is Wakefit, with measurements confirmed by the family.
-- **All doors open inwards:** room doors into the rooms, toilet and WC doors into the toilet, and the terrace door into the suite. The hinge side is chosen so the open leaf lies against a side wall, clear of the fixtures.
-- **"Double" means two students sharing: 2 single beds, 2 study tables and 2 wardrobes.** A room is double where that fits; otherwise it is single, with 1 bed, 1 study table and 1 wardrobe.
-- Drawn rooms and toilets are unchanged.
+**Updated by the family: every room is single occupancy, ultra-luxury, all Wakefit.** Each room gets:
+- an Orion queen bed
+- a Tinker side table
+- a Gingham 2-door mirrored wardrobe, or the compact Twill where the Gingham does not fit
+- a study table (the adjustable Notiq is a placeholder until the family picks a model)
 
-The layout is **generated** by `tools/fit_furniture.py`, and the full result is in `docs/furniture-fit.md`. Each room tries, in order:
-1. twin with standard desks
-2. twin with wall desks
-3. single
+That makes **15 students** in total. All sizes and clearances are shown in feet and inches in the model, the drawings and `docs/schedules/furniture_schedule.csv`.
 
-A layout passes only if all of these hold:
-- every item is inside the room and clear of walls, the other items, every door swing and every clearance zone
-- each bed has 0.60 m clear on its open side, each wardrobe 0.60 m in front, and each desk a 0.75 m chair zone
-- the first wardrobe sits in the architect's grey strip
-- a **0.55 m walking path** (ASSUMED) reaches every bed side, wardrobe, chair zone and the toilet or terrace door
-
-| Floor | ROOM-1 | ROOM-2 | ROOM-3 | ROOM-4 | Students |
-|---|---|---|---|---|---|
-| F1–F3 (each) | **double** (wall desks) | **double** (wall desks) | **double** (standard desks) | single | 7 × 3 = 21 |
-| F4 | single | **double** (wall desks) | **double** suite (standard desks) | n/a | 5 |
-| **Total** | | | | | **26** |
-
-- **F1–F3 ROOM-4 cannot take two students.** A complete search finds no arrangement of 2 beds, 2 wardrobes and 2 desks with clear walking paths. Its main area is 3.40 × 2.80 m, and the 0.90 m entry passage cannot hold furniture.
-- **F4 ROOM-1 cannot take two students.** Its main part is only 1.63 m deep.
-- **The standard 1.16 m desk fits two to a room in F1–F3 ROOM-3 and the F4 suite.** The other doubles use 0.90 m wall desks.
-- **Ground-floor WC-1 problem:** WC-1 is drawn at 0.90 × 0.90 m. A 0.65 m door opening inwards hits the WC pan whatever hinge side or pan position is used. Options: a sliding or bi-fold door, or opening outwards for this one WC only. This is the only door clash.
-- **Re-checked:** 0 furniture or clearance violations, and all 18 door swings pass (`docs/model-checks.md`).
+The results are in `docs/furniture-fit.md`:
+- **F1–F3 ROOM-2, F1–F3 ROOM-3 and the F4 suite** fit with **1'-11 5/8" (0.60 m) on both sides** of the queen bed.
+- **F1–F3 ROOM-1, F4 ROOM-1 and F4 ROOM-2 do not fit the both-sides rule.** They are laid out with the family's ROOM-4 rule (one long side on a wall, Tinker on the open side at the head). **This is a deviation for the family to approve.**
+- **F1–F3 ROOM-4** uses the family layout. The Gingham does not fit beside the Notiq on the 6'-2 3/4" study wall (4 3/8" short), so the Twill is used. See `docs/room4-check.md` and `docs/room4-plan.png`.
+- **Re-checked:** 0 furniture or clearance violations, and all door swings pass.
 
 ## Uncertain, or needs your input
 

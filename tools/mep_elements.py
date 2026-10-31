@@ -32,9 +32,9 @@ def mep_elements():
         out.append({"cls": k["ifc"], "name": f"{p['id']} {k['desc']}" + (f" - {p['note']}" if p["note"] else ""), "storey": p["storey"],
                     "layer": layer, "boxes": [b], "tag": p["tag"] + (" | circuit " + p["circuit"] if p["circuit"] else "") +
                     (" | check: PASS" if not p.get("issues") else " | check: " + "; ".join(p["issues"])), "room": p["room"]})
-    lay = {"SOIL": "drainL", "WASTE": "drainL", "VENT": "drainL", "RWP": "drainL", "UGD": "drainL", "CW": "waterL", "HW": "waterL",
+    lay = {"ACP": "acL", "SOIL": "drainL", "WASTE": "drainL", "VENT": "drainL", "RWP": "drainL", "UGD": "drainL", "CW": "waterL", "HW": "waterL",
            "DT": "waterL", "RM": "waterL", "SUP": "waterL", "FEED": "feedL", "COND": "condL"}
-    col = {"SOIL": "8b4513", "WASTE": "d97706", "VENT": "9ca3af", "RWP": "16a34a", "UGD": "78350f", "CW": "2563eb", "HW": "dc2626",
+    col = {"ACP": "0d9488", "SOIL": "8b4513", "WASTE": "d97706", "VENT": "9ca3af", "RWP": "16a34a", "UGD": "78350f", "CW": "2563eb", "HW": "dc2626",
            "DT": "1d4ed8", "RM": "7c3aed", "SUP": "0891b2", "FEED": "eab308", "COND": "fb923c"}
     for r in M["runs"]:
         out.append({"cls": "IfcPipeSegment" if r["sys"] not in ("FEED", "COND") else "IfcCableCarrierSegment",

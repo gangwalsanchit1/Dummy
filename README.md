@@ -1,6 +1,6 @@
 # Bella Vita 2: Building Coordination Package
 
-This is a student PG at Plot C-89, Sector 12, Kharghar, Navi Mumbai: stilt, four floors and a terrace, with 26 students (twin sharing where it fits). It is a 3D coordination model with proposed electrical and plumbing, built from the architect's **AFTER O.C.** drawing (03-08-2026). The family and the contractor can use it to check the building before each stage of work.
+This is a student PG at Plot C-89, Sector 12, Kharghar, Navi Mumbai: stilt, four floors and a terrace, with 15 students (single occupancy, ultra-luxury). It is a 3D coordination model with proposed electrical and plumbing, built from the architect's **AFTER O.C.** drawing (03-08-2026). The family and the contractor can use it to check the building before each stage of work.
 
 > **COORDINATION ONLY, NOT FOR CONSTRUCTION.** Structure, and the final electrical and plumbing design, must be done or approved by the structural engineer and licensed consultants. No beams or columns are shown, because none are drawn on the source sheet.
 
@@ -16,8 +16,9 @@ This is a student PG at Plot C-89, Sector 12, Kharghar, Navi Mumbai: stilt, four
 | Know what must happen **before each slab pour** | `docs/pre-slab-checklist.md` (also in `schedules.pdf`) | Any Markdown viewer, or GitHub |
 | Open the BIM model | `model/bella-vita-2.ifc` | Free tools: BlenderBIM/Bonsai, FreeCAD, BIMvision, or https://ifcviewer.com |
 | Read how the drawing was interpreted | `docs/drawing-takeoff.md` | Sizes, conflicts with earlier notes, safety items, **13 open questions** |
-| See which rooms are double or single, and why | `docs/furniture-fit.md` | Wakefit sizes. Double means 2 students (2 beds, 2 study tables, 2 wardrobes) where it fits, otherwise single: 26 students |
+| See the room layouts (single occupancy, Wakefit) | `docs/furniture-fit.md`, `docs/room4-check.md`, `docs/room4-plan.png` | Orion queen + Tinker + Gingham/Twill + study table; sizes in feet and inches |
 | See the PG amenities (matched to the existing Bella Vita) | `docs/amenities.md` | RFID, backup power, RO water, terrace laundry and lounge, sub-meters |
+| See where the floors 1–3 AC lines run and what they clash with | `docs/ac-routing.md` | Routed below the bathroom windows |
 | Read the model and MEP reports | `docs/phase2-model.md`, `docs/phase3-mep.md` | Includes the code references and their verification status |
 | See the check results | `docs/model-checks.md`, `docs/mep-checks.md` | Furniture, clearance, door-swing, dimension and MEP clash checks |
 | Compare my reading against the architect's lines | `docs/overlays/takeoff_*.svg` | Open in a browser |

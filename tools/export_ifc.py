@@ -123,7 +123,7 @@ for e in SC["elements"]:
 sys.path.insert(0, str(ROOT / "tools"))
 from mep_elements import mep_elements  # noqa: E402
 for k, c in {"elec": (0.96, 0.62, 0.04), "plumb": (0.05, 0.65, 0.91), "sleeve": (0.86, 0.15, 0.15),
-             "drainL": (0.55, 0.27, 0.07), "waterL": (0.15, 0.39, 0.92), "feedL": (0.92, 0.70, 0.03), "condL": (0.98, 0.57, 0.24)}.items():
+             "drainL": (0.55, 0.27, 0.07), "waterL": (0.15, 0.39, 0.92), "feedL": (0.92, 0.70, 0.03), "condL": (0.98, 0.57, 0.24), "acL": (0.05, 0.58, 0.53)}.items():
     st = api.style.add_style(f, name=k)
     api.style.add_surface_style(f, style=st, ifc_class="IfcSurfaceStyleShading",
                                 attributes={"SurfaceColour": {"Name": None, "Red": c[0], "Green": c[1], "Blue": c[2]}, "Transparency": 0.0})
