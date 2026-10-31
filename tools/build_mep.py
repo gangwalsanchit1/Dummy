@@ -113,8 +113,6 @@ def rooms_F13(s):
     c["ROOM-1"] = [
         ("SB", 5.78, 7.05, 1.2, "+y", "latch side of F-D1", "L/F"),
         ("FAN", 5.95, 8.225, CEIL, "C", "", "L/F"), ("LT", 6.95, 8.225, CEIL, "C", "", "L/F"), ("LT", 6.60, 10.50, CEIL, "C", "front part", "L/F"),
-        ("BS", 7.85, 10.45, 0.6, "-x", "bed head on right wall", "S"),
-        ("DESK", 7.85, 7.85, 0.9, "-x", "above wall desk", "S"), ("DATA", 7.85, 8.08, 0.9, "-x", "", "DATA"),
         ("ACI", 6.60, 11.60, 2.40, "-y", "above front window", "AC"), ("ACS", 7.20, 11.60, 2.35, "-y", "", "AC"),
         ("ACO", 6.60, 11.90, 2.30, "O", "bracket outside front wall", "AC"),
     ]
@@ -130,8 +128,6 @@ def rooms_F13(s):
         ("SB", 3.25, 7.05, 1.2, "+y", "latch side of F-D2 (just inside)", "L/F"),
         ("FAN", 2.05, 8.225, CEIL, "C", "", "L/F"), ("LT", 1.05, 8.225, CEIL, "C", "", "L/F"), ("LT", 1.40, 10.50, CEIL, "C", "front part", "L/F"),
         ("LT", 1.60, 6.55, CEIL, "C", "entry strip", "L/F"),
-        ("BS", 0.15, 10.45, 0.6, "+x", "bed head on left wall", "S"),
-        ("DESK", 0.15, 7.85, 0.9, "+x", "above wall desk", "S"), ("DATA", 0.15, 8.08, 0.9, "+x", "", "DATA"),
         ("ACI", 1.40, 11.60, 2.40, "-y", "above front window", "AC"), ("ACS", 0.80, 11.60, 2.35, "-y", "", "AC"),
         ("ACO", 1.40, 11.90, 2.30, "O", "bracket outside front wall", "AC"),
     ]
@@ -146,8 +142,6 @@ def rooms_F13(s):
     c["ROOM-3"] = [
         ("SB", 3.05, 4.22, 1.2, "-x", "latch side of F-D3", "L/F"),
         ("FAN", 1.60, 4.00, CEIL, "C", "", "L/F"), ("LT", 2.40, 3.00, CEIL, "C", "", "L/F"), ("LT", 0.95, 1.10, CEIL, "C", "alcove", "L/F"),
-        ("BS", 0.15, 2.65, 0.6, "+x", "bed side 1", "S"), ("BS", 0.15, 4.63, 0.6, "+x", "bed side 2", "S"),
-        ("DESK", 1.75, 0.50, 0.9, "-x", "beside desk in alcove", "S"), ("DATA", 1.75, 0.72, 0.9, "-x", "", "DATA"),
         ("ACI", 0.95, 0.15, 2.40, "+y", "above alcove window", "AC"), ("ACS", 1.55, 0.15, 2.35, "+y", "", "AC"),
         ("ACO", 0.95, -0.25, 2.30, "O", "bracket outside rear wall", "AC"),
     ]
@@ -163,8 +157,6 @@ def rooms_F13(s):
         ("SB", 3.15, 4.08, 1.2, "+x", "latch side of F-D4 (passage)", "L/F"),
         ("LT", 3.60, 3.30, CEIL, "C", "passage", "L/F"), ("LT", 3.80, 2.50, CEIL, "C", "entry", "L/F"),
         ("FAN", 6.15, 1.55, CEIL, "C", "", "L/F"), ("LT", 5.25, 1.55, CEIL, "C", "", "L/F"),
-        ("BS", 7.85, 0.58, 0.6, "-x", "bed side 1", "S"), ("BS", 7.85, 2.52, 0.6, "-x", "bed side 2", "S"),
-        ("DESK", 5.12, 2.95, 0.9, "-y", "above desk", "S"), ("DATA", 5.38, 2.95, 0.9, "-y", "", "DATA"),
         ("ACI", 7.35, 0.15, 2.40, "+y", "solid wall right of window", "AC"), ("ACS", 6.80, 0.15, 2.35, "+y", "", "AC"),
         ("ACO", 7.35, -0.25, 2.30, "O", "bracket outside rear wall", "AC"),
     ]
@@ -192,7 +184,6 @@ def rooms_F4(s):
     c["ROOM-1"] = [
         ("SB", 5.78, 7.05, 1.2, "+y", "latch side of F4-D1", "L/F"),
         ("FAN", 5.95, 7.865, CEIL, "C", "", "L/F"), ("LT", 6.95, 7.865, CEIL, "C", "", "L/F"), ("LT", 6.60, 9.70, CEIL, "C", "front part", "L/F"),
-        ("BS", 7.85, 9.55, 0.6, "-x", "", "S"), ("DESK", 7.85, 7.85, 0.9, "-x", "", "S"), ("DATA", 7.85, 8.08, 0.9, "-x", "", "DATA"),
         ("ACI", 6.60, 10.70, 2.40, "-y", "above front window", "AC"), ("ACS", 7.20, 10.70, 2.35, "-y", "", "AC"),
         ("ACO", 6.60, 11.10, 0.10, "O", "on F4 front terrace floor", "AC"),
     ]
@@ -206,7 +197,6 @@ def rooms_F4(s):
         ("SB", 3.25, 7.05, 1.2, "+y", "latch side of F4-D2", "L/F"),
         ("FAN", 2.05, 7.865, CEIL, "C", "", "L/F"), ("LT", 1.05, 7.865, CEIL, "C", "", "L/F"), ("LT", 1.40, 9.70, CEIL, "C", "", "L/F"),
         ("LT", 1.60, 6.55, CEIL, "C", "entry strip", "L/F"),
-        ("BS", 0.15, 9.55, 0.6, "+x", "", "S"), ("DESK", 0.15, 7.65, 0.9, "+x", "", "S"), ("DATA", 0.15, 7.88, 0.9, "+x", "", "DATA"),
         ("ACI", 1.40, 10.70, 2.40, "-y", "above front window", "AC"), ("ACS", 0.80, 10.70, 2.35, "-y", "", "AC"),
         ("ACO", 1.40, 11.10, 0.10, "O", "on F4 front terrace floor", "AC"),
     ]
@@ -220,8 +210,6 @@ def rooms_F4(s):
         ("SB", 2.92, 5.95, 1.2, "-y", "latch side of F4-D3", "L/F"),
         ("FAN", 2.10, 3.05, CEIL, "C", "", "L/F"), ("LT", 2.10, 1.30, CEIL, "C", "", "L/F"), ("LT", 2.10, 4.80, CEIL, "C", "", "L/F"),
         ("LT", 4.90, 2.58, CEIL, "C", "terrace passage", "L/F"),
-        ("BS", 0.15, 1.80, 0.6, "+x", "bed side 1", "S"), ("BS", 0.15, 3.78, 0.6, "+x", "bed side 2", "S"),
-        ("DESK", 3.30, 0.15, 0.9, "+y", "above desk, clear of window", "S"), ("DATA", 3.55, 0.15, 0.9, "+y", "", "DATA"),
         ("ACI", 0.75, 0.15, 2.40, "+y", "solid wall left of window", "AC"), ("ACS", 1.27, 0.15, 2.35, "+y", "", "AC"),
         ("ACO", 7.40, 0.40, 0.10, "O", "on private terrace floor", "AC"),
         ("WL", 5.75, 1.20, 2.30, "+x", "private terrace light", "L/F"), ("WPS", 5.75, 1.60, 0.45, "+x", "private terrace", "S"),
@@ -305,6 +293,44 @@ for s in ["F1", "F2", "F3"]:
 LAYOUT["F4"] = rooms_F4("F4")
 LAYOUT["GF"] = rooms_GF()
 LAYOUT["TERRACE"] = rooms_TERRACE()
+# bedside, desk and data points follow the fitted furniture (model/furniture.json)
+FWALLS = {pk: TK["floors"][pk]["walls"] for pk in ("F1-3", "F4")}
+
+
+def touches(ax, c, a0, a1, ws):
+    for w in ws:
+        if ax == "x" and (abs(w[0] - c) < 0.011 or abs(w[2] - c) < 0.011) and w[1] <= a0 + 0.01 and w[3] >= a1 - 0.01:
+            return True
+        if ax == "y" and (abs(w[1] - c) < 0.011 or abs(w[3] - c) < 0.011) and w[0] <= a0 + 0.01 and w[2] >= a1 - 0.01:
+            return True
+    return False
+
+
+for s in ["F1", "F2", "F3", "F4"]:
+    pk = "F1-3" if s != "F4" else "F4"
+    for room, items in FU[pk].items():
+        for it in items:
+            r = it["rect"]
+            if it["type"].endswith("_bed"):
+                long_x = (r[2] - r[0]) > (r[3] - r[1])
+                if long_x:
+                    hx, face = (r[2], "-x") if touches("x", r[2], r[1], r[3], FWALLS[pk]) else (r[0], "+x")
+                    for side in it["access"]:
+                        LAYOUT[s][room].append(("BS", hx, r[1] - 0.15 if side == "N" else r[3] + 0.15, 0.6, face, f"bedside ({side})", "S"))
+                else:
+                    hy, face = (r[3], "-y") if touches("y", r[3], r[0], r[2], FWALLS[pk]) else (r[1], "+y")
+                    for side in it["access"]:
+                        LAYOUT[s][room].append(("BS", r[0] - 0.15 if side == "W" else r[2] + 0.15, hy, 0.6, face, f"bedside ({side})", "S"))
+            if it["type"].endswith("desk"):
+                side = it["access"][0]
+                cx, cy = (r[0] + r[2]) / 2, (r[1] + r[3]) / 2
+                if side in ("N", "S"):
+                    wy, face = (r[3], "-y") if side == "N" else (r[1], "+y")
+                    LAYOUT[s][room] += [("DESK", cx - 0.15, wy, 0.9, face, "above desk", "S"), ("DATA", cx + 0.15, wy, 0.9, face, "", "DATA")]
+                else:
+                    wx, face = (r[2], "-x") if side == "W" else (r[0], "+x")
+                    LAYOUT[s][room] += [("DESK", wx, cy - 0.15, 0.9, face, "above desk", "S"), ("DATA", wx, cy + 0.15, 0.9, face, "", "DATA")]
+
 for s, rooms in LAYOUT.items():
     for room, items in rooms.items():
         for it in items:
