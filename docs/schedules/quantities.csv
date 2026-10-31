@@ -6,6 +6,7 @@ Electrical,Wi-Fi access point (ceiling),0,1,1,1,1,1,5
 Electrical,Bedside: 6A socket + USB + 2-way light switch,0,7,7,7,5,0,26
 Electrical,CCTV camera (PoE),4,1,1,1,1,1,9
 Electrical,"Common-services DB (lift, pump, common lights, CCTV, Wi-Fi)",1,0,0,0,0,0,1
+Electrical,"LED cove strip over window (pelmet/cornice, warm white)",0,4,4,4,3,0,15
 Electrical,Data outlet (Cat6) at desk,0,7,7,7,5,0,26
 Electrical,"Floor DB (TPN, RCBO + prepaid energy sub-meter per room)",0,1,1,1,1,0,4
 Electrical,Study desk: 2 x 6A socket + USB,0,7,7,7,5,0,26
@@ -15,7 +16,7 @@ Electrical,"Ceiling fan point (1200 mm sweep, fan box cast in slab)",1,4,4,4,3,0
 Electrical,Geyser connection unit 20A (switched outside toilet),0,4,4,4,3,0,15
 Electrical,"Power backup: inverter + Li-ion battery (common lights, CCTV, Wi-Fi, RFID, lift ARD)",1,0,0,0,0,0,1
 Electrical,Lift isolator / controller supply (3-phase),0,0,0,0,0,1,1
-Electrical,Ceiling light point (LED),10,16,16,16,13,0,71
+Electrical,Ceiling light point (LED downlight),10,16,16,16,13,0,71
 Electrical,Utility meter board (3-phase),1,0,0,0,0,0,1
 Electrical,Main distribution board,1,0,0,0,0,0,1
 Electrical,Electromagnetic lock + exit button (entry door),1,0,0,0,0,0,1
@@ -46,7 +47,7 @@ Plumbing,Washing machine (front load) on terrace laundry,0,0,0,0,0,2,2
 Cast-in,Sleeve / cast-in item,3,6,9,9,16,10,53
 
 run,description,"approx length m (route x 1.10, CALCULATED from ASSUMED routes)"
-COND,Conduit (indicative),2745.7
+COND,Conduit (indicative),2893.9
 CW,Cold water 25/20 mm,265.7
 DT,Down-take 40 mm,41.4
 FEED,Feeder / riser cable,48.8

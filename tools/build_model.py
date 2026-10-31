@@ -335,8 +335,11 @@ for pk, rooms in FU.items():
             fixed.append((it["type"], r))
             dep = {"queen_bed": CL["queen_bed_sides"], "single_bed": CL["single_bed_access_side"],
                    "wardrobe_3door_sliding": CL["sliding_wardrobe_front"]}.get(it["type"], CL["desk_chair_zone"])
-            for side in it["access"]:
-                zones.append((f"{it['type']} access {side}", access_zone(r, side, dep)))
+            if it.get("zones"):                    # explicit (trimmed) zones, e.g. bed with a bedside table at its head
+                zones += [(f"{it['type']} access {it['access'][0]}", z) for z in it["zones"]]
+            else:
+                for side in it["access"]:
+                    zones.append((f"{it['type']} access {side}", access_zone(r, side, dep)))
         lines = []
         # rule: fixed furniture inside room, not overlapping walls/other fixed/any clearance or swing
         for nm, r in fixed:

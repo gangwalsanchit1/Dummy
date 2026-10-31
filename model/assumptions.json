@@ -54,7 +54,12 @@
       0.57,
       0.75
     ],
-    "_note": "Wakefit models chosen by the family (sizes confirmed by the family). Heights ASSUMED."
+    "_note": "Wakefit models chosen by the family (sizes confirmed by the family). Bedside table 0.40x0.40 ASSUMED (as in the CozyStays Bella Vita photo). Heights ASSUMED.",
+    "bedside_table": [
+      0.4,
+      0.4,
+      0.55
+    ]
   },
   "clearances": {
     "queen_bed_sides": 0.6,

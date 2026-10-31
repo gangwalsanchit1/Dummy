@@ -7,6 +7,22 @@ These sources are text listings only. I could not watch the video or read the Go
 - **CozyStays Kharghar page:** "Zephyr and Bella Vita" are described as premium co-ed hostels with **meals, professional laundry, study spaces, gaming zones and community areas**. It also says meal plans are available. ([cozystays.co.in/listing-locations/kharghar](https://cozystays.co.in/listing-locations/kharghar/))
 - **CozyStays listing for "Bella Vita":** this places it at Plot 52, Sector 12, Kharghar. A search snippet of the listing mentions a **single bed and wardrobe, air conditioning, CCTV with RFID access, community lounge, library**. The listing page itself now returns 404, so this comes from the snippet only. ([cozystays.co.in/listing/bella-vita](https://cozystays.co.in/listing/bella-vita/))
 
+## Room fit-out, matched to the Bella Vita twin-room photo (CozyStays on Google)
+
+The family shared a photo of a Bella Vita twin room. It shows two single beds with upholstered headboards, a shared bedside table with a lamp and a bedside socket, a split AC high on the side wall, a ceiling fan, two downlights, an LED cove strip over the window, curtains with sheers, floating wall shelves, wall art and wood-look flooring. Bella Vita 2's rooms are larger, so every room gets at least the same:
+
+| Item in the photo | Bella Vita 2 | Status |
+|---|---|---|
+| 2 single beds (Wakefit) | Twin rooms: 2 beds, 2 study tables, 2 wardrobes (26 students in total) | In the model and fit-checked |
+| Bedside table + lamp | 0.40 m bedside table at the head of each bed (shared where two beds meet), with a socket and USB at 0.70 m above it | In the model. **F1–3 ROOM-1 and F4 ROOM-2: one bed has no space for a floor table without blocking its walking path, so use a wall-mounted floating bedside shelf there.** |
+| Split AC high on the wall | AC unit and 20 A socket at about 2.4 m on an external wall in every room | In the model |
+| Ceiling fan | Fan box cast in the slab, 1200 mm fan | In the model (pre-slab item) |
+| 2 downlights | 2–3 LED downlights per room | In the model |
+| LED cove strip over window | LED cove strip point over every room window | In the model (gypsum pelmet or cornice, no structure) |
+| Curtains + sheers | Double curtain track over each room window | Furnishing, no wiring |
+| Floating wall shelves, wall art | Above each study table and on a free wall | Furnishing. Fix shelves clear of the conduit routes shown on the E sheets. |
+| Wood-look flooring | Wood-look vinyl or tile in rooms | Finish choice; anti-skid tiles stay in toilets |
+
 ## How Bella Vita 2 provides the same, within the drawn building
 
 Nothing here changes walls, rooms, toilets, slabs or structure. All positions are ASSUMED proposals and are shown in the viewer and on the E and P sheets.

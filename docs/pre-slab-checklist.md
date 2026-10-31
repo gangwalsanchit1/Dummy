@@ -20,7 +20,7 @@ Everything below must be fixed, marked or cast in **before that slab is poured**
 | 4 | Toilet slab depression 300 mm for ROOM-2 TOILET (floor trap + WC branch) | 3.35, 10.55 | sunk |
 | 5 | Toilet slab depression 300 mm for ROOM-1 TOILET (floor trap + WC branch) | 4.65, 10.55 | sunk |
 | 6 | Fan hook box for GF SERVANT ROOM (cast in this slab = its ceiling) | 6.80, 2.05 | fanbox |
-| + | Embedded conduits + junction boxes for 14 ceiling points of GF: 10 x Ceiling light point (LED), 3 x CCTV camera (PoE), 1 x Ceiling fan point (1200 mm sweep, fan box cast in slab) (see points_schedule.csv) | various | conduit |
+| + | Embedded conduits + junction boxes for 14 ceiling points of GF: 10 x Ceiling light point (LED downlight), 3 x CCTV camera (PoE), 1 x Ceiling fan point (1200 mm sweep, fan box cast in slab) (see points_schedule.csv) | various | conduit |
 
 ## F2 slab (ceiling of F1)
 
@@ -35,7 +35,7 @@ Everything below must be fixed, marked or cast in **before that slab is poured**
 | 7 | Fan hook box for F1 ROOM-2 (cast in this slab = its ceiling) | 2.05, 8.22 | fanbox |
 | 8 | Fan hook box for F1 ROOM-3 (cast in this slab = its ceiling) | 1.60, 4.00 | fanbox |
 | 9 | Fan hook box for F1 ROOM-4 (cast in this slab = its ceiling) | 6.15, 1.55 | fanbox |
-| + | Embedded conduits + junction boxes for 22 ceiling points of F1: 4 x Ceiling fan point (1200 mm sweep, fan box cast in slab), 16 x Ceiling light point (LED), 1 x Wi-Fi access point (ceiling), 1 x CCTV camera (PoE) (see points_schedule.csv) | various | conduit |
+| + | Embedded conduits + junction boxes for 26 ceiling points of F1: 4 x Ceiling fan point (1200 mm sweep, fan box cast in slab), 16 x Ceiling light point (LED downlight), 4 x LED cove strip over window (pelmet/cornice, warm white), 1 x Wi-Fi access point (ceiling), 1 x CCTV camera (PoE) (see points_schedule.csv) | various | conduit |
 
 ## F3 slab (ceiling of F2)
 
@@ -50,7 +50,7 @@ Everything below must be fixed, marked or cast in **before that slab is poured**
 | 7 | Fan hook box for F2 ROOM-2 (cast in this slab = its ceiling) | 2.05, 8.22 | fanbox |
 | 8 | Fan hook box for F2 ROOM-3 (cast in this slab = its ceiling) | 1.60, 4.00 | fanbox |
 | 9 | Fan hook box for F2 ROOM-4 (cast in this slab = its ceiling) | 6.15, 1.55 | fanbox |
-| + | Embedded conduits + junction boxes for 22 ceiling points of F2: 4 x Ceiling fan point (1200 mm sweep, fan box cast in slab), 16 x Ceiling light point (LED), 1 x Wi-Fi access point (ceiling), 1 x CCTV camera (PoE) (see points_schedule.csv) | various | conduit |
+| + | Embedded conduits + junction boxes for 26 ceiling points of F2: 4 x Ceiling fan point (1200 mm sweep, fan box cast in slab), 16 x Ceiling light point (LED downlight), 4 x LED cove strip over window (pelmet/cornice, warm white), 1 x Wi-Fi access point (ceiling), 1 x CCTV camera (PoE) (see points_schedule.csv) | various | conduit |
 
 ## F4 slab (ceiling of F3, F4 terraces)
 
@@ -72,7 +72,7 @@ Everything below must be fixed, marked or cast in **before that slab is poured**
 | 14 | Parapet sleeve: rising main offset | 7.60, 11.70 | parapet |
 | 15 | Parapet sleeve: RWP-2 offset | 0.45, 11.70 | parapet |
 | 16 | Parapet sleeve: RWP-3 offset | 2.40, 11.70 | parapet |
-| + | Embedded conduits + junction boxes for 22 ceiling points of F3: 4 x Ceiling fan point (1200 mm sweep, fan box cast in slab), 16 x Ceiling light point (LED), 1 x Wi-Fi access point (ceiling), 1 x CCTV camera (PoE) (see points_schedule.csv) | various | conduit |
+| + | Embedded conduits + junction boxes for 26 ceiling points of F3: 4 x Ceiling fan point (1200 mm sweep, fan box cast in slab), 16 x Ceiling light point (LED downlight), 4 x LED cove strip over window (pelmet/cornice, warm white), 1 x Wi-Fi access point (ceiling), 1 x CCTV camera (PoE) (see points_schedule.csv) | various | conduit |
 
 ## Roof slab (ceiling of F4)
 
@@ -88,7 +88,7 @@ Everything below must be fixed, marked or cast in **before that slab is poured**
 | 8 | Rear parapet sleeve: terrace laundry waste -> W1; kerb + slope for laundry area | 3.30, 0.08 | parapetT |
 | 9 | O.H.T. outlet puddle flange (tank base) | 6.00, 4.85 | tank |
 | 10 | O.H.T. inlet / overflow / drain puddle flanges (tank walls) | 7.60, 6.85 | tank |
-| + | Embedded conduits + junction boxes for 18 ceiling points of F4: 3 x Ceiling fan point (1200 mm sweep, fan box cast in slab), 13 x Ceiling light point (LED), 1 x Wi-Fi access point (ceiling), 1 x CCTV camera (PoE) (see points_schedule.csv) | various | conduit |
+| + | Embedded conduits + junction boxes for 21 ceiling points of F4: 3 x Ceiling fan point (1200 mm sweep, fan box cast in slab), 13 x Ceiling light point (LED downlight), 3 x LED cove strip over window (pelmet/cornice, warm white), 1 x Wi-Fi access point (ceiling), 1 x CCTV camera (PoE) (see points_schedule.csv) | various | conduit |
 
 ## Also before the relevant slab or wall work
 

@@ -40,7 +40,8 @@ K = {
     "WPS": ("E", "elec", "Weatherproof 16A socket (IP55)", [0.12, 0.08, 0.12], "IfcOutlet"),
     "ACS": ("E", "elec", "AC socket 20A (dedicated circuit)", [0.10, 0.05, 0.10], "IfcOutlet"),
     "GZP": ("E", "elec", "Geyser connection unit 20A (switched outside toilet)", [0.10, 0.05, 0.10], "IfcOutlet"),
-    "LT": ("E", "elec", "Ceiling light point (LED)", [0.20, 0.20, 0.04], "IfcLightFixture"),
+    "COVE": ("E", "elec", "LED cove strip over window (pelmet/cornice, warm white)", [0.30, 0.10, 0.05], "IfcLightFixture"),
+    "LT": ("E", "elec", "Ceiling light point (LED downlight)", [0.20, 0.20, 0.04], "IfcLightFixture"),
     "WL": ("E", "elec", "Wall light point", [0.15, 0.08, 0.10], "IfcLightFixture"),
     "FAN": ("E", "elec", "Ceiling fan point (1200 mm sweep, fan box cast in slab)", [0.25, 0.25, 0.30], "IfcFan"),
     "EXH": ("E", "elec", "Exhaust fan (in ventilator, IPX4)", [0.25, 0.10, 0.25], "IfcFan"),
@@ -340,24 +341,24 @@ for s in ["F1", "F2", "F3", "F4"]:
                 head_y = touches("y", r[3], r[0], r[2], ws) or touches("y", r[1], r[0], r[2], ws)
                 if long_x and not head_x:          # long side against a wall: socket on that wall near the pillow end
                     wy, face = (r[1], "+y") if touches("y", r[1], r[0], r[2], ws) else (r[3], "-y")
-                    LAYOUT[s][room].append(("BS", r[0] + 0.20, wy, 0.6, face, "bedside (long wall, above mattress)", "S"))
+                    LAYOUT[s][room].append(("BS", r[0] + 0.20, wy, 0.7, face, "bedside (long wall, above mattress)", "S"))
                 elif not long_x and not head_y:
                     wx, face = (r[0], "+x") if touches("x", r[0], r[1], r[3], ws) else (r[2], "-x")
-                    LAYOUT[s][room].append(("BS", wx, r[1] + 0.20, 0.6, face, "bedside (long wall, above mattress)", "S"))
+                    LAYOUT[s][room].append(("BS", wx, r[1] + 0.20, 0.7, face, "bedside (long wall, above mattress)", "S"))
                 elif long_x:
                     hx, face = (r[2], "-x") if touches("x", r[2], r[1], r[3], ws) else (r[0], "+x")
                     for side in it["access"]:
                         y = r[1] - 0.15 if side == "N" else r[3] + 0.15
                         if not touches("x", hx, y - 0.05, y + 0.05, ws):          # no wall beside the bed: on head wall above mattress
                             y = r[1] + 0.12 if side == "N" else r[3] - 0.12
-                        LAYOUT[s][room].append(("BS", hx, y, 0.6, face, f"bedside ({side})", "S"))
+                        LAYOUT[s][room].append(("BS", hx, y, 0.7, face, f"bedside ({side}) above bedside table, for lamp + phone", "S"))
                 else:
                     hy, face = (r[3], "-y") if touches("y", r[3], r[0], r[2], ws) else (r[1], "+y")
                     for side in it["access"]:
                         x = r[0] - 0.15 if side == "W" else r[2] + 0.15
                         if not touches("y", hy, x - 0.05, x + 0.05, ws):
                             x = r[0] + 0.12 if side == "W" else r[2] - 0.12
-                        LAYOUT[s][room].append(("BS", x, hy, 0.6, face, f"bedside ({side})", "S"))
+                        LAYOUT[s][room].append(("BS", x, hy, 0.7, face, f"bedside ({side}) above bedside table, for lamp + phone", "S"))
             if it["type"].endswith("desk"):
                 side = it["access"][0]
                 cx, cy = (r[0] + r[2]) / 2, (r[1] + r[3]) / 2
@@ -372,6 +373,21 @@ for s in ["F1", "F2", "F3", "F4"]:
                 else:
                     wx, face = (r[2], "-x") if side == "W" else (r[0], "+x")
                     LAYOUT[s][room] += [("DESK", wx, cy - 0.15, zd, face, note, "S"), ("DATA", wx, cy + 0.15, zd, face, note, "DATA")]
+
+# LED cove strip over each room window (as in the existing Bella Vita rooms)
+for s in ["F1", "F2", "F3", "F4"]:
+    pk = "F1-3" if s != "F4" else "F4"
+    fl = TK["floors"][pk]
+    for wdw in fl["windows"]:
+        sv = wdw["serves"]
+        if "TOILET" in sv.upper():
+            continue
+        room = next((rm for rm in LAYOUT[s] if sv.startswith(rm.split(" ")[0])), None)
+        if room is None:
+            continue
+        cx = (wdw["span_x"][0] + wdw["span_x"][1]) / 2
+        wy = 0.15 + 0.25 if wdw["wall"] == "rear" else fl["outline"][3] - 0.15 - 0.25
+        LAYOUT[s][room].append(("COVE", cx, wy, CEIL, "C", f"LED cove strip over {wdw['id']}", "L/F"))
 
 RLOCK = {"F1-3": {"ROOM-1": (5.45, 7.00), "ROOM-2": (3.10, 6.90), "ROOM-3": (3.10, 4.55), "ROOM-4": (3.20, 4.50)},
          "F4": {"ROOM-1": (5.45, 7.00), "ROOM-2": (3.15, 6.90), "ROOM-3 (suite)": (3.20, 6.05)}}
@@ -654,7 +670,7 @@ water_beds = sum((3 if pk == 'F1-3' else 1) * sum(1 for it in items if it['type'
 staff = 2
 
 # electrical connected load (ASSUMED ratings, W)
-RATE = {"DISP": 500, "INV": 0, "RFID": 10, "MLOCK": 10, "WM": 0, "RO": 60, "LT": 12, "WL": 12, "FAN": 50, "EXH": 30, "AP": 15, "CCTV": 8, "DESK": 200, "BS": 100, "SKT16": 1000, "WPS": 500,
+RATE = {"COVE": 15, "DISP": 500, "INV": 0, "RFID": 10, "MLOCK": 10, "WM": 0, "RO": 60, "LT": 12, "WL": 12, "FAN": 50, "EXH": 30, "AP": 15, "CCTV": 8, "DESK": 200, "BS": 100, "SKT16": 1000, "WPS": 500,
         "ACS": 1600, "GZP": 2000}
 conn = Counter()
 for p in points:
