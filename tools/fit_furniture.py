@@ -21,6 +21,7 @@ import sys
 from collections import deque
 
 import numpy as np
+from columns import columns
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -30,6 +31,7 @@ FS = AS["furniture_sizes"]
 CL = AS["clearances"]
 STEP = 0.05
 PATH_R = 0.275
+COL_GAP = 0.085  # largest gap allowed behind furniture where a column projects (columns stand 0.08 m proud of 0.15 walls)
 ROOMS = {"F1-3": {"ROOM-1": ("F-D1", ["F-D1T"]), "ROOM-2": ("F-D2", ["F-D2T"]), "ROOM-3": ("F-D3", ["F-D3T"]), "ROOM-4": ("F-D4", ["F-D4T"])},
          "F4": {"ROOM-1": ("F4-D1", ["F4-D1T"]), "ROOM-2": ("F4-D2", ["F4-D2T"]), "ROOM-3 (suite)": ("F4-D3", ["F4-D3T", "F4-DT"])}}
 
@@ -67,15 +69,31 @@ def zone(r, side, d):
     return {"N": [x0, y0 - d, x1, y0], "S": [x0, y1, x1, y1 + d], "W": [x0 - d, y0, x0, y1], "E": [x1, y0, x1 + d, y1]}[side]
 
 
+def blocks_window(room, r, h):
+    """True if furniture of height h standing at rect r (back to a wall) would rise above a window sill in front of it."""
+    g = [r[0] - 0.10, r[1] - 0.10, r[2] + 0.10, r[3] + 0.10]
+    return any(ovl(g, w, 0.02) and min(r[2], w[2]) - max(r[0], w[0]) > 0.02 and h > sill - 0.02 for w, sill, _ in room.windows)
+
+
 def touches_wall(edge, walls):
-    """edge = ('x', x, y0, y1) or ('y', y, x0, x1): True if a wall face covers it."""
+    """edge = ('x', x, y0, y1) or ('y', y, x0, x1): True if wall/column faces cover the whole edge.
+
+    Part of the edge must sit flush on a face. The rest may be backed by a face up to COL_GAP behind it, so an
+    item can stand against a column that projects out of the wall, with a small gap behind it elsewhere.
+    Overlaps are rejected separately (ok_fixed), so a face 'in front of' the edge never gets this far."""
     ax, c, a0, a1 = edge
-    for w in walls:
-        if ax == "x" and (abs(w[0] - c) < 0.011 or abs(w[2] - c) < 0.011) and w[1] <= a0 + 0.01 and w[3] >= a1 - 0.01:
-            return True
-        if ax == "y" and (abs(w[1] - c) < 0.011 or abs(w[3] - c) < 0.011) and w[0] <= a0 + 0.01 and w[2] >= a1 - 0.01:
-            return True
-    return False
+    i, j = (0, 2) if ax == "x" else (1, 3)
+    span = lambda w: (w[1], w[3]) if ax == "x" else (w[0], w[2])
+    near = lambda w, tol: abs(w[i] - c) < tol or abs(w[j] - c) < tol
+    flush = [span(w) for w in walls if near(w, 0.011)]
+    if not any(s0 < a1 - 0.01 and s1 > a0 + 0.01 for s0, s1 in flush):
+        return False
+    segs = sorted(span(w) for w in walls if near(w, COL_GAP + 0.011))
+    reach = a0 + 0.01
+    for s0, s1 in segs:
+        if s0 <= reach:
+            reach = max(reach, s1)
+    return reach >= a1 - 0.01
 
 
 def grid_vals(lo, hi):
@@ -91,7 +109,12 @@ class Room:
         fl = TK["floors"][pk]
         self.pk, self.name = pk, name
         self.rects = next(s for s in fl["spaces"] if s["name"] == name)["rects"]
-        self.walls = fl["walls"]
+        self.cols = [c["rect"] for c in columns(pk)] if pk != "GF" else []
+        H_ = AS["heights"]
+        ylim = fl["outline"][3]
+        self.windows = [([w["span_x"][0], 0.0 if w["wall"] == "rear" else ylim - 0.15, w["span_x"][1], 0.15 if w["wall"] == "rear" else ylim],
+                          H_["ventilator_sill"] if w["width"] < H_["ventilator_max_width"] else H_["window_sill"], w["id"]) for w in fl.get("windows", [])]
+        self.walls = fl["walls"] + self.cols  # structural columns (drawn on the RCC sheet) are solid like walls
         dmap = {d["id"]: d for d in AS["doors"][pk]}
         self.swings = list(dmap.values())
         self.door = dmap[door]
@@ -102,7 +125,8 @@ class Room:
         self.bb = [min(xs), min(ys), max(xs), max(ys)]
         self.nx = int(round((self.bb[2] - self.bb[0]) / STEP))
         self.ny = int(round((self.bb[3] - self.bb[1]) / STEP))
-        self.base = [[inside([self.bb[0] + i * STEP, self.bb[1] + j * STEP, self.bb[0] + (i + 1) * STEP, self.bb[1] + (j + 1) * STEP], self.rects)
+        cell = lambda i, j: [self.bb[0] + i * STEP, self.bb[1] + j * STEP, self.bb[0] + (i + 1) * STEP, self.bb[1] + (j + 1) * STEP]
+        self.base = [[inside(cell(i, j), self.rects) and not any(ovl(cell(i, j), c, 0.02) for c in self.cols)
                       for j in range(self.ny)] for i in range(self.nx)]
 
     def ok_fixed(self, r, placed, zones):

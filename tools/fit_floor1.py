@@ -46,6 +46,8 @@ def wall_items(room, typ, front, allow_grey=False, only_wall_x=None):
                     if not allow_grey and not in_grey and any(ovl(r, g) for g in room.grey):
                         continue
                     z = zone(r, b[4], front)
+                    if F.blocks_window(room, r, FS[typ][2]):
+                        continue
                     if room.ok_fixed(r, [], []) and inside(z, room.rects) and not any(ovl(z, wl) for wl in room.walls):
                         out.append({"type": typ, "rect": r, "access": [b[4]], "zones": [[round(v, 3) for v in z]], "grey": in_grey, "fixed": [r]})
     return out
@@ -66,6 +68,10 @@ def single_beds(room):
                 longs = [("N", ("y", r[1], r[0], r[2])), ("S", ("y", r[3], r[0], r[2]))] if long_x else [("W", ("x", r[0], r[1], r[3])), ("E", ("x", r[2], r[1], r[3]))]
                 for hd, he in heads:
                     if not touches_wall(he, room.walls):
+                        continue
+                    hs = {"W": [r[0], r[1], r[0] + 0.08, r[3]], "E": [r[2] - 0.08, r[1], r[2], r[3]],
+                          "N": [r[0], r[1], r[2], r[1] + 0.08], "S": [r[0], r[3] - 0.08, r[2], r[3]]}[hd]
+                    if F.blocks_window(room, hs, 9.9):  # no bed head against a window (headboard 0.96 m is above the sill anyway)
                         continue
                     for side, _ in longs:
                         z = zone(r, side, BSIDE)
@@ -101,14 +107,26 @@ def queen_beds(room, rule):
     out = []
     for b in F.lux_beds(room, rule):
         B, T = b["bed"], b["table"]
+        r = B["rect"]
+        hs = {"W": [r[0], r[1], r[0] + 0.08, r[3]], "E": [r[2] - 0.08, r[1], r[2], r[3]],
+              "N": [r[0], r[1], r[2], r[1] + 0.08], "S": [r[0], r[3] - 0.08, r[2], r[3]]}[B["head"]]
+        if F.blocks_window(room, hs, 9.9):  # no bed head against a window
+            continue
         out.append({"type": "orion_queen_bed", "rect": B["rect"], "access": B["access"], "zones": B["zones"], "head": B["head"],
                     "fixed": [B["rect"], T["rect"]], "table": T["rect"], "score": 2 if rule == "both" else 0})
     return out
 
 
+TWIN_GAP = 0.30  # ASSUMED: two students' single beds never pushed together; at least 1'-0" between them
+
+
 def compat(a, b):
     if any(ovl(p, q) for p in a["fixed"] for q in b["fixed"]):
         return False
+    if a["type"] == b["type"] == "centaur_single_bed":
+        ra, rb = a["rect"], b["rect"]
+        if max(rb[0] - ra[2], ra[0] - rb[2], rb[1] - ra[3], ra[1] - rb[3]) < TWIN_GAP - 1e-3:
+            return False
     return not any(ovl(p, z) for p in a["fixed"] for z in b["zones"]) and not any(ovl(q, z) for q in b["fixed"] for z in a["zones"])
 
 
@@ -165,7 +183,13 @@ def main():
     TK = F.TK
     res, rep = {}, []
     rooms = {"ROOM-1": ("F-D1", ["F-D1T"]), "ROOM-2": ("F-D2", ["F-D2T"]), "ROOM-3": ("F-D3", ["F-D3T"]), "ROOM-4": ("F-D4", ["F-D4T"])}
+    only = sys.argv[1:]  # optional: re-fit only these rooms, keep the others from model/furniture.json
+    old_fu = json.loads((ROOT / "model/furniture.json").read_text())["F1-3"]
+    old_rep = {l.split(" | ")[0][2:]: l for l in (ROOT / "docs/floor1-fit.md").read_text().split("\n") if l.startswith("| ROOM")}
     for name, (door, others) in rooms.items():
+        if only and name not in only:
+            res[name], _ = old_fu[name], rep.append(old_rep[name])
+            continue
         room = F.Room("F1-3", name, door, others)
         is4 = name == "ROOM-4"
         chosen, note = None, ""

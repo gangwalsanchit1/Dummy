@@ -48,14 +48,14 @@ Cast-in,Sleeve / cast-in item,3,6,9,9,16,10,53
 
 run,description,"approx length m (route x 1.10, CALCULATED from ASSUMED routes)"
 ACP,"AC refrigerant + drain line bundle (insulated, about 2 1/2"")",53.3
-COND,Conduit (indicative),2688.8
-CW,"Cold water 1"" / 3/4""",265.7
+COND,Conduit (indicative),2655.8
+CW,"Cold water 1"" / 3/4""",263.0
 DT,"Down-take 1 1/2""",41.4
 FEED,Feeder / riser cable,48.8
-HW,"Hot water 3/4"" / 1/2""",54.7
+HW,"Hot water 3/4"" / 1/2""",53.9
 RM,"Rising main 1 1/2""",28.5
 RWP,"Rainwater pipe 4""",71.1
-SOIL,"Soil stack/branch 4""",66.6
+SOIL,"Soil stack/branch 4""",65.8
 SUP,"Municipal supply 1""",1.3
 UGD,"Underground drain 6""",19.4
 VENT,"Vent pipe 3""",0.0

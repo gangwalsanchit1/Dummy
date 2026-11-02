@@ -128,10 +128,12 @@ def rooms_F13(s):
     c["ROOM-1 TOILET"] = [
         ("TSW", 5.35, 9.68, 1.2, "+x", "outside toilet, room side", "L/F"),
         ("LT", 4.65, 10.20, CEIL, "C", "", "L/F"), ("EXH", 4.65, 11.60, 1.80, "-y", "in ventilator F-W7", "L/F"),
-        ("GZP", 4.05, 10.25, 2.20, "+x", ">=0.6 m from shower zone", "GZ"),
-        ("WC", 4.05, 10.45, 0.0, "+x", "on left wall", ""), ("HF", 4.05, 10.80, 0.45, "+x", "", ""),
-        ("BAS", 4.05, 9.85, 0.80, "+x", "", ""), ("SHM", 5.25, 11.25, 1.0, "-x", "shower zone y 10.85-11.60", ""),
-        ("FT", 4.65, 11.25, 0.0, "F", "shower zone", ""), ("GZ", 4.05, 10.45, 1.85, "+x", "above WC", ""),
+        # column C10 stands 6" into this toilet on the left wall (y 9.90-10.50), so the WC sits just in front of it
+        ("GZP", 4.20, 10.20, 2.20, "+x", "on column C10 face, >=0.6 m from shower zone; conduit cast in the column", "GZ"),
+        ("WC", 4.05, 10.69, 0.0, "+x", "on left wall between column C10 and the shower zone", ""), ("HF", 4.05, 10.93, 0.45, "+x", "", ""),
+        ("BAS", 4.20, 10.20, 0.80, "+x", "on column C10 face; supply and waste boxed on the column face (no chasing into the column)", ""),
+        ("SHM", 5.25, 11.25, 1.0, "-x", "shower zone y 10.90-11.60", ""),
+        ("FT", 4.65, 11.25, 0.0, "F", "shower zone", ""), ("GZ", 4.05, 10.69, 1.85, "+x", "above WC", ""),
     ]
     c["ROOM-2"] = [
         ("SB", 3.25, 7.05, 1.2, "+y", "latch side of F-D2 (just inside)", "L/F"),
@@ -316,16 +318,16 @@ LAYOUT["GF"] = rooms_GF()
 LAYOUT["TERRACE"] = rooms_TERRACE()
 # bedside, desk and data points follow the fitted furniture (model/furniture.json)
 FS_ = AS["furniture_sizes"]
-FWALLS = {pk: TK["floors"][pk]["walls"] for pk in ("F1-3", "F4")}
+sys.path.insert(0, str(ROOT / "tools"))
+from columns import columns  # noqa: E402
+from fit_furniture import touches_wall  # noqa: E402
+COLS = {pk: columns(pk) for pk in ("GF", "F1-3", "F4")}
+FWALLS = {pk: TK["floors"][pk]["walls"] + [c["rect"] for c in COLS[pk]] for pk in ("F1-3", "F4")}
 
 
 def touches(ax, c, a0, a1, ws):
-    for w in ws:
-        if ax == "x" and (abs(w[0] - c) < 0.011 or abs(w[2] - c) < 0.011) and w[1] <= a0 + 0.01 and w[3] >= a1 - 0.01:
-            return True
-        if ax == "y" and (abs(w[1] - c) < 0.011 or abs(w[3] - c) < 0.011) and w[0] <= a0 + 0.01 and w[2] >= a1 - 0.01:
-            return True
-    return False
+    """Same rule as the furniture fit: wall or column faces back the whole edge (a column may leave a small gap)."""
+    return touches_wall((ax, c, a0, a1), ws)
 
 
 for s in ["F1", "F2", "F3", "F4"]:
@@ -593,13 +595,55 @@ for s_ in ["F1", "F2", "F3"]:
             gap = abs(x - xw) - ODU_W / 2 - dia / 2
             if gap < 0.05:
                 issues.append(f"outdoor unit {'overlaps' if gap < 0 else 'only ' + ftin(gap) + ' from'} {nm}")
+        for c in COLS["F1-3"]:
+            cr = c["rect"]
+            on_face = cr[1] < 0.2 if face == "rear" else cr[3] > 11.55
+            if on_face and cr[0] - r_ < idu["x"] < cr[2] + r_:
+                issues.append(f"wall sleeve at x {idu['x']:.2f} passes through column {c['name']}")
         issues = sorted(set(issues))
         if s_ == "F1":
             L = sum(math.dist(a, b) for a, b in zip(pts, pts[1:]))
             ac_rows.append((room, wid, face, idu["x"], xd, xw, L, issues))
 
 # ===================================================================== clash checks
-walls = {s: TK["floors"][PLAN_OF[s]]["walls"] for s in PLAN_OF}
+walls = {s: TK["floors"][PLAN_OF[s]]["walls"] + [c["rect"] for c in COLS.get(PLAN_OF[s], [])] for s in PLAN_OF}
+
+# Electrical wall points that land inside a column (the column stands proud of the wall) go onto the column's room face.
+# The conduit then has to be fixed in the column cage before concreting (listed in the pre-slab checklist).
+moved_to_col = []
+for p in points:
+    if p["sys"] != "E" or p["face"] not in ("+x", "-x", "+y", "-y"):
+        continue
+    for c in COLS.get(PLAN_OF.get(p["storey"], "GF"), []):
+        cr = c["rect"]
+        if cr[0] + 0.01 < p["x"] < cr[2] - 0.01 and cr[1] + 0.01 < p["y"] < cr[3] - 0.01:
+            if p["face"] == "+x":
+                p["x"] = cr[2]
+            elif p["face"] == "-x":
+                p["x"] = cr[0]
+            elif p["face"] == "+y":
+                p["y"] = cr[3]
+            else:
+                p["y"] = cr[1]
+            p["note"] = (p["note"] + "; " if p["note"] else "") + f"on the room face of column {c['name']}: conduit cast in the column"
+            moved_to_col.append((p["id"], c["name"]))
+            break
+    # a point set at a furniture edge that stands off the wall (the item is backed by a column) goes back onto the wall face behind it
+    ws_ = walls[p["storey"]]
+    ax_, sg = {"+x": (0, 1), "-x": (0, -1), "+y": (1, 1), "-y": (1, -1)}[p["face"]]
+    pos, oth = (p["x"], p["y"]) if ax_ == 0 else (p["y"], p["x"])
+    faces = []
+    for w in ws_:
+        lo, hi = (w[1], w[3]) if ax_ == 0 else (w[0], w[2])
+        f = w[2 + ax_] if sg > 0 else w[0 + ax_]
+        if lo - 0.01 <= oth <= hi + 0.01 and 0 <= (pos - f) * sg <= 0.09:
+            faces.append(f)
+    if faces and all(abs(f - pos) > 0.005 for f in faces):
+        f = min(faces, key=lambda q: abs(q - pos))
+        if ax_ == 0:
+            p["x"] = f
+        else:
+            p["y"] = f
 wins = {pk: fl.get("windows", []) for pk, fl in TK["floors"].items()}
 opens = {pk: fl.get("openings", []) for pk, fl in TK["floors"].items()}
 DOORS = AS["doors"]
@@ -693,6 +737,17 @@ for p in points:
         issues += window_clash(p, pk)
         issues += door_clash(p, pk)
         issues += furniture_clash(p, pk)
+    for c in COLS.get(pk, []):
+        cr = c["rect"]
+        if p["face"] in ("+x", "-x", "+y", "-y") and cr[0] + 0.01 < p["x"] < cr[2] - 0.01 and cr[1] + 0.01 < p["y"] < cr[3] - 0.01:
+            issues.append(f"inside column {c['name']} (the column stands proud of this wall; move the point onto the column face or clear of it)")
+        if p["kind"] in ("WC", "BAS") and p["face"] in ("+x", "-x", "+y", "-y"):
+            w_, d_, _ = K[p["kind"]][3]
+            x, y, f = p["x"], p["y"], p["face"]
+            fp = {"+x": [x, y - w_ / 2, x + d_, y + w_ / 2], "-x": [x - d_, y - w_ / 2, x, y + w_ / 2],
+                  "+y": [x - w_ / 2, y, x + w_ / 2, y + d_], "-y": [x - w_ / 2, y - d_, x + w_ / 2, y]}[f]
+            if fp[0] < cr[2] - 0.01 and cr[0] + 0.01 < fp[2] and fp[1] < cr[3] - 0.01 and cr[1] + 0.01 < fp[3]:
+                issues.append(f"fixture footprint overlaps column {c['name']}")
     if p["face"] == "C" and p["kind"] in ("LT", "FAN", "AP", "CCTV"):
         d = dist_to_walls(p["x"], p["y"], walls[s])
         if d < 0.15:
@@ -826,7 +881,13 @@ for st in ["GF", "F1", "F2", "F3", "F4", "TERRACE"]:
 pre += ["## Also before the relevant slab or wall work", "",
         "- Sleeves through external walls for AC copper/drain lines at each AC indoor unit (masonry, can be cored later but cheaper now).",
         "- Brackets/anchors for external stacks S1/W1 (rear, x 3.10/3.30) and S2/W2 (front, x 4.00/4.20), down-takes and rising main.",
-        "- Lift: pit depth, shaft size and top overrun from the chosen lift maker before the pit and shaft are built (takeoff Q3)."]
+        "- Lift: pit depth, shaft size and top overrun from the chosen lift maker before the pit and shaft are built (takeoff Q3).",
+        "", "## Before each column pour (points on column faces)", "",
+        "These points sit on the room face of an RCC column, because the column stands proud of the wall there. "
+        "Fix the conduit and box in the column cage before concreting; do not chase the column afterwards. The structural engineer to approve.", ""]
+for pid, cn in moved_to_col:
+    pre.append(f"- {pid} on column {cn}")
+pre += ["- F1/F2/F3-GZP1 and BAS1 (ROOM-1 toilet) on column C10: geyser conduit cast in; basin pipes boxed on the face, not chased"]
 (ROOT / "docs/pre-slab-checklist.md").write_text("\n".join(pre) + "\n")
 
 summary = {"points": len(points), "runs": len(runs), "clashes": nclash, "warnings": len(warns), "totals": dict(tot),
@@ -847,8 +908,9 @@ md = ["# AC lines, floors 1-3: routed below the bathroom windows (generated by t
       "| Room | Bathroom window | Facade | Line length (F1) | Result |", "|---|---|---|---|---|"]
 for room, wid, face, xi, xd, xw, L, iss in ac_rows:
     md.append(f"| {room} | {wid} ({ftin(win13[wid]['width'])} wide) | {face} | {ftin(L)} | {'clear of windows and pipes' if not iss else '**CLASH:** ' + '; '.join(iss)} |")
-md += ["", "## Cannot be checked",
-       "- **Beams and columns:** none are drawn on the AFTER O.C. sheet, so beam and column clashes cannot be checked. "
+md += ["", "Columns are now checked against the structural sheet (Agharkar, rev R1 02.11.2026): no wall sleeve passes through a column unless listed above.",
+       "", "## Cannot be checked",
+       "- **Beams:** the structural sheet shows plinth beams only; floor beams are not drawn yet. "
        "Each line passes through its external wall about 7'-10 1/2\" above floor, close to where a perimeter beam would sit. "
        "The structural engineer must confirm the sleeve level clears the beam.",
        "- **Outdoor units below a ventilator** blow warm air up past the bathroom window; screen or louvre if needed.", "",

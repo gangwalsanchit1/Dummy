@@ -206,7 +206,7 @@ The drawing has been followed in every case below.
 | C7 | Floor 4 ROOM-3 toilet | not stated | Label 3'11"×5'11", drawn 1.50×1.95 |
 | C8 | Floor 4 lobby | 8'4"×7'3" | L-shaped, 1.45 m wide at the lift |
 | C9 | ROOM-3 (Floors 1–3) | 9'6"×12'9" | Matches, **plus** a 5'3"×6'3" alcove that holds the room's only window |
-| C10 | Columns | About 14 columns | **No columns are drawn anywhere** |
+| C10 | Columns | About 14 columns | None on the AFTER O.C. sheet. **The structural sheet (Agharkar, rev R1 02.11.2026) shows 17: C1–C17** (§15). |
 | C11 | Tanks | U.G. 10,000 L, O.H. 6,500 L (verify) | Both are confirmed on the AFTER O.C. sheet, with sizes (§7, §8) |
 | C12 | Area statement | 5,047.81 sq ft total, 1,011.91 sq ft ground | No area statement on this sheet. The footprint calculates to 1,011.8 sq ft ✔. The total can't be checked against this sheet. |
 
@@ -215,14 +215,14 @@ The drawing has been followed in every case below.
 These are raised for safety only. They are not comments on approvals.
 
 - **S1.** There is **one staircase**, with 1.00 m flights. It is the only exit route drawn for about 22 occupants over four floors. Please have the architect or fire consultant confirm that the stair width, fire separation and fire door of the stair enclosure are adequate for a PG/hostel use. I will check the NBC 2016 Part 4 clauses in Phase 3 rather than quote them from memory.
-- **S2.** No columns are drawn. The stilt has open spans of 3.9 × 11.6 m, and there is a Seismic Zone III requirement. A structural drawing is needed. **I will not invent column positions.**
+- **S2.** ~~No columns are drawn.~~ **Updated 02.11.2026:** the structural sheet now gives 17 columns (§15). Still open: its column schedule stops at "third floor lvl to terrace floor lvl" (stilt + 3 floors), while this sheet shows stilt + **4** floors. **For structural engineer confirmation.**
 - **S3.** Floor 4 walls do not sit on the Floor 1–3 walls below. This applies to the Floor 4 front wall at Y = 10.70–10.85, the ROOM-3 suite toilet, and the lobby and suite walls. Each needs a beam beneath it. **For structural engineer review.**
 - **S4.** The O.H. tank (about 6.5 t of water plus the tank itself) sits on the stair-cabin roof. The U.G. tank lies under the parking and drive area. Both need structural design for these loads. **For structural engineer review.**
 - **S5.** Parapet and railing heights are not drawn for the roof, the Floor 4 front terrace (0.90 m wide) or the Floor 4 private terrace. Please confirm them, because they are fall-protection items.
 
 ## 13. Questions (numbered, please answer before or during Phase 2)
 
-1. **Structure.** Is there a structural or column layout drawing (PDF, DWG or a photo)? Without it, Phase 2 will show **no columns or beams**, only a clearly labelled note. Alternatively, do you want me to show "indicative columns at wall junctions, ASSUMED"? I recommend **not** doing that.
+1. **Structure.** ✔ Answered by the structural sheet (§15); floor beams are still not drawn. Original question: is there a structural or column layout drawing (PDF, DWG or a photo)? Without it, Phase 2 will show **no columns or beams**, only a clearly labelled note. Alternatively, do you want me to show "indicative columns at wall junctions, ASSUMED"? I recommend **not** doing that.
 2. **Levels.** What is the floor-to-floor height? Typical values for this kind of building are 3.00 m, or 2.85 to 3.15 m. Also:
    - What is the stilt height? Is it 3.0 m?
    - What is the plinth height above road level?
@@ -274,3 +274,15 @@ The family has decided that **every room is single occupancy**, furnished with W
 | Room window sill (ASSUMED) | 2'-11 3/8" |
 
 The Orion headboard (2'-10 5/8", from listings) sits **7/8" below** the ASSUMED 2'-11 3/8" sill of window F-W4, which the bed head is placed under. If the real sill is lower, the bed must turn or move. This needs the architect's sill height (Q2).
+
+## 15. Structural sheet (added 02.11.2026)
+
+Source: `drawings/C-89 SEC-12 KHR RCC DETAILS.pdf`. Agharkar Consulting Engineers Pvt Ltd, "Layout & RCC details of foundation, column & plinth beams", drg 01, job 119926, rev **R1 02.11.2026 "Revised as per after OC columns & released for construction"**. M20 concrete, Fe500 steel.
+
+- **Columns (DRAWN):** 17, read into `model/structure.json` by `tools/extract_columns.py`. The layout has no dimensions, so it was scaled so the outer column faces equal the 8.000 × 11.750 m outline (x and y scale agree within 0.02%). The stair treads then land exactly on the architect's stair (X 5.75–7.84, Y 4.10). Positions are good to about ±¾".
+  - C1, C5, C6, C7, C8, C9, C10, C11: 300×600 up to first floor, then 230×600 (9" × 1'-11⅝").
+  - C12–C17 (rear and front rows): 300×450, then 230×450 (9" × 1'-5¾").
+  - C2, C4 (150×1800) and C3 (150×1400) are the RCC lift walls, matching the drawn lift walls.
+- **Plinth beams:** PB1–PB3 230×500, PB4 150×500, PB5 230×300, PB6 150×300. **Floor beams are not drawn.**
+- **Not on the sheet:** floor-to-floor heights, slab thickness, sill and lintel levels. These stay ASSUMED.
+- **Floor 1 check** (columns stand about 3⅛" out of the 6" walls, 6" into the ROOM-1 toilet): see `docs/structure-check.md`.

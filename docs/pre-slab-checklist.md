@@ -95,3 +95,21 @@ Everything below must be fixed, marked or cast in **before that slab is poured**
 - Sleeves through external walls for AC copper/drain lines at each AC indoor unit (masonry, can be cored later but cheaper now).
 - Brackets/anchors for external stacks S1/W1 (rear, x 3.10/3.30) and S2/W2 (front, x 4.00/4.20), down-takes and rising main.
 - Lift: pit depth, shaft size and top overrun from the chosen lift maker before the pit and shaft are built (takeoff Q3).
+
+## Before each column pour (points on column faces)
+
+These points sit on the room face of an RCC column, because the column stands proud of the wall there. Fix the conduit and box in the column cage before concreting; do not chase the column afterwards. The structural engineer to approve.
+
+- F1-SB1 on column C7
+- F1-DATA2 on column C9
+- F2-SB1 on column C7
+- F2-DATA2 on column C9
+- F3-SB1 on column C7
+- F3-DATA2 on column C9
+- F4-SB1 on column C7
+- F4-DESK1 on column C7
+- F4-DESK3 on column C1
+- GF-RFID1 on column C7
+- GF-SKT161 on column C6
+- GF-EXH1 on column C13
+- F1/F2/F3-GZP1 and BAS1 (ROOM-1 toilet) on column C10: geyser conduit cast in; basin pipes boxed on the face, not chased

@@ -11,8 +11,10 @@ Route used for each room (same on F1, F2 and F3): from the indoor unit straight 
 | ROOM-3 | F-W2 (1'-11 5/8" wide) | rear | 10'-10 7/8" | **CLASH:** outdoor unit only 0'-1 1/2" from down-take DT-R |
 | ROOM-4 | F-W3 (1'-11 5/8" wide) | rear | 17'-7 5/8" | **CLASH:** outdoor unit only 0'-1 1/2" from waste stack W1 |
 
+Columns are now checked against the structural sheet (Agharkar, rev R1 02.11.2026): no wall sleeve passes through a column unless listed above.
+
 ## Cannot be checked
-- **Beams and columns:** none are drawn on the AFTER O.C. sheet, so beam and column clashes cannot be checked. Each line passes through its external wall about 7'-10 1/2" above floor, close to where a perimeter beam would sit. The structural engineer must confirm the sleeve level clears the beam.
+- **Beams:** the structural sheet shows plinth beams only; floor beams are not drawn yet. Each line passes through its external wall about 7'-10 1/2" above floor, close to where a perimeter beam would sit. The structural engineer must confirm the sleeve level clears the beam.
 - **Outdoor units below a ventilator** blow warm air up past the bathroom window; screen or louvre if needed.
 
 Nothing has been moved to avoid the clashes above, as instructed.

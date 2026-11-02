@@ -44,7 +44,7 @@ Floors 2 and 3 are identical to floor 1 on the drawing. Walls, doors and windows
 | ROOM-3 | Wall desk 3'-0" (shared) | 2'-11 3/8" x 1'-5 3/4" x 2'-5 1/2" | 2'-5 1/2" chair pull-out | - |
 | ROOM-4 | Orion queen bed | 7'-3 7/8" x 5'-3 1/4" x 2'-10 5/8" | 1'-11 5/8" on the open side (long side on wall) | [link](https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2) |
 | ROOM-4 | Tinker side table | 1'-4 7/8" x 0'-11 3/4" x 1'-9 3/4" | at the bed head, on the open side | [link](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) |
-| ROOM-4 | Gingham 2-door wardrobe (mirror) | 2'-7 7/8" x 1'-6 3/4" x 6'-0 7/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/gingham-2-door-wardrobe-with-mirror-one-hanging-space/WWRB2DMH1GINGHAMCWR2) |
+| ROOM-4 | Twill 2-door compact wardrobe | 1'-11 5/8" x 1'-6 3/4" x 5'-11 5/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) |
 | ROOM-4 | Sage study table (with hutch) | 3'-3 3/8" x 1'-10 1/2" x 4'-4 7/8" | 2'-5 1/2" chair pull-out | [link](https://www.wakefit.co/study-tables/sage-study-table/WSTSAGER1) |
 
 ## Checks
@@ -55,10 +55,11 @@ Floors 2 and 3 are identical to floor 1 on the drawing. Walls, doors and windows
   | ROOM-1 | Orion queen (long side on wall), Gingham wardrobe, Sage desk, **AMATA sofa fits** |
   | ROOM-2 | 2 Centaur singles, 2 Gingham wardrobes, 2 Sage desks |
   | ROOM-3 | 2 Centaur singles, 2 Twill wardrobes, 1 wall desk (0.90 m), shared - **2 Sage desks do not fit** |
-  | ROOM-4 | Orion queen (long side on wall), Gingham wardrobe, Sage desk, **no room for the AMATA sofa** |
+  | ROOM-4 | Orion queen (long side on wall), Twill wardrobe, Sage desk, **no room for the AMATA sofa** |
 
-- **ROOM-3 options** (2 Sage desks + 2 wardrobes cannot fit): A) 2 beds + 2 Twill + 1 shared wall desk (in the model); B) 2 beds + 1 Twill + 1 Sage desk in the window alcove; C) 2 beds + 2 Gingham, no desk.
-- **ROOM-4:** the AMATA sofa does not fit with the queen, wardrobe and study table (full search). Details: `docs/room4-check.md`.
+- **ROOM-3 options** (re-checked with the columns; 2 Sage desks + 2 wardrobes with the beds apart cannot fit): A) 2 beds + 2 Twill + 1 shared 2'-11⅜" wall desk, beds 1'-11⅝" apart (in the model); C) 2 beds + 2 Gingham, no desk; D) 2 Gingham + 1 Sage + 1 wall desk, but only with the two single beds pushed together side by side. Option B from before (a Sage desk in the window alcove) no longer fits: the alcove's only clear wall is in front of the window, and the Sage hutch (4'-4⅞") would cover it.
+- **ROOM-4:** column C13 takes the first 11¾" of the study wall, leaving 5'-3". Twill + Sage fit exactly (Gingham + Sage are 8¼" too long). The AMATA sofa still does not fit. Details: `docs/room4-check.md`.
+- **New rules in this run:** nothing taller than the window sill stands in front of a window; no bed head sits against a window; two students' single beds stay at least 1'-0" apart.
 - **Queens in ROOM-1 and ROOM-4** have one long side on the wall (needed for the sofa in ROOM-1; family rule in ROOM-4).
 - **Headboards vs window sill (assumed 2'-11 3/8"):** Orion 2'-10 5/8", Centaur 3'-1 3/4". No bed head sits under a window in this floor-1 layout (checked); keep it that way if beds move, because the Centaur headboard is taller than the assumed sill.
 
@@ -71,7 +72,15 @@ Floors 2 and 3 are identical to floor 1 on the drawing. Walls, doors and windows
 | ROOM-3 | F-W2 (1'-11 5/8" wide) | rear | 10'-10 7/8" | **CLASH:** outdoor unit only 0'-1 1/2" from down-take DT-R |
 | ROOM-4 | F-W3 (1'-11 5/8" wide) | rear | 17'-7 5/8" | **CLASH:** outdoor unit only 0'-1 1/2" from waste stack W1 |
 
-Nothing has been moved; you decide what moves. Beams and columns are not on the drawing, so those clashes cannot be checked.
+Nothing has been moved; you decide what moves. Columns are checked against the structural drawing (no AC wall sleeve passes through a column). Floor beams are not drawn yet, so beam clashes cannot be checked.
+
+## Structural columns (Agharkar RCC drawing, rev R1, 02.11.2026)
+
+- 17 columns, C1-C17, scaled from the structural layout to within about ¾". On this floor they are 9" wide and stand about 3⅛" out of the 6" walls (6" into the ROOM-1 toilet).
+- Furniture was re-fitted with the columns as solid obstacles; nothing stands on a column. Where a bed, desk or wardrobe stands against a column, it has a gap of up to 3⅛" behind it along the rest of the wall.
+- Electrical points that fell on a column moved onto the column face (conduit cast in before the pour). The ROOM-1 toilet WC moved just clear of column C10.
+- **For the structural engineer:** the column schedule covers the stilt plus 3 floors, but the architect's sheet shows the stilt plus 4 floors. Please confirm the fourth floor is covered.
+- Full table: `docs/structure-check.md`.
 
 ## Points on floor 1
 
@@ -113,4 +122,5 @@ Mounting heights and positions are in `docs/schedules/points_schedule.csv` and o
 2. ROOM-3: choose option A, B or C.
 3. OK the queen beds with one long side on the wall (ROOM-1, ROOM-4).
 4. AC clashes: choose what moves (outdoor units, pipes or route).
-5. Architect: window sill height and floor height (heights are assumed).
+5. Architect: window sill height and floor height (heights are assumed; the structural drawing does not give them either).
+6. Structural engineer: confirm the column schedule covers the fourth floor, and send the floor beam layout.

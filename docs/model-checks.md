@@ -38,7 +38,7 @@ Rules: fixed furniture inside the room, clear of walls, other furniture, every c
 | F1-3 | ROOM-1 | orion_queen_bed, tinker_side_table, amata_sofa, gingham_wardrobe, sage_desk | 9 checks | PASS |
 | F1-3 | ROOM-2 | centaur_single_bed, tinker_side_table, centaur_single_bed, tinker_side_table, gingham_wardrobe, gingham_wardrobe, sage_desk, sage_desk | 14 checks | PASS |
 | F1-3 | ROOM-3 | centaur_single_bed, tinker_side_table, centaur_single_bed, tinker_side_table, twill_wardrobe, twill_wardrobe, wall_desk | 12 checks | PASS |
-| F1-3 | ROOM-4 | orion_queen_bed, tinker_side_table, gingham_wardrobe, sage_desk | 7 checks | PASS |
+| F1-3 | ROOM-4 | orion_queen_bed, tinker_side_table, twill_wardrobe, sage_desk | 7 checks | PASS |
 | F4 | ROOM-1 | orion_queen_bed, tinker_side_table, gingham_wardrobe, notiq_desk | 7 checks | PASS |
 | F4 | ROOM-2 | orion_queen_bed, tinker_side_table, gingham_wardrobe, notiq_desk | 7 checks | PASS |
 | F4 | ROOM-3 (suite) | orion_queen_bed, tinker_side_table, gingham_wardrobe, notiq_desk | 8 checks | PASS |

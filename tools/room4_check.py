@@ -41,7 +41,15 @@ def row(check, need, have, ok, note=""):
 
 
 Gw, Tw, Nw, Nd, Ww = FS["gingham_wardrobe"][0], FS["twill_wardrobe"][0], FS[desk["type"]][0], FS[desk["type"]][1], FS["wall_desk"][0]
-row("Study wall: Gingham wardrobe + Sage study table", Gw + Nw, wall_len, Gw + Nw <= wall_len, "used" if ward["type"] == "gingham_wardrobe" else "")
+sys.path.insert(0, str(ROOT / "tools"))
+from columns import columns  # noqa: E402
+cw = [c for c in columns("F1-3") if c["rect"][0] < WALL_X < c["rect"][2] + 0.001 and c["rect"][2] > WALL_X + 0.01 and c["rect"][1] < WALL_Y1 and c["rect"][3] > WALL_Y0]
+col_end = max([c["rect"][3] for c in cw], default=WALL_Y0)
+free_len = WALL_Y1 - col_end
+if cw:
+    rows.append(f"| Column {', '.join(c['name'] for c in cw)} on the study wall (structural drawing) | - | stands {ftin(cw[0]['rect'][2] - WALL_X)} out, first {ftin(col_end - WALL_Y0)} of the wall | note | usable study wall {ftin(free_len)} of {ftin(wall_len)} |")
+row("Study wall: Gingham wardrobe + Sage study table", Gw + Nw, free_len, Gw + Nw <= free_len + 0.002, "used" if ward["type"] == "gingham_wardrobe" else "")
+row("Study wall: Twill wardrobe + Sage study table", Tw + Nw, free_len, Tw + Nw <= free_len + 0.002, "used" if ward["type"] == "twill_wardrobe" else "")
 sofa_need = FS["amata_sofa"][1] + AS["clearances"]["sofa_legroom"]
 rows.append(f"| AMATA sofa ({ftin(FS['amata_sofa'][0])} x {ftin(FS['amata_sofa'][1])}) + {ftin(AS['clearances']['sofa_legroom'])} legroom | a free wall {ftin(FS['amata_sofa'][0])} long, {ftin(sofa_need)} deep | none left after bed, wardrobe, table and their clearances | **does not fit** | full search of all arrangements |")
 to_bed = bed["rect"][0] - WALL_X
@@ -68,21 +76,22 @@ room = FF.Room("F1-3", "ROOM-4", "F-D4", ["F-D4T"])
 zones = [("bed open side", bed["zones"][0]), ("wardrobe front", FF.zone(ward["rect"], ward["access"][0], ACCESS)), ("chair", FF.zone(desk["rect"], desk["access"][0], CHAIR))]
 ok, why = room.walkable([i["rect"] for i in items], zones)
 rows.append(f"| 0.55 m path: door to bed side, wardrobe, chair and toilet door | {ftin(0.55)} wide | {'reached' if ok else why} | {'PASS' if ok else '**FAIL**'} | |")
-for nm, L in (("Gingham + Sage (used)", Gw + Nw), ("Twill + Sage", Tw + Nw)):
-    opts.append(f"| {nm} | {ftin(L)} | {'fits, ' + ftin(wall_len - L) + ' spare' if L <= wall_len else 'short by ' + ftin(L - wall_len)} |")
+for nm, L in (("Gingham + Sage", Gw + Nw), ("Twill + Sage", Tw + Nw)):
+    nm += " (used)" if (ward["type"] == "gingham_wardrobe") == nm.startswith("Gingham") else ""
+    opts.append(f"| {nm} | {ftin(L)} | {'fits, ' + ftin(free_len - L) + ' spare' if L <= free_len + 0.002 else 'short by ' + ftin(L - free_len)} |")
 lab = {"orion_queen_bed": "Orion queen bed", "tinker_side_table": "Tinker", "gingham_wardrobe": "Gingham wardrobe", "twill_wardrobe": "Twill wardrobe", "notiq_desk": "Notiq study table", "sage_desk": "Sage study table"}
 cat = AS["wakefit_catalog"]
 md = ["# ROOM-4 (F1-F3) check: family layout, feet and inches", "",
       "Fixed walls, doors and windows are as DRAWN. Single occupancy. Family rule for this room: the queen bed has one long side on a wall, "
       "with the Tinker side table on the open side touching the head wall. The study wall is the west wall where the wardrobe used to be.", "",
-      f"- Main room clear: **{size(ROOM[2]-ROOM[0], ROOM[3]-ROOM[1])}**. Study wall: **{ftin(wall_len)}**. Study wall to bed: **{ftin(to_bed)}**.", "",
+      f"- Main room clear: **{size(ROOM[2]-ROOM[0], ROOM[3]-ROOM[1])}**. Study wall: **{ftin(wall_len)}**, of which **{ftin(free_len)}** is usable beside column {", ".join(c["name"] for c in cw) or "-"}. Study wall to bed: **{ftin(to_bed)}**.", "",
       "| Item | Overall size (W x D x H) | Wakefit link |", "|---|---|---|"]
 for it in items:
     w_, d_, h_ = FS[it["type"]]
     c = cat.get(it["type"], {})
     md.append(f"| {lab[it['type']]} | {ftin(w_)} x {ftin(d_)} x {ftin(h_)} | [{c.get('product', '')}]({c.get('link', '')}) |")
 md += ["", "## Checks", "", "| Check | Needed | Available | Result | Note |", "|---|---|---|---|---|"] + rows + [
-       "", "## Study wall options", "", "| Option | Length | On the 6'-2 3/4\" wall |", "|---|---|---|"] + opts + [""]
+       "", "## Study wall options", "", f"| Option | Length | On the {ftin(free_len)} left beside column {', '.join(c['name'] for c in cw) or '-'} |", "|---|---|---|"] + opts + [""]
 (ROOT / "docs/room4-check.md").write_text("\n".join(md))
 dz = FF.zone(desk["rect"], desk["access"][0], CHAIR)
 wz = FF.zone(ward["rect"], ward["access"][0], ACCESS)
@@ -104,6 +113,10 @@ for w in fl["walls"]:
     a = [max(w[0], clip[0]), max(w[1], clip[1]), min(w[2], clip[2]), min(w[3], clip[3])]
     if a[0] < a[2] and a[1] < a[3]:
         s.append(f'<rect x="{X(a[0]):.1f}" y="{Y(a[1]):.1f}" width="{(a[2]-a[0])*K:.1f}" height="{(a[3]-a[1])*K:.1f}" fill="#374151"/>')
+for c in columns("F1-3"):
+    a = [max(c["rect"][0], clip[0]), max(c["rect"][1], clip[1]), min(c["rect"][2], clip[2]), min(c["rect"][3], clip[3])]
+    if a[0] < a[2] and a[1] < a[3]:
+        s.append(f'<rect x="{X(a[0]):.1f}" y="{Y(a[1]):.1f}" width="{(a[2]-a[0])*K:.1f}" height="{(a[3]-a[1])*K:.1f}" fill="#b91c1c"/>')
 for wdw in fl["windows"]:
     if wdw["wall"] == "rear" and wdw["span_x"][1] > 3.0:
         s.append(f'<rect x="{X(wdw["span_x"][0]):.1f}" y="{Y(0):.1f}" width="{wdw["width"]*K:.1f}" height="{0.15*K:.1f}" fill="#bfdbfe" stroke="#2563eb"/>')
@@ -142,14 +155,17 @@ def dim(x1, y1, x2, y2, text, off=0.0, col="#111"):
         s.append(f'<text x="{X(x)+4:.1f}" y="{Y((y1+y2)/2):.1f}" font-size="12" fill="{col}" font-weight="bold" transform="rotate(-90 {X(x)+4:.1f} {Y((y1+y2)/2):.1f})" text-anchor="middle">{text}</text>')
 
 
-dim(ROOM[0], ROOM[3] - 0.10, ROOM[2], ROOM[3] - 0.10, f"room {ftin(ROOM[2]-ROOM[0])}")
+dim(ROOM[0], ROOM[3] + 0.30, ROOM[2], ROOM[3] + 0.30, f"room {ftin(ROOM[2]-ROOM[0])}")
 dim(ROOM[2], ROOM[1], ROOM[2], ROOM[3], f"room {ftin(ROOM[3]-ROOM[1])}", 0.12)
 # study wall chain: wardrobe + table + spare = wall
 yA, yB, yC = ward["rect"][1], ward["rect"][3], desk["rect"][3]
 dim(4.27, WALL_Y0, 4.27, WALL_Y1, f"study wall {ftin(wall_len)}", 0.0)
+for c in cw:
+    s.append(f'<text x="{X((c["rect"][0] + c["rect"][2]) / 2):.1f}" y="{Y(0.25):.1f}" font-size="11" font-weight="bold" fill="#fff" style="stroke:none" text-anchor="middle">{c["name"]}</text>')
 dim(4.12, yA, 4.12, yB, f"wardrobe {ftin(yB - yA)}", 0.0, "#3730a3")
 dim(4.12, desk["rect"][1], 4.12, yC, f"table {ftin(yC - desk['rect'][1])}", 0.0, "#3730a3")
-dim(4.12, yC, 4.12, WALL_Y1, ftin(WALL_Y1 - yC), 0.0, "#555")
+if WALL_Y1 - yC > 0.02:
+    dim(4.12, yC, 4.12, WALL_Y1, ftin(WALL_Y1 - yC), 0.0, "#555")
 dim(WALL_X, 2.25, bed["rect"][0], 2.25, f"{ftin(to_bed)} wall to bed")
 dim(bed["rect"][0], bed["rect"][1] - 0.15, bed["rect"][2], bed["rect"][1] - 0.15, f"bed {ftin(bed['rect'][2]-bed['rect'][0])}", 0.0, "#3730a3")
 dim(bed["rect"][2] - 0.15, bed["rect"][1], bed["rect"][2] - 0.15, bed["rect"][3], f"bed {ftin(bed['rect'][3]-bed['rect'][1])}", 0.0, "#3730a3")
@@ -161,11 +177,12 @@ s.append(f'<text x="{X(3.55):.1f}" y="{Y(1.25):.1f}" font-size="12" text-anchor=
 yb = VH * K + 18
 legend = ["ROOM-4, floors 1-3: top view. Walls, doors and windows DRAWN. Dimensions in feet and inches.",
           "Blue = Wakefit furniture. Red hatch = clearances (bed side and wardrobe 1'-11 5/8\", chair 2'-5 1/2\"). Yellow = door swing.",
-          "Orion queen bed: one long side on a wall, Tinker on the open side at the head (family rule). Sage table + Gingham wardrobe on the study wall.",
+          f"Queen: one long side on a wall, Tinker at the head (family rule). Study wall: {lab[ward['type']]} + Sage table beside column C13.",
+          "Red = RCC columns (structural drawing, rev R1).",
           "Toilet door opens inwards (into the toilet); entry door opens into the passage."]
 for i, t in enumerate(legend):
     s.append(f'<text x="10" y="{yb + i*18:.0f}" font-size="12" fill="#111">{t.replace("&", "and")}</text>')
-s.append(f'<text x="10" y="{yb + 4*18 + 6:.0f}" font-size="12" fill="#111">All checks: see docs/room4-check.md (all PASS for the layout shown).</text>')
+s.append(f'<text x="10" y="{yb + len(legend)*18 + 6:.0f}" font-size="12" fill="#111">All checks: see docs/room4-check.md (all PASS for the layout shown).</text>')
 s.append("</svg>")
 (ROOT / "docs/room4-plan.svg").write_text("\n".join(s))
 print("\n".join(rows))

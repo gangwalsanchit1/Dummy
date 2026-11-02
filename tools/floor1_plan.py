@@ -9,6 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 from units import ftin  # noqa: E402
+from columns import columns  # noqa: E402
 
 TK = json.loads((ROOT / "model/takeoff.json").read_text())
 AS = json.loads((ROOT / "model/assumptions.json").read_text())
@@ -32,7 +33,7 @@ K = 105.0
 MX, MY = 70, 125
 X = lambda x: MX + x * K
 Y = lambda y: MY + y * K
-W, H = int(MX * 2 + 8.0 * K + 40), int(MY + 11.75 * K + 210)
+W, H = int(MX * 2 + 8.0 * K + 40), int(MY + 11.75 * K + 228)
 s = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" font-family="Arial, Helvetica, sans-serif">',
      '<rect width="100%" height="100%" fill="#ffffff"/>',
      '<style>text{paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}</style>',
@@ -71,6 +72,15 @@ for room, items in FU["F1-3"].items():
 # walls
 for w in fl["walls"]:
     s.append(f'<rect x="{X(w[0]):.1f}" y="{Y(w[1]):.1f}" width="{(w[2]-w[0])*K:.1f}" height="{(w[3]-w[1])*K:.1f}" fill="#292524"/>')
+# structural columns (Agharkar RCC sheet, rev R1): 230-wide from first floor up
+for c in columns("F1-3"):
+    r = c["rect"]
+    s.append(f'<rect x="{X(r[0]):.1f}" y="{Y(r[1]):.1f}" width="{(r[2]-r[0])*K:.1f}" height="{(r[3]-r[1])*K:.1f}" fill="#b91c1c" stroke="#450a0a" stroke-width="1"/>')
+    cx, cy = (r[0] + r[2]) / 2, (r[1] + r[3]) / 2
+    lx = X(r[0]) - 4 if cx < 0.5 else X(r[2]) + 4      # outer columns labelled outside the building
+    anc = "end" if cx < 0.5 else "start"
+    if cx < 0.5 or cx > 7.5 or c["name"] in ("C10", "C13", "C16", "C7"):
+        s.append(f'<text x="{lx:.1f}" y="{Y(cy)+4:.1f}" font-size="10" font-weight="bold" text-anchor="{anc}" fill="#b91c1c">{c["name"]}</text>')
 # windows
 for wdw in fl["windows"]:
     y0 = 0.0 if wdw["wall"] == "rear" else 11.6
@@ -134,6 +144,7 @@ s.append(f'<text x="{X(4):.1f}" y="{Y(12.45):.1f}" font-size="14" text-anchor="m
 lg = Y(12.85)
 for i, t in enumerate(["Blue = furniture: Wakefit Orion queen / Centaur single beds, Tinker side tables, Gingham / Twill wardrobes, Sage study tables; AMATA sofa (Amazon).",
                        "Yellow = door swing; every door opens inwards. Light blue on walls = windows.",
+                       "Red = RCC columns from the structural drawing (Agharkar, rev R1, 02.11.2026), 9\" wide on this floor; they stand out of the 6\" walls.",
                        "Walls, doors and windows from the architect's AFTER O.C. drawing. Furniture positions are proposals."]):
     s.append(f'<text x="{MX}" y="{lg + i*18:.0f}" font-size="12" fill="#333">{t}</text>')
 s.append("</svg>")

@@ -7,4 +7,4 @@ Family brief: ROOM-2 and ROOM-3 have **two students** (2 Wakefit Centaur single 
 | ROOM-1 | Orion queen (long side on wall), Gingham wardrobe, Sage desk, **AMATA sofa fits** |
 | ROOM-2 | 2 Centaur singles, 2 Gingham wardrobes, 2 Sage desks |
 | ROOM-3 | 2 Centaur singles, 2 Twill wardrobes, 1 wall desk (0.90 m), shared - **2 Sage desks do not fit** |
-| ROOM-4 | Orion queen (long side on wall), Gingham wardrobe, Sage desk, **no room for the AMATA sofa** |
+| ROOM-4 | Orion queen (long side on wall), Twill wardrobe, Sage desk, **no room for the AMATA sofa** |

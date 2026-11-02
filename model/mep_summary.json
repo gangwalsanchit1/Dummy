@@ -1,8 +1,8 @@
 {
  "points": 528,
  "runs": 479,
- "clashes": 1,
- "warnings": 2,
+ "clashes": 4,
+ "warnings": 3,
  "totals": {
   "MB": 1,
   "MDB": 1,
@@ -53,17 +53,17 @@
  },
  "run_lengths_m": {
   "FEED": 48.8,
-  "SOIL": 66.6,
+  "SOIL": 65.8,
   "WASTE": 79.0,
   "UGD": 19.4,
   "SUP": 1.3,
   "RM": 28.5,
   "DT": 41.4,
-  "CW": 265.7,
+  "CW": 263.0,
   "RWP": 71.1,
   "VENT": 0.0,
-  "HW": 54.7,
-  "COND": 2688.8,
+  "HW": 53.9,
+  "COND": 2655.8,
   "ACP": 53.3
  },
  "connected_load_W": {
