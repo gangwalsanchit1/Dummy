@@ -1075,61 +1075,58 @@
    {
     "type": "orion_queen_bed",
     "rect": [
-     0.35,
-     3.718,
-     1.955,
-     5.95
+     0.229,
+     2.97,
+     2.461,
+     4.575
     ],
     "access": [
-     "E"
+     "N",
+     "S"
     ],
+    "head": "W",
     "zones": [
      [
-      1.955,
-      4.018,
-      2.555,
-      5.5
+      0.679,
+      2.37,
+      2.161,
+      2.97
+     ],
+     [
+      0.679,
+      4.575,
+      2.161,
+      5.175
      ]
-    ],
-    "head": "S"
+    ]
    },
    {
     "type": "tinker_side_table",
     "rect": [
-     1.955,
-     5.65,
-     2.385,
-     5.95
+     0.229,
+     2.54,
+     0.529,
+     2.97
     ],
     "access": []
    },
    {
-    "type": "sage_desk",
+    "type": "tinker_side_table",
     "rect": [
-     0.15,
-     0.449,
-     0.72,
-     1.449
+     0.229,
+     4.575,
+     0.529,
+     5.005
     ],
-    "access": [
-     "E"
-    ],
-    "zones": [
-     [
-      0.72,
-      0.449,
-      1.47,
-      1.449
-     ]
-    ]
+    "access": []
    },
    {
     "type": "flipper_sofa",
     "rect": [
      0.15,
-     1.78,
+     0.65,
      0.912,
-     2.948
+     1.818
     ],
     "access": [
      "E"
@@ -1137,19 +1134,19 @@
     "zones": [
      [
       0.912,
-      1.78,
+      0.65,
       1.362,
-      2.948
+      1.818
      ]
     ]
    },
    {
-    "type": "tv_42",
+    "type": "tv_32",
     "rect": [
-     2.97,
-     2.05,
-     3.05,
-     2.99
+     1.67,
+     0.869,
+     1.75,
+     1.599
     ],
     "access": [
      "W"
@@ -1157,22 +1154,42 @@
     "zones": []
    },
    {
-    "type": "twill_wardrobe",
+    "type": "cabrera_desk",
     "rect": [
-     2.574,
-     3.05,
-     3.05,
-     3.65
+     0.95,
+     0.15,
+     1.748,
+     0.6
     ],
     "access": [
-     "W"
+     "S"
     ],
     "zones": [
      [
-      1.974,
-      3.05,
-      2.574,
-      3.65
+      0.95,
+      0.6,
+      1.748,
+      1.35
+     ]
+    ]
+   },
+   {
+    "type": "gingham_wardrobe",
+    "rect": [
+     0.6,
+     5.474,
+     1.41,
+     5.95
+    ],
+    "access": [
+     "N"
+    ],
+    "zones": [
+     [
+      0.6,
+      4.874,
+      1.41,
+      5.474
      ]
     ]
    }
@@ -1275,7 +1292,11 @@
   ]
  },
  "name": "Plan B luxury: ROOM-1, 2 twin + TV; ROOM-3 luxury single + sofa + TV; ROOM-4 luxury single + TV; no wall or door changes",
- "subtitle": "Plan B luxury: shared 42\" TV in each twin room; Flipper sofa + 42\" TV in ROOM-3; 40\" TV facing the bed in ROOM-4.",
+ "subtitle": "Plan B luxury: shared 42\" TV in the twin rooms; ROOM-3 hotel layout (centred queen, sofa + TV nook, Gingham); 40\" TV facing the bed in ROOM-4.",
  "bed_side_gap": 0.15,
- "_beds": "Father 03.11.2026: no bed stuck in a corner; a gap on both long sides of every bed (audit: at least 6\" from any wall or column)."
+ "_beds": "Father 03.11.2026: no bed stuck in a corner; a gap on both long sides of every bed (audit: at least 6\" from any wall or column).",
+ "walk_override": {
+  "ROOM-3": 0.585
+ },
+ "_room3": "Father 03.11.2026: hotel layout (asked for ROOM-4, which is 2 ft too small; moved to ROOM-3 by family choice): queen in the middle with the headboard opposite the entry door and a Tinker each side; Flipper sofa in the window alcove facing a 32\" TV; Cabrera desk under the window beside the TV (no room for it under the TV); Gingham on the wall facing the bed. Walkway beside the bed 1'-11 1/4\" (approved exception to 2'-0\")."
 }

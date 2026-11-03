@@ -24,12 +24,14 @@ from units import ftin  # noqa: E402
 FU = json.loads((ROOT / "model/furniture.json").read_text())["F1-3"]
 OUT = "docs/layout-audit.md"
 BED_GAP = 0.0
+WALK_OVR = {}
 if len(sys.argv) > 1:      # audit a scenario file instead: python3 tools/check_layout.py model/scenarios/<name>.json
     SC = json.loads(Path(sys.argv[1]).read_text())
     F.TK["floors"]["F1-3"] = SC["TK"]
     F.AS["doors"]["F1-3"] = SC["doors"]
     FU = SC["layouts"]
     BED_GAP = SC.get("bed_side_gap", 0.0)
+    WALK_OVR = SC.get("walk_override", {})
     OUT = f"docs/{Path(sys.argv[1]).stem}-audit.md"
 DOORS = {"ROOM-1": ("F-D1", ["F-D1T"]), "ROOM-2": ("F-D2", ["F-D2T"]), "ROOM-3": ("F-D3", ["F-D3T"]), "ROOM-4": ("F-D4", ["F-D4T"])}
 FS = F.FS
@@ -189,7 +191,10 @@ def audit(name, items):
             cx = (w["span_x"][0] + w["span_x"][1]) / 2 - 0.225
             y0 = 0.15 if w["wall"] == "rear" else 11.6 - 0.45
             room.targets_doors.append({"id": "window " + w["id"], "hinge": [cx, y0], "quadrant": [1, 1], "width": 0.45})
-    F.PATH_R = WALK / 2
+    wk = WALK_OVR.get(name, WALK)
+    if wk < WALK:
+        notes.append(f"walkway {ftin(wk)} allowed here by the family (rule {ftin(WALK)})")
+    F.PATH_R = wk / 2
     ok, why = room.walkable([it["rect"] for it in items], [(it["type"], z) for it in items for z in it.get("zones", [])])
     if not ok:
         if "window" in why:

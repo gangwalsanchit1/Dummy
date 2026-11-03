@@ -21,7 +21,7 @@ Plans: `docs/plan-a-luxury-plan.png`, `docs/plan-b-luxury-plan.png`. Audits: `do
 |---|---|---|
 | ROOM-1 (2 students) | 42" TV on the wall above desk B, seen by both beds (7'-10⅝" and 10'-2⅝"). No sofa. | same |
 | ROOM-2 (2 students) | 42" TV, mirror of ROOM-1 (7'-10⅝" and 10'-4⅛"). No sofa. | same (7'-10⅝" and 10'-1¾") |
-| ROOM-3 | 2 students: 42" TV on the walkway wall, square to both beds (8'-6⅞" from each pillow). No sofa. | **Luxury single: Flipper sofa on the outer wall by the alcove, facing a 42" TV (8'-1¾" from the sofa).** Queen, Sage desk in the window nook, Twill. |
+| ROOM-3 | 2 students: 42" TV on the walkway wall, square to both beds (8'-6⅞" from each pillow). No sofa. | **Father's hotel layout: centred queen opposite the door, Tinker each side; Flipper sofa in the window nook facing a 32" TV; Cabrera desk under the window; Gingham facing the bed** (see below). |
 | ROOM-4 (1 student) | **Luxury single:** queen with its head on the stair wall; 40" TV on the rear wall beside the window, facing the bed (8'-1⅜" from the pillow). Sage desk and Twill on the study wall. No sofa. | same |
 
 ## Why there is no sofa in the other rooms
@@ -57,3 +57,21 @@ Every bed has only its head against a wall; both long sides are clear. The audit
 - **Why the gaps are about 8":** each desk sits between the two beds on the side wall, and the walkway to the toilet must stay 2'-0". The first 1'-5¾" beside each pillow is treated as the Tinker's spot, so the desks did not have to move.
 - **ROOM-4:** this replaces the earlier family rule for ROOM-4 (queen with one long side on the wall) in Plan B.
 - **Toilet distance:** the nearest bed is still 3'-0¾" from a toilet door (rule: 2'-11⅜").
+
+## Father's hotel layout, moved to ROOM-3 (03.11.2026)
+
+**Why not ROOM-4:** his wish list for ROOM-4 was:
+- the bed in the middle with its headboard opposite the door;
+- the sofa at the far end facing a TV, with the study table under the TV;
+- a bigger (Gingham) wardrobe in front of the bed.
+
+ROOM-4 (11'-2" × 9'-2") is about 2 ft too small for that. Every arrangement was checked: a queen with space on both sides, a Gingham and a study table do not fit together there even without the sofa. The family chose to move the layout to ROOM-3 (154 sq ft); ROOM-4 keeps its design.
+
+**ROOM-3 now (Plan B luxury)**
+- **Bed:** the Orion queen is in the middle of the room, with its headboard on the wall opposite the entry door and a Tinker on each side. Both long sides are clear, and it is 3'-0¼" from the toilet door.
+- **Lounge nook (the far end):** the Wakefit Flipper sofa is on one side of the window alcove, facing a 32" TV on the opposite wall, 3'-10⅜" away (the right size of TV for that distance).
+- **Study table:** a Cabrera under the window, right beside the TV.
+  - It cannot go directly under the TV: in the 5'-3" alcove its chair would hit the sofa.
+  - It is the Cabrera rather than the Sage, because the Sage's hutch would block the window.
+- **Wardrobe:** the Gingham (the bigger wardrobe, with mirror) is on the wall facing the bed.
+- **One exception, approved by the family:** the walkway beside the foot of the bed is 1'-11¼" (rule 2'-0").
