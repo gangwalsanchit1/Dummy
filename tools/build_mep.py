@@ -167,7 +167,7 @@ def rooms_F13(s):
         ("SB", 3.15, 4.08, 1.2, "+x", "latch side of F-D4 (passage)", "L/F"),
         ("LT", 3.60, 3.30, CEIL, "C", "passage", "L/F"), ("LT", 3.80, 2.50, CEIL, "C", "entry", "L/F"),
         ("FAN", 6.15, 1.55, CEIL, "C", "", "L/F"), ("LT", 5.25, 1.55, CEIL, "C", "", "L/F"),
-        ("ACI", 7.35, 0.15, 2.40, "+y", "solid wall right of window", "AC"), ("ACS", 6.80, 0.15, 2.35, "+y", "", "AC"),
+        ("ACI", 5.05, 0.15, 2.40, "+y", "left of the window, over the study area: does not blow at the bed's pillow end", "AC"), ("ACS", 5.60, 0.15, 2.35, "+y", "", "AC"),
     ]
     c["ROOM-4 TOILET"] = [
         ("TSW", 3.15, 2.30, 1.2, "+x", "entry band, beside the toilet door (study wall has wardrobe + desk)", "L/F"),
@@ -326,6 +326,32 @@ COLS = {pk: columns(pk) for pk in ("GF", "F1-3", "F4")}
 FWALLS = {pk: TK["floors"][pk]["walls"] + [c["rect"] for c in COLS[pk]] for pk in ("F1-3", "F4")}
 
 
+def wall_face(ax, c, face, a0, a1, ws):
+    """Wall (or column) face at c or up to 0.09 m behind it, covering a0..a1; None if there is none."""
+    sgn = 1 if face in ("+x", "+y") else -1
+    i, j = (0, 2) if ax == "x" else (1, 3)
+    best = None
+    for w in ws:
+        lo, hi = (w[1], w[3]) if ax == "x" else (w[0], w[2])
+        f = w[j] if sgn > 0 else w[i]
+        if lo <= a0 + 1e-6 and hi >= a1 - 1e-6 and -1e-6 <= (c - f) * sgn <= 0.09:
+            best = f if best is None or abs(f - c) < abs(best - c) else best
+    return best
+
+
+def wall_behind(ax, c, face, a0, a1, ws):
+    """The wall face a bed head sits against: c itself, or a face up to 0.09 m behind it (column gap)."""
+    sgn = 1 if face in ("+x", "+y") else -1
+    i, j = (0, 2) if ax == "x" else (1, 3)
+    best = None
+    for w in ws:
+        lo, hi = (w[1], w[3]) if ax == "x" else (w[0], w[2])
+        f = w[j] if sgn > 0 else w[i]
+        if lo < a1 and hi > a0 and 0 <= (c - f) * sgn <= 0.09:
+            best = f if best is None or abs(f - c) < abs(best - c) else best
+    return best if best is not None else c
+
+
 def touches(ax, c, a0, a1, ws):
     """Same rule as the furniture fit: wall or column faces back the whole edge (a column may leave a small gap)."""
     return touches_wall((ax, c, a0, a1), ws)
@@ -339,6 +365,27 @@ for s in ["F1", "F2", "F3", "F4"]:
             if it["type"].endswith("_bed"):
                 long_x = (r[2] - r[0]) > (r[3] - r[1])
                 ws = FWALLS[pk]
+                hd = it.get("head")
+                if hd:      # use the bed's recorded head direction (the bed may stand up to 3" off the wall beside a column)
+                    hax = "x" if hd in ("W", "E") else "y"
+                    face = {"W": "+x", "E": "-x", "N": "+y", "S": "-y"}[hd]
+                    c = {"W": r[0], "E": r[2], "N": r[1], "S": r[3]}[hd]
+                    for side in it["access"]:
+                        if hax == "x":
+                            pos = r[1] - 0.15 if side == "N" else r[3] + 0.15
+                            f = wall_face("x", c, face, pos - 0.05, pos + 0.05, ws)
+                            if f is None:          # no wall beside the bed: on the head wall above the mattress
+                                pos = r[1] + 0.12 if side == "N" else r[3] - 0.12
+                                f = wall_face("x", c, face, pos - 0.05, pos + 0.05, ws) or c
+                            LAYOUT[s][room].append(("BS", f, pos, 0.7, face, f"bedside ({side}) above bedside table, for lamp + phone", "S"))
+                        else:
+                            pos = r[0] - 0.15 if side == "W" else r[2] + 0.15
+                            f = wall_face("y", c, face, pos - 0.05, pos + 0.05, ws)
+                            if f is None:
+                                pos = r[0] + 0.12 if side == "W" else r[2] - 0.12
+                                f = wall_face("y", c, face, pos - 0.05, pos + 0.05, ws) or c
+                            LAYOUT[s][room].append(("BS", pos, f, 0.7, face, f"bedside ({side}) above bedside table, for lamp + phone", "S"))
+                    continue
                 head_x = touches("x", r[2], r[1], r[3], ws) or touches("x", r[0], r[1], r[3], ws)
                 head_y = touches("y", r[3], r[0], r[2], ws) or touches("y", r[1], r[0], r[2], ws)
                 if long_x and not head_x:          # long side against a wall: socket on that wall near the pillow end
@@ -349,6 +396,7 @@ for s in ["F1", "F2", "F3", "F4"]:
                     LAYOUT[s][room].append(("BS", wx, r[1] + 0.20, 0.7, face, "bedside (long wall, above mattress)", "S"))
                 elif long_x:
                     hx, face = (r[2], "-x") if touches("x", r[2], r[1], r[3], ws) else (r[0], "+x")
+                    hx = wall_behind("x", hx, face, r[1], r[3], ws)   # bed may stand up to 3" off the wall beside a column
                     for side in it["access"]:
                         y = r[1] - 0.15 if side == "N" else r[3] + 0.15
                         if not touches("x", hx, y - 0.05, y + 0.05, ws):          # no wall beside the bed: on head wall above mattress
@@ -356,6 +404,7 @@ for s in ["F1", "F2", "F3", "F4"]:
                         LAYOUT[s][room].append(("BS", hx, y, 0.7, face, f"bedside ({side}) above bedside table, for lamp + phone", "S"))
                 else:
                     hy, face = (r[3], "-y") if touches("y", r[3], r[0], r[2], ws) else (r[1], "+y")
+                    hy = wall_behind("y", hy, face, r[0], r[2], ws)
                     for side in it["access"]:
                         x = r[0] - 0.15 if side == "W" else r[2] + 0.15
                         if not touches("y", hy, x - 0.05, x + 0.05, ws):
@@ -541,6 +590,28 @@ SLEEVES.append(("GF", 4.90, 3.85, "Lift pit: sump/drain + pit light/socket condu
 for s, x, y, txt, cat in SLEEVES:
     z = FFL["F4"] + 0.35 if cat == "parapet" else (FFL["TERRACE"] + 0.05 if cat == "parapetT" else FFL.get(s, 0.0) - 0.075)
     P("SLV", s, cat, x, y, z - FFL.get(s, 0.0), "F", txt)
+
+# ===================================================================== AC indoor unit vs beds (student comfort)
+# A wall-mounted split unit throws its air across the room, away from its own wall. A bed under the unit is fine (usual hotel
+# arrangement); what is uncomfortable is a unit on the OPPOSITE wall blowing straight at a bed less than 2.5 m away.
+from units import ftin  # noqa: E402
+AC_WARN = []
+for s in ["F1", "F2", "F3"]:
+    pk = PLAN_OF[s]
+    for aci in [q for q in points if q["storey"] == s and q["kind"] == "ACI"]:
+        sgn = {"+y": 1, "-y": -1}.get(aci["face"])
+        if sgn is None:
+            continue
+        for it in FU[pk].get(aci["room"], []):
+            b = it["rect"]
+            if not it["type"].endswith("_bed") or not (b[0] < aci["x"] + 0.45 and aci["x"] - 0.45 < b[2]):
+                continue
+            near = (b[1] - aci["y"]) if sgn > 0 else (aci["y"] - b[3])
+            foot = {"N": "S", "S": "N", "E": "W", "W": "E"}.get(it.get("head"))
+            if foot == ("N" if sgn > 0 else "S"):
+                continue          # air reaches the foot of the bed; the pillow is at the far end
+            if 0.3 < near < 2.5:
+                AC_WARN.append(f"{s} {aci['room']}: AC indoor unit blows straight at a bed {ftin(near)} away")
 
 # ===================================================================== AC lines F1-F3: routed below the bathroom windows (family instruction)
 sys.path.insert(0, str(ROOT / "tools"))
@@ -728,7 +799,7 @@ def dist_to_walls(x, y, ws):
     return best
 
 
-rows, warns, nclash = [], [], 0
+rows, warns, nclash = [], list(AC_WARN), 0
 for p in points:
     s, pk = p["storey"], PLAN_OF.get(p["storey"], "GF")
     issues = []
@@ -912,6 +983,9 @@ md = ["# AC lines, floors 1-3: routed below the bathroom windows (generated by t
       "| Room | Bathroom window | Facade | Line length (F1) | Result |", "|---|---|---|---|---|"]
 for room, wid, face, xi, xd, xw, L, iss in ac_rows:
     md.append(f"| {room} | {wid} ({ftin(win13[wid]['width'])} wide) | {face} | {ftin(L)} | {'clear of windows and pipes' if not iss else '**CLASH:** ' + '; '.join(iss)} |")
+md += ["", "## Indoor units and beds", "",
+       "A split unit throws its air across the room, away from its own wall: a bed under the unit is the usual arrangement. "
+       "Checked instead: no unit on the opposite wall blowing straight at a bed's pillow end or side less than 8'-2\" away."] + ([f"- **{w}**" for w in AC_WARN] or ["- PASS: no unit blows straight at a bed."])
 md += ["", "Columns are now checked against the structural sheet (Agharkar, rev R1 02.11.2026): no wall sleeve passes through a column unless listed above.",
        "", "## Cannot be checked",
        "- **Beams:** the structural sheet shows plinth beams only; floor beams are not drawn yet. "

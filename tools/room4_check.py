@@ -50,7 +50,7 @@ col_end = max([c["rect"][3] for c in cw], default=WALL_Y0)
 free_len = WALL_Y1 - col_end
 if cw:
     rows.append(f"| Column {', '.join(c['name'] for c in cw)} on the study wall (structural drawing) | - | stands {ftin(cw[0]['rect'][2] - WALL_X)} out, first {ftin(col_end - WALL_Y0)} of the wall | note | usable study wall {ftin(free_len)} of {ftin(wall_len)} |")
-lab = {"orion_queen_bed": "Orion queen bed", "tinker_side_table": "Tinker", "gingham_wardrobe": "Gingham wardrobe", "twill_wardrobe": "Twill wardrobe", "notiq_desk": "Notiq study table", "sage_desk": "Sage study table", "compact_desk": "Compact study table"}
+lab = {"orion_queen_bed": "Orion queen bed", "tinker_side_table": "Tinker", "gingham_wardrobe": "Gingham wardrobe", "twill_wardrobe": "Twill wardrobe", "notiq_desk": "Notiq study table", "sage_desk": "Sage study table", "compact_desk": "Compact study table", "cabrera_desk": "Cabrera study table"}
 Wu = FS[ward["type"]][0]
 row(f"Study wall: {lab[ward['type']]} + {lab[desk['type']]} (standard kit)", Wu + Nw, free_len, Wu + Nw <= free_len + 0.002, "used")
 sofa_need = FS["amata_sofa"][1] + AS["clearances"]["sofa_legroom"]

@@ -9,7 +9,12 @@ Route used for each room (same on F1, F2 and F3): from the indoor unit straight 
 | ROOM-1 | F-W7 (1'-11 5/8" wide) | front | 12'-2 5/8" | **CLASH:** outdoor unit only 0'-1 1/2" from waste stack W2 |
 | ROOM-2 | F-W6 (1'-11 5/8" wide) | front | 12'-2 5/8" | **CLASH:** line crosses RWP-3 (x 2.40); outdoor unit only 0'-1 1/2" from down-take DT-F |
 | ROOM-3 | F-W2 (1'-11 5/8" wide) | rear | 10'-10 7/8" | **CLASH:** outdoor unit only 0'-1 1/2" from down-take DT-R |
-| ROOM-4 | F-W3 (1'-11 5/8" wide) | rear | 17'-7 5/8" | **CLASH:** outdoor unit only 0'-1 1/2" from waste stack W1 |
+| ROOM-4 | F-W3 (1'-11 5/8" wide) | rear | 10'-1 1/8" | **CLASH:** outdoor unit only 0'-1 1/2" from waste stack W1 |
+
+## Indoor units and beds
+
+A split unit throws its air across the room, away from its own wall: a bed under the unit is the usual arrangement. Checked instead: no unit on the opposite wall blowing straight at a bed's pillow end or side less than 8'-2" away.
+- PASS: no unit blows straight at a bed.
 
 Columns are now checked against the structural sheet (Agharkar, rev R1 02.11.2026): no wall sleeve passes through a column unless listed above.
 

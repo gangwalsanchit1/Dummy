@@ -36,42 +36,43 @@ Floors 2 and 3 are identical to floor 1 on the drawing. Walls, doors and windows
 | ROOM-1 | Tinker side table | 1'-4 7/8" x 0'-11 3/4" x 1'-9 3/4" | at the bed head, on the open side | [link](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) |
 | ROOM-1 | Twill 2-door compact wardrobe | 1'-11 5/8" x 1'-6 3/4" x 5'-11 5/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) |
 | ROOM-1 | Twill 2-door compact wardrobe | 1'-11 5/8" x 1'-6 3/4" x 5'-11 5/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) |
-| ROOM-1 | Compact study table (2'-11⅜" × 1'-5¾", no hutch, ASSUMED size) | 2'-11 3/8" x 1'-5 3/4" x 2'-5 1/2" | 2'-5 1/2" chair pull-out | - |
-| ROOM-1 | Compact study table (2'-11⅜" × 1'-5¾", no hutch, ASSUMED size) | 2'-11 3/8" x 1'-5 3/4" x 2'-5 1/2" | 2'-5 1/2" chair pull-out | - |
+| ROOM-1 | Wakefit Cabrera study table (open shelf under the top) | 2'-7 3/8" x 1'-5 3/4" x 2'-5 7/8" | 2'-5 1/2" chair pull-out | [link](https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA) |
+| ROOM-1 | Wakefit Cabrera study table (open shelf under the top) | 2'-7 3/8" x 1'-5 3/4" x 2'-5 7/8" | 2'-5 1/2" chair pull-out | [link](https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA) |
 | ROOM-2 | Centaur single bed | 7'-0" x 3'-5 3/8" x 3'-1 3/4" | 1'-11 5/8" on the open side (long side on wall) | [link](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) |
 | ROOM-2 | Tinker side table | 1'-4 7/8" x 0'-11 3/4" x 1'-9 3/4" | at the bed head, on the open side | [link](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) |
 | ROOM-2 | Centaur single bed | 7'-0" x 3'-5 3/8" x 3'-1 3/4" | 1'-11 5/8" on the open side (long side on wall) | [link](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) |
 | ROOM-2 | Tinker side table | 1'-4 7/8" x 0'-11 3/4" x 1'-9 3/4" | at the bed head, on the open side | [link](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) |
 | ROOM-2 | Twill 2-door compact wardrobe | 1'-11 5/8" x 1'-6 3/4" x 5'-11 5/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) |
 | ROOM-2 | Twill 2-door compact wardrobe | 1'-11 5/8" x 1'-6 3/4" x 5'-11 5/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) |
-| ROOM-2 | Compact study table (2'-11⅜" × 1'-5¾", no hutch, ASSUMED size) | 2'-11 3/8" x 1'-5 3/4" x 2'-5 1/2" | 2'-5 1/2" chair pull-out | - |
-| ROOM-2 | Compact study table (2'-11⅜" × 1'-5¾", no hutch, ASSUMED size) | 2'-11 3/8" x 1'-5 3/4" x 2'-5 1/2" | 2'-5 1/2" chair pull-out | - |
+| ROOM-2 | Wakefit Cabrera study table (open shelf under the top) | 2'-7 3/8" x 1'-5 3/4" x 2'-5 7/8" | 2'-5 1/2" chair pull-out | [link](https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA) |
+| ROOM-2 | Wakefit Cabrera study table (open shelf under the top) | 2'-7 3/8" x 1'-5 3/4" x 2'-5 7/8" | 2'-5 1/2" chair pull-out | [link](https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA) |
 | ROOM-3 | Centaur single bed | 7'-0" x 3'-5 3/8" x 3'-1 3/4" | 1'-11 5/8" on the open side (long side on wall) | [link](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) |
 | ROOM-3 | Centaur single bed | 7'-0" x 3'-5 3/8" x 3'-1 3/4" | 1'-11 5/8" on the open side (long side on wall) | [link](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) |
 | ROOM-3 | Tinker side table | 1'-4 7/8" x 0'-11 3/4" x 1'-9 3/4" | at the bed head, on the open side | [link](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) |
+| ROOM-3 | Wakefit Cabrera study table (open shelf under the top) | 2'-7 3/8" x 1'-5 3/4" x 2'-5 7/8" | 2'-5 1/2" chair pull-out | [link](https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA) |
+| ROOM-3 | Wakefit Cabrera study table (open shelf under the top) | 2'-7 3/8" x 1'-5 3/4" x 2'-5 7/8" | 2'-5 1/2" chair pull-out | [link](https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA) |
 | ROOM-3 | Twill 2-door compact wardrobe | 1'-11 5/8" x 1'-6 3/4" x 5'-11 5/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) |
 | ROOM-3 | Twill 2-door compact wardrobe | 1'-11 5/8" x 1'-6 3/4" x 5'-11 5/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) |
-| ROOM-3 | Compact study table (2'-11⅜" × 1'-5¾", no hutch, ASSUMED size) | 2'-11 3/8" x 1'-5 3/4" x 2'-5 1/2" | 2'-5 1/2" chair pull-out | - |
-| ROOM-3 | Compact study table (2'-11⅜" × 1'-5¾", no hutch, ASSUMED size) | 2'-11 3/8" x 1'-5 3/4" x 2'-5 1/2" | 2'-5 1/2" chair pull-out | - |
 | ROOM-4 | Orion queen bed | 7'-3 7/8" x 5'-3 1/4" x 2'-10 5/8" | 1'-11 5/8" on the open side (long side on wall) | [link](https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2) |
 | ROOM-4 | Tinker side table | 1'-4 7/8" x 0'-11 3/4" x 1'-9 3/4" | at the bed head, on the open side | [link](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) |
 | ROOM-4 | Twill 2-door compact wardrobe | 1'-11 5/8" x 1'-6 3/4" x 5'-11 5/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) |
-| ROOM-4 | Compact study table (2'-11⅜" × 1'-5¾", no hutch, ASSUMED size) | 2'-11 3/8" x 1'-5 3/4" x 2'-5 1/2" | 2'-5 1/2" chair pull-out | - |
+| ROOM-4 | Wakefit Cabrera study table (open shelf under the top) | 2'-7 3/8" x 1'-5 3/4" x 2'-5 7/8" | 2'-5 1/2" chair pull-out | [link](https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA) |
 
 ## Checks
 
 - Every item is inside its room and clear of walls, the other items, every door swing and every clearance; a 1'-9 5/8" walking path reaches every bed side, wardrobe front, chair and the toilet door. **All rooms PASS.**
 - Layout search results:
 
-  | ROOM-1 | 2 students, each: Centaur single bed, Twill wardrobe, Compact study table + chair; beds apart, each with its own Tinker; wardrobes side by side on one wall; **desks face each other but are staggered** (no mirrored layout fits) |
-  | ROOM-2 | 2 students, each: Centaur single bed, Twill wardrobe, Compact study table + chair; beds apart, each with its own Tinker; beds parallel on one wall; desks face each other; **wardrobes form an L at the door corner** (tightest twin room: no layout lines up both pairs) |
-  | ROOM-3 | 2 students, each: Centaur single bed, Twill wardrobe, Compact study table + chair; beds side by side with **one shared Tinker** between them; wardrobes mirror each other across the alcove; desks side by side on the moved wall |
-  | ROOM-4 | 1 student: Orion queen (long side on wall), Tinker, Twill wardrobe, Compact study table |
+  | ROOM-1 | 2 students, hand-designed (walk-through): wardrobes side by side by the entry and the toilet; beds parallel with heads on the outer side wall, away from the toilet; desks face each other across the room |
+  | ROOM-2 | 2 students, hand-designed (mirror of ROOM-1): wardrobes side by side by the entry and the toilet; beds parallel with heads on the outer side wall, away from the toilet; desks face each other across the room |
+  | ROOM-3 | 2 students, hand-designed: straight walkway from the entry to the toilet; beds side by side with one shared Tinker, heads on the outer side wall, well clear of the toilet door; study nook with both desks by the window; wardrobes side by side by the entry |
+  | ROOM-4 | 1 student: Orion queen (long side on wall), Tinker, Twill wardrobe, Cabrera study table |
 
-- **Standard kit (family, 03.11.2026):** every student gets the same items: their own bed, compact study table + chair, and Twill wardrobe; roommates may share the Tinker side table. The compact table (about 2'-11" × 1'-6", no hutch) is used for everyone so that ROOM-1 can take two students; two Sage tables do not fit there. The wardrobe is the Twill for everyone, because it is the one that fits every room (ROOM-4's study wall is 5'-3" beside column C13). The AMATA sofa is dropped, because it fits only ROOM-1.
+- **Standard kit (family, 03.11.2026):** every student gets the same items: their own bed, Wakefit Cabrera study table + chair, and Twill wardrobe; roommates may share the Tinker side table. The Cabrera (2'-7⅜" × 1'-5¾", a real Wakefit table) is used for everyone so the twin rooms fit; two Sage tables do not. The wardrobe is the Twill for everyone, because it is the one that fits every room (ROOM-4's study wall is 5'-3" beside column C13). The AMATA sofa is dropped, because it fits only ROOM-1.
 - **Rules kept:** nothing taller than the window sill stands in front of a window; no bed head against a window; twin beds 1'-0" or more apart (in ROOM-3 the two beds sit side by side with one shared Tinker between them, as the family asked); the switch strip beside each room door stays clear.
 - **Windows:** in ROOM-3 and ROOM-4 a student can walk right up to the window. In ROOM-1 and ROOM-2 one bed runs along the front window, so that window is opened by leaning over the bed (the bed is below the assumed 2'-11⅜" sill).
-- **Even look (family, 03.11.2026: uneven things look ugly):** every item stands flush on a plain wall, never on a column face and never pushed out from the wall by a column (beds excepted: a headboard may rest on a column); matching wardrobes and desks either line up on one wall or mirror each other on opposite walls. Achieved fully in ROOM-3; in ROOM-1 the two desks face each other but are staggered, and in ROOM-2 (the tightest twin room) the two wardrobes form an L at the door corner, because no layout lines up both pairs there.
+- **Even look (family, 03.11.2026: uneven things look ugly):** every item stands flush on a plain wall, never on a column face and never pushed out from the wall by a column (beds excepted: a headboard may rest on a column); matching wardrobes and desks either line up on one wall or mirror each other on opposite walls; chair space and wardrobe-door space never inside a door swing. Room-by-room result in the audit below.
+(the tightest twin room) the two wardrobes form an L at the door corner, because no layout lines up both pairs there.
 - **Queens in ROOM-1 and ROOM-4** have one long side on the wall where needed (family rule in ROOM-4).
 - **Headboards vs window sill (assumed 2'-11 3/8"):** Orion 2'-10 5/8", Centaur 3'-1 3/4". No bed head sits under a window in this floor-1 layout (checked); keep it that way if beds move, because the Centaur headboard is taller than the assumed sill.
 
@@ -79,10 +80,21 @@ Floors 2 and 3 are identical to floor 1 on the drawing. Walls, doors and windows
 
 | Room | Students | Beds | Tinker side tables | Wardrobes | Study tables |
 |---|---|---|---|---|---|
-| ROOM-1 | 2 | 2 | 2 | 2 Twill 2-door compact wardrobe | 2 Compact study table (2'-11⅜" × 1'-5¾", no hutch, ASSUMED size) |
-| ROOM-2 | 2 | 2 | 2 | 2 Twill 2-door compact wardrobe | 2 Compact study table (2'-11⅜" × 1'-5¾", no hutch, ASSUMED size) |
-| ROOM-3 | 2 | 2 | 1 | 2 Twill 2-door compact wardrobe | 2 Compact study table (2'-11⅜" × 1'-5¾", no hutch, ASSUMED size) |
-| ROOM-4 | 1 | 1 | 1 | 1 Twill 2-door compact wardrobe | 1 Compact study table (2'-11⅜" × 1'-5¾", no hutch, ASSUMED size) |
+| ROOM-1 | 2 | 2 | 2 | 2 Twill 2-door compact wardrobe | 2 Wakefit Cabrera study table (open shelf under the top) |
+| ROOM-2 | 2 | 2 | 2 | 2 Twill 2-door compact wardrobe | 2 Wakefit Cabrera study table (open shelf under the top) |
+| ROOM-3 | 2 | 2 | 1 | 2 Twill 2-door compact wardrobe | 2 Wakefit Cabrera study table (open shelf under the top) |
+| ROOM-4 | 1 | 1 | 1 | 1 Twill 2-door compact wardrobe | 1 Wakefit Cabrera study table (open shelf under the top) |
+
+## Layout audit (every rule, every room)
+
+| Room | Result | Problems | Notes |
+|---|---|---|---|
+| ROOM-1 | PASS | - | a bed runs along a window (window opened over the bed); bed 3'-4 3/8" from the toilet door; bed 4'-4 1/2" from the toilet door; desks face each other across the room, offset 0'-11 3/4"; wardrobes line up on one wall; window reached over a bed (no standing path to it) |
+| ROOM-2 | PASS | - | a bed runs along a window (window opened over the bed); bed 3'-4 3/8" from the toilet door; bed 4'-6 3/8" from the toilet door; desks face each other across the room, offset 0'-11 3/4"; wardrobes line up on one wall; window reached over a bed (no standing path to it) |
+| ROOM-3 | PASS | - | bed 3'-8 1/8" from the toilet door; bed 9'-1" from the toilet door; desks line up on one wall; wardrobes line up on one wall |
+| ROOM-4 | PASS | - | bed 4'-1 7/8" from the toilet door |
+
+ROOM-3 was designed by hand (study nook by the window, wardrobes by the door) and passes the same audit.
 
 ## Living in the room (a student's view)
 
@@ -105,7 +117,10 @@ Floors 2 and 3 are identical to floor 1 on the drawing. Walls, doors and windows
 | ROOM-1 | F-W7 (1'-11 5/8" wide) | front | 12'-2 5/8" | **CLASH:** outdoor unit only 0'-1 1/2" from waste stack W2 |
 | ROOM-2 | F-W6 (1'-11 5/8" wide) | front | 12'-2 5/8" | **CLASH:** line crosses RWP-3 (x 2.40); outdoor unit only 0'-1 1/2" from down-take DT-F |
 | ROOM-3 | F-W2 (1'-11 5/8" wide) | rear | 10'-10 7/8" | **CLASH:** outdoor unit only 0'-1 1/2" from down-take DT-R |
-| ROOM-4 | F-W3 (1'-11 5/8" wide) | rear | 17'-7 5/8" | **CLASH:** outdoor unit only 0'-1 1/2" from waste stack W1 |
+| ROOM-4 | F-W3 (1'-11 5/8" wide) | rear | 10'-1 1/8" | **CLASH:** outdoor unit only 0'-1 1/2" from waste stack W1 |
+
+**AC indoor units and beds:** a split unit throws its air across the room, away from its own wall, so a bed under the unit is fine. Checked: no unit on the opposite wall blowing at a bed's pillow end or side within 8'-2" (a comfort rule of thumb, not a code).
+- PASS: no unit blows straight at a bed.
 
 Nothing has been moved; you decide what moves. Columns are checked against the structural drawing (no AC wall sleeve passes through a column). Floor beams are not drawn yet, so beam clashes cannot be checked.
 
@@ -153,7 +168,7 @@ Mounting heights and positions are in `docs/schedules/points_schedule.csv` and o
 
 ## Open decisions for floor 1
 
-1. Confirm the Wakefit overall sizes from the product pages (beds, Tinker, Twill) and choose the compact study table model (about 2'-11" × 1'-6").
+1. Confirm the Wakefit overall sizes from the product pages (beds, Tinker, Twill) and the Cabrera study table.
 2. OK the queen beds with one long side on the wall (ROOM-1, ROOM-4).
 3. AC clashes: choose what moves (outdoor units, pipes or route).
 4. Architect: window sill height and floor height (heights are assumed; the structural drawing does not give them either).

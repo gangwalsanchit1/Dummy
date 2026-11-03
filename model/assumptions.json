@@ -109,6 +109,11 @@
    0.9,
    0.45,
    0.75
+  ],
+  "cabrera_desk": [
+   0.798,
+   0.45,
+   0.759
   ]
  },
  "clearances": {
@@ -444,12 +449,19 @@
    "size_cm": "190 L x 96 D x 88 H (sofa); 189.2 x 121.9 x 43.2 H (bed mode)",
    "source": "family screenshot of the Amazon listing",
    "status": "from listing (family screenshot)"
+  },
+  "cabrera_desk": {
+   "product": "Wakefit Cabrera Study Table (engineered wood, open shelf under the top)",
+   "link": "https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA",
+   "size_cm": "79.8 W x 45 D x 75.9 H (Amazon.in item dimensions); 80 x 45 x 76 on other listings",
+   "source": "Amazon.in B0BWRFNMCD and Flipkart listings (wakefit.co blocks automated reading); confirm on the product page before ordering",
+   "status": "real Wakefit product; size from retailer listings"
   }
  },
  "standard_kit": {
   "_note": "Family 03.11.2026: standardise - every student gets the same items; 2 students = 2 of everything. Twill is the wardrobe that fits every room (ROOM-4 study wall is 5'-3\" beside column C13). Sofa dropped: it fits only ROOM-1.",
   "wardrobe": "twill_wardrobe",
-  "desk": "compact_desk",
+  "desk": "cabrera_desk",
   "side_table": "tinker_side_table",
   "twin_bed": "centaur_single_bed",
   "single_bed": "orion_queen_bed",
@@ -461,6 +473,10 @@
    "compact_desk": {
     "name": "Compact study table",
     "note": "Family 03.11.2026: one compact study table for every student (fully standard) so ROOM-1 can take 2 students. Size 2'-11 3/8\" x 1'-5 3/4\" x 2'-5 1/2\" high, no hutch, ASSUMED: pick a Wakefit table of about this size and re-check."
+   },
+   "cabrera_desk": {
+    "name": "Cabrera study table",
+    "note": "Family 03.11.2026: real Wakefit products only. Cabrera 2'-7 3/8\" x 1'-5 3/4\" x 2'-5 7/8\", replaces the assumed compact table."
    }
   },
   "twin_rooms": [

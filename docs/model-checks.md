@@ -35,10 +35,10 @@ Rules: fixed furniture inside the room, clear of walls, other furniture, every c
 
 | Plan | Room | Furniture | Checks | Result |
 |---|---|---|---|---|
-| F1-3 | ROOM-1 | centaur_single_bed, tinker_side_table, centaur_single_bed, tinker_side_table, twill_wardrobe, twill_wardrobe, compact_desk, compact_desk | 14 checks | PASS |
-| F1-3 | ROOM-2 | centaur_single_bed, tinker_side_table, centaur_single_bed, tinker_side_table, twill_wardrobe, twill_wardrobe, compact_desk, compact_desk | 14 checks | PASS |
-| F1-3 | ROOM-3 | centaur_single_bed, centaur_single_bed, tinker_side_table, twill_wardrobe, twill_wardrobe, compact_desk, compact_desk | 13 checks | PASS |
-| F1-3 | ROOM-4 | orion_queen_bed, tinker_side_table, twill_wardrobe, compact_desk | 7 checks | PASS |
+| F1-3 | ROOM-1 | centaur_single_bed, tinker_side_table, centaur_single_bed, tinker_side_table, twill_wardrobe, twill_wardrobe, cabrera_desk, cabrera_desk | 14 checks | PASS |
+| F1-3 | ROOM-2 | centaur_single_bed, tinker_side_table, centaur_single_bed, tinker_side_table, twill_wardrobe, twill_wardrobe, cabrera_desk, cabrera_desk | 14 checks | PASS |
+| F1-3 | ROOM-3 | centaur_single_bed, centaur_single_bed, tinker_side_table, cabrera_desk, cabrera_desk, twill_wardrobe, twill_wardrobe | 13 checks | PASS |
+| F1-3 | ROOM-4 | orion_queen_bed, tinker_side_table, twill_wardrobe, cabrera_desk | 7 checks | PASS |
 | F4 | ROOM-1 | orion_queen_bed, tinker_side_table, gingham_wardrobe, notiq_desk | 7 checks | PASS |
 | F4 | ROOM-2 | orion_queen_bed, tinker_side_table, gingham_wardrobe, notiq_desk | 7 checks | PASS |
 | F4 | ROOM-3 (suite) | orion_queen_bed, tinker_side_table, gingham_wardrobe, notiq_desk | 8 checks | PASS |

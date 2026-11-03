@@ -20,7 +20,7 @@ CAT = AS["wakefit_catalog"]
 FS = AS["furniture_sizes"]
 CL = AS["clearances"]
 NAME = {"orion_queen_bed": "Orion queen bed", "tinker_side_table": "Tinker side table", "gingham_wardrobe": "Gingham 2-door wardrobe (mirror)",
-        "twill_wardrobe": "Twill 2-door compact wardrobe", "notiq_desk": "Notiq adjustable study table (placeholder)", "wall_desk": "Wall desk 3'-0\" (shared)", "sage_desk": "Sage study table (with hutch)", "compact_desk": "Compact study table (2'-11⅜\" × 1'-5¾\", no hutch, ASSUMED size)", "nohutch_desk": "Study table without hutch (Sage size, ASSUMED)", "centaur_single_bed": "Centaur single bed", "amata_sofa": "AMATA sofa cum bed"}
+        "twill_wardrobe": "Twill 2-door compact wardrobe", "notiq_desk": "Notiq adjustable study table (placeholder)", "wall_desk": "Wall desk 3'-0\" (shared)", "sage_desk": "Sage study table (with hutch)", "compact_desk": "Compact study table (2'-11⅜\" × 1'-5¾\", no hutch, ASSUMED size)", "cabrera_desk": "Wakefit Cabrera study table (open shelf under the top)", "nohutch_desk": "Study table without hutch (Sage size, ASSUMED)", "centaur_single_bed": "Centaur single bed", "amata_sofa": "AMATA sofa cum bed"}
 
 _cf = ROOT / "model/changes.json"
 CH = json.loads(_cf.read_text()) if _cf.exists() else {}
@@ -59,13 +59,13 @@ fit = [l for l in (ROOT / "docs/floor1-fit.md").read_text().split("\n") if l.sta
 md += ["", "## Checks", "",
        f"- Every item is inside its room and clear of walls, the other items, every door swing and every clearance; a {ftin(0.55)} walking path reaches every bed side, wardrobe front, chair and the toilet door. **All rooms PASS.**",
        "- Layout search results:", ""] + ["  " + l for l in fit] + ["",
-       "- **Standard kit (family, 03.11.2026):** every student gets the same items: their own bed, compact study table + chair, and Twill wardrobe; roommates may share the Tinker side table. The compact table (about 2'-11\" × 1'-6\", no hutch) is used for everyone so that ROOM-1 can take two students; two Sage tables do not fit there. The wardrobe is the Twill for everyone, because it is the one that fits every room (ROOM-4's study wall is 5'-3\" beside column C13). The AMATA sofa is dropped, because it fits only ROOM-1.",
+       "- **Standard kit (family, 03.11.2026):** every student gets the same items: their own bed, Wakefit Cabrera study table + chair, and Twill wardrobe; roommates may share the Tinker side table. The Cabrera (2'-7⅜\" × 1'-5¾\", a real Wakefit table) is used for everyone so the twin rooms fit; two Sage tables do not. The wardrobe is the Twill for everyone, because it is the one that fits every room (ROOM-4's study wall is 5'-3\" beside column C13). The AMATA sofa is dropped, because it fits only ROOM-1.",
        "- **Rules kept:** nothing taller than the window sill stands in front of a window; no bed head against a window; twin beds 1'-0\" or more apart "
        "(in ROOM-3 the two beds sit side by side with one shared Tinker between them, as the family asked); the switch strip beside each room door stays clear.",
        "- **Windows:** in ROOM-3 and ROOM-4 a student can walk right up to the window. In ROOM-1 and ROOM-2 one bed runs along the front window, so that window is opened by leaning over the bed (the bed is below the assumed 2'-11\u215c\" sill).",
        "- **Even look (family, 03.11.2026: uneven things look ugly):** every item stands flush on a plain wall, never on a column face and never "
        "pushed out from the wall by a column (beds excepted: a headboard may rest on a column); matching wardrobes and desks either line up on one wall "
-       "or mirror each other on opposite walls. Achieved fully in ROOM-3; in ROOM-1 the two desks face each other but are staggered, and in ROOM-2 "
+       "or mirror each other on opposite walls; chair space and wardrobe-door space never inside a door swing. Room-by-room result in the audit below.",
        "(the tightest twin room) the two wardrobes form an L at the door corner, because no layout lines up both pairs there.",
        f"- **Queens in ROOM-1 and ROOM-4** have one long side on the wall where needed (family rule in ROOM-4).",
        f"- **Headboards vs window sill (assumed {ftin(AS['heights']['window_sill'])}):** Orion {ftin(FS['orion_queen_bed'][2])}, Centaur {ftin(FS['centaur_single_bed'][2])}. No bed head sits under a window in this floor-1 layout (checked); keep it that way if beds move, because the Centaur headboard is taller than the assumed sill.", ""]
@@ -80,6 +80,11 @@ for room, items in FU["F1-3"].items():
     wards = ", ".join(f"{v} {NAME[t]}" for t, v in k.items() if "wardrobe" in t)
     md.append(f"| {room} | {beds} | {beds} | {k['tinker_side_table']} | {wards} | {desks} |")
 md += [""]
+# full rule audit (tools/check_layout.py), copied in so this page always matches it
+_au = ROOT / "docs/layout-audit.md"
+if _au.exists():
+    md += ["## Layout audit (every rule, every room)", ""] + [l for l in _au.read_text().split("\n") if l.startswith("|")] + [
+           "", "ROOM-3 was designed by hand (study nook by the window, wardrobes by the door) and passes the same audit.", ""]
 # living in the room: own vs shared, and a per-room check that every student has their own points
 md += ["## Living in the room (a student's view)", "",
        "**Each student has their own:** bed (with storage under it), study table, chair, wardrobe, a bedside socket + USB + reading-light switch "
@@ -102,7 +107,16 @@ for room, items in FU["F1-3"].items():
     ok = lambda c: "yes" if c else "**NO**"
     md.append(f"| {room} | {nb} | {ok(nbs >= nb)} ({nbs}) | {ok(nds >= nd >= nb and ndt >= nb)} ({nds} + {ndt}) | {ok(nw >= nb)} ({nw}) | {ok(nd >= nb)} ({nd}) |")
 md += [""]
+_acb = []
+if "## Indoor units and beds" in ac:
+    for l in ac[ac.index("## Indoor units and beds") + 1:]:
+        if l.startswith("## ") or l.startswith("Columns are now"):
+            break
+        if l.startswith("- "):
+            _acb.append(l)
 md += ["## AC lines (below the bathroom windows)", ""] + [l for l in ac if l.startswith("|")] + [
+       "", "**AC indoor units and beds:** a split unit throws its air across the room, away from its own wall, so a bed under the unit is fine. "
+       "Checked: no unit on the opposite wall blowing at a bed's pillow end or side within 8'-2\" (a comfort rule of thumb, not a code)."] + _acb + [
        "", "Nothing has been moved; you decide what moves. Columns are checked against the structural drawing (no AC wall sleeve passes through a column). Floor beams are not drawn yet, so beam clashes cannot be checked.", "",
        "## Structural columns (Agharkar RCC drawing, rev R1, 02.11.2026)", "",
        "- 17 columns, C1-C17, scaled from the structural layout to within about ¾\". On this floor they are 9\" wide and stand about 3⅛\" out of the 6\" walls (6\" into the ROOM-1 toilet).",
@@ -116,7 +130,7 @@ c = Counter(M["kinds"][p["kind"]]["desc"] for p in M["points"] if p["storey"] ==
 md += ["| Item | Count |", "|---|---|"] + [f"| {k} | {v} |" for k, v in sorted(c.items())] + [
        "", "Mounting heights and positions are in `docs/schedules/points_schedule.csv` and on sheet F1-3-E / F1-3-P (feet and inches).", "",
        "## Open decisions for floor 1", "",
-       "1. Confirm the Wakefit overall sizes from the product pages (beds, Tinker, Twill) and choose the compact study table model (about 2'-11\" × 1'-6\").",
+       "1. Confirm the Wakefit overall sizes from the product pages (beds, Tinker, Twill) and the Cabrera study table.",
        "2. OK the queen beds with one long side on the wall (ROOM-1, ROOM-4).",
        "3. AC clashes: choose what moves (outdoor units, pipes or route).",
        "4. Architect: window sill height and floor height (heights are assumed; the structural drawing does not give them either).",

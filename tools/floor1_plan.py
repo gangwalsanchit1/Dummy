@@ -49,13 +49,13 @@ K = 105.0
 MX, MY = 70, 125
 X = lambda x: MX + x * K
 Y = lambda y: MY + y * K
-W, H = int(MX * 2 + 8.0 * K + 40), int(MY + 11.75 * K + 250)
+W, H = int(MX * 2 + 8.0 * K + 40), int(MY + 11.75 * K + 290)
 s = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" font-family="Arial, Helvetica, sans-serif">',
      '<rect width="100%" height="100%" fill="#ffffff"/>',
      '<style>text{paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}</style>',
      '<defs><marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#111"/></marker></defs>']
 s.append(f'<text x="{MX}" y="34" font-size="22" font-weight="bold" fill="{"#c2410c" if VAR else "#111"}">Bella Vita 2 · Floor 1 (floors 2 and 3 identical){" · PROPOSAL" if VAR else ""}</text>')
-s.append(f'<text x="{MX}" y="58" font-size="13" fill="#444">Every student: own bed, compact study table + chair, Twill wardrobe, bedside socket. Twin rooms: A and B; roommates may share the Tinker. Feet and inches.</text>')
+s.append(f'<text x="{MX}" y="58" font-size="13" fill="#444">Every student: own bed, Wakefit Cabrera study table + chair, Twill wardrobe, bedside socket. Twin rooms: students A and B. Feet and inches.</text>')
 # room floors
 for sp in fl["spaces"]:
     col = "#eef2ff" if sp["name"].startswith("ROOM-") and "TOILET" not in sp["name"] else "#ecfeff" if "TOILET" in sp["name"] else "#f5f5f4"
@@ -67,8 +67,10 @@ for y in [4.10 + 0.25 * i for i in range(8)]:
         s.append(f'<line x1="{X(x0):.1f}" y1="{Y(y):.1f}" x2="{X(x1):.1f}" y2="{Y(y):.1f}" stroke="#a8a29e"/>')
 # furniture
 NAME = {"orion_queen_bed": "Orion queen bed", "tinker_side_table": "Tinker", "gingham_wardrobe": "Gingham",
-        "twill_wardrobe": "Twill", "notiq_desk": "Study table", "sage_desk": "Sage study table", "compact_desk": "Study table", "nohutch_desk": "Study table (no hutch)", "wall_desk": "Wall desk", "centaur_single_bed": "Centaur single bed", "amata_sofa": "AMATA sofa"}
+        "twill_wardrobe": "Twill", "notiq_desk": "Study table", "sage_desk": "Sage study table", "compact_desk": "Study table", "cabrera_desk": "Cabrera desk", "nohutch_desk": "Study table (no hutch)", "wall_desk": "Wall desk", "centaur_single_bed": "Centaur single bed", "amata_sofa": "AMATA sofa"}
 furn = []
+SHORT = {"orion_queen_bed": "Queen bed", "centaur_single_bed": "Bed", "tinker_side_table": "Tinker", "twill_wardrobe": "Twill",
+         "gingham_wardrobe": "Gingham", "cabrera_desk": "Desk", "compact_desk": "Desk", "sage_desk": "Sage desk", "amata_sofa": "Sofa"}
 
 
 def owners(items):
@@ -96,6 +98,7 @@ for room, items in FU["F1-3"].items():
             sd = it["access"][0]
             cx, cy = (r[0] + r[2]) / 2, (r[1] + r[3]) / 2
             cx, cy = {"N": (cx, r[1] - 0.30), "S": (cx, r[3] + 0.30), "W": (r[0] - 0.30, cy), "E": (r[2] + 0.30, cy)}[sd]
+            furn.append([cx - 0.35, cy - 0.35, cx + 0.35, cy + 0.35])   # keep room labels off the chair
             s.append(f'<circle cx="{X(cx):.1f}" cy="{Y(cy):.1f}" r="{0.21*K:.1f}" fill="#e0e7ff" stroke="#3730a3" stroke-dasharray="3 2"/>')
             s.append(f'<text x="{X(cx):.1f}" y="{Y(cy)+3:.1f}" font-size="8" text-anchor="middle" fill="#3730a3">chair</text>')
     for it in items:
@@ -106,13 +109,11 @@ for room, items in FU["F1-3"].items():
         w_, d_ = r[2] - r[0], r[3] - r[1]
         small = it["type"] == "tinker_side_table"
         rot = f' transform="rotate(-90 {cx:.1f} {cy:.1f})"' if (h := d_ > w_ * 1.3) else ""
-        fs = 9 if small else 12
-        nm = NAME.get(it["type"], it["type"]) + (f" {own[id(it)]}" if id(it) in own else "") + (" (shared)" if it.get("shared") else "")
-        if small:
-            s.append(f'<text x="{cx:.1f}" y="{cy+3:.1f}" font-size="9" text-anchor="middle" font-weight="bold" fill="#1e1b4b"{rot}>{nm}</text>')
-        else:
-            s.append(f'<text x="{cx:.1f}" y="{cy-2:.1f}" font-size="{fs}" text-anchor="middle" font-weight="bold" fill="#1e1b4b"{rot}>{nm}</text>')
-            s.append(f'<text x="{cx:.1f}" y="{cy+12:.1f}" font-size="{fs-1}" text-anchor="middle" fill="#1e1b4b"{rot}>{sz(max(w_, d_), min(w_, d_))}</text>')
+        # short label (name + student letter); sizes are in the kit key below the plan. Font shrinks to fit the item.
+        nm = SHORT.get(it["type"], it["type"]) + (f" {own[id(it)]}" if id(it) in own else "") + (" (shared)" if it.get("shared") else "")
+        L_, T_ = (d_ * K, w_ * K) if h else (w_ * K, d_ * K)
+        fs = max(6.5, min(13 if not small else 10, (L_ - 6) / (0.62 * len(nm)), T_ - 4))
+        s.append(f'<text x="{cx:.1f}" y="{cy + fs * 0.35:.1f}" font-size="{fs:.1f}" text-anchor="middle" font-weight="bold" fill="#1e1b4b"{rot}>{nm}</text>')
 # walls
 for w in fl["walls"]:
     s.append(f'<rect x="{X(w[0]):.1f}" y="{Y(w[1]):.1f}" width="{(w[2]-w[0])*K:.1f}" height="{(w[3]-w[1])*K:.1f}" fill="#292524"/>')
@@ -147,6 +148,7 @@ def wall_minus(a_list, b_list):
 
 
 REMOVED, ADDED = wall_minus(WALLS0, fl["walls"]), wall_minus(fl["walls"], WALLS0)
+furn += [[w[0], w[1] - 0.25, w[2], w[3] + 0.25] for w in REMOVED]   # keep room labels off the old-wall outline
 if REMOVED or ADDED:   # changed brickwork vs the architect's drawing: removed walls dashed, new walls orange
     for w in REMOVED:
         s.append(f'<rect x="{X(w[0]):.1f}" y="{Y(w[1]):.1f}" width="{(w[2]-w[0])*K:.1f}" height="{(w[3]-w[1])*K:.1f}" fill="#fff" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5 3"/>')
@@ -212,9 +214,16 @@ def dim(x1, y1, x2, y2, text, horizontal=True):
 dim(0, -0.45, 8.0, -0.45, f"{ft(8.0)} overall")
 dim(-0.35, 0, -0.35, 11.75, f"{ft(11.75)} overall", False)
 s.append(f'<text x="{X(4):.1f}" y="{Y(12.45):.1f}" font-size="14" text-anchor="middle" fill="#57534e">ROAD ({ft(6.0)} wide) · front of building</text>')
-lg = Y(12.85)
+lg = Y(12.85) + 36
 _occ = {r: sum(1 for i in its if i["type"].endswith("_bed")) for r, its in FU["F1-3"].items()}
 _txt = ", ".join(f"{r} {n}" for r, n in _occ.items())
+FSZ = AS["furniture_sizes"]
+_kit = [("Centaur single bed", "centaur_single_bed"), ("Orion queen bed", "orion_queen_bed"), ("Tinker side table", "tinker_side_table"),
+        ("Twill wardrobe", "twill_wardrobe"), ("Cabrera study table", "cabrera_desk")]
+_used = {i["type"] for its in FU["F1-3"].values() for i in its}
+_k = [f"{n} {ft(FSZ[t][0])} × {ft(FSZ[t][1])}" for n, t in _kit if t in _used]
+s.append(f'<text x="{MX}" y="{lg - 40:.0f}" font-size="12.5" font-weight="bold" fill="#1e1b4b">Wakefit kit (W × D): {" · ".join(_k[:3])}</text>')
+s.append(f'<text x="{MX}" y="{lg - 22:.0f}" font-size="12.5" font-weight="bold" fill="#1e1b4b">{" · ".join(_k[3:])} · chair space {ft(AS["clearances"]["desk_chair_zone"])} (dashed circle). A / B = student.</text>')
 for i, t in enumerate([f"Blue = Wakefit furniture. Students per room: {_txt} = {sum(_occ.values())} on this floor. Twin rooms use Centaur singles, single rooms the Orion queen.",
                        "Yellow = door swing; every door opens inwards. Light blue on walls = windows.",
                        "Red = RCC columns from the structural drawing (Agharkar, rev R1, 02.11.2026), 9\" wide on this floor; they stand out of the 6\" walls.",

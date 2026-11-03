@@ -55,6 +55,8 @@ def wall_items(room, typ, front, allow_grey=False, only_wall_x=None):
                         continue
                     if FS[typ][2] > 1.0 and ovl(r, room.switch_zone):   # keep the switchboard beside the door reachable
                         continue
+                    if any(F.disc_hits(sw, z) for sw in room.swings):   # chair / wardrobe-door space never inside a door swing
+                        continue
                     if room.ok_fixed(r, [], []) and inside(z, room.rects) and not any(ovl(z, wl) for wl in room.walls):
                         out.append({"type": typ, "rect": r, "access": [b[4]], "zones": [[round(v, 3) for v in z]], "grey": in_grey, "fixed": [r]})
     return out
@@ -208,10 +210,41 @@ def even(a, b):
     return False
 
 
+CUR_ROOM = None   # set by main(): the room being fitted (for the zoning preferences below)
+
+
+def rdist(a, b):
+    return math.hypot(max(b[0] - a[2], a[0] - b[2], 0), max(b[1] - a[3], a[1] - b[3], 0))
+
+
+def zoning(items):
+    """Soft design preferences: desks in daylight, wardrobes by the door, beds not running along a window."""
+    room = CUR_ROOM
+    if room is None:
+        return 0
+    wins = [w for w, _, _ in room.windows if any(rdist(w, q) < 0.05 for q in room.rects)]
+    hx, hy = room.door["hinge"]
+    qx, qy = room.door["quadrant"]
+    R = room.door["width"]
+    door = [min(hx, hx + qx * R), min(hy, hy + qy * R), max(hx, hx + qx * R), max(hy, hy + qy * R)]
+    sc = 0
+    for it in items:
+        rects = it["fixed"][:2] if it["type"] == "twin_pair" else [it["rect"]]
+        k = KIND(it["type"]) if it["type"] != "twin_pair" else "bed"
+        for r in rects:
+            if k == "desk" and wins and min(rdist(r, w) for w in wins) < 1.2:
+                sc += 2
+            if k == "wardrobe" and rdist(r, door) < 1.5:
+                sc += 1
+            if k == "bed" and F.blocks_window(room, r, 9.9):
+                sc -= 3
+    return sc
+
+
 def layout_score(f):
-    """Prefer matching items side by side on one wall, then facing each other."""
+    """Prefer matching items side by side on one wall, then mirrored; then the zoning preferences."""
     items = f[0]
-    sc = sum(p.get("score", 0) for p in items)
+    sc = sum(p.get("score", 0) for p in items) + zoning(items)
     for i, a in enumerate(items):
         for b in items[i + 1:]:
             if KIND(a["type"]) == KIND(b["type"]) and KIND(a["type"]) in ("bed", "wardrobe", "desk"):
@@ -223,6 +256,8 @@ def layout_score(f):
 def compat(a, b):
     if any(ovl(p, q) for p in a["fixed"] for q in b["fixed"]):
         return False
+    if KIND(a["type"]) == KIND(b["type"]) == "wardrobe" and any(ovl(z, y) for z in a["zones"] for y in b["zones"]):
+        return False  # both students can open their wardrobes at the same time
     if EVEN != "none" and KIND(a["type"]) == KIND(b["type"]) and KIND(a["type"]) in EVEN_KINDS and not even(a, b):
         return False
     if a["type"].endswith("desk") and b["type"].endswith("desk") and any(ovl(z, y) for z in a["zones"] for y in b["zones"]):
@@ -300,7 +335,15 @@ def main():
         if only and name not in only:
             res[name], _ = old_fu[name], rep.append(old_rep[name])
             continue
+        OVR = json.loads((ROOT / "model/furniture_overrides.json").read_text()).get("F1-3", {}) if (ROOT / "model/furniture_overrides.json").exists() else {}
+        if name in OVR:            # hand-designed layout (checked by tools/check_layout.py with the same rules)
+            res[name] = OVR[name]["items"]
+            rep.append(f"| {name} | {OVR[name]['note']} |")
+            print(name, "hand-designed layout used", flush=True)
+            continue
         room = F.Room("F1-3", name, door, others)
+        global CUR_ROOM
+        CUR_ROOM = room
         is4 = name == "ROOM-4"
         chosen, note = None, ""
         if name in KIT["twin_rooms"]:
@@ -321,7 +364,7 @@ def main():
                 EVEN = level
                 for gap, bslots, dslots, tag in tiers:
                     TWIN_GAP = gap
-                    found = search(room, bslots + [("ward", wards), ("ward", wards)] + dslots, max_walk=60000)
+                    found = search(room, bslots + [("ward", wards), ("ward", wards)] + dslots, max_walk=150000, want=12)
                     if found:
                         chosen = max(found, key=layout_score)
                         note = (f"2 students, each: Centaur single bed, {KNAME[KIT['wardrobe']]}, {KNAME[KIT['desk']]} + chair; {tag}"
@@ -338,7 +381,7 @@ def main():
                 beds = queen_beds(room, rule)
                 wards = wall_items(room, KIT["wardrobe"], WFRONT, allow_grey=is4, only_wall_x=4.45 if is4 else None)
                 desks = wall_items(room, KIT["desk"], CHAIR, allow_grey=is4, only_wall_x=4.45 if is4 else None)
-                found = search(room, [("bed", beds), ("ward", wards), ("desk", desks)], max_walk=60000, want=3)
+                found = search(room, [("bed", beds), ("ward", wards), ("desk", desks)], max_walk=100000, want=8)
                 if found:
                     chosen = max(found, key=layout_score)
                     note = (f"1 student: Orion queen ({'0.60 m both sides' if rule == 'both' else 'long side on wall'}), Tinker, "
