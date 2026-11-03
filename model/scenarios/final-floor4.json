@@ -1,0 +1,1113 @@
+{
+ "_about": "Fourth floor furniture with real Wakefit products, following the family's fourth-floor picture (03.11.2026). Walls, doors, windows and columns are the architect's (raw takeoff, no changes). Audit: python3 tools/check_layout.py model/scenarios/final-floor4.json",
+ "floor": "F4",
+ "name": "Floor 4: Wakefit layout from the family's fourth-floor picture",
+ "title_suffix": " \u00b7 FOURTH FLOOR",
+ "subtitle": "Suite with two queen beds and a private terrace; two single rooms at the front",
+ "bed_side_gap": 0.15,
+ "TK": {
+  "label": "FOURTH FLOOR PLAN",
+  "outline": [
+   0,
+   0,
+   8.0,
+   10.85
+  ],
+  "walls": [
+   [
+    0,
+    0,
+    8.0,
+    0.15
+   ],
+   [
+    0,
+    10.7,
+    8.0,
+    10.85
+   ],
+   [
+    0,
+    0,
+    0.15,
+    10.85
+   ],
+   [
+    7.85,
+    0,
+    8.0,
+    10.85
+   ],
+   [
+    4.05,
+    0.15,
+    4.15,
+    2.2
+   ],
+   [
+    5.65,
+    0.15,
+    5.75,
+    2.2
+   ],
+   [
+    4.8,
+    2.1,
+    5.75,
+    2.2
+   ],
+   [
+    4.05,
+    2.95,
+    7.85,
+    3.1
+   ],
+   [
+    4.05,
+    2.95,
+    4.2,
+    4.75
+   ],
+   [
+    4.05,
+    4.75,
+    4.15,
+    6.05
+   ],
+   [
+    5.6,
+    3.1,
+    5.75,
+    5.85
+   ],
+   [
+    4.15,
+    4.6,
+    4.35,
+    4.75
+   ],
+   [
+    5.45,
+    4.6,
+    5.6,
+    4.75
+   ],
+   [
+    6.75,
+    4.1,
+    6.85,
+    5.85
+   ],
+   [
+    0.15,
+    5.95,
+    3.15,
+    6.05
+   ],
+   [
+    3.05,
+    6.95,
+    4.6,
+    7.05
+   ],
+   [
+    5.5,
+    6.95,
+    7.85,
+    7.05
+   ],
+   [
+    3.95,
+    7.05,
+    4.05,
+    10.7
+   ],
+   [
+    3.4,
+    8.68,
+    3.95,
+    8.78
+   ],
+   [
+    4.05,
+    8.68,
+    4.6,
+    8.78
+   ],
+   [
+    2.65,
+    8.68,
+    2.75,
+    10.7
+   ],
+   [
+    5.25,
+    8.68,
+    5.35,
+    10.7
+   ]
+  ],
+  "railings": [
+   [
+    0,
+    11.65,
+    8.0,
+    11.75
+   ],
+   [
+    0,
+    10.85,
+    0.1,
+    11.75
+   ],
+   [
+    7.9,
+    10.85,
+    8.0,
+    11.75
+   ]
+  ],
+  "openings": [
+   {
+    "id": "F4-D3T",
+    "type": "door-opening",
+    "to": "ROOM-3 toilet",
+    "wall": "y=2.10-2.20",
+    "span_x": [
+     4.15,
+     4.8
+    ],
+    "width": 0.65,
+    "swing": "not drawn"
+   },
+   {
+    "id": "F4-O3",
+    "type": "open (no door drawn)",
+    "to": "ROOM-3 to terrace passage",
+    "wall": "x=4.05-4.15",
+    "span_y": [
+     2.2,
+     2.95
+    ],
+    "width": 0.75
+   },
+   {
+    "id": "F4-DT",
+    "type": "door-opening",
+    "to": "private terrace",
+    "wall": "x=5.65-5.75",
+    "span_y": [
+     2.2,
+     2.95
+    ],
+    "width": 0.75,
+    "swing": "not drawn"
+   },
+   {
+    "id": "F4-D3",
+    "type": "door",
+    "to": "ROOM-3 from lobby",
+    "wall": "y=6.05",
+    "span_x": [
+     3.15,
+     4.05
+    ],
+    "width": 0.9,
+    "swing": "DRAWN: hinge (4.05,6.05), opens into ROOM-3"
+   },
+   {
+    "id": "F4-D2",
+    "type": "door",
+    "to": "ROOM-2 from lobby",
+    "wall": "x=3.15",
+    "span_y": [
+     6.05,
+     6.95
+    ],
+    "width": 0.9,
+    "swing": "DRAWN: hinge (3.15,6.05), opens into ROOM-2"
+   },
+   {
+    "id": "F4-D1",
+    "type": "door",
+    "to": "ROOM-1 from lobby",
+    "wall": "y=6.95-7.05",
+    "span_x": [
+     4.6,
+     5.5
+    ],
+    "width": 0.9,
+    "swing": "DRAWN: hinge (4.60,6.95), opens into ROOM-1"
+   },
+   {
+    "id": "F4-D2T",
+    "type": "door-opening",
+    "to": "ROOM-2 toilet",
+    "wall": "y=8.68-8.78",
+    "span_x": [
+     2.75,
+     3.4
+    ],
+    "width": 0.65,
+    "swing": "not drawn"
+   },
+   {
+    "id": "F4-D1T",
+    "type": "door-opening",
+    "to": "ROOM-1 toilet",
+    "wall": "y=8.68-8.78",
+    "span_x": [
+     4.6,
+     5.25
+    ],
+    "width": 0.65,
+    "swing": "not drawn"
+   },
+   {
+    "id": "F4-L",
+    "type": "lift door opening",
+    "wall": "y=4.60-4.75",
+    "span_x": [
+     4.35,
+     5.45
+    ],
+    "width": 1.1
+   },
+   {
+    "id": "F4-S",
+    "type": "open (no door drawn)",
+    "to": "stair front landing from lobby",
+    "wall": "x=5.60-5.75",
+    "span_y": [
+     5.85,
+     6.95
+    ],
+    "width": 1.1
+   }
+  ],
+  "windows": [
+   {
+    "id": "F4-W1",
+    "wall": "rear",
+    "span_x": [
+     1.35,
+     2.85
+    ],
+    "width": 1.5,
+    "serves": "ROOM-3"
+   },
+   {
+    "id": "F4-W2",
+    "wall": "rear",
+    "span_x": [
+     4.6,
+     5.2
+    ],
+    "width": 0.6,
+    "serves": "ROOM-3 toilet"
+   },
+   {
+    "id": "F4-W3",
+    "wall": "front",
+    "span_x": [
+     0.65,
+     2.15
+    ],
+    "width": 1.5,
+    "serves": "ROOM-2"
+   },
+   {
+    "id": "F4-W4",
+    "wall": "front",
+    "span_x": [
+     3.05,
+     3.65
+    ],
+    "width": 0.6,
+    "serves": "ROOM-2 toilet"
+   },
+   {
+    "id": "F4-W5",
+    "wall": "front",
+    "span_x": [
+     4.35,
+     4.95
+    ],
+    "width": 0.6,
+    "serves": "ROOM-1 toilet"
+   },
+   {
+    "id": "F4-W6",
+    "wall": "front",
+    "span_x": [
+     5.85,
+     7.36
+    ],
+    "width": 1.51,
+    "serves": "ROOM-1"
+   }
+  ],
+  "spaces": [
+   {
+    "name": "ROOM-3 (suite)",
+    "rects": [
+     [
+      0.15,
+      0.15,
+      4.05,
+      5.95
+     ],
+     [
+      3.15,
+      5.95,
+      4.05,
+      6.05
+     ],
+     [
+      4.15,
+      2.2,
+      5.65,
+      2.95
+     ],
+     [
+      4.05,
+      2.2,
+      4.15,
+      2.95
+     ]
+    ],
+    "label": "12'9\"x19'0\"",
+    "label_m": [
+     3.886,
+     5.791
+    ],
+    "measured_main": [
+     3.9,
+     5.8
+    ]
+   },
+   {
+    "name": "ROOM-3 TOILET",
+    "rects": [
+     [
+      4.15,
+      0.15,
+      5.65,
+      2.1
+     ]
+    ],
+    "label": "3'11\"x5'11\"",
+    "label_m": [
+     1.194,
+     1.803
+    ],
+    "measured": [
+     1.5,
+     1.95
+    ],
+    "conflict": "drawn 1.50 x 1.95"
+   },
+   {
+    "name": "PRIVATE TERRACE (ROOM-3)",
+    "rects": [
+     [
+      5.75,
+      0.15,
+      7.85,
+      2.95
+     ]
+    ],
+    "label": "6'10\"x9'2\"",
+    "label_m": [
+     2.083,
+     2.794
+    ],
+    "measured": [
+     2.1,
+     2.8
+    ],
+    "open_to_sky": true
+   },
+   {
+    "name": "LOBBY",
+    "rects": [
+     [
+      4.15,
+      4.75,
+      5.6,
+      6.95
+     ],
+     [
+      3.15,
+      6.05,
+      4.15,
+      6.95
+     ]
+    ],
+    "label": "8'4\"x7'3\" (copied from F1-3)",
+    "label_m": [
+     2.54,
+     2.21
+    ],
+    "measured": "L-shape: 1.45 x 2.20 + 1.00 x 0.90",
+    "conflict": "smaller than label"
+   },
+   {
+    "name": "LIFT",
+    "rects": [
+     [
+      4.2,
+      3.1,
+      5.6,
+      4.6
+     ]
+    ],
+    "label": "4'11\"x4'11\"",
+    "measured": [
+     1.4,
+     1.5
+    ]
+   },
+   {
+    "name": "STAIR",
+    "rects": [
+     [
+      5.75,
+      3.1,
+      7.85,
+      6.95
+     ]
+    ],
+    "label": null
+   },
+   {
+    "name": "ROOM-2",
+    "rects": [
+     [
+      0.15,
+      6.05,
+      3.05,
+      7.05
+     ],
+     [
+      0.15,
+      7.05,
+      3.95,
+      8.68
+     ],
+     [
+      0.15,
+      8.68,
+      2.65,
+      10.7
+     ]
+    ],
+    "label": "12'6\"x7'8\"",
+    "label_m": [
+     3.81,
+     2.337
+    ],
+    "measured_main": [
+     3.8,
+     1.63
+    ],
+    "conflict": "main part 1.63 deep (F1-3: 2.35); front part 2.50 x 2.02"
+   },
+   {
+    "name": "ROOM-2 TOILET",
+    "rects": [
+     [
+      2.75,
+      8.78,
+      3.95,
+      10.7
+     ]
+    ],
+    "label": "3'11\"x6'4\"",
+    "label_m": [
+     1.194,
+     1.93
+    ]
+   },
+   {
+    "name": "ROOM-1",
+    "rects": [
+     [
+      4.05,
+      7.05,
+      7.85,
+      8.68
+     ],
+     [
+      5.35,
+      8.68,
+      7.85,
+      10.7
+     ]
+    ],
+    "label": "12'6\"x7'8\"",
+    "label_m": [
+     3.81,
+     2.337
+    ],
+    "measured_main": [
+     3.8,
+     1.63
+    ],
+    "conflict": "main part 1.63 deep; front part 2.50 x 2.02"
+   },
+   {
+    "name": "ROOM-1 TOILET",
+    "rects": [
+     [
+      4.05,
+      8.78,
+      5.25,
+      10.7
+     ]
+    ],
+    "label": "3'11\"x6'4\"",
+    "label_m": [
+     1.194,
+     1.93
+    ]
+   },
+   {
+    "name": "FRONT TERRACE",
+    "rects": [
+     [
+      0,
+      10.85,
+      8.0,
+      11.75
+     ]
+    ],
+    "label": "TERRACE",
+    "measured": [
+     8.0,
+     0.9
+    ]
+   }
+  ],
+  "grey_items": [
+   {
+    "rect": [
+     0.15,
+     5.4,
+     3.15,
+     5.95
+    ],
+    "meaning": "0.55 deep strip in ROOM-3, likely wardrobe/loft (ASSUMED, Q7)"
+   },
+   {
+    "rect": [
+     3.4,
+     7.05,
+     3.95,
+     8.68
+    ],
+    "meaning": "0.55 strip in ROOM-2, likely wardrobe (ASSUMED, Q7)"
+   },
+   {
+    "rect": [
+     4.05,
+     7.05,
+     4.6,
+     8.68
+    ],
+    "meaning": "0.55 strip in ROOM-1, likely wardrobe (ASSUMED, Q7)"
+   }
+  ]
+ },
+ "doors": [
+  {
+   "id": "F4-D3",
+   "hinge": [
+    4.05,
+    6.05
+   ],
+   "width": 0.9,
+   "quadrant": [
+    -1,
+    -1
+   ],
+   "leaf_axis": "x",
+   "tag": "DRAWN"
+  },
+  {
+   "id": "F4-D2",
+   "hinge": [
+    3.15,
+    6.05
+   ],
+   "width": 0.9,
+   "quadrant": [
+    -1,
+    1
+   ],
+   "leaf_axis": "y",
+   "tag": "DRAWN"
+  },
+  {
+   "id": "F4-D1",
+   "hinge": [
+    4.6,
+    7.05
+   ],
+   "width": 0.9,
+   "quadrant": [
+    1,
+    1
+   ],
+   "leaf_axis": "x",
+   "tag": "DRAWN"
+  },
+  {
+   "id": "F4-D3T",
+   "hinge": [
+    4.15,
+    2.1
+   ],
+   "width": 0.65,
+   "quadrant": [
+    1,
+    -1
+   ],
+   "leaf_axis": "x",
+   "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+  },
+  {
+   "id": "F4-DT",
+   "hinge": [
+    5.65,
+    2.95
+   ],
+   "width": 0.75,
+   "quadrant": [
+    -1,
+    -1
+   ],
+   "leaf_axis": "y",
+   "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+  },
+  {
+   "id": "F4-D2T",
+   "hinge": [
+    2.75,
+    8.78
+   ],
+   "width": 0.65,
+   "quadrant": [
+    1,
+    1
+   ],
+   "leaf_axis": "x",
+   "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+  },
+  {
+   "id": "F4-D1T",
+   "hinge": [
+    5.25,
+    8.78
+   ],
+   "width": 0.65,
+   "quadrant": [
+    -1,
+    1
+   ],
+   "leaf_axis": "x",
+   "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+  }
+ ],
+ "layouts": {
+  "ROOM-3 (suite)": [
+   {
+    "type": "orion_queen_bed",
+    "rect": [
+     0.229,
+     0.8,
+     2.461,
+     2.405
+    ],
+    "access": [
+     "N",
+     "S"
+    ],
+    "head": "W",
+    "zones": [
+     [
+      0.679,
+      0.2,
+      2.161,
+      0.8
+     ],
+     [
+      0.679,
+      2.405,
+      2.161,
+      3.005
+     ]
+    ]
+   },
+   {
+    "type": "orion_queen_bed",
+    "rect": [
+     0.229,
+     3.005,
+     2.461,
+     4.61
+    ],
+    "access": [
+     "N",
+     "S"
+    ],
+    "head": "W",
+    "zones": [
+     [
+      0.679,
+      2.405,
+      2.161,
+      3.005
+     ],
+     [
+      0.679,
+      4.61,
+      2.161,
+      5.21
+     ]
+    ]
+   },
+   {
+    "type": "tinker_side_table",
+    "rect": [
+     0.229,
+     0.37,
+     0.529,
+     0.8
+    ],
+    "access": []
+   },
+   {
+    "type": "tinker_side_table",
+    "rect": [
+     0.229,
+     2.49,
+     0.529,
+     2.92
+    ],
+    "access": []
+   },
+   {
+    "type": "tinker_side_table",
+    "rect": [
+     0.229,
+     4.61,
+     0.529,
+     5.04
+    ],
+    "access": []
+   },
+   {
+    "type": "gingham_wardrobe",
+    "rect": [
+     3.574,
+     0.365,
+     4.05,
+     1.175
+    ],
+    "access": [
+     "W"
+    ],
+    "zones": [
+     [
+      2.974,
+      0.365,
+      3.574,
+      1.175
+     ]
+    ]
+   },
+   {
+    "type": "gingham_wardrobe",
+    "rect": [
+     3.574,
+     1.175,
+     4.05,
+     1.985
+    ],
+    "access": [
+     "W"
+    ],
+    "zones": [
+     [
+      2.974,
+      1.175,
+      3.574,
+      1.985
+     ]
+    ]
+   },
+   {
+    "type": "cabrera_desk",
+    "rect": [
+     0.852,
+     5.5,
+     1.65,
+     5.95
+    ],
+    "access": [
+     "N"
+    ],
+    "zones": [
+     [
+      0.852,
+      4.75,
+      1.65,
+      5.5
+     ]
+    ]
+   },
+   {
+    "type": "cabrera_desk",
+    "rect": [
+     1.65,
+     5.5,
+     2.448,
+     5.95
+    ],
+    "access": [
+     "N"
+    ],
+    "zones": [
+     [
+      1.65,
+      4.75,
+      2.448,
+      5.5
+     ]
+    ]
+   }
+  ],
+  "ROOM-2": [
+   {
+    "type": "centaur_single_bed",
+    "rect": [
+     0.66,
+     6.05,
+     1.71,
+     8.183
+    ],
+    "access": [
+     "E"
+    ],
+    "head": "N",
+    "zones": [
+     [
+      1.71,
+      6.5,
+      2.31,
+      7.883
+     ]
+    ]
+   },
+   {
+    "type": "tinker_side_table",
+    "rect": [
+     0.229,
+     6.05,
+     0.659,
+     6.35
+    ],
+    "access": []
+   },
+   {
+    "type": "twill_wardrobe",
+    "rect": [
+     3.474,
+     8.0,
+     3.95,
+     8.6
+    ],
+    "access": [
+     "W"
+    ],
+    "zones": [
+     [
+      2.874,
+      8.0,
+      3.474,
+      8.6
+     ]
+    ]
+   },
+   {
+    "type": "cabrera_desk",
+    "rect": [
+     0.15,
+     9.0,
+     0.6,
+     9.798
+    ],
+    "access": [
+     "E"
+    ],
+    "zones": [
+     [
+      0.6,
+      9.0,
+      1.35,
+      9.798
+     ]
+    ]
+   }
+  ],
+  "ROOM-1": [
+   {
+    "type": "centaur_single_bed",
+    "rect": [
+     6.37,
+     7.05,
+     7.42,
+     9.183
+    ],
+    "access": [
+     "W"
+    ],
+    "head": "N",
+    "zones": [
+     [
+      5.77,
+      7.5,
+      6.37,
+      8.883
+     ]
+    ]
+   },
+   {
+    "type": "tinker_side_table",
+    "rect": [
+     7.42,
+     7.11,
+     7.85,
+     7.41
+    ],
+    "access": []
+   },
+   {
+    "type": "twill_wardrobe",
+    "rect": [
+     4.05,
+     8.0,
+     4.526,
+     8.6
+    ],
+    "access": [
+     "E"
+    ],
+    "zones": [
+     [
+      4.526,
+      8.0,
+      5.126,
+      8.6
+     ]
+    ]
+   },
+   {
+    "type": "cabrera_desk",
+    "rect": [
+     5.35,
+     9.3,
+     5.8,
+     10.098
+    ],
+    "access": [
+     "E"
+    ],
+    "zones": [
+     [
+      5.8,
+      9.3,
+      6.55,
+      10.098
+     ]
+    ]
+   }
+  ]
+ },
+ "decor": [
+  {
+   "type": "planter_box",
+   "rect": [
+    5.9,
+    0.25,
+    7.7,
+    0.6
+   ],
+   "where": "private terrace"
+  },
+  {
+   "type": "terrace_chair",
+   "rect": [
+    5.95,
+    1.25,
+    6.55,
+    1.85
+   ],
+   "face": "E",
+   "where": "private terrace"
+  },
+  {
+   "type": "terrace_table",
+   "rect": [
+    6.58,
+    1.3,
+    7.08,
+    1.8
+   ],
+   "where": "private terrace"
+  },
+  {
+   "type": "terrace_chair",
+   "rect": [
+    7.1,
+    1.25,
+    7.7,
+    1.85
+   ],
+   "face": "W",
+   "where": "private terrace"
+  },
+  {
+   "type": "plant",
+   "rect": [
+    7.4,
+    2.5,
+    7.75,
+    2.85
+   ],
+   "where": "private terrace"
+  },
+  {
+   "type": "planter_box",
+   "rect": [
+    0.35,
+    10.95,
+    3.75,
+    11.25
+   ],
+   "where": "front terrace"
+  },
+  {
+   "type": "planter_box",
+   "rect": [
+    4.4,
+    10.95,
+    7.6,
+    11.25
+   ],
+   "where": "front terrace"
+  }
+ ],
+ "_front_terrace": "The architect's drawing shows no door onto the front terrace (only windows), so it is shown with planters, not chairs."
+}

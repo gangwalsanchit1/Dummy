@@ -1,0 +1,1304 @@
+{
+ "_about": "FINAL snapshot of Plan B luxury for floor 1 (floors 2 and 3 identical), frozen 03.11.2026. Front twin rooms kept as they are (window opened over the front bed: walk-up window access fails the audit, see plan-b-lux-window). Architect's walls and doors unchanged.",
+ "title_suffix": " · FINAL LAYOUT",
+ "TK": {
+  "label": "FIRST, SECOND & THIRD FLOOR PLAN (identical)",
+  "outline": [
+   0,
+   0,
+   8.0,
+   11.75
+  ],
+  "walls": [
+   [
+    0,
+    0,
+    8.0,
+    0.15
+   ],
+   [
+    0,
+    11.6,
+    8.0,
+    11.75
+   ],
+   [
+    0,
+    0,
+    0.15,
+    11.75
+   ],
+   [
+    7.85,
+    0,
+    8.0,
+    11.75
+   ],
+   [
+    1.75,
+    0.15,
+    1.85,
+    2.05
+   ],
+   [
+    3.05,
+    0.15,
+    3.15,
+    4.5
+   ],
+   [
+    3.05,
+    5.4,
+    3.15,
+    6.05
+   ],
+   [
+    2.5,
+    1.95,
+    3.05,
+    2.05
+   ],
+   [
+    3.15,
+    1.95,
+    3.7,
+    2.05
+   ],
+   [
+    4.35,
+    0.15,
+    4.45,
+    2.05
+   ],
+   [
+    0.15,
+    5.95,
+    3.15,
+    6.05
+   ],
+   [
+    4.05,
+    2.95,
+    7.85,
+    3.1
+   ],
+   [
+    4.05,
+    2.95,
+    4.2,
+    4.75
+   ],
+   [
+    5.6,
+    3.1,
+    5.75,
+    5.85
+   ],
+   [
+    4.2,
+    4.6,
+    4.28,
+    4.75
+   ],
+   [
+    5.38,
+    4.6,
+    5.6,
+    4.75
+   ],
+   [
+    6.75,
+    4.1,
+    6.85,
+    5.85
+   ],
+   [
+    3.05,
+    6.95,
+    4.6,
+    7.05
+   ],
+   [
+    5.5,
+    6.95,
+    7.85,
+    7.05
+   ],
+   [
+    3.95,
+    7.05,
+    4.05,
+    11.6
+   ],
+   [
+    3.4,
+    9.4,
+    3.95,
+    9.5
+   ],
+   [
+    4.05,
+    9.4,
+    4.6,
+    9.5
+   ],
+   [
+    2.65,
+    9.4,
+    2.75,
+    11.6
+   ],
+   [
+    5.25,
+    9.4,
+    5.35,
+    11.6
+   ]
+  ],
+  "openings": [
+   {
+    "id": "F-D3T",
+    "type": "door-opening",
+    "to": "ROOM-3 toilet from ROOM-3",
+    "wall": "y=1.95-2.05",
+    "span_x": [
+     1.85,
+     2.5
+    ],
+    "width": 0.65,
+    "swing": "not drawn"
+   },
+   {
+    "id": "F-D4T",
+    "type": "door-opening",
+    "to": "ROOM-4 toilet from ROOM-4 passage",
+    "wall": "y=1.95-2.05",
+    "span_x": [
+     3.7,
+     4.35
+    ],
+    "width": 0.65,
+    "swing": "not drawn"
+   },
+   {
+    "id": "F-D4",
+    "type": "door-opening",
+    "to": "ROOM-4 passage from lobby",
+    "wall": "y=4.50",
+    "span_x": [
+     3.15,
+     4.05
+    ],
+    "width": 0.9,
+    "swing": "not drawn"
+   },
+   {
+    "id": "F-D3",
+    "type": "door-opening",
+    "to": "ROOM-3 from lobby",
+    "wall": "x=3.05-3.15",
+    "span_y": [
+     4.5,
+     5.4
+    ],
+    "width": 0.9,
+    "swing": "not drawn"
+   },
+   {
+    "id": "F-D2",
+    "type": "door-opening",
+    "to": "ROOM-2 from lobby",
+    "wall": "x=3.05-3.15",
+    "span_y": [
+     6.05,
+     6.95
+    ],
+    "width": 0.9,
+    "swing": "not drawn (F4 equivalent: hinge at (3.15,6.05), opens into room)"
+   },
+   {
+    "id": "F-D1",
+    "type": "door-opening",
+    "to": "ROOM-1 from lobby",
+    "wall": "y=6.95-7.05",
+    "span_x": [
+     4.6,
+     5.5
+    ],
+    "width": 0.9,
+    "swing": "not drawn (F4 equivalent: hinge at (4.60,6.95), opens into room)"
+   },
+   {
+    "id": "F-D2T",
+    "type": "door-opening",
+    "to": "ROOM-2 toilet",
+    "wall": "y=9.40-9.50",
+    "span_x": [
+     2.75,
+     3.4
+    ],
+    "width": 0.65,
+    "swing": "not drawn"
+   },
+   {
+    "id": "F-D1T",
+    "type": "door-opening",
+    "to": "ROOM-1 toilet",
+    "wall": "y=9.40-9.50",
+    "span_x": [
+     4.6,
+     5.25
+    ],
+    "width": 0.65,
+    "swing": "not drawn"
+   },
+   {
+    "id": "F-L",
+    "type": "lift door opening",
+    "wall": "y=4.60-4.75",
+    "span_x": [
+     4.28,
+     5.38
+    ],
+    "width": 1.1
+   },
+   {
+    "id": "F-S",
+    "type": "open (no door drawn)",
+    "to": "stair front landing from lobby",
+    "wall": "x=5.60-5.75",
+    "span_y": [
+     5.85,
+     6.95
+    ],
+    "width": 1.1
+   }
+  ],
+  "windows": [
+   {
+    "id": "F-W1",
+    "wall": "rear",
+    "span_x": [
+     0.2,
+     1.7
+    ],
+    "width": 1.5,
+    "serves": "ROOM-3 alcove"
+   },
+   {
+    "id": "F-W2",
+    "wall": "rear",
+    "span_x": [
+     2.2,
+     2.8
+    ],
+    "width": 0.6,
+    "serves": "ROOM-3 toilet"
+   },
+   {
+    "id": "F-W3",
+    "wall": "rear",
+    "span_x": [
+     3.45,
+     4.05
+    ],
+    "width": 0.6,
+    "serves": "ROOM-4 toilet"
+   },
+   {
+    "id": "F-W4",
+    "wall": "rear",
+    "span_x": [
+     5.35,
+     6.85
+    ],
+    "width": 1.5,
+    "serves": "ROOM-4"
+   },
+   {
+    "id": "F-W5",
+    "wall": "front",
+    "span_x": [
+     0.65,
+     2.15
+    ],
+    "width": 1.5,
+    "serves": "ROOM-2"
+   },
+   {
+    "id": "F-W6",
+    "wall": "front",
+    "span_x": [
+     3.05,
+     3.65
+    ],
+    "width": 0.6,
+    "serves": "ROOM-2 toilet"
+   },
+   {
+    "id": "F-W7",
+    "wall": "front",
+    "span_x": [
+     4.35,
+     4.95
+    ],
+    "width": 0.6,
+    "serves": "ROOM-1 toilet"
+   },
+   {
+    "id": "F-W8",
+    "wall": "front",
+    "span_x": [
+     5.85,
+     7.35
+    ],
+    "width": 1.5,
+    "serves": "ROOM-1"
+   }
+  ],
+  "spaces": [
+   {
+    "name": "ROOM-3",
+    "rects": [
+     [
+      0.15,
+      2.05,
+      3.05,
+      5.95
+     ],
+     [
+      0.15,
+      0.15,
+      1.75,
+      2.05
+     ]
+    ],
+    "label": "9'6\"x12'9\" + alcove 5'3\"x6'3\"",
+    "label_m": [
+     2.896,
+     3.886
+    ],
+    "measured_main": [
+     2.9,
+     3.9
+    ]
+   },
+   {
+    "name": "ROOM-3 TOILET",
+    "rects": [
+     [
+      1.85,
+      0.15,
+      3.05,
+      1.95
+     ]
+    ],
+    "label": "3'11\"x5'11\"",
+    "label_m": [
+     1.194,
+     1.803
+    ]
+   },
+   {
+    "name": "ROOM-4",
+    "rects": [
+     [
+      4.45,
+      0.15,
+      7.85,
+      2.95
+     ],
+     [
+      3.15,
+      2.05,
+      4.45,
+      2.95
+     ],
+     [
+      3.15,
+      2.95,
+      4.05,
+      4.5
+     ]
+    ],
+    "label": "11'1\"x9'2\"",
+    "label_m": [
+     3.378,
+     2.794
+    ],
+    "measured_main": [
+     3.4,
+     2.8
+    ],
+    "note": "main room + 0.90 wide entry passage from lobby"
+   },
+   {
+    "name": "ROOM-4 TOILET",
+    "rects": [
+     [
+      3.15,
+      0.15,
+      4.35,
+      1.95
+     ]
+    ],
+    "label": "3'7\"x5'11\"",
+    "label_m": [
+     1.092,
+     1.803
+    ],
+    "measured": [
+     1.2,
+     1.8
+    ],
+    "conflict": "drawn 1.20 wide, label says 3'7\" = 1.09"
+   },
+   {
+    "name": "LOBBY",
+    "rects": [
+     [
+      3.15,
+      4.5,
+      4.05,
+      4.75
+     ],
+     [
+      3.15,
+      4.75,
+      5.6,
+      6.95
+     ]
+    ],
+    "label": "8'4\"x7'3\"",
+    "label_m": [
+     2.54,
+     2.21
+    ],
+    "measured_main": [
+     2.45,
+     2.2
+    ]
+   },
+   {
+    "name": "LIFT",
+    "rects": [
+     [
+      4.2,
+      3.1,
+      5.6,
+      4.6
+     ]
+    ],
+    "label": "4'11\"x4'11\"",
+    "label_m": [
+     1.499,
+     1.499
+    ],
+    "measured": [
+     1.4,
+     1.5
+    ],
+    "conflict": "drawn 1.40 x 1.50"
+   },
+   {
+    "name": "STAIR",
+    "rects": [
+     [
+      5.75,
+      3.1,
+      7.85,
+      6.95
+     ]
+    ],
+    "label": null
+   },
+   {
+    "name": "ROOM-2",
+    "rects": [
+     [
+      0.15,
+      6.05,
+      3.05,
+      7.05
+     ],
+     [
+      0.15,
+      7.05,
+      3.95,
+      9.4
+     ],
+     [
+      0.15,
+      9.4,
+      2.65,
+      11.6
+     ]
+    ],
+    "label": "12'6\"x7'8\" + 9'6\"x3'3\" + 8'2\"x7'3\"",
+    "label_m": [
+     3.81,
+     2.337
+    ],
+    "measured_main": [
+     3.8,
+     2.35
+    ]
+   },
+   {
+    "name": "ROOM-2 TOILET",
+    "rects": [
+     [
+      2.75,
+      9.5,
+      3.95,
+      11.6
+     ]
+    ],
+    "label": "3'11\"x6'11\"",
+    "label_m": [
+     1.194,
+     2.108
+    ]
+   },
+   {
+    "name": "ROOM-1",
+    "rects": [
+     [
+      4.05,
+      7.05,
+      7.85,
+      9.4
+     ],
+     [
+      5.35,
+      9.4,
+      7.85,
+      11.6
+     ]
+    ],
+    "label": "12'6\"x7'8\" + 8'2\"x7'3\"",
+    "label_m": [
+     3.81,
+     2.337
+    ],
+    "measured_main": [
+     3.8,
+     2.35
+    ]
+   },
+   {
+    "name": "ROOM-1 TOILET",
+    "rects": [
+     [
+      4.05,
+      9.5,
+      5.25,
+      11.6
+     ]
+    ],
+    "label": "3'11\"x6'11\"",
+    "label_m": [
+     1.194,
+     2.108
+    ]
+   }
+  ],
+  "grey_items": [
+   {
+    "rect": [
+     0.15,
+     5.4,
+     3.05,
+     5.95
+    ],
+    "meaning": "0.55 deep strip in ROOM-3, likely built-in wardrobe/loft (ASSUMED, Q7)"
+   },
+   {
+    "rect": [
+     4.45,
+     0.15,
+     5.0,
+     2.05
+    ],
+    "meaning": "0.55 deep strip in ROOM-4, likely wardrobe (ASSUMED, Q7)"
+   },
+   {
+    "rect": [
+     3.4,
+     7.05,
+     3.95,
+     9.4
+    ],
+    "meaning": "0.55 deep strip in ROOM-2, likely wardrobe (ASSUMED, Q7)"
+   },
+   {
+    "rect": [
+     4.05,
+     7.05,
+     4.6,
+     9.4
+    ],
+    "meaning": "0.55 deep strip in ROOM-1, likely wardrobe (ASSUMED, Q7)"
+   }
+  ]
+ },
+ "doors": [
+  {
+   "id": "F-D3",
+   "hinge": [
+    3.05,
+    5.4
+   ],
+   "width": 0.9,
+   "quadrant": [
+    -1,
+    -1
+   ],
+   "leaf_axis": "y",
+   "tag": "architect's position (no change)"
+  },
+  {
+   "id": "F-D4",
+   "hinge": [
+    4.05,
+    4.5
+   ],
+   "width": 0.9,
+   "quadrant": [
+    -1,
+    -1
+   ],
+   "leaf_axis": "x",
+   "tag": "ASSUMED - opens inwards (family instruction)"
+  },
+  {
+   "id": "F-D2",
+   "hinge": [
+    3.05,
+    6.05
+   ],
+   "width": 0.9,
+   "quadrant": [
+    -1,
+    1
+   ],
+   "leaf_axis": "y",
+   "tag": "architect's position (no change)"
+  },
+  {
+   "id": "F-D1",
+   "hinge": [
+    4.6,
+    7.05
+   ],
+   "width": 0.9,
+   "quadrant": [
+    1,
+    1
+   ],
+   "leaf_axis": "x",
+   "tag": "ASSUMED - opens inwards (family instruction)"
+  },
+  {
+   "id": "F-D3T",
+   "hinge": [
+    1.85,
+    1.95
+   ],
+   "width": 0.65,
+   "quadrant": [
+    1,
+    -1
+   ],
+   "leaf_axis": "x",
+   "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+  },
+  {
+   "id": "F-D4T",
+   "hinge": [
+    4.35,
+    1.95
+   ],
+   "width": 0.65,
+   "quadrant": [
+    -1,
+    -1
+   ],
+   "leaf_axis": "x",
+   "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+  },
+  {
+   "id": "F-D2T",
+   "hinge": [
+    2.75,
+    9.5
+   ],
+   "width": 0.65,
+   "quadrant": [
+    1,
+    1
+   ],
+   "leaf_axis": "x",
+   "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+  },
+  {
+   "id": "F-D1T",
+   "hinge": [
+    5.25,
+    9.5
+   ],
+   "width": 0.65,
+   "quadrant": [
+    -1,
+    1
+   ],
+   "leaf_axis": "x",
+   "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+  }
+ ],
+ "layouts": {
+  "ROOM-1": [
+   {
+    "type": "centaur_single_bed",
+    "rect": [
+     5.717,
+     7.301,
+     7.85,
+     8.351
+    ],
+    "access": [
+     "S"
+    ],
+    "zones": [
+     [
+      6.017,
+      8.351,
+      7.4,
+      8.951
+     ]
+    ],
+    "head": "E"
+   },
+   {
+    "type": "tinker_side_table",
+    "rect": [
+     7.55,
+     8.351,
+     7.85,
+     8.781
+    ],
+    "access": []
+   },
+   {
+    "type": "centaur_single_bed",
+    "rect": [
+     5.638,
+     10.35,
+     7.771,
+     11.4
+    ],
+    "access": [
+     "N"
+    ],
+    "zones": [
+     [
+      5.938,
+      9.75,
+      7.321,
+      10.35
+     ]
+    ],
+    "head": "E"
+   },
+   {
+    "type": "tinker_side_table",
+    "rect": [
+     7.471,
+     9.92,
+     7.771,
+     10.35
+    ],
+    "access": []
+   },
+   {
+    "type": "twill_wardrobe",
+    "rect": [
+     4.05,
+     8.0,
+     4.526,
+     8.6
+    ],
+    "access": [
+     "E"
+    ],
+    "zones": [
+     [
+      4.526,
+      8.0,
+      5.126,
+      8.6
+     ]
+    ]
+   },
+   {
+    "type": "twill_wardrobe",
+    "rect": [
+     4.05,
+     8.6,
+     4.526,
+     9.2
+    ],
+    "access": [
+     "E"
+    ],
+    "zones": [
+     [
+      4.526,
+      8.6,
+      5.126,
+      9.2
+     ]
+    ]
+   },
+   {
+    "type": "cabrera_desk",
+    "rect": [
+     7.4,
+     9.1,
+     7.85,
+     9.898
+    ],
+    "access": [
+     "W"
+    ],
+    "zones": [
+     [
+      6.65,
+      9.1,
+      7.4,
+      9.898
+     ]
+    ]
+   },
+   {
+    "type": "cabrera_desk",
+    "rect": [
+     5.35,
+     9.4,
+     5.8,
+     10.198
+    ],
+    "access": [
+     "E"
+    ],
+    "zones": [
+     [
+      5.8,
+      9.4,
+      6.55,
+      10.198
+     ]
+    ]
+   },
+   {
+    "type": "tv_42",
+    "rect": [
+     5.35,
+     9.4,
+     5.43,
+     10.34
+    ],
+    "access": [
+     "E"
+    ],
+    "zones": []
+   }
+  ],
+  "ROOM-2": [
+   {
+    "type": "centaur_single_bed",
+    "rect": [
+     0.379,
+     6.05,
+     1.429,
+     8.183
+    ],
+    "head": "N",
+    "access": [
+     "E"
+    ],
+    "zones": [
+     [
+      1.429,
+      6.55,
+      2.029,
+      7.883
+     ]
+    ]
+   },
+   {
+    "type": "centaur_single_bed",
+    "rect": [
+     0.379,
+     9.467,
+     1.429,
+     11.6
+    ],
+    "head": "S",
+    "access": [
+     "E"
+    ],
+    "zones": [
+     [
+      1.429,
+      9.767,
+      2.029,
+      11.15
+     ]
+    ]
+   },
+   {
+    "type": "tinker_side_table",
+    "rect": [
+     0.15,
+     8.675,
+     0.58,
+     8.975
+    ],
+    "access": []
+   },
+   {
+    "type": "tinker_side_table",
+    "rect": [
+     1.45,
+     11.17,
+     1.75,
+     11.6
+    ],
+    "access": []
+   },
+   {
+    "type": "twill_wardrobe",
+    "rect": [
+     1.45,
+     6.05,
+     2.05,
+     6.526
+    ],
+    "access": [
+     "S"
+    ],
+    "zones": [
+     [
+      1.45,
+      6.526,
+      2.05,
+      7.126
+     ]
+    ]
+   },
+   {
+    "type": "twill_wardrobe",
+    "rect": [
+     3.474,
+     8.0,
+     3.95,
+     8.6
+    ],
+    "access": [
+     "W"
+    ],
+    "zones": [
+     [
+      2.874,
+      8.0,
+      3.474,
+      8.6
+     ]
+    ]
+   },
+   {
+    "type": "cabrera_desk",
+    "rect": [
+     2.2,
+     9.45,
+     2.65,
+     10.25
+    ],
+    "access": [
+     "W"
+    ],
+    "zones": [
+     [
+      1.45,
+      9.45,
+      2.2,
+      10.25
+     ]
+    ]
+   },
+   {
+    "type": "cabrera_desk",
+    "rect": [
+     2.2,
+     10.25,
+     2.65,
+     11.05
+    ],
+    "access": [
+     "W"
+    ],
+    "zones": [
+     [
+      1.45,
+      10.25,
+      2.2,
+      11.05
+     ]
+    ]
+   }
+  ],
+  "ROOM-3": [
+   {
+    "type": "orion_queen_bed",
+    "rect": [
+     0.229,
+     2.97,
+     2.461,
+     4.575
+    ],
+    "access": [
+     "N",
+     "S"
+    ],
+    "head": "W",
+    "zones": [
+     [
+      0.679,
+      2.37,
+      2.161,
+      2.97
+     ],
+     [
+      0.679,
+      4.575,
+      2.161,
+      5.175
+     ]
+    ]
+   },
+   {
+    "type": "tinker_side_table",
+    "rect": [
+     0.229,
+     2.54,
+     0.529,
+     2.97
+    ],
+    "access": []
+   },
+   {
+    "type": "tinker_side_table",
+    "rect": [
+     0.229,
+     4.575,
+     0.529,
+     5.005
+    ],
+    "access": []
+   },
+   {
+    "type": "flipper_sofa",
+    "rect": [
+     0.15,
+     0.65,
+     0.912,
+     1.818
+    ],
+    "access": [
+     "E"
+    ],
+    "zones": [
+     [
+      0.912,
+      0.65,
+      1.362,
+      1.818
+     ]
+    ]
+   },
+   {
+    "type": "tv_32",
+    "rect": [
+     1.67,
+     0.869,
+     1.75,
+     1.599
+    ],
+    "access": [
+     "W"
+    ],
+    "zones": []
+   },
+   {
+    "type": "cabrera_desk",
+    "rect": [
+     0.95,
+     0.15,
+     1.748,
+     0.6
+    ],
+    "access": [
+     "S"
+    ],
+    "zones": [
+     [
+      0.95,
+      0.6,
+      1.748,
+      1.35
+     ]
+    ]
+   },
+   {
+    "type": "gingham_wardrobe",
+    "rect": [
+     0.6,
+     5.474,
+     1.41,
+     5.95
+    ],
+    "access": [
+     "N"
+    ],
+    "zones": [
+     [
+      0.6,
+      4.874,
+      1.41,
+      5.474
+     ]
+    ]
+   }
+  ],
+  "ROOM-4": [
+   {
+    "type": "centaur_single_bed",
+    "rect": [
+     5.717,
+     1.025,
+     7.85,
+     2.075
+    ],
+    "access": [
+     "N",
+     "S"
+    ],
+    "head": "E",
+    "zones": [
+     [
+      6.017,
+      0.425,
+      7.4,
+      1.025
+     ],
+     [
+      6.017,
+      2.075,
+      7.4,
+      2.675
+     ]
+    ]
+   },
+   {
+    "type": "tinker_side_table",
+    "rect": [
+     7.55,
+     0.595,
+     7.85,
+     1.025
+    ],
+    "access": []
+   },
+   {
+    "type": "tinker_side_table",
+    "rect": [
+     7.55,
+     2.075,
+     7.85,
+     2.505
+    ],
+    "access": []
+   },
+   {
+    "type": "gingham_wardrobe",
+    "rect": [
+     4.45,
+     0.449,
+     4.926,
+     1.259
+    ],
+    "access": [
+     "E"
+    ],
+    "zones": [
+     [
+      4.926,
+      0.449,
+      5.526,
+      1.259
+     ]
+    ]
+   },
+   {
+    "type": "cabrera_desk",
+    "rect": [
+     4.45,
+     1.259,
+     4.9,
+     2.057
+    ],
+    "access": [
+     "E"
+    ],
+    "zones": [
+     [
+      4.9,
+      1.259,
+      5.65,
+      2.057
+     ]
+    ]
+   },
+   {
+    "type": "tv_32",
+    "rect": [
+     4.45,
+     1.293,
+     4.53,
+     2.023
+    ],
+    "access": [
+     "E"
+    ],
+    "zones": []
+   }
+  ]
+ },
+ "name": "FINAL floor 1 layout (Plan B luxury, family-approved 03.11.2026)",
+ "subtitle": "Plan B luxury, family-approved 03.11.2026 · 6 students per floor · architect's walls and doors unchanged",
+ "bed_side_gap": 0.15,
+ "_beds": "Father 03.11.2026: no bed stuck in a corner; a gap on both long sides of every bed (audit: at least 6\" from any wall or column).",
+ "walk_override": {
+  "ROOM-3": 0.585
+ },
+ "_room3": "Father 03.11.2026: hotel layout (asked for ROOM-4, which is 2 ft too small; moved to ROOM-3 by family choice): queen in the middle with the headboard opposite the entry door and a Tinker each side; Flipper sofa in the window alcove facing a 32\" TV; Cabrera desk under the window beside the TV (no room for it under the TV); Gingham on the wall facing the bed. Walkway beside the bed 1'-11 1/4\" (approved exception to 2'-0\").",
+ "_room4": "Family 03.11.2026: ROOM-4 single bed (Centaur), turned across the room with its head on the outer side wall, centred, Tinker each side; Gingham and Cabrera on the left (study) wall with a 32\" TV above the desk facing the bed.",
+ "allow": {
+  "ROOM-2": [
+   "bed head against a window",
+   "wardrobes are on walls at right angles"
+  ]
+ },
+ "_room2": "Family 03.11.2026, final design from their picture (they call this room ROOM-1): both Centaurs along the outer side wall, head to the partition and head to the road wall; one Tinker shared between the beds' feet and one at bed B's head; one Twill beside bed A's head, one in the alcove by the toilet; two Cabreras side by side on the toilet wall; no TV. Accepted by the family: bed B's head under the window, wardrobes on two walls."
+}

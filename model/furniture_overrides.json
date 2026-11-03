@@ -1,0 +1,438 @@
+{
+ "_about": "Hand-designed floor 1 layouts (family 03.11.2026: think as the student living there). tools/fit_floor1.py uses them as they are; tools/check_layout.py audits them with every rule.",
+ "F1-3": {
+  "ROOM-1": {
+   "note": "2 students, hand-designed (walk-through): wardrobes side by side by the entry and the toilet; beds parallel with heads on the outer side wall, away from the toilet; desks face each other across the room",
+   "items": [
+    {
+     "type": "centaur_single_bed",
+     "rect": [
+      5.717,
+      7.101,
+      7.85,
+      8.151
+     ],
+     "access": [
+      "S"
+     ],
+     "zones": [
+      [
+       6.017,
+       8.151,
+       7.5,
+       8.751
+      ]
+     ],
+     "head": "E"
+    },
+    {
+     "type": "tinker_side_table",
+     "rect": [
+      7.55,
+      8.151,
+      7.85,
+      8.581
+     ],
+     "access": []
+    },
+    {
+     "type": "centaur_single_bed",
+     "rect": [
+      5.638,
+      10.55,
+      7.771,
+      11.6
+     ],
+     "access": [
+      "N"
+     ],
+     "zones": [
+      [
+       5.938,
+       9.95,
+       7.421,
+       10.55
+      ]
+     ],
+     "head": "E"
+    },
+    {
+     "type": "tinker_side_table",
+     "rect": [
+      7.471,
+      10.12,
+      7.771,
+      10.55
+     ],
+     "access": []
+    },
+    {
+     "type": "twill_wardrobe",
+     "rect": [
+      4.05,
+      8.0,
+      4.526,
+      8.6
+     ],
+     "access": [
+      "E"
+     ],
+     "zones": [
+      [
+       4.526,
+       8.0,
+       5.126,
+       8.6
+      ]
+     ]
+    },
+    {
+     "type": "twill_wardrobe",
+     "rect": [
+      4.05,
+      8.6,
+      4.526,
+      9.2
+     ],
+     "access": [
+      "E"
+     ],
+     "zones": [
+      [
+       4.526,
+       8.6,
+       5.126,
+       9.2
+      ]
+     ]
+    },
+    {
+     "type": "cabrera_desk",
+     "rect": [
+      7.4,
+      9.1,
+      7.85,
+      9.898
+     ],
+     "access": [
+      "W"
+     ],
+     "zones": [
+      [
+       6.65,
+       9.1,
+       7.4,
+       9.898
+      ]
+     ]
+    },
+    {
+     "type": "cabrera_desk",
+     "rect": [
+      5.35,
+      9.4,
+      5.8,
+      10.198
+     ],
+     "access": [
+      "E"
+     ],
+     "zones": [
+      [
+       5.8,
+       9.4,
+       6.55,
+       10.198
+      ]
+     ]
+    }
+   ]
+  },
+  "ROOM-2": {
+   "note": "2 students, hand-designed (mirror of ROOM-1): wardrobes side by side by the entry and the toilet; beds parallel with heads on the outer side wall, away from the toilet; desks face each other across the room",
+   "items": [
+    {
+     "type": "centaur_single_bed",
+     "rect": [
+      0.15,
+      7.05,
+      2.283,
+      8.1
+     ],
+     "access": [
+      "S"
+     ],
+     "zones": [
+      [
+       0.5,
+       8.1,
+       1.983,
+       8.7
+      ]
+     ],
+     "head": "W"
+    },
+    {
+     "type": "tinker_side_table",
+     "rect": [
+      0.15,
+      8.1,
+      0.45,
+      8.53
+     ],
+     "access": []
+    },
+    {
+     "type": "centaur_single_bed",
+     "rect": [
+      0.229,
+      10.55,
+      2.362,
+      11.6
+     ],
+     "access": [
+      "N"
+     ],
+     "zones": [
+      [
+       0.579,
+       9.95,
+       2.062,
+       10.55
+      ]
+     ],
+     "head": "W"
+    },
+    {
+     "type": "tinker_side_table",
+     "rect": [
+      0.229,
+      10.12,
+      0.529,
+      10.55
+     ],
+     "access": []
+    },
+    {
+     "type": "twill_wardrobe",
+     "rect": [
+      3.474,
+      7.9,
+      3.95,
+      8.5
+     ],
+     "access": [
+      "W"
+     ],
+     "zones": [
+      [
+       2.874,
+       7.9,
+       3.474,
+       8.5
+      ]
+     ]
+    },
+    {
+     "type": "twill_wardrobe",
+     "rect": [
+      3.474,
+      8.5,
+      3.95,
+      9.1
+     ],
+     "access": [
+      "W"
+     ],
+     "zones": [
+      [
+       2.874,
+       8.5,
+       3.474,
+       9.1
+      ]
+     ]
+    },
+    {
+     "type": "cabrera_desk",
+     "rect": [
+      0.15,
+      9.1,
+      0.6,
+      9.898
+     ],
+     "access": [
+      "E"
+     ],
+     "zones": [
+      [
+       0.6,
+       9.1,
+       1.35,
+       9.898
+      ]
+     ]
+    },
+    {
+     "type": "cabrera_desk",
+     "rect": [
+      2.2,
+      9.4,
+      2.65,
+      10.198
+     ],
+     "access": [
+      "W"
+     ],
+     "zones": [
+      [
+       1.45,
+       9.4,
+       2.2,
+       10.198
+      ]
+     ]
+    }
+   ]
+  },
+  "ROOM-3": {
+   "note": "2 students, hand-designed: straight walkway from the entry to the toilet; beds side by side with one shared Tinker, heads on the outer side wall, well clear of the toilet door; study nook with both desks by the window; wardrobes side by side by the entry",
+   "items": [
+    {
+     "type": "centaur_single_bed",
+     "rect": [
+      0.229,
+      3.17,
+      2.362,
+      4.22
+     ],
+     "access": [
+      "S"
+     ],
+     "zones": [
+      [
+       0.579,
+       4.22,
+       2.362,
+       4.82
+      ]
+     ],
+     "head": "W"
+    },
+    {
+     "type": "centaur_single_bed",
+     "rect": [
+      0.229,
+      4.82,
+      2.362,
+      5.87
+     ],
+     "access": [
+      "N"
+     ],
+     "zones": [
+      [
+       0.579,
+       4.22,
+       2.362,
+       4.82
+      ]
+     ],
+     "head": "W"
+    },
+    {
+     "type": "tinker_side_table",
+     "rect": [
+      0.229,
+      4.305,
+      0.529,
+      4.735
+     ],
+     "access": [],
+     "shared": true
+    },
+    {
+     "type": "cabrera_desk",
+     "rect": [
+      0.15,
+      0.449,
+      0.6,
+      1.247
+     ],
+     "access": [
+      "E"
+     ],
+     "zones": [
+      [
+       0.6,
+       0.449,
+       1.35,
+       1.247
+      ]
+     ]
+    },
+    {
+     "type": "cabrera_desk",
+     "rect": [
+      0.15,
+      1.247,
+      0.6,
+      2.045
+     ],
+     "access": [
+      "E"
+     ],
+     "zones": [
+      [
+       0.6,
+       1.247,
+       1.35,
+       2.045
+      ]
+     ]
+    },
+    {
+     "type": "twill_wardrobe",
+     "rect": [
+      0.229,
+      6.474,
+      0.829,
+      6.95
+     ],
+     "access": [
+      "N"
+     ],
+     "zones": [
+      [
+       0.229,
+       5.874,
+       0.829,
+       6.474
+      ]
+     ]
+    },
+    {
+     "type": "twill_wardrobe",
+     "rect": [
+      0.829,
+      6.474,
+      1.429,
+      6.95
+     ],
+     "access": [
+      "N"
+     ],
+     "zones": [
+      [
+       0.829,
+       5.874,
+       1.429,
+       6.474
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "_foot_rule": "Bed access strips stop 1'-0\" short of the foot end (you get into bed at the pillow end or the middle)."
+}

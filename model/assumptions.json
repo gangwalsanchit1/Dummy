@@ -1,0 +1,574 @@
+{
+ "_about": "Every value in this file is ASSUMED (not on the AFTER O.C. sheet). Change a value and re-run tools/build_model.py to regenerate the model. See docs/drawing-takeoff.md Q2, Q6, Q7, Q10, Q11.",
+ "levels": {
+  "ground_road": 0.0,
+  "stilt_ffl": 0.3,
+  "floor_to_floor": 3.0,
+  "slab_thickness": 0.15,
+  "storeys": [
+   "GF",
+   "F1",
+   "F2",
+   "F3",
+   "F4",
+   "TERRACE"
+  ]
+ },
+ "heights": {
+  "door_head": 2.1,
+  "window_sill": 0.9,
+  "window_head": 2.1,
+  "ventilator_sill": 1.5,
+  "ventilator_max_width": 1.0,
+  "parapet": 1.0,
+  "f4_front_terrace_parapet": 1.0,
+  "stair_cabin_clear": 2.55,
+  "compound_wall": 1.5,
+  "lift_pit_depth": 1.2,
+  "ug_tank_top": 0.0,
+  "tank_wall_and_slab": 0.15
+ },
+ "furniture_sizes": {
+  "single_bed": [
+   2.05,
+   0.95,
+   0.45
+  ],
+  "queen_bed": [
+   2.05,
+   1.58,
+   0.45
+  ],
+  "wardrobe_3door_sliding": [
+   1.2,
+   0.55,
+   2.1
+  ],
+  "wall_desk": [
+   0.9,
+   0.45,
+   0.75
+  ],
+  "standard_desk": [
+   1.16,
+   0.57,
+   0.75
+  ],
+  "_note": "Wakefit models chosen by the family (sizes confirmed by the family). Bedside table 0.40x0.40 ASSUMED (as in the CozyStays Bella Vita photo). Heights ASSUMED.",
+  "bedside_table": [
+   0.4,
+   0.4,
+   0.55
+  ],
+  "orion_queen_bed": [
+   2.232,
+   1.605,
+   0.878
+  ],
+  "tinker_side_table": [
+   0.43,
+   0.3,
+   0.552
+  ],
+  "twill_wardrobe": [
+   0.6,
+   0.476,
+   1.824
+  ],
+  "gingham_wardrobe": [
+   0.81,
+   0.476,
+   1.856
+  ],
+  "notiq_desk": [
+   1.2,
+   0.6,
+   0.75
+  ],
+  "centaur_single_bed": [
+   2.133,
+   1.05,
+   0.96
+  ],
+  "sage_desk": [
+   1.0,
+   0.57,
+   1.343
+  ],
+  "amata_sofa": [
+   1.9,
+   0.96,
+   0.88
+  ],
+  "nohutch_desk": [
+   1.0,
+   0.57,
+   0.74
+  ],
+  "compact_desk": [
+   0.9,
+   0.45,
+   0.75
+  ],
+  "cabrera_desk": [
+   0.798,
+   0.45,
+   0.759
+  ],
+  "flipper_sofa": [
+   1.168,
+   0.762,
+   0.712
+  ],
+  "tv_42": [
+   0.94,
+   0.08,
+   1.66
+  ],
+  "tv_40": [
+   0.89,
+   0.08,
+   1.62
+  ],
+  "tv_32": [
+   0.73,
+   0.08,
+   1.5
+  ]
+ },
+ "clearances": {
+  "queen_bed_sides": 0.6,
+  "single_bed_access_side": 0.6,
+  "sliding_wardrobe_front": 0.6,
+  "desk_chair_zone": 0.75,
+  "_note": "Single occupancy, queen bed: 0.60 m on both long sides where it fits (otherwise reported). Wardrobe front 0.60 m (hinged doors). Desk chair zone 0.75 m. Walking path 0.55 m. All ASSUMED except the family's ROOM-4 rule.",
+  "_room4_rule": "F1-3 ROOM-4 (family): queen bed with one long side against a wall, Tinker side table on the open side touching the head wall; study wall = west wall (x 4.45) with the study table and the wardrobe.",
+  "queen_head_table_trim": 0.35,
+  "sofa_legroom": 0.45,
+  "_sofa_note": "Sofa: 1'-5 3/4\" (0.45 m) legroom in front (ASSUMED). Bed mode (4'-0\" deep) needs the front clear to 4'-0\" from the wall - reported, not required."
+ },
+ "doors": {
+  "_note": "hinge = plan point; zone = quarter-disc of radius 'width' swept from the hinge into 'quadrant' (signs of dx, dy). ALL doors open INWARDS (family instruction): room doors into rooms, toilet/WC doors into the toilet, terrace door into the suite. Arcs DRAWN on F4 room doors; hinge sides elsewhere ASSUMED, chosen so the open leaf lies against a side wall.",
+  "F1-3": [
+   {
+    "id": "F-D3",
+    "hinge": [
+     3.05,
+     6.95
+    ],
+    "width": 0.9,
+    "quadrant": [
+     -1,
+     -1
+    ],
+    "leaf_axis": "y",
+    "tag": "CHANGED 03.11.2026 (family): slid to the lobby corner, hinged at the moved wall; opens inwards"
+   },
+   {
+    "id": "F-D4",
+    "hinge": [
+     4.05,
+     4.5
+    ],
+    "width": 0.9,
+    "quadrant": [
+     -1,
+     -1
+    ],
+    "leaf_axis": "x",
+    "tag": "ASSUMED - opens inwards (family instruction)"
+   },
+   {
+    "id": "F-D2",
+    "hinge": [
+     3.15,
+     7.05
+    ],
+    "width": 0.8,
+    "quadrant": [
+     1,
+     1
+    ],
+    "leaf_axis": "x",
+    "tag": "CHANGED 03.11.2026 (family): moved to the lobby front wall; opens inwards"
+   },
+   {
+    "id": "F-D1",
+    "hinge": [
+     4.6,
+     7.05
+    ],
+    "width": 0.9,
+    "quadrant": [
+     1,
+     1
+    ],
+    "leaf_axis": "x",
+    "tag": "ASSUMED - opens inwards (family instruction)"
+   },
+   {
+    "id": "F-D3T",
+    "hinge": [
+     1.85,
+     1.95
+    ],
+    "width": 0.65,
+    "quadrant": [
+     1,
+     -1
+    ],
+    "leaf_axis": "x",
+    "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+   },
+   {
+    "id": "F-D4T",
+    "hinge": [
+     4.35,
+     1.95
+    ],
+    "width": 0.65,
+    "quadrant": [
+     -1,
+     -1
+    ],
+    "leaf_axis": "x",
+    "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+   },
+   {
+    "id": "F-D2T",
+    "hinge": [
+     2.75,
+     9.5
+    ],
+    "width": 0.65,
+    "quadrant": [
+     1,
+     1
+    ],
+    "leaf_axis": "x",
+    "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+   },
+   {
+    "id": "F-D1T",
+    "hinge": [
+     5.25,
+     9.5
+    ],
+    "width": 0.65,
+    "quadrant": [
+     -1,
+     1
+    ],
+    "leaf_axis": "x",
+    "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+   }
+  ],
+  "F4": [
+   {
+    "id": "F4-D3",
+    "hinge": [
+     4.05,
+     6.05
+    ],
+    "width": 0.9,
+    "quadrant": [
+     -1,
+     -1
+    ],
+    "leaf_axis": "x",
+    "tag": "DRAWN"
+   },
+   {
+    "id": "F4-D2",
+    "hinge": [
+     3.15,
+     6.05
+    ],
+    "width": 0.9,
+    "quadrant": [
+     -1,
+     1
+    ],
+    "leaf_axis": "y",
+    "tag": "DRAWN"
+   },
+   {
+    "id": "F4-D1",
+    "hinge": [
+     4.6,
+     7.05
+    ],
+    "width": 0.9,
+    "quadrant": [
+     1,
+     1
+    ],
+    "leaf_axis": "x",
+    "tag": "DRAWN"
+   },
+   {
+    "id": "F4-D3T",
+    "hinge": [
+     4.15,
+     2.1
+    ],
+    "width": 0.65,
+    "quadrant": [
+     1,
+     -1
+    ],
+    "leaf_axis": "x",
+    "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+   },
+   {
+    "id": "F4-DT",
+    "hinge": [
+     5.65,
+     2.95
+    ],
+    "width": 0.75,
+    "quadrant": [
+     -1,
+     -1
+    ],
+    "leaf_axis": "y",
+    "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+   },
+   {
+    "id": "F4-D2T",
+    "hinge": [
+     2.75,
+     8.78
+    ],
+    "width": 0.65,
+    "quadrant": [
+     1,
+     1
+    ],
+    "leaf_axis": "x",
+    "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+   },
+   {
+    "id": "F4-D1T",
+    "hinge": [
+     5.25,
+     8.78
+    ],
+    "width": 0.65,
+    "quadrant": [
+     -1,
+     1
+    ],
+    "leaf_axis": "x",
+    "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+   }
+  ],
+  "GF": [
+   {
+    "id": "GF-D1",
+    "hinge": [
+     4.15,
+     1.05
+    ],
+    "width": 0.65,
+    "quadrant": [
+     1,
+     -1
+    ],
+    "leaf_axis": "y",
+    "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+   },
+   {
+    "id": "GF-D2",
+    "hinge": [
+     6.35,
+     0.4
+    ],
+    "width": 0.65,
+    "quadrant": [
+     -1,
+     1
+    ],
+    "leaf_axis": "y",
+    "tag": "ASSUMED hinge side; opens INWARDS (family instruction)"
+   },
+   {
+    "id": "GF-D3",
+    "hinge": [
+     7.85,
+     2.95
+    ],
+    "width": 0.75,
+    "quadrant": [
+     -1,
+     -1
+    ],
+    "leaf_axis": "x",
+    "tag": "ASSUMED into servant room - opens inwards (family instruction)"
+   }
+  ]
+ },
+ "wakefit_catalog": {
+  "_note": "Family-chosen Wakefit products. Finishes, sizes and prices confirmed on wakefit.co on 03.11.2026 in the family's Chrome (docs/wakefit-pages). Plan sizes keep the larger figure where pages differ (Gingham drawn 81 wide, real 80; Centaur drawn 105 wide, page 103.6).",
+  "orion_queen_bed": {
+   "product": "Wakefit Orion Engineered Wood Bed with Storage, Queen, Omega Grey",
+   "link": "https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2",
+   "size_cm": "160 W x 223 L x 87.8 H",
+   "source": "wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026",
+   "status": "confirmed on wakefit.co 03.11.2026",
+   "finishes": [
+    "frame Columbian Walnut with Omega Grey upholstery (WEWB7860SUPOGRORIONR2) Rs 16,244",
+    "frame Columbian Walnut with Omega Pearl upholstery (WEWB7860SUPOPLORIONR2) Rs 16,310"
+   ],
+   "design": "headboard with two fabric pads and an open bookshelf niche between them; box storage to the floor"
+  },
+  "tinker_side_table": {
+   "product": "Wakefit Tinker Bedside Table",
+   "link": "https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER",
+   "size_cm": "30 W (door front) x 43 D x 55.2 H",
+   "source": "wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026",
+   "status": "confirmed on wakefit.co 03.11.2026",
+   "finishes": [
+    "Columbian Walnut only (WBDSTTINKER) Rs 4,339"
+   ],
+   "design": "one full-height door with a round knob on the 30 cm front, lift-up top with two cup holders, no drawers"
+  },
+  "twill_wardrobe": {
+   "product": "Wakefit Twill 2 Door Compact Wardrobe with One Internal Drawer",
+   "link": "https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2",
+   "size_cm": "60 W x 47.6 D x 180 H (Columbia Walnut) / 182.4 H (Dark Brown)",
+   "source": "wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026",
+   "status": "confirmed on wakefit.co 03.11.2026",
+   "finishes": [
+    "Columbia Walnut (WWRB2DTWILLCWR2) Rs 9,819",
+    "Dark Brown (WWRB2DTWILLDBR2) Rs 10,308"
+   ],
+   "design": "this configuration has shelves (1 fixed, 3 adjustable) and one internal drawer, NO hanging rail; key lock; wall-anchored"
+  },
+  "gingham_wardrobe": {
+   "product": "Wakefit Gingham 2 Door Wardrobe with Mirror, One Hanging Space",
+   "link": "https://www.wakefit.co/wardrobes/gingham-2-door-wardrobe-with-mirror-one-hanging-space/WWRB2DMH1GINGHAMCWR2",
+   "size_cm": "80 W x 47.2-47.6 D x 182-185.6 H (Wenge / Columbia Walnut)",
+   "source": "wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026",
+   "status": "confirmed on wakefit.co 03.11.2026",
+   "finishes": [
+    "Columbia Walnut (WWRB2DMH1GINGHAMCWR2) Rs 12,228",
+    "Wenge (WWRB2DMH1GINGHAMWER2) Rs 12,279"
+   ],
+   "design": "1 hanging rod, 1 drawer, 2 shelves; full-height mirror strip 121 x 25 cm on the right door; key lock; wall-anchored"
+  },
+  "notiq_desk": {
+   "product": "Wakefit Notiq Electric Adjustable Study Table (120 cm)",
+   "link": "https://www.amazon.in/Wakefit-adjustable-Installation-Ergonomic-Wobble-Free/dp/B0GZW8F9D6",
+   "size_cm": "120 W x 60 D, height 70-120",
+   "status": "NOT CHOSEN BY FAMILY YET - placeholder; wakefit.co lists a 160 cm Notiq: https://www.wakefit.co/study-tables/notiq-study-table/WSTNOTIQ160FW"
+  },
+  "wall_desk": {
+   "product": "Wakefit wall desk (earlier family choice)",
+   "size_cm": "90 x 45",
+   "status": "family-confirmed size (earlier)"
+  },
+  "centaur_single_bed": {
+   "product": "Wakefit Centaur Single size Storage bed, 78 x 36, Frosty White",
+   "link": "https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR",
+   "size_cm": "213.3 L x 105 W overall (family screenshot); wakefit.co's inch figures give 213.3 L x 103.6 W, headboard 96 H; storage box 198.1 x 91.5 x 31 H. Drawn at 105 W.",
+   "source": "wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026",
+   "status": "confirmed on wakefit.co 03.11.2026",
+   "finishes": [
+    "Frosty White (WEWB7836SCNTR) Rs 12,427",
+    "Wyoming Maple, a dark charcoal woodgrain (WEWB7836SCNTRWM) Rs 10,659"
+   ]
+  },
+  "sage_desk": {
+   "product": "Wakefit Sage Study Table, Columbian Walnut",
+   "link": "https://www.wakefit.co/study-tables/sage-study-table/WSTSAGER1",
+   "size_cm": "100 W x 57 D, desk top 74 H, hutch 134.3 H",
+   "source": "family screenshot of the Wakefit product page",
+   "status": "from Wakefit page (family screenshot)"
+  },
+  "amata_sofa": {
+   "product": "AMATA sofa cum bed (Aqua Blue)",
+   "link": "https://www.amazon.in/dp/B0B68JZTDP",
+   "size_cm": "190 L x 96 D x 88 H (sofa); 189.2 x 121.9 x 43.2 H (bed mode)",
+   "source": "family screenshot of the Amazon listing",
+   "status": "from listing (family screenshot)"
+  },
+  "cabrera_desk": {
+   "product": "Wakefit Cabrera Study Table (engineered wood, open shelf under the top)",
+   "link": "https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA",
+   "size_cm": "80 W x 45 D x 76 H",
+   "source": "wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026",
+   "status": "confirmed on wakefit.co 03.11.2026",
+   "finishes": [
+    "Urban Teak & White: white top, teak sides and shelves (WSTCABRERA) Rs 3,309",
+    "Pumic Grey: grey sides and shelves, teak-look top (WSTCABRERAPG) Rs 3,089"
+   ]
+  },
+  "flipper_sofa": {
+   "product": "Wakefit Flipper Sofa Cum Bed, Two Seater (opens to 6' x 4')",
+   "link": "https://www.wakefit.co/sofa-set/flipper-sofa-cum-bed-two-seater/WSFAFLPN2FWGR",
+   "size_cm": "116-117 W x 76 D x 70-71 H (sofa); opens to 116-117 x 182-183 x 19-20 bed",
+   "source": "wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026",
+   "status": "confirmed on wakefit.co 03.11.2026",
+   "finishes": [
+    "Warpknit: Grey Rs 8,711, Blue, Beige, Purple Rs 9,170",
+    "Omega: Blue, Grey, Pearl, Rose, Ash Grey, Choco Brown Rs 10,472-10,474"
+   ],
+   "design": "all-foam, no frame or legs, sits on the floor; two scatter cushions"
+  },
+  "tv_42": {
+   "product": "Wall-mounted TV, 42-inch class (any brand, not Wakefit)",
+   "link": null,
+   "size_cm": "about 94 W x 8 D on a wall bracket, bottom edge about 3'-7\" (1.1 m) above floor",
+   "source": "typical 42-inch TV size, ASSUMED",
+   "status": "ASSUMED - not a Wakefit product"
+  },
+  "tv_40": {
+   "product": "Wall-mounted TV, 40-inch class (any brand, not Wakefit)",
+   "link": null,
+   "size_cm": "about 89 W x 8 D on a wall bracket",
+   "source": "typical 40-inch TV size, ASSUMED",
+   "status": "ASSUMED - not a Wakefit product"
+  },
+  "tv_32": {
+   "product": "Wall-mounted TV, 32-inch class (any brand, not Wakefit)",
+   "link": null,
+   "size_cm": "about 73 W x 8 D on a wall bracket",
+   "source": "typical 32-inch TV size, ASSUMED",
+   "status": "ASSUMED - not a Wakefit product"
+  }
+ },
+ "standard_kit": {
+  "_note": "Family 03.11.2026: standardise - every student gets the same items; 2 students = 2 of everything. Twill is the wardrobe that fits every room (ROOM-4 study wall is 5'-3\" beside column C13). Sofa dropped: it fits only ROOM-1.",
+  "wardrobe": "twill_wardrobe",
+  "desk": "cabrera_desk",
+  "side_table": "tinker_side_table",
+  "twin_bed": "centaur_single_bed",
+  "single_bed": "orion_queen_bed",
+  "desk_types": {
+   "nohutch_desk": {
+    "name": "study table without hutch (Sage size)",
+    "note": "Only where the desk must sit under a window (the Sage hutch, 4'-4 7/8\", would cover it). Same 3'-3 3/8\" x 1'-10 1/2\" top as the Sage; ask Wakefit for the Sage without hutch or pick a matching table. ASSUMED."
+   },
+   "compact_desk": {
+    "name": "Compact study table",
+    "note": "Family 03.11.2026: one compact study table for every student (fully standard) so ROOM-1 can take 2 students. Size 2'-11 3/8\" x 1'-5 3/4\" x 2'-5 1/2\" high, no hutch, ASSUMED: pick a Wakefit table of about this size and re-check."
+   },
+   "cabrera_desk": {
+    "name": "Cabrera study table",
+    "note": "Family 03.11.2026: real Wakefit products only. Cabrera 2'-7 3/8\" x 1'-5 3/4\" x 2'-5 7/8\", replaces the assumed compact table."
+   }
+  },
+  "twin_rooms": [
+   "ROOM-1",
+   "ROOM-2",
+   "ROOM-3"
+  ],
+  "_occupancy": "Family 03.11.2026 (final): internal wall moved; ROOM-1, ROOM-2, ROOM-3 twin, ROOM-4 single = 7 students per floor. ROOM-3 beds share one Tinker. Each student has their own bed, study table + chair and wardrobe.",
+  "shared_side_table_ok": true,
+  "shared_tinker_rooms": [
+   "ROOM-3"
+  ],
+  "_aesthetics": "Family 03.11.2026: uneven things look ugly. Every item flush on a plain wall (never on or proud of a column); matching items line up on one wall or face each other."
+ }
+}
