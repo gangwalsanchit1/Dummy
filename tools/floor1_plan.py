@@ -70,7 +70,8 @@ NAME = {"orion_queen_bed": "Orion queen bed", "tinker_side_table": "Tinker", "gi
         "twill_wardrobe": "Twill", "notiq_desk": "Study table", "sage_desk": "Sage study table", "compact_desk": "Study table", "cabrera_desk": "Cabrera desk", "nohutch_desk": "Study table (no hutch)", "wall_desk": "Wall desk", "centaur_single_bed": "Centaur single bed", "amata_sofa": "AMATA sofa"}
 furn = []
 SHORT = {"orion_queen_bed": "Queen bed", "centaur_single_bed": "Bed", "tinker_side_table": "Tinker", "twill_wardrobe": "Twill",
-         "gingham_wardrobe": "Gingham", "cabrera_desk": "Desk", "compact_desk": "Desk", "sage_desk": "Sage desk", "amata_sofa": "Sofa"}
+         "gingham_wardrobe": "Gingham", "cabrera_desk": "Desk", "compact_desk": "Desk", "sage_desk": "Sage desk", "amata_sofa": "Sofa",
+         "flipper_sofa": "Flipper sofa"}
 
 
 def owners(items):
@@ -103,6 +104,19 @@ for room, items in FU["F1-3"].items():
             s.append(f'<text x="{X(cx):.1f}" y="{Y(cy)+3:.1f}" font-size="8" text-anchor="middle" fill="#3730a3">chair</text>')
     for it in items:
         r = it["rect"]
+        if it["type"].startswith("tv_"):      # wall-mounted TV: dark bar on the wall, label in front of it
+            s.append(f'<rect x="{X(r[0]):.1f}" y="{Y(r[1]):.1f}" width="{(r[2]-r[0])*K:.1f}" height="{(r[3]-r[1])*K:.1f}" fill="#111827"/>')
+            sd = (it.get("access") or ["S"])[0]
+            cx, cy = (r[0] + r[2]) / 2, (r[1] + r[3]) / 2
+            under = [o["rect"] for o in items if o is not it and not o["type"].startswith("tv_")
+                     and o["rect"][0] < r[2] + 0.05 and r[0] - 0.05 < o["rect"][2] and o["rect"][1] < r[3] + 0.05 and r[1] - 0.05 < o["rect"][3]]
+            lx, ly = {"E": (r[2] + 0.22, cy), "W": (r[0] - 0.22, cy), "N": (cx, r[1] - 0.12), "S": (cx, r[3] + 0.18)}[sd]
+            rot = f' transform="rotate(-90 {X(lx):.1f} {Y(ly):.1f})"' if sd in ("E", "W") else ""
+            if under:      # TV hangs above a desk: label at the end of the TV, clear of the desk and chair
+                lx, ly, rot = ((cx, r[1] - 0.12, "") if sd in ("E", "W") else (r[0] - 0.35, cy, ""))
+            s.append(f'<text x="{X(lx):.1f}" y="{Y(ly)+4:.1f}" font-size="10.5" font-weight="bold" text-anchor="middle" fill="#111827"{rot}>TV {it["type"][3:]}"</text>')
+            furn.append([r[0] - 0.3, r[1] - 0.3, r[2] + 0.3, r[3] + 0.3])
+            continue
         furn.append(r)
         s.append(f'<rect x="{X(r[0]):.1f}" y="{Y(r[1]):.1f}" width="{(r[2]-r[0])*K:.1f}" height="{(r[3]-r[1])*K:.1f}" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>')
         cx, cy = X((r[0] + r[2]) / 2), Y((r[1] + r[3]) / 2)
@@ -220,7 +234,7 @@ _txt = ", ".join(f"{r} {n}" for r, n in _occ.items())
 FSZ = AS["furniture_sizes"]
 _kit = [("Centaur single bed", "centaur_single_bed"), ("Orion queen bed", "orion_queen_bed"), ("Tinker side table", "tinker_side_table"),
         ("Twill wardrobe", "twill_wardrobe"), ("Cabrera study table", "cabrera_desk"), ("Sage study table (hutch)", "sage_desk"),
-        ("Gingham wardrobe", "gingham_wardrobe")]
+        ("Gingham wardrobe", "gingham_wardrobe"), ("Flipper 2-seater sofa cum bed", "flipper_sofa")]
 _used = {i["type"] for its in FU["F1-3"].values() for i in its}
 _k = [f"{n} {ft(FSZ[t][0])} × {ft(FSZ[t][1])}" for n, t in _kit if t in _used]
 _k.append(f"chair space {ft(AS['clearances']['desk_chair_zone'])} (dashed circle). A / B = student")

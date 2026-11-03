@@ -114,6 +114,21 @@
    0.798,
    0.45,
    0.759
+  ],
+  "flipper_sofa": [
+   1.168,
+   0.762,
+   0.712
+  ],
+  "tv_42": [
+   0.94,
+   0.08,
+   1.66
+  ],
+  "tv_40": [
+   0.89,
+   0.08,
+   1.62
   ]
  },
  "clearances": {
@@ -456,6 +471,27 @@
    "size_cm": "79.8 W x 45 D x 75.9 H (Amazon.in item dimensions); 80 x 45 x 76 on other listings",
    "source": "Amazon.in B0BWRFNMCD and Flipkart listings (wakefit.co blocks automated reading); confirm on the product page before ordering",
    "status": "real Wakefit product; size from retailer listings"
+  },
+  "flipper_sofa": {
+   "product": "Wakefit Flipper Sofa Cum Bed, Two Seater (opens to 6' x 4')",
+   "link": "https://www.wakefit.co/sofa-set/flipper-sofa-cum-bed-two-seater/WSFAFLPN2FWGR",
+   "size_cm": "116.8 W x 76.2 D x 71.2 H (Flipkart); 117 x 76.2 x 66 (Amazon.in WarpKnit Grey)",
+   "source": "Flipkart and Amazon.in B0B1J9F5XL listings (wakefit.co blocks automated reading)",
+   "status": "real Wakefit product; size from retailer listings"
+  },
+  "tv_42": {
+   "product": "Wall-mounted TV, 42-inch class (any brand, not Wakefit)",
+   "link": null,
+   "size_cm": "about 94 W x 8 D on a wall bracket, bottom edge about 3'-7\" (1.1 m) above floor",
+   "source": "typical 42-inch TV size, ASSUMED",
+   "status": "ASSUMED - not a Wakefit product"
+  },
+  "tv_40": {
+   "product": "Wall-mounted TV, 40-inch class (any brand, not Wakefit)",
+   "link": null,
+   "size_cm": "about 89 W x 8 D on a wall bracket",
+   "source": "typical 40-inch TV size, ASSUMED",
+   "status": "ASSUMED - not a Wakefit product"
   }
  },
  "standard_kit": {

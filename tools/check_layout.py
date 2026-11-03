@@ -84,6 +84,32 @@ def edge_of(it):
 def audit(name, items):
     room = F.Room("F1-3", name, *DOORS[name])
     probs, notes = [], []
+    tvs = [it for it in items if it["type"].startswith("tv_")]
+    items = [it for it in items if not it["type"].startswith("tv_")]
+    for tvi in tvs:            # wall-mounted TV: above the floor (bottom edge about 1.1 m), so only walls, windows, bed heads and tall items matter
+        r = tvi["rect"]
+        F.FLUSH = True
+        if not F.touches_wall(edge_of(tvi), room.walls):
+            probs.append("TV not on a plain wall")
+        if F.blocks_window(room, r, 9.9):
+            probs.append("TV over or beside a window opening")
+        for o in items:
+            if FS[o["type"]][2] > 1.05 and F.ovl([r[0] - 0.02, r[1] - 0.02, r[2] + 0.02, r[3] + 0.02], o["rect"]):
+                probs.append(f"TV clashes with {o['type']}")
+            if o["type"].endswith("_bed"):
+                e = edge_of(o)
+                hs = {"x": [e[1] - 0.1, e[2], e[1] + 0.1, e[3]], "y": [e[2], e[1] - 0.1, e[3], e[1] + 0.1]}[e[0]]
+                if F.ovl(r, hs):
+                    probs.append("TV above a bed head")
+        cx, cy = (r[0] + r[2]) / 2, (r[1] + r[3]) / 2
+        for o in items:
+            if o["type"].endswith("_bed"):
+                e = edge_of(o)
+                px, py = ((e[1] + (0.3 if o["head"] == "W" else -0.3)), (e[2] + e[3]) / 2) if e[0] == "x" else ((e[2] + e[3]) / 2, e[1] + (0.3 if o["head"] == "N" else -0.3))
+                notes.append(f"TV {ftin(((cx - px) ** 2 + (cy - py) ** 2) ** 0.5)} from a pillow")
+            if o["type"].endswith("sofa"):
+                q = o["rect"]
+                notes.append(f"TV {ftin(((cx - (q[0] + q[2]) / 2) ** 2 + (cy - (q[1] + q[3]) / 2) ** 2) ** 0.5)} from the sofa")
     for i, it in enumerate(items):
         r, k = it["rect"], G.KIND(it["type"])
         if not F.inside(r, room.rects):
@@ -95,8 +121,8 @@ def audit(name, items):
         for z in it.get("zones", []):
             if not F.inside(z, room.rects) or any(F.ovl(z, w) for w in room.walls):
                 probs.append(f"{it['type']} clearance runs out of the room")
-            if k in ("desk", "wardrobe") and any(F.disc_hits(sw, z) for sw in room.swings):
-                probs.append(f"{it['type']} {'chair' if k == 'desk' else 'door'} space is inside a door swing")
+            if (k in ("desk", "wardrobe") or it["type"].endswith("sofa")) and any(F.disc_hits(sw, z) for sw in room.swings):
+                probs.append(f"{it['type']} {'chair' if k == 'desk' else 'legroom' if 'sofa' in k else 'door'} space is inside a door swing")
         for o in items[i + 1:]:
             if F.ovl(r, o["rect"]):
                 probs.append(f"{it['type']} overlaps {o['type']}")
@@ -116,7 +142,7 @@ def audit(name, items):
                     notes.append(f"{k}s face each other across the room, offset {ftin(abs(a0 - b0))}")
                 else:
                     probs.append(f"{k}s are on walls at right angles")
-        if k in ("desk", "wardrobe"):
+        if k in ("desk", "wardrobe") or it["type"].endswith("sofa"):
             F.FLUSH = True
             if not F.touches_wall(edge_of(it), room.walls):
                 probs.append(f"{it['type']} not flush on a plain wall")

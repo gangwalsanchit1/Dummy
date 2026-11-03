@@ -14,10 +14,13 @@ from units import ftin  # noqa: E402
 
 AS = json.loads((ROOT / "model/assumptions.json").read_text())
 CAT, FS = AS["wakefit_catalog"], AS["furniture_sizes"]
-ORDER = ["centaur_single_bed", "orion_queen_bed", "tinker_side_table", "twill_wardrobe", "gingham_wardrobe", "cabrera_desk", "sage_desk", "amata_sofa"]
+ORDER = ["centaur_single_bed", "orion_queen_bed", "tinker_side_table", "twill_wardrobe", "gingham_wardrobe", "cabrera_desk", "sage_desk",
+         "flipper_sofa", "amata_sofa", "tv_42", "tv_40"]
 SHORT = {"centaur_single_bed": "Centaur single bed", "orion_queen_bed": "Orion queen bed", "tinker_side_table": "Tinker bedside table",
          "twill_wardrobe": "Twill 2-door compact wardrobe", "gingham_wardrobe": "Gingham 2-door wardrobe with mirror",
-         "cabrera_desk": "Cabrera study table", "sage_desk": "Sage study table (with hutch)", "amata_sofa": "AMATA sofa cum bed (Amazon, not Wakefit)"}
+         "cabrera_desk": "Cabrera study table", "sage_desk": "Sage study table (with hutch)", "amata_sofa": "AMATA sofa cum bed (Amazon, not Wakefit)",
+         "flipper_sofa": "Flipper 2-seater sofa cum bed (opens to 6' x 4')", "tv_42": "Wall-mounted TV, 42-inch (any brand, not Wakefit)",
+         "tv_40": "Wall-mounted TV, 40-inch (any brand, not Wakefit)"}
 MATTRESS = {"centaur_single_bed": "single mattress 78 x 36 in (6'-6\" x 3'-0\") to suit the Centaur",
             "orion_queen_bed": "queen mattress 78 x 60 in (6'-6\" x 5'-0\") to suit the Orion"}
 

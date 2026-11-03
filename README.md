@@ -18,8 +18,9 @@ This is a student PG at Plot C-89, Sector 12, Kharghar, Navi Mumbai: stilt, four
 | Open the BIM model | `model/bella-vita-2.ifc` | Free tools: BlenderBIM/Bonsai, FreeCAD, BIMvision, or https://ifcviewer.com |
 | See where the structural columns sit on floor 1 and what they touch | `docs/structure-check.md` | Column-by-column table in feet and inches, plus points for the structural engineer |
 | Walk through each room as the students (why each item is where it is) | `docs/floor1-walkthrough.md` | Entry, toilet, beds, desks, wardrobes, AC, room by room |
-| Every Wakefit product placed, with sizes, links and quantities (Plan A and Plan B) | `docs/wakefit-products.md` (`python3 tools/product_list.py model/scenarios/dad-luxury-singles.json`) | Per room, per floor, floors 1-3 |
+| Every Wakefit product placed, with sizes, links and quantities (Plan A and Plan B) | `docs/wakefit-products.md` (`python3 tools/product_list.py model/scenarios/*.json`) | Per room, per floor, floors 1-3 |
 | Father's alternative (Plan B): luxury singles in ROOM-3 and ROOM-4, no wall or door changes | `docs/plan-b-father.md`, `docs/scenario-dad-plan.png` | 6 students per floor; audited |
+| Full luxury theme: Plan A and Plan B with TVs and a sofa where they fit | `docs/luxury-plans.md`, `docs/plan-a-luxury-plan.png`, `docs/plan-b-luxury-plan.png` | Wakefit Flipper sofa; wall-mounted TVs; audited |
 | Check every layout rule, room by room | `docs/layout-audit.md` (`python3 tools/check_layout.py`) | Clearances, door swings, walls and columns, windows, even look, walking paths |
 | See what was changed from the architect's drawing (one brick wall, two doors) | `docs/floor1-changes.md`, `model/changes.json` | Family-approved 03.11.2026; architect and structural engineer to confirm |
 | Read how the drawing was interpreted | `docs/drawing-takeoff.md` | Sizes, conflicts with earlier notes, safety items, **13 open questions** |
