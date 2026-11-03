@@ -9,6 +9,7 @@ This is a student PG at Plot C-89, Sector 12, Kharghar, Navi Mumbai: stilt, four
 | I want to… | Open | How |
 |---|---|---|
 | **FINAL floor 1 drawing (Plan B luxury, family-approved)** | `docs/final/floor1-final.pdf` (A3, 2 pages), `docs/final/floor1-final-plan.png` | Page 1 plan; page 2 room schedule, Wakefit product quantities, audit, open items. Rebuild: `python3 tools/final_sheet.py` then `node tools/print_final.js` |
+| **3D pictures with real Wakefit furniture (floors 1–3 and floor 4)** | `docs/final/floor1-3-render.jpg`, `docs/final/floor4-render.jpg` | Top-down 3D views like the family's pictures, every Wakefit piece at true size. Floor 4 layout and open points: `docs/floor4-layout.md`. Rebuild: `THREE_DIR=<three@0.160.0 package> python3 tools/render3d.py model/scenarios/final-floor1.json docs/final/floor1-3-render.jpg` (and `final-floor4.json`) |
 | **Floor 1 summary (current focus, feet and inches)** | `docs/floor1.md` | Rooms, Wakefit furniture, checks, AC results, open decisions |
 | Walk around the building in 3D | `viewer/bella-vita-2.html` | Download it and double-click it. It works **offline** in Chrome, Edge, Firefox or Safari (see the controls below). |
 | Print or share floor plans | `package/pdf/GF.pdf`, `F1-3.pdf`, `F4.pdf`, `TERRACE.pdf` | Any PDF reader. Each file has 3 A3 sheets: **A** architecture and furniture, **E** electrical, **P** plumbing. Scale 1:60 at A3. |

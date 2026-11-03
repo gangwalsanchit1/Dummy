@@ -25,20 +25,24 @@ FU = json.loads((ROOT / "model/furniture.json").read_text())["F1-3"]
 OUT = "docs/layout-audit.md"
 BED_GAP = 0.0
 WALK_OVR = {}
+PK = "F1-3"
 if len(sys.argv) > 1:      # audit a scenario file instead: python3 tools/check_layout.py model/scenarios/<name>.json
     SC = json.loads(Path(sys.argv[1]).read_text())
-    F.TK["floors"]["F1-3"] = SC["TK"]
-    F.AS["doors"]["F1-3"] = SC["doors"]
+    PK = SC.get("floor", "F1-3")       # "F4" for the fourth floor
+    F.TK["floors"][PK] = SC["TK"]
+    F.AS["doors"][PK] = SC["doors"]
     FU = SC["layouts"]
     BED_GAP = SC.get("bed_side_gap", 0.0)
     WALK_OVR = SC.get("walk_override", {})
     OUT = f"docs/{Path(sys.argv[1]).stem}-audit.md"
 DOORS = {"ROOM-1": ("F-D1", ["F-D1T"]), "ROOM-2": ("F-D2", ["F-D2T"]), "ROOM-3": ("F-D3", ["F-D3T"]), "ROOM-4": ("F-D4", ["F-D4T"])}
+if PK == "F4":   # room door, then the toilet door first and any other door the room leads to (the suite's terrace)
+    DOORS = {"ROOM-1": ("F4-D1", ["F4-D1T"]), "ROOM-2": ("F4-D2", ["F4-D2T"]), "ROOM-3 (suite)": ("F4-D3", ["F4-D3T", "F4-DT"])}
 FS = F.FS
 WALK = 0.60          # clear walking width everywhere a person walks (2'-0")
 TOILET_GAP = 0.90    # family: you don't want your bed right next to the bathroom (no bed within 2'-11 3/8" of the toilet door)
-TK = F.TK["floors"]["F1-3"]
-AS_DOORS = {d["id"]: d for d in F.AS["doors"]["F1-3"]}
+TK = F.TK["floors"][PK]
+AS_DOORS = {d["id"]: d for d in F.AS["doors"][PK]}
 
 
 def rdist(a, b):
@@ -58,12 +62,12 @@ def head_backed(e, walls):
 
 
 def toilet_walls(name):
-    t = next(sp["rects"] for sp in TK["spaces"] if sp["name"] == name + " TOILET")
+    t = next(sp["rects"] for sp in TK["spaces"] if sp["name"] == name.split(" (")[0] + " TOILET")
     return [w for w in TK["walls"] if any(rdist(w, q) < 0.02 for q in t)]
 
 
 def toilet_door(name):
-    d = AS_DOORS[{"ROOM-1": "F-D1T", "ROOM-2": "F-D2T", "ROOM-3": "F-D3T", "ROOM-4": "F-D4T"}[name]]
+    d = AS_DOORS[DOORS[name][1][0]]
     hx, hy = d["hinge"]
     qx, qy = d["quadrant"]
     w = d["width"]
@@ -75,7 +79,7 @@ def toilet_door(name):
     return [a, op["span_y"][0], b, op["span_y"][1]]
 
 
-TWALLS = {n: toilet_walls(n) for n in ("ROOM-1", "ROOM-2", "ROOM-3", "ROOM-4")}
+TWALLS = {n: toilet_walls(n) for n in FU}
 TDOOR = {n: toilet_door(n) for n in TWALLS}
 
 
@@ -89,7 +93,7 @@ def edge_of(it):
 
 
 def audit(name, items):
-    room = F.Room("F1-3", name, *DOORS[name])
+    room = F.Room(PK, name, *DOORS[name])
     probs, notes = [], []
     tvs = [it for it in items if it["type"].startswith("tv_")]
     items = [it for it in items if not it["type"].startswith("tv_")]
@@ -186,10 +190,10 @@ def audit(name, items):
                 probs.append("bed head against a window")
             if F.blocks_window(room, r, 9.9):
                 notes.append("a bed runs along a window (window opened over the bed)")
-    for w in F.TK["floors"]["F1-3"]["windows"]:
-        if w["serves"].split(" ")[0] == name and "toilet" not in w["serves"].lower():
+    for w in TK["windows"]:
+        if w["serves"].split(" ")[0] == name.split(" ")[0] and "toilet" not in w["serves"].lower():
             cx = (w["span_x"][0] + w["span_x"][1]) / 2 - 0.225
-            y0 = 0.15 if w["wall"] == "rear" else 11.6 - 0.45
+            y0 = 0.15 if w["wall"] == "rear" else TK["outline"][3] - 0.15 - 0.45
             room.targets_doors.append({"id": "window " + w["id"], "hinge": [cx, y0], "quadrant": [1, 1], "width": 0.45})
     wk = WALK_OVR.get(name, WALK)
     if wk < WALK:
