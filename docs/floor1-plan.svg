@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 1648" width="1020" height="1648" font-family="Arial, Helvetica, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1020 1668" width="1020" height="1668" font-family="Arial, Helvetica, sans-serif">
 <rect width="100%" height="100%" fill="#ffffff"/>
 <style>text{paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}</style>
 <defs><marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#111"/></marker></defs>
@@ -235,7 +235,7 @@
 <text x="27.2" y="741.9" font-size="13" font-weight="bold" text-anchor="middle" transform="rotate(-90 27.2 741.9)">38'-6⅝" overall</text>
 <text x="490.0" y="1432.2" font-size="14" text-anchor="middle" fill="#57534e">ROAD (19'-8¼" wide) · front of building</text>
 <text x="70" y="1470" font-size="12.5" font-weight="bold" fill="#1e1b4b">Wakefit kit (W × D): Centaur single bed 7'-0" × 3'-5⅜" · Orion queen bed 7'-3⅞" × 5'-3¼" · Tinker side table 1'-4⅞" × 0'-11¾"</text>
-<text x="70" y="1488" font-size="12.5" font-weight="bold" fill="#1e1b4b">Twill wardrobe 1'-11⅝" × 1'-6¾" · Cabrera study table 2'-7⅜" × 1'-5¾" · chair space 2'-5½" (dashed circle). A / B = student.</text>
+<text x="70" y="1488" font-size="12.5" font-weight="bold" fill="#1e1b4b">Twill wardrobe 1'-11⅝" × 1'-6¾" · Cabrera study table 2'-7⅜" × 1'-5¾" · chair space 2'-5½" (dashed circle). A / B = student</text>
 <text x="70" y="1510" font-size="12" fill="#333">Blue = Wakefit furniture. Students per room: ROOM-1 2, ROOM-2 2, ROOM-3 2, ROOM-4 1 = 7 on this floor. Twin rooms use Centaur singles, single rooms the Orion queen.</text>
 <text x="70" y="1528" font-size="12" fill="#333">Yellow = door swing; every door opens inwards. Light blue on walls = windows.</text>
 <text x="70" y="1546" font-size="12" fill="#333">Red = RCC columns from the structural drawing (Agharkar, rev R1, 02.11.2026), 9" wide on this floor; they stand out of the 6" walls.</text>

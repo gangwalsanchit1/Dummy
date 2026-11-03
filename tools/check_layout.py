@@ -22,6 +22,13 @@ import fit_floor1 as G  # noqa: E402
 from units import ftin  # noqa: E402
 
 FU = json.loads((ROOT / "model/furniture.json").read_text())["F1-3"]
+OUT = "docs/layout-audit.md"
+if len(sys.argv) > 1:      # audit a scenario file instead: python3 tools/check_layout.py model/scenarios/<name>.json
+    SC = json.loads(Path(sys.argv[1]).read_text())
+    F.TK["floors"]["F1-3"] = SC["TK"]
+    F.AS["doors"]["F1-3"] = SC["doors"]
+    FU = SC["layouts"]
+    OUT = f"docs/{Path(sys.argv[1]).stem}-audit.md"
 DOORS = {"ROOM-1": ("F-D1", ["F-D1T"]), "ROOM-2": ("F-D2", ["F-D2T"]), "ROOM-3": ("F-D3", ["F-D3T"]), "ROOM-4": ("F-D4", ["F-D4T"])}
 FS = F.FS
 WALK = 0.60          # clear walking width everywhere a person walks (2'-0")
@@ -161,5 +168,5 @@ if __name__ == "__main__":
         allok &= not pr
         md.append(f"| {name} | {'PASS' if not pr else '**FAIL**'} | {'; '.join(sorted(set(pr))) or '-'} | {'; '.join(nt) or '-'} |")
         print(name, "PASS" if not pr else "FAIL", sorted(set(pr)), nt)
-    (ROOT / "docs/layout-audit.md").write_text("\n".join(md) + "\n")
+    (ROOT / OUT).write_text("\n".join(md) + "\n")
     sys.exit(0 if allok else 1)

@@ -49,13 +49,13 @@ K = 105.0
 MX, MY = 70, 125
 X = lambda x: MX + x * K
 Y = lambda y: MY + y * K
-W, H = int(MX * 2 + 8.0 * K + 40), int(MY + 11.75 * K + 290)
+W, H = int(MX * 2 + 8.0 * K + 40), int(MY + 11.75 * K + 310)
 s = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" font-family="Arial, Helvetica, sans-serif">',
      '<rect width="100%" height="100%" fill="#ffffff"/>',
      '<style>text{paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}</style>',
      '<defs><marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#111"/></marker></defs>']
-s.append(f'<text x="{MX}" y="34" font-size="22" font-weight="bold" fill="{"#c2410c" if VAR else "#111"}">Bella Vita 2 · Floor 1 (floors 2 and 3 identical){" · PROPOSAL" if VAR else ""}</text>')
-s.append(f'<text x="{MX}" y="58" font-size="13" fill="#444">Every student: own bed, Wakefit Cabrera study table + chair, Twill wardrobe, bedside socket. Twin rooms: students A and B. Feet and inches.</text>')
+s.append(f'<text x="{MX}" y="34" font-size="22" font-weight="bold" fill="{"#c2410c" if VAR else "#111"}">Bella Vita 2 · Floor 1 (floors 2 and 3 identical){(VAR.get("title_suffix", " · PROPOSAL") if VAR else "")}</text>')
+s.append(f'<text x="{MX}" y="58" font-size="13" fill="#444">{VAR["subtitle"] if VAR and VAR.get("subtitle") else "Every student: own bed, Wakefit Cabrera study table + chair, Twill wardrobe, bedside socket. Twin rooms: students A and B. Feet and inches."}</text>')
 # room floors
 for sp in fl["spaces"]:
     col = "#eef2ff" if sp["name"].startswith("ROOM-") and "TOILET" not in sp["name"] else "#ecfeff" if "TOILET" in sp["name"] else "#f5f5f4"
@@ -219,11 +219,15 @@ _occ = {r: sum(1 for i in its if i["type"].endswith("_bed")) for r, its in FU["F
 _txt = ", ".join(f"{r} {n}" for r, n in _occ.items())
 FSZ = AS["furniture_sizes"]
 _kit = [("Centaur single bed", "centaur_single_bed"), ("Orion queen bed", "orion_queen_bed"), ("Tinker side table", "tinker_side_table"),
-        ("Twill wardrobe", "twill_wardrobe"), ("Cabrera study table", "cabrera_desk")]
+        ("Twill wardrobe", "twill_wardrobe"), ("Cabrera study table", "cabrera_desk"), ("Sage study table (hutch)", "sage_desk"),
+        ("Gingham wardrobe", "gingham_wardrobe")]
 _used = {i["type"] for its in FU["F1-3"].values() for i in its}
 _k = [f"{n} {ft(FSZ[t][0])} × {ft(FSZ[t][1])}" for n, t in _kit if t in _used]
-s.append(f'<text x="{MX}" y="{lg - 40:.0f}" font-size="12.5" font-weight="bold" fill="#1e1b4b">Wakefit kit (W × D): {" · ".join(_k[:3])}</text>')
-s.append(f'<text x="{MX}" y="{lg - 22:.0f}" font-size="12.5" font-weight="bold" fill="#1e1b4b">{" · ".join(_k[3:])} · chair space {ft(AS["clearances"]["desk_chair_zone"])} (dashed circle). A / B = student.</text>')
+_k.append(f"chair space {ft(AS['clearances']['desk_chair_zone'])} (dashed circle). A / B = student")
+_rows = [_k[i:i + 3] for i in range(0, len(_k), 3)]
+for i, row in enumerate(_rows):
+    s.append(f'<text x="{MX}" y="{lg - 40 + i * 18:.0f}" font-size="12.5" font-weight="bold" fill="#1e1b4b">{"Wakefit kit (W × D): " if i == 0 else ""}{" · ".join(row)}</text>')
+lg += 18 * (len(_rows) - 2)
 for i, t in enumerate([f"Blue = Wakefit furniture. Students per room: {_txt} = {sum(_occ.values())} on this floor. Twin rooms use Centaur singles, single rooms the Orion queen.",
                        "Yellow = door swing; every door opens inwards. Light blue on walls = windows.",
                        "Red = RCC columns from the structural drawing (Agharkar, rev R1, 02.11.2026), 9\" wide on this floor; they stand out of the 6\" walls.",
