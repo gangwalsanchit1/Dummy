@@ -42,14 +42,14 @@
 <text x="815.5" y="1125.4" font-size="8" text-anchor="middle" fill="#3730a3">chair</text>
 <circle cx="710.5" cy="1153.9" r="22.1" fill="#e0e7ff" stroke="#3730a3" stroke-dasharray="3 2"/>
 <text x="710.5" y="1156.9" font-size="8" text-anchor="middle" fill="#3730a3">chair</text>
-<rect x="670.3" y="870.6" width="224.0" height="110.2" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
-<text x="782.3" y="930.3" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Bed A</text>
-<rect x="862.8" y="980.9" width="31.5" height="45.1" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
-<text x="878.5" y="1006.2" font-size="7.9" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 878.5 1003.4)">Tinker A</text>
-<rect x="662.0" y="1232.8" width="224.0" height="110.2" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
-<text x="774.0" y="1292.4" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Bed B</text>
-<rect x="854.5" y="1187.6" width="31.5" height="45.2" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
-<text x="870.2" y="1212.9" font-size="7.9" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 870.2 1210.2)">Tinker B</text>
+<rect x="670.3" y="891.6" width="224.0" height="110.3" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="782.3" y="951.3" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Bed A</text>
+<rect x="862.8" y="1001.9" width="31.5" height="45.1" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="878.5" y="1027.2" font-size="7.9" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 878.5 1024.4)">Tinker A</text>
+<rect x="662.0" y="1211.8" width="224.0" height="110.3" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="774.0" y="1271.4" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Bed B</text>
+<rect x="854.5" y="1166.6" width="31.5" height="45.1" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="870.2" y="1191.9" font-size="7.9" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 870.2 1189.2)">Tinker B</text>
 <rect x="495.2" y="965.0" width="50.0" height="63.0" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
 <text x="520.2" y="1000.0" font-size="10.1" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Twill A</text>
 <rect x="495.2" y="1028.0" width="50.0" height="63.0" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
@@ -66,10 +66,10 @@
 <text x="197.7" y="933.3" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Bed A</text>
 <rect x="85.8" y="983.9" width="31.5" height="45.1" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
 <text x="101.5" y="1009.2" font-size="7.9" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 101.5 1006.5)">Tinker A</text>
-<rect x="94.0" y="1232.8" width="224.0" height="110.2" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
-<text x="206.0" y="1292.4" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Bed B</text>
-<rect x="94.0" y="1187.6" width="31.5" height="45.2" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
-<text x="109.8" y="1212.9" font-size="7.9" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 109.8 1210.2)">Tinker B</text>
+<rect x="94.0" y="1211.8" width="224.0" height="110.3" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="206.0" y="1271.4" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Bed B</text>
+<rect x="94.0" y="1166.6" width="31.5" height="45.1" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="109.8" y="1191.9" font-size="7.9" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 109.8 1189.2)">Tinker B</text>
 <rect x="94.0" y="760.2" width="63.0" height="50.0" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
 <text x="125.5" y="789.8" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Twill B</text>
 <rect x="157.0" y="760.2" width="63.0" height="50.0" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
@@ -80,20 +80,22 @@
 <text x="324.6" y="1158.4" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 324.6 1153.9)">Desk B</text>
 <circle cx="177.1" cy="224.6" r="22.1" fill="#e0e7ff" stroke="#3730a3" stroke-dasharray="3 2"/>
 <text x="177.1" y="227.6" font-size="8" text-anchor="middle" fill="#3730a3">chair</text>
-<rect x="85.8" y="515.4" width="168.5" height="234.4" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
-<text x="170.0" y="637.1" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 170.0 632.6)">Queen bed</text>
-<rect x="254.3" y="718.2" width="45.2" height="31.5" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
-<text x="276.9" y="737.5" font-size="10.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Tinker</text>
+<rect x="106.8" y="515.4" width="168.5" height="234.4" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="191.0" y="637.1" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 191.0 632.6)">Queen bed</text>
+<rect x="275.3" y="718.2" width="45.1" height="31.5" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="297.9" y="737.5" font-size="10.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Tinker</text>
 <rect x="340.3" y="361.2" width="50.0" height="63.0" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
 <text x="365.3" y="397.3" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Twill</text>
 <rect x="85.8" y="172.1" width="59.8" height="105.0" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
 <text x="115.7" y="229.2" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 115.7 224.6)">Sage desk</text>
 <circle cx="628.6" cy="287.8" r="22.1" fill="#e0e7ff" stroke="#3730a3" stroke-dasharray="3 2"/>
 <text x="628.6" y="290.8" font-size="8" text-anchor="middle" fill="#3730a3">chair</text>
-<rect x="725.7" y="200.4" width="168.5" height="234.4" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
-<text x="810.0" y="322.1" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 810.0 317.6)">Queen bed</text>
-<rect x="680.6" y="403.2" width="45.1" height="31.5" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
-<text x="703.1" y="422.5" font-size="10.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Tinker</text>
+<rect x="675.8" y="200.4" width="168.5" height="234.4" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="760.1" y="322.1" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 760.1 317.6)">Queen bed</text>
+<rect x="630.7" y="403.2" width="45.1" height="31.5" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="653.3" y="422.5" font-size="10.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Tinker</text>
+<rect x="844.4" y="403.2" width="45.1" height="31.5" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="866.9" y="422.5" font-size="10.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Tinker</text>
 <rect x="537.2" y="172.1" width="50.0" height="63.0" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
 <text x="562.2" y="208.2" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Twill</text>
 <rect x="537.2" y="235.2" width="59.8" height="105.0" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
@@ -191,9 +193,9 @@
 <text x="327.2" y="229.2" font-size="11" text-anchor="middle" font-weight="bold" fill="#0e7490">TOILET</text>
 <text x="327.2" y="243.2" font-size="10" text-anchor="middle" fill="#0e7490">3'-11¼" ×</text>
 <text x="327.2" y="255.2" font-size="10" text-anchor="middle" fill="#0e7490">5'-10⅞"</text>
-<text x="645.4" y="187.2" font-size="16" text-anchor="middle" font-weight="bold" fill="#111">ROOM-4</text>
-<text x="645.4" y="204.2" font-size="12" text-anchor="middle" fill="#111">11'-1⅞" × 9'-2¼"</text>
-<text x="645.4" y="219.2" font-size="11" text-anchor="middle" fill="#444">130 sq ft</text>
+<text x="580.5" y="376.2" font-size="16" text-anchor="middle" font-weight="bold" fill="#111">ROOM-4</text>
+<text x="580.5" y="393.2" font-size="12" text-anchor="middle" fill="#111">11'-1⅞" × 9'-2¼"</text>
+<text x="580.5" y="408.2" font-size="11" text-anchor="middle" fill="#444">130 sq ft</text>
 <text x="463.8" y="229.2" font-size="11" text-anchor="middle" font-weight="bold" fill="#0e7490">TOILET</text>
 <text x="463.8" y="243.2" font-size="10" text-anchor="middle" fill="#0e7490">3'-11¼" ×</text>
 <text x="463.8" y="255.2" font-size="10" text-anchor="middle" fill="#0e7490">5'-10⅞"</text>
@@ -212,9 +214,9 @@
 <text x="421.8" y="1226.8" font-size="11" text-anchor="middle" font-weight="bold" fill="#0e7490">TOILET</text>
 <text x="421.8" y="1240.8" font-size="10" text-anchor="middle" fill="#0e7490">3'-11¼" ×</text>
 <text x="421.8" y="1252.8" font-size="10" text-anchor="middle" fill="#0e7490">6'-10⅝"</text>
-<text x="624.7" y="1030.9" font-size="16" text-anchor="middle" font-weight="bold" fill="#111">ROOM-1</text>
-<text x="624.7" y="1047.9" font-size="12" text-anchor="middle" fill="#111">12'-5⅝" × 7'-8½"</text>
-<text x="624.7" y="1062.9" font-size="11" text-anchor="middle" fill="#444">155 sq ft</text>
+<text x="613.9" y="1030.9" font-size="16" text-anchor="middle" font-weight="bold" fill="#111">ROOM-1</text>
+<text x="613.9" y="1047.9" font-size="12" text-anchor="middle" fill="#111">12'-5⅝" × 7'-8½"</text>
+<text x="613.9" y="1062.9" font-size="11" text-anchor="middle" fill="#444">155 sq ft</text>
 <text x="558.2" y="1226.8" font-size="11" text-anchor="middle" font-weight="bold" fill="#0e7490">TOILET</text>
 <text x="558.2" y="1240.8" font-size="10" text-anchor="middle" fill="#0e7490">3'-11¼" ×</text>
 <text x="558.2" y="1252.8" font-size="10" text-anchor="middle" fill="#0e7490">6'-10⅝"</text>

@@ -187,6 +187,12 @@ for d in AS["doors"]["F1-3"]:
 
 
 # room labels at the free spot farthest from furniture
+for d in AS["doors"]["F1-3"]:      # keep room labels off door swings
+    hx, hy = d["hinge"]
+    qx, qy = d["quadrant"]
+    furn.append([min(hx, hx + qx * d["width"]), min(hy, hy + qy * d["width"]), max(hx, hx + qx * d["width"]), max(hy, hy + qy * d["width"])])
+
+
 def free_spot(rects):
     best, bp = -1, None
     for r in rects:
@@ -204,7 +210,7 @@ for sp in fl["spaces"]:
     r = max(sp["rects"], key=lambda q: (q[2] - q[0]) * (q[3] - q[1]))
     a = sum((q[2] - q[0]) * (q[3] - q[1]) for q in sp["rects"])
     toilet = "TOILET" in sp["name"]
-    x, y = free_spot(sp["rects"]) if not toilet and sp["name"].startswith("ROOM") else ((r[0] + r[2]) / 2, (r[1] + r[3]) / 2)
+    x, y = free_spot([r]) if not toilet and sp["name"].startswith("ROOM") else ((r[0] + r[2]) / 2, (r[1] + r[3]) / 2)
     cx, cy = X(x), Y(y)
     if toilet:
         s.append(f'<text x="{cx:.1f}" y="{cy-6:.1f}" font-size="11" text-anchor="middle" font-weight="bold" fill="#0e7490">TOILET</text>')

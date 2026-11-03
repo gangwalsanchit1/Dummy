@@ -23,11 +23,13 @@ from units import ftin  # noqa: E402
 
 FU = json.loads((ROOT / "model/furniture.json").read_text())["F1-3"]
 OUT = "docs/layout-audit.md"
+BED_GAP = 0.0
 if len(sys.argv) > 1:      # audit a scenario file instead: python3 tools/check_layout.py model/scenarios/<name>.json
     SC = json.loads(Path(sys.argv[1]).read_text())
     F.TK["floors"]["F1-3"] = SC["TK"]
     F.AS["doors"]["F1-3"] = SC["doors"]
     FU = SC["layouts"]
+    BED_GAP = SC.get("bed_side_gap", 0.0)
     OUT = f"docs/{Path(sys.argv[1]).stem}-audit.md"
 DOORS = {"ROOM-1": ("F-D1", ["F-D1T"]), "ROOM-2": ("F-D2", ["F-D2T"]), "ROOM-3": ("F-D3", ["F-D3T"]), "ROOM-4": ("F-D4", ["F-D4T"])}
 FS = F.FS
@@ -63,9 +65,12 @@ def toilet_door(name):
     hx, hy = d["hinge"]
     qx, qy = d["quadrant"]
     w = d["width"]
-    if d["leaf_axis"] == "x":
-        return [min(hx, hx + qx * w), hy - 0.1, max(hx, hx + qx * w), hy + 0.1]
-    return [hx - 0.1, min(hy, hy + qy * w), hx + 0.1, max(hy, hy + qy * w)]
+    import re
+    op = next(o for o in TK["openings"] if o["id"] == d["id"])          # the doorway in the wall, as drawn
+    a, b = sorted(float(v) for v in re.findall(r"[\d.]+", op["wall"])[:2]) if "-" in op["wall"] else (float(re.findall(r"[\d.]+", op["wall"])[0]),) * 2
+    if "span_x" in op:
+        return [op["span_x"][0], a, op["span_x"][1], b]
+    return [a, op["span_y"][0], b, op["span_y"][1]]
 
 
 TWALLS = {n: toilet_walls(n) for n in ("ROOM-1", "ROOM-2", "ROOM-3", "ROOM-4")}
@@ -150,6 +155,19 @@ def audit(name, items):
                 probs.append(f"{it['type']} stands in front of a window")
             if FS[it["type"]][2] > 1.0 and F.ovl(r, room.switch_zone):
                 probs.append(f"{it['type']} blocks the switchboard beside the door")
+        if k == "bed" and BED_GAP:      # father: no bed in a corner; both long sides clear of walls and columns
+            lx = (r[2] - r[0]) > (r[3] - r[1])
+            g = [r[0] + 0.02, r[1] - BED_GAP, r[2] - 0.02, r[3] + BED_GAP] if lx else [r[0] - BED_GAP, r[1] + 0.02, r[2] + BED_GAP, r[3] - 0.02]
+            if any(F.ovl(g, w, 0.0) for w in room.walls):
+                probs.append(f"bed long side closer than {ftin(BED_GAP)} to a wall (stuck in a corner)")
+            else:
+                gaps = []
+                for side in ((r[1], -1), (r[3], 1)) if lx else ((r[0], -1), (r[2], 1)):
+                    c, sg = side
+                    d = min([(w[1] - c) if sg > 0 else (c - w[3]) for w in room.walls if lx and w[0] < r[2] and w[2] > r[0] and ((w[1] >= c) if sg > 0 else (w[3] <= c))]
+                            + [(w[0] - c) if sg > 0 else (c - w[2]) for w in room.walls if not lx and w[1] < r[3] and w[3] > r[1] and ((w[0] >= c) if sg > 0 else (w[2] <= c))] or [9])
+                    gaps.append(d)
+                notes.append(f"bed clear of walls on both long sides ({ftin(min(gaps))} min)")
         if k == "bed":
             e = edge_of(it)
             if not head_backed(e, room.walls):

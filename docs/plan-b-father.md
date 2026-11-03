@@ -25,13 +25,13 @@ The plan is `docs/scenario-dad-plan.png`, the audit is `docs/dad-luxury-singles-
 
 **ROOM-3 (luxury single)**
 - **Entering:** the door opens inwards. A clear walkway, more than 4'-0" wide, runs along the right side to the toilet.
-- **Bed:** the queen's long side is against the outer side wall and its head is on the ROOM-2 wall, 5'-5¾" from the toilet door. The Tinker is on the open side at the pillow end.
+- **Bed:** the queen's head is on the ROOM-2 wall, with a 7⅞" gap to the outer side wall (not in a corner), 5'-5⅝" from the toilet door. The Tinker is on the open side at the pillow end.
 - **Study:** the Sage desk (with hutch) is in the window alcove, a study nook with daylight.
 - **Wardrobe:** the Twill is on the right wall beside the toilet, a dressing spot on the way to the bathroom.
 
 **ROOM-4 (luxury single)**
 - **Entering:** down the passage, with the toilet at its end. Turning into the room, the Sage desk comes first on the study wall, then the Twill towards the window.
-- **Bed:** the queen's long side is on the outer side wall and its head is on the stair wall, 6'-2⅝" from the toilet door. The Tinker sits on the open side at the head (family rule for ROOM-4).
+- **Bed:** the queen's head is on the stair wall, with a Tinker on each side and a 1'-6¾" gap to the outer side wall (not in a corner), 4'-7⅞" from the toilet door.
 - **AC:** left of the window, over the study area, away from the pillow.
 
 **ROOM-1 and ROOM-2 (two students each)**
@@ -42,3 +42,19 @@ The plan is `docs/scenario-dad-plan.png`, the audit is `docs/dad-luxury-singles-
 
 - **A sofa in the luxury rooms:** the AMATA sofa (6'-3") does not fit in either room alongside the queen, desk and wardrobe with the clearances kept.
 - **Electrical and plumbing points for Plan B:** not regenerated yet. They follow the same rules as Plan A once a plan is chosen.
+
+## No bed stuck in a corner (father, 03.11.2026)
+
+Every bed has only its head against a wall; both long sides are clear. The audit checks at least 6" on each side, and every room passes.
+
+| Room | Bed | Gap on the wall side | Other side |
+|---|---|---|---|
+| ROOM-1 | top bed and front bed | 7⅞" off the top / front wall | 1'-11⅝" access |
+| ROOM-2 | front bed | 7⅞" off the front wall | 1'-11⅝" access |
+| ROOM-2 | top bed | already clear (1'-10⅞" to the wardrobe space) | 1'-11⅝" access |
+| ROOM-3 | queen | 7⅞" off the outer wall | 1'-11⅝" access |
+| ROOM-4 | queen | 1'-6¾" off the side wall, with a **second Tinker** in the gap (a Tinker on both sides) | 1'-11⅝" access |
+
+- **Why the gaps are about 8":** each desk sits between the two beds on the side wall, and the walkway to the toilet must stay 2'-0". The first 1'-5¾" beside each pillow is treated as the Tinker's spot, so the desks did not have to move.
+- **ROOM-4:** this replaces the earlier family rule for ROOM-4 (queen with one long side on the wall) in Plan B.
+- **Toilet distance:** the nearest bed is still 3'-0¾" from a toilet door (rule: 2'-11⅜").

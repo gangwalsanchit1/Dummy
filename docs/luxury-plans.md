@@ -41,3 +41,19 @@ Plans: `docs/plan-a-luxury-plan.png`, `docs/plan-b-luxury-plan.png`. Audits: `do
   - a reading-light switch at every pillow;
   - full-length mirrors;
   - blackout curtains.
+
+## No bed stuck in a corner (father, 03.11.2026)
+
+Every bed has only its head against a wall; both long sides are clear. The audit checks at least 6" on each side, and every room passes.
+
+| Room | Bed | Gap on the wall side | Other side |
+|---|---|---|---|
+| ROOM-1 | top bed and front bed | 7⅞" off the top / front wall | 1'-11⅝" access |
+| ROOM-2 | front bed | 7⅞" off the front wall | 1'-11⅝" access |
+| ROOM-2 | top bed | already clear (1'-10⅞" to the wardrobe space) | 1'-11⅝" access |
+| ROOM-3 | queen | 7⅞" off the outer wall | 1'-11⅝" access |
+| ROOM-4 | queen | 1'-6¾" off the side wall, with a **second Tinker** in the gap (a Tinker on both sides) | 1'-11⅝" access |
+
+- **Why the gaps are about 8":** each desk sits between the two beds on the side wall, and the walkway to the toilet must stay 2'-0". The first 1'-5¾" beside each pillow is treated as the Tinker's spot, so the desks did not have to move.
+- **ROOM-4:** this replaces the earlier family rule for ROOM-4 (queen with one long side on the wall) in Plan B.
+- **Toilet distance:** the nearest bed is still 3'-0¾" from a toilet door (rule: 2'-11⅜").

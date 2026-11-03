@@ -4,7 +4,7 @@ Every room's final layout checked against every rule (see the tool's header). Wa
 
 | Room | Result | Problems | Notes |
 |---|---|---|---|
-| ROOM-1 | PASS | - | a bed runs along a window (window opened over the bed); bed 3'-4 3/8" from the toilet door; bed 4'-4 1/2" from the toilet door; desks face each other across the room, offset 0'-11 3/4"; wardrobes line up on one wall; window reached over a bed (no standing path to it) |
-| ROOM-2 | PASS | - | a bed runs along a window (window opened over the bed); bed 3'-4 3/8" from the toilet door; bed 4'-3 3/8" from the toilet door; desks face each other across the room, offset 0'-11 3/4"; wardrobes line up on one wall; window reached over a bed (no standing path to it) |
-| ROOM-3 | PASS | - | bed 5'-5 3/4" from the toilet door |
-| ROOM-4 | PASS | - | bed 6'-2 5/8" from the toilet door |
+| ROOM-1 | PASS | - | bed 3'-0 3/4" from the toilet door; bed 3'-9 1/4" from the toilet door; bed clear of walls on both long sides (0'-7 7/8" min); desks face each other across the room, offset 0'-11 3/4"; wardrobes line up on one wall; window reached over a bed (no standing path to it) |
+| ROOM-2 | PASS | - | bed 3'-0 3/4" from the toilet door; bed 4'-3 3/8" from the toilet door; bed clear of walls on both long sides (0'-7 7/8" min); bed clear of walls on both long sides (1'-10 7/8" min); desks face each other across the room, offset 0'-11 3/4"; wardrobes line up on one wall; window reached over a bed (no standing path to it) |
+| ROOM-3 | PASS | - | bed 5'-5 5/8" from the toilet door; bed clear of walls on both long sides (0'-7 7/8" min) |
+| ROOM-4 | PASS | - | bed 4'-7 7/8" from the toilet door; bed clear of walls on both long sides (1'-6 3/4" min) |

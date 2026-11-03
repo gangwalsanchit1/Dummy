@@ -4,7 +4,7 @@ Every room's final layout checked against every rule (see the tool's header). Wa
 
 | Room | Result | Problems | Notes |
 |---|---|---|---|
-| ROOM-1 | PASS | - | a bed runs along a window (window opened over the bed); bed 3'-4 3/8" from the toilet door; bed 4'-4 1/2" from the toilet door; desks face each other across the room, offset 0'-11 3/4"; wardrobes line up on one wall; window reached over a bed (no standing path to it) |
-| ROOM-2 | PASS | - | a bed runs along a window (window opened over the bed); bed 3'-4 3/8" from the toilet door; bed 4'-6 3/8" from the toilet door; desks face each other across the room, offset 0'-11 3/4"; wardrobes line up on one wall; window reached over a bed (no standing path to it) |
+| ROOM-1 | PASS | - | a bed runs along a window (window opened over the bed); bed 3'-8 1/8" from the toilet door; bed 4'-4 1/2" from the toilet door; desks face each other across the room, offset 0'-11 3/4"; wardrobes line up on one wall; window reached over a bed (no standing path to it) |
+| ROOM-2 | PASS | - | a bed runs along a window (window opened over the bed); bed 3'-8 1/8" from the toilet door; bed 4'-6 3/8" from the toilet door; desks face each other across the room, offset 0'-11 3/4"; wardrobes line up on one wall; window reached over a bed (no standing path to it) |
 | ROOM-3 | PASS | - | bed 3'-8 1/8" from the toilet door; bed 9'-1" from the toilet door; desks line up on one wall; wardrobes line up on one wall |
 | ROOM-4 | PASS | - | bed 4'-1 7/8" from the toilet door |
