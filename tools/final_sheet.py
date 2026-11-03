@@ -57,7 +57,7 @@ students = {r: sum(v for t, v in cnt[r].items() if t.endswith("_bed")) for r in 
 # ---- room schedule
 sp = {s["name"]: s["rects"] for s in SC["TK"]["spaces"]}
 DESC = {"ROOM-1": "Twin. Wardrobes by the entry; beds with heads on the outer wall, clear of both side walls; desks facing each other; shared 42\" TV seen from both beds.",
-        "ROOM-2": "Twin, mirror of ROOM-1. Wardrobes by the entry; beds with heads on the outer wall; desks facing each other; shared 42\" TV.",
+        "ROOM-2": "Twin (the family's ROOM-1), family's final design: both beds along the outer side wall, one head to the partition and one to the road wall, a Tinker shared between the beds' feet and one at the second bed's head; one Twill beside the first bed, one in the alcove by the toilet; two desks side by side on the toilet wall. No TV.",
         "ROOM-3": "Luxury single, father's hotel layout: queen in the middle, headboard opposite the door, Tinker each side; Flipper sofa in the window nook facing a 32\" TV; Cabrera under the window; Gingham facing the bed.",
         "ROOM-4": "Single: Centaur single bed turned across the room, headboard on the outer side wall, centred, Tinker each side, clear of both long sides; Gingham and Cabrera on the left wall with a 32\" TV above the desk facing the bed."}
 room_rows = []
@@ -112,7 +112,7 @@ no bed within 2'-11⅜" of a toilet door; no bed stuck in a corner (both long si
 <li><b>Architect:</b> floor-to-floor height, window sill height (assumed 2'-11⅜"), lintel and parapet heights.</li>
 <li><b>Structural engineer (Agharkar):</b> the column schedule covers the stilt plus 3 floors, but the architect's drawing shows a fourth floor; please confirm. Floor beams are not yet drawn.</li>
 <li><b>Electrical and plumbing points</b> for this final layout: TV sockets and data points, and the bedside and desk sockets, are to be regenerated from it (the saved model still carries Plan A).</li>
-<li><b>Family decisions already taken:</b> front twins keep the bed along the window (walk-up window access fails the toilet and walkway rules); ROOM-4 hotel layout moved to ROOM-3 (ROOM-4 too small); ROOM-4 changed to a single Centaur bed with the TV above the desk (03.11.2026). The ROOM-4 TV is 32" because the wall beside the Gingham is only 2'-7⅛" long; the Gingham and Cabrera together are 5'-3¼" on a 5'-3" wall, so check both sizes on site before ordering.</li>
+<li><b>Family decisions already taken:</b> front twins keep the bed along the window (walk-up window access fails the toilet and walkway rules); ROOM-4 hotel layout moved to ROOM-3 (ROOM-4 too small); ROOM-4 changed to a single Centaur bed with the TV above the desk (03.11.2026). ROOM-2 laid out to the family's own picture (03.11.2026); they accepted the second bed's head under the window and the wardrobes on two walls. The ROOM-4 TV is 32" because the wall beside the Gingham is only 2'-7⅛" long; the Gingham and Cabrera together are 5'-3¼" on a 5'-3" wall, so check both sizes on site before ordering.</li>
 </ul>
 <p class=foot>Coordination drawing, not for construction. Walls, doors and windows from the architect's AFTER O.C. drawing (03-08-2026); columns from Agharkar Consulting Engineers, rev R1 (02.11.2026); furniture positions are proposals. Source data: model/scenarios/final-floor1.json.</p>
 """

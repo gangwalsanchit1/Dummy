@@ -114,7 +114,7 @@ Students: ROOM-3 (suite) 2, ROOM-2 1, ROOM-1 1 = **4 per floor**.
 | Gingham 2-door wardrobe with mirror | 6 | 2 | **8** |
 | Cabrera study table | 18 | 4 | **22** |
 | Flipper 2-seater sofa cum bed (opens to 6' x 4') | 3 | 0 | **3** |
-| Wall-mounted TV, 42-inch (any brand, not Wakefit) | 6 | 0 | **6** |
+| Wall-mounted TV, 42-inch (any brand, not Wakefit) | 3 | 0 | **3** |
 | Wall-mounted TV, 32-inch (any brand, not Wakefit) | 6 | 0 | **6** |
 
 Students: 18 on floors 1-3 + 4 on floor 4 = **22**. Study chairs: **22**. Mattresses: 17 single, 5 queen.

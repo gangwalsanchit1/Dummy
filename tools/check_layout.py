@@ -25,6 +25,7 @@ FU = json.loads((ROOT / "model/furniture.json").read_text())["F1-3"]
 OUT = "docs/layout-audit.md"
 BED_GAP = 0.0
 WALK_OVR = {}
+ALLOW = {}          # room -> rule texts the family has knowingly accepted (reported as notes, not problems)
 PK = "F1-3"
 if len(sys.argv) > 1:      # audit a scenario file instead: python3 tools/check_layout.py model/scenarios/<name>.json
     SC = json.loads(Path(sys.argv[1]).read_text())
@@ -34,6 +35,7 @@ if len(sys.argv) > 1:      # audit a scenario file instead: python3 tools/check_
     FU = SC["layouts"]
     BED_GAP = SC.get("bed_side_gap", 0.0)
     WALK_OVR = SC.get("walk_override", {})
+    ALLOW = SC.get("allow", {})
     OUT = f"docs/{Path(sys.argv[1]).stem}-audit.md"
 DOORS = {"ROOM-1": ("F-D1", ["F-D1T"]), "ROOM-2": ("F-D2", ["F-D2T"]), "ROOM-3": ("F-D3", ["F-D3T"]), "ROOM-4": ("F-D4", ["F-D4T"])}
 if PK == "F4":   # room door, then the toilet door first and any other door the room leads to (the suite's terrace)
@@ -63,7 +65,15 @@ def head_backed(e, walls):
 
 def toilet_walls(name):
     t = next(sp["rects"] for sp in TK["spaces"] if sp["name"] == name.split(" (")[0] + " TOILET")
-    return [w for w in TK["walls"] if any(rdist(w, q) < 0.02 for q in t)]
+    # only the part of each wall that actually bounds the toilet (the outer walls run the full width of the building)
+    out = []
+    for w in TK["walls"]:
+        for q in t:
+            if rdist(w, q) < 0.02:
+                c = [max(w[0], q[0] - 0.16), max(w[1], q[1] - 0.16), min(w[2], q[2] + 0.16), min(w[3], q[3] + 0.16)]
+                if c[2] > c[0] and c[3] > c[1]:
+                    out.append(c)
+    return out
 
 
 def toilet_door(name):
@@ -207,6 +217,9 @@ def audit(name, items):
             ok, why = room.walkable([it["rect"] for it in items], [(it["type"], z) for it in items for z in it.get("zones", [])])
         if not ok:
             probs.append("walking path: " + why)
+    ok_ = [p_ for p_ in probs if any(a in p_ for a in ALLOW.get(name, []))]
+    notes += [f"{p_} (the family's choice)" for p_ in ok_]
+    probs = [p_ for p_ in probs if p_ not in ok_]
     return probs, sorted(set(notes))
 
 

@@ -101,10 +101,10 @@ body { background: var(--bg); color: var(--ink); font-family: var(--body); font-
 </style>
 
 <div class="app">
-  <section class="stage" aria-label="3D walkthrough of ROOM-1">
+  <section class="stage" aria-label="3D walkthrough of the family's ROOM-1">
     <canvas id="view" tabindex="0" aria-label="Room view. Drag to look around, tap the floor to walk, arrow keys or W A S D to move."></canvas>
     <div class="ov loading" id="loading">Building the room…</div>
-    <div class="ov badge"><b>ROOM-1 · FIRST FLOOR</b><span>Twin room for 2 students · 155 sq ft · front right, by the road · floors 2 and 3 are the same</span></div>
+    <div class="ov badge"><b>ROOM-1 · FIRST FLOOR</b><span>Twin room for 2 students · 187 sq ft · front left, by the road · ROOM-2 on the architect's drawing · floors 2 and 3 are the same</span></div>
     <div class="ov mode" role="group" aria-label="View mode">
       <button id="m-walk" aria-pressed="true">Walk</button><button id="m-above" aria-pressed="false">From above</button>
     </div>
@@ -116,7 +116,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--body); font-
   <aside class="panel">
     <div>
       <h1>Choose the finishes for ROOM-1</h1>
-      <p class="lede">Tap a swatch and the room changes. Every piece is the real Wakefit product at its real size, in the family-approved layout, using Wakefit's own swatches and photos.</p>
+      <p class="lede">Tap a swatch and the room changes. This is the family's final layout for the room. Every piece is the real Wakefit product at its real size, using Wakefit's own swatches and photos.</p>
     </div>
     <div class="status" id="status"><i></i><span>Connecting to saved picks…</span></div>
     <div class="sec" id="wakefit"><h2>Wakefit pieces in this room</h2></div>
@@ -128,7 +128,7 @@ body { background: var(--bg); color: var(--ink); font-family: var(--body); font-
       <p id="sumtext"></p>
       <button class="btn" id="copy">Copy these picks</button>
     </div>
-    <p class="note">Finishes, photos, sizes and prices come from the Wakefit product pages, read in the family's Chrome on 3 Nov 2026. Screens show colours differently, so compare the swatch on the Wakefit page before ordering. Shapes are simplified: handles and inside shelves are only roughly drawn. The Centaur is drawn 3'-5⅜" wide, the wider of the two widths Wakefit lists. Ceiling height is shown at 9'-6⅛", assumed until the architect gives floor heights. Lamps, rugs, chairs, the laptop and the WC are there for scale.</p>
+    <p class="note">Finishes, photos, sizes and prices come from the Wakefit product pages, read in the family's Chrome on 3 Nov 2026. Screens show colours differently, so compare the swatch on the Wakefit page before ordering. Shapes are simplified: handles and inside shelves are only roughly drawn. The Centaur is drawn 3'-5⅜" wide, the wider of the two widths Wakefit lists. Ceiling height is shown at 9'-6⅛", assumed until the architect gives floor heights. Lamps, rugs, chairs and the laptop are there for scale. The bathroom shows the wet and dry layout (basin by the door, then the WC, shower at the far end behind a glass screen), not chosen fittings.</p>
   </aside>
 </div>
 
@@ -335,45 +335,52 @@ function applyChoice(k) {
 // ---------- building (architect's walls, doors and windows; engineer's columns), plan metres
 const concrete = mat.wall;
 const WALLS = [
-  [[3.95, 7.05, 4.05, 11.6], 0, H], [[3.05, 6.95, 4.6, 7.05], 0, H], [[5.5, 6.95, 7.85, 7.05], 0, H], [[4.6, 6.95, 5.5, 7.05], DH, H],
-  [[7.85, 6.3, 8.0, 11.75], 0, H],
-  [[3.85, 11.6, 4.35, 11.75], 0, H], [[4.35, 11.6, 4.95, 11.75], 0, 1.5], [[4.35, 11.6, 4.95, 11.75], 2.1, H], [[4.95, 11.6, 5.85, 11.75], 0, H],
-  [[5.85, 11.6, 7.35, 11.75], 0, 0.9], [[5.85, 11.6, 7.35, 11.75], 2.1, H], [[7.35, 11.6, 8.0, 11.75], 0, H],
-  [[4.05, 9.4, 4.6, 9.5], 0, H], [[4.6, 9.4, 5.25, 9.5], DH, H], [[5.25, 9.4, 5.35, 11.6], 0, H],
-  [[3.05, 5.4, 3.15, 6.05], 0, H], [[3.05, 4.5, 3.15, 5.4], DH, H], [[3.05, 6.05, 3.15, 6.95], DH, H], [[3.15, 4.45, 4.05, 4.5], DH, H],
+  [[0.15, 5.95, 3.15, 6.05], 0, H], [[0, 5.9, 0.15, 11.75], 0, H],
+  [[0, 11.6, 0.65, 11.75], 0, H], [[0.65, 11.6, 2.15, 11.75], 0, 0.9], [[0.65, 11.6, 2.15, 11.75], 2.1, H], [[2.15, 11.6, 3.05, 11.75], 0, H],
+  [[3.05, 11.6, 3.65, 11.75], 0, 1.5], [[3.05, 11.6, 3.65, 11.75], 2.1, H], [[3.65, 11.6, 4.1, 11.75], 0, H],
+  [[3.05, 6.05, 3.15, 6.95], DH, H], [[3.05, 6.95, 4.6, 7.05], 0, H], [[3.95, 7.05, 4.05, 11.6], 0, H],
+  [[3.4, 9.4, 3.95, 9.5], 0, H], [[2.75, 9.4, 3.4, 9.5], DH, H], [[2.65, 9.4, 2.75, 11.6], 0, H],
+  [[3.05, 5.4, 3.15, 6.05], 0, H], [[3.05, 4.5, 3.15, 5.4], DH, H], [[3.15, 4.45, 4.05, 4.5], DH, H],
   [[4.05, 2.95, 4.2, 4.75], 0, H], [[4.2, 4.6, 4.28, 4.75], 0, H], [[5.38, 4.6, 5.6, 4.75], 0, H], [[4.28, 4.6, 5.38, 4.75], DH, H],
-  [[5.6, 2.95, 5.75, 5.85], 0, H], [[5.6, 5.85, 5.75, 6.95], DH, H], [[3.0, 4.4, 3.05, 7.05], 0, H],
+  [[5.6, 2.95, 5.75, 5.85], 0, H], [[5.6, 5.85, 5.75, 6.95], DH, H], [[4.6, 6.95, 5.5, 7.05], DH, H], [[5.5, 6.95, 7.85, 7.05], 0, H], [[7.85, 2.9, 8.0, 7.1], 0, H],
 ];
-const COLS = [[5.6, 6.868, 6.199, 7.101], [7.771, 6.498, 8.0, 7.101], [3.968, 9.899, 4.2, 10.502], [7.771, 9.899, 8.0, 10.502], [3.968, 11.302, 4.2, 11.75], [7.771, 11.302, 8.0, 11.75]];
+const COLS = [[0, 5.95, 0.229, 6.549], [0, 9.899, 0.229, 10.502], [0, 11.302, 0.229, 11.75], [3.968, 9.899, 4.2, 10.502], [3.968, 11.302, 4.2, 11.75], [5.6, 6.868, 6.199, 7.101]];
 for (const [r, a, b] of WALLS) box(r, a, b, concrete);
 for (const r of COLS) box(r, 0, H, concrete);
 const skirt = M('#CFC7BA', { r: 0.6 });
-for (const r of [[4.05, 7.05, 4.06, 9.4], [4.06, 7.05, 4.6, 7.06], [5.5, 7.05, 7.85, 7.06], [7.84, 7.05, 7.85, 11.6], [5.35, 11.59, 7.85, 11.6], [5.35, 9.5, 5.36, 11.6], [4.6, 9.39, 5.35, 9.4]]) box(r, 0, 0.09, skirt, { cast: false });
+for (const r of [[0.15, 6.05, 0.16, 11.6], [0.16, 6.05, 2.15, 6.06], [0.16, 11.59, 2.65, 11.6], [2.64, 9.4, 2.65, 11.6], [3.94, 7.05, 3.95, 9.4], [3.15, 7.05, 3.95, 7.06], [3.4, 9.39, 3.95, 9.4]]) box(r, 0, 0.09, skirt, { cast: false });
 const stone = M('#CDC5B7', { r: 0.4 });
-for (const r of [[4.05, 7.05, 7.85, 9.4], [5.35, 9.4, 7.85, 11.6]]) box(r, -0.02, 0, mat.floor, { floor: true, cast: false });
-box([4.6, 6.95, 5.5, 7.05], -0.02, 0.004, stone, { floor: true, cast: false });
-box([4.6, 9.4, 5.25, 9.5], -0.02, 0.004, stone, { floor: true, cast: false });
+for (const r of [[0.15, 6.05, 3.05, 7.05], [0.15, 7.05, 3.95, 9.4], [0.15, 9.4, 2.65, 11.6]]) box(r, -0.02, 0, mat.floor, { floor: true, cast: false });
+box([3.05, 6.05, 3.15, 6.95], -0.02, 0.004, stone, { floor: true, cast: false });
+box([2.75, 9.4, 3.4, 9.5], -0.02, 0.004, stone, { floor: true, cast: false });
+// bathroom floors: dry area by the door, wet area (shower) at the far end, a little lower, with a floor drain
 const wetTile = M('#ffffff', { r: 0.45 }); wetTile.map = tex(floorCanvas({ id: 'wet', base: '#DCE1E4', grout: '#BFC6CB' }), 0, 1 / 1.2);
-box([4.05, 9.5, 5.25, 11.6], -0.02, -0.004, wetTile, { floor: true, cast: false });
+const showerTile = M('#ffffff', { r: 0.6 }); showerTile.map = tex(floorCanvas({ id: 'shw', base: '#AEB9BF', grout: '#8E9BA2' }), 0, 1 / 0.6);
+box([2.75, 9.5, 3.95, 10.85], -0.02, -0.004, wetTile, { floor: true, cast: false });
+box([2.75, 10.85, 3.95, 11.6], -0.04, -0.016, showerTile, { floor: true, cast: false });
 for (const r of [[3.15, 4.5, 4.05, 4.75], [3.15, 4.75, 5.6, 6.95], [5.6, 5.85, 7.85, 6.95]]) box(r, -0.02, 0, stone, { floor: true, cast: false });
+// wall tiles: 3'-11¼" high in the dry area, 6'-10⅝" in the shower (under the ventilator, to its sill)
 const wallTile = M('#ffffff', { r: 0.3 }); wallTile.map = tex(floorCanvas({ id: 'wt', base: '#EEF1F2', grout: '#CDD3D6' }), 0, 1 / 1.2);
-for (const r of [[4.05, 9.5, 4.06, 11.6], [5.24, 9.5, 5.25, 11.6], [4.06, 11.59, 5.24, 11.6], [4.06, 9.5, 4.6, 9.51], [4.2, 9.899, 4.21, 10.502]]) box(r, 0, 1.2, wallTile, { cast: false });
+const showerWall = M('#ffffff', { r: 0.3 }); showerWall.map = tex(floorCanvas({ id: 'swt', base: '#C9D3D8', grout: '#A9B5BB' }), 0, 1 / 0.6);
+for (const r of [[2.75, 9.5, 2.76, 10.85], [3.94, 9.5, 3.95, 10.85], [3.4, 9.5, 3.95, 9.51]]) box(r, 0, 1.2, wallTile, { cast: false });
+for (const [r, h] of [[[2.75, 10.85, 2.76, 11.6], 2.1], [[3.94, 10.85, 3.95, 11.6], 2.1], [[2.76, 11.59, 3.05, 11.6], 2.1], [[3.05, 11.59, 3.65, 11.6], 1.5], [[3.65, 11.59, 3.94, 11.6], 2.1]]) box(r, 0, h, showerWall, { cast: false });
 const tread = M('#D8D1C5', { r: 0.6 });
 for (let k = 0; k < 7; k++) { const y1 = 5.85 - 0.25 * k; box([5.75, y1 - 0.25, 6.75, y1], 0, 0.17 * (k + 1), tread); }
 box([5.75, 3.1, 7.85, 4.1], 1.19, 1.36, tread);
 for (let k = 0; k < 7; k++) { const y1 = 5.85 - 0.25 * k; box([6.85, y1 - 0.25, 7.85, y1], -0.17 * (k + 1) - 0.1, -0.17 * (k + 1), tread); }
 box([6.75, 4.1, 6.85, 5.85], -1.4, 0.95, concrete); box([6.74, 4.1, 6.86, 5.85], 0.95, 1.0, M('#7A5434', { r: 0.5 }));
 const ceiling = []; const ceilMat = M('#F7F5F1', { r: 0.95, env: 0.3 });
-ceiling.push(box([3.0, 4.4, 8.0, 11.75], H, H + 0.12, ceilMat, { cast: false }));
+ceiling.push(box([0, 4.4, 8.0, 11.75], H, H + 0.12, ceilMat, { cast: false }));
 const lampMat = M('#FFFFFF', { e: '#FFF4E0', ei: 1.4 });
-for (const [x, y, w] of [[5.95, 8.2, 0.6], [6.6, 10.5, 0.6], [4.65, 10.55, 0.3], [4.4, 5.85, 0.3]]) {
+for (const [x, y, w] of [[1.5, 7.5, 0.6], [1.4, 10.3, 0.6], [3.35, 10.15, 0.3], [4.4, 5.85, 0.3]]) {
   ceiling.push(box([x - w / 2, y - w / 2, x + w / 2, y + w / 2], H - 0.02, H, lampMat, { cast: false }));
   const pl = new THREE.PointLight('#FFF1DC', w > 0.4 ? 9 : 4, 0, 2); pl.position.set(x, H - 0.15, y); scene.add(pl); ceiling.push(pl);
 }
+// doors: the room door open against the partition, the bathroom door open against its wall; the others shut
 const doorWood = M('#B58A5E', { r: 0.55 }); const doorWhite = M('#EDEDEA', { r: 0.5 }); const steel = M('#B9BEC3', { r: 0.3, m: 0.7 }); const metal = M('#A7A7A7', { r: 0.25, m: 0.9 });
-box([4.6, 7.05, 4.635, 7.95], 0, DH, doorWood); box([4.635, 7.82, 4.66, 7.94], 0.95, 1.0, metal);
-box([5.215, 9.5, 5.25, 10.15], 0, DH, doorWhite);
-box([3.08, 4.5, 3.12, 5.4], 0, DH, doorWood); box([3.08, 6.05, 3.12, 6.95], 0, DH, doorWood); box([3.15, 4.46, 4.05, 4.5], 0, DH, doorWood);
+box([2.15, 6.05, 3.05, 6.085], 0, DH, doorWood); box([2.17, 6.085, 2.29, 6.11], 0.95, 1.0, metal);
+box([2.75, 9.5, 2.785, 10.15], 0, DH, doorWhite);
+box([3.08, 4.5, 3.12, 5.4], 0, DH, doorWood); box([3.15, 4.46, 4.05, 4.5], 0, DH, doorWood); box([4.6, 6.98, 5.5, 7.02], 0, DH, doorWood);
 box([4.28, 4.65, 5.38, 4.7], 0, DH, steel);
 const frameMat = M('#E9EBEC', { r: 0.35, m: 0.3 }); const glass = M('#BFDCEB', { r: 0.05, m: 0.1, op: 0.18, env: 1 }); const frosted = M('#F4F7F8', { r: 0.3, op: 0.78 });
 function windowAt(x0, x1, s, hd, g, panes) {
@@ -383,22 +390,22 @@ function windowAt(x0, x1, s, hd, g, panes) {
   for (let i = 0; i < panes; i++) { const a = x0 + i * w; box([a + 0.03, 11.655 + (i % 2) * 0.03, a + w - 0.03, 11.67 + (i % 2) * 0.03], s + 0.05, hd - 0.05, g, { cast: false });
     if (i) box([a - 0.02, 11.64, a + 0.02, 11.71], s, hd, frameMat); }
 }
-windowAt(5.85, 7.35, 0.9, 2.1, glass, 2); windowAt(4.35, 4.95, 1.5, 2.1, frosted, 1);
-box([5.85, 11.55, 7.35, 11.6], 0.88, 0.9, stone, { cast: false });
+windowAt(0.65, 2.15, 0.9, 2.1, glass, 2); windowAt(3.05, 3.65, 1.5, 2.1, frosted, 1);
+box([0.65, 11.55, 2.15, 11.6], 0.88, 0.9, stone, { cast: false });
 {
   const c = document.createElement('canvas'); c.width = 2; c.height = 256; const g = c.getContext('2d'); const gr = g.createLinearGradient(0, 0, 0, 256);
   gr.addColorStop(0, '#9CC3DE'); gr.addColorStop(0.5, '#D9E8F1'); gr.addColorStop(1, '#EEF2F2'); g.fillStyle = gr; g.fillRect(0, 0, 2, 256);
   const sky = new THREE.Mesh(new THREE.SphereGeometry(90, 32, 16), new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(c), side: THREE.BackSide }));
-  sky.material.map.colorSpace = THREE.SRGBColorSpace; sky.position.set(6, 0, 10); scene.add(sky);
+  sky.material.map.colorSpace = THREE.SRGBColorSpace; sky.position.set(2, 0, 10); scene.add(sky);
   box([-40, 11.75, 50, 60], -3.4, -3.3, M('#8F948F', { r: 1 }), { cast: false });
   box([-40, 12.0, 50, 13.2], -3.3, -3.15, M('#BDB7AD', { r: 1 }), { cast: false });
-  for (const [a, b, c2, d, h, col] of [[0.5, 19, 6.5, 26, 9, '#E3DCD0'], [7, 19.5, 13, 27, 13, '#D6D9D8'], [-6, 19.2, 0, 25, 7, '#E8E1D6'], [13.5, 19, 19, 25, 10, '#E0D6CB']]) {
+  for (const [a, b, c2, d, h, col] of [[-5.5, 19, 0.5, 26, 9, '#E3DCD0'], [1, 19.5, 7, 27, 13, '#D6D9D8'], [-11, 19.2, -6, 25, 7, '#E8E1D6'], [7.5, 19, 13, 25, 10, '#E0D6CB']]) {
     box([a, b, c2, d], -3.3, h, M(col, { r: 0.9 }), { cast: false });
     for (let y = -1.5; y < h - 1; y += 3) for (let x = a + 0.8; x < c2 - 0.8; x += 1.6) box([x, b - 0.02, x + 0.8, b], y, y + 1.2, M('#7E8F9A', { r: 0.2, m: 0.2 }), { cast: false });
   }
 }
 
-// ---------- furniture, modelled from the Wakefit photos, in the family-approved ROOM-1 layout (model/scenarios/final-floor1.json)
+// ---------- furniture, modelled from the Wakefit photos, in the family's final layout for this room (model/scenarios/final-floor1.json, ROOM-2 on the drawing)
 const white = M('#F6F4EF', { r: 0.92, env: 0.3 }), pillow = M('#FBFAF7', { r: 0.95, env: 0.3 }), dark = M('#2E2A27', { r: 0.6 });
 function bed(r, head) {             // Centaur: box base down to the floor, flat panel headboard
   const { L, W, R } = frame(r, head), p = 'centaur';
@@ -478,39 +485,50 @@ function rug(r) {
 }
 const OBST = [];
 const LAYOUT = {
-  beds: [[[5.717, 7.301, 7.85, 8.351], 'E'], [[5.638, 10.35, 7.771, 11.4], 'E']],
-  tinkers: [[[7.55, 8.351, 7.85, 8.781], 'S'], [[7.471, 9.92, 7.771, 10.35], 'N']],      // door side
-  twills: [[[4.05, 8.0, 4.526, 8.6], 'W'], [[4.05, 8.6, 4.526, 9.2], 'W']],
-  desks: [[[7.4, 9.1, 7.85, 9.898], 'E'], [[5.35, 9.4, 5.8, 10.198], 'W']],
-  tv: [[5.35, 9.4, 5.43, 10.34], 'W'],
+  beds: [[[0.379, 6.05, 1.429, 8.183], 'N'], [[0.379, 9.467, 1.429, 11.6], 'S']],
+  tinkers: [[[0.15, 8.675, 0.58, 8.975], 'E'], [[1.45, 11.17, 1.75, 11.6], 'N']],      // door side
+  twills: [[[1.45, 6.05, 2.05, 6.526], 'N'], [[3.474, 8.0, 3.95, 8.6], 'E']],          // back side
+  desks: [[[2.2, 9.45, 2.65, 10.25], 'E'], [[2.2, 10.25, 2.65, 11.05], 'E']],
 };
 for (const [r, h] of LAYOUT.beds) { bed(r, h); OBST.push(r); }
 for (const [r, d] of LAYOUT.tinkers) { tinker(r, d); OBST.push(r); }
 for (const [r, b] of LAYOUT.twills) { twill(r, b); OBST.push(r); }
 for (const [r, b] of LAYOUT.desks) { OBST.push(r); OBST.push(cabrera(r, b)); }
-tv(...LAYOUT.tv);
-rug([6.1, 8.42, 7.3, 8.92]); rug([6.0, 9.86, 7.2, 10.3]);
+rug([1.47, 6.7, 2.0, 7.8]); rug([1.47, 9.6, 1.98, 10.95]);
+// bathroom: dry area by the door (basin and mirror, then the WC), wet area at the far end (shower behind a fixed glass screen)
 {
-  const ce = M('#FAFAFA', { r: 0.2, env: 0.9 }), x = 4.65;
-  box([x - 0.18, 11.42, x + 0.18, 11.6], 0.4, 0.78, ce, { rad: 0.03 }); box([x - 0.19, 10.95, x + 0.19, 11.48], 0, 0.4, ce, { rad: 0.12 });
-  box([x - 0.17, 10.98, x + 0.17, 11.42], 0.4, 0.42, M('#EDEDED', { r: 0.3 }), { rad: 0.1 });
-  box([5.0, 10.4, 5.25, 10.85], 0.78, 0.86, ce, { rad: 0.04 }); box([5.22, 10.45, 5.25, 10.8], 1.1, 1.7, M('#D7E3EA', { r: 0.03, m: 0.9, env: 1.3 }));
-  OBST.push([x - 0.2, 10.95, x + 0.2, 11.6], [5.0, 10.4, 5.25, 10.85]);
+  const ce = M('#FAFAFA', { r: 0.2, env: 0.9 }), chrome = M('#DADFE2', { r: 0.12, m: 1, env: 1.2 });
+  box([3.55, 9.52, 3.95, 9.98], 0.76, 0.86, ce, { rad: 0.05 });
+  box([3.6, 9.58, 3.9, 9.92], 0.845, 0.865, M('#E9ECEE', { r: 0.15 }), { rad: 0.04, cast: false });
+  box([3.87, 9.73, 3.94, 9.77], 0.86, 0.97, chrome, { rad: 0.01 });
+  box([3.935, 9.55, 3.945, 9.95], 1.1, 1.75, M('#D7E3EA', { r: 0.03, m: 0.9, env: 1.3 }));
+  box([3.77, 10.2, 3.95, 10.6], 0.4, 0.78, ce, { rad: 0.03 });
+  box([3.33, 10.21, 3.85, 10.59], 0, 0.4, ce, { rad: 0.12 });
+  box([3.36, 10.24, 3.8, 10.56], 0.4, 0.42, M('#EDEDED', { r: 0.3 }), { rad: 0.1 });
+  box([3.92, 10.66, 3.95, 10.72], 0.55, 0.62, chrome, { rad: 0.008 });
+  box([3.35, 10.835, 3.95, 10.865], 0.02, 1.95, M('#CFE6EF', { r: 0.03, m: 0.1, op: 0.3, env: 1.2 }), { cast: false });
+  box([3.33, 10.83, 3.35, 10.87], 0.0, 1.95, chrome); box([3.35, 10.83, 3.95, 10.87], 1.93, 1.95, chrome);
+  box([3.9, 11.17, 3.95, 11.31], 1.0, 1.12, chrome, { rad: 0.01 });
+  box([3.925, 11.22, 3.95, 11.26], 1.12, 2.0, chrome); box([3.8, 11.22, 3.95, 11.26], 2.0, 2.025, chrome);
+  cyl(3.8, 11.24, 1.975, 0.1, 0.1, 0.02, chrome);
+  box([3.28, 11.17, 3.43, 11.32], -0.016, -0.012, chrome);
+  for (const y of [10.55, 10.7]) box([2.75, y, 2.775, y + 0.02], 1.6, 1.63, chrome);
+  OBST.push([3.55, 9.5, 3.95, 9.98], [3.33, 10.2, 3.95, 10.6], [3.33, 10.83, 3.95, 10.87]);
 }
 scene.add(new THREE.HemisphereLight('#FFFFFF', '#C2B6A6', 0.55));
-const sun = new THREE.DirectionalLight('#FFF1DD', 2.4); sun.position.set(3.2, 8.5, 22); sun.target.position.set(6.3, 0, 9.6);
+const sun = new THREE.DirectionalLight('#FFF1DD', 2.4); sun.position.set(1.0, 8.5, 22); sun.target.position.set(1.4, 0, 9.6);
 sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); Object.assign(sun.shadow.camera, { left: -5, right: 5, top: 5, bottom: -5, near: 2, far: 40 });
 sun.shadow.bias = -0.0005; sun.shadow.normalBias = 0.03; scene.add(sun, sun.target);
 Object.keys(state).forEach(applyChoice);
 
 // ---------- walking
-const WALK = [[4.05, 7.05, 7.85, 9.4], [5.35, 9.4, 7.85, 11.6], [4.6, 6.95, 5.5, 7.05], [4.05, 9.5, 5.25, 11.6], [4.6, 9.4, 5.25, 9.5], [3.15, 4.75, 5.6, 6.95], [3.15, 4.5, 4.05, 4.75]];
-const SOLID = WALLS.filter(([, a]) => a === 0).map(([r]) => r).concat(COLS, [[4.6, 7.05, 4.635, 7.95], [5.215, 9.5, 5.25, 10.15]], OBST);
+const WALK = [[0.15, 6.05, 3.05, 7.05], [0.15, 7.05, 3.95, 9.4], [0.15, 9.4, 2.65, 11.6], [3.05, 6.05, 3.15, 6.95], [2.75, 9.5, 3.95, 11.6], [2.75, 9.4, 3.4, 9.5], [3.15, 4.75, 5.6, 6.95], [3.15, 4.5, 4.05, 4.75]];
+const SOLID = WALLS.filter(([, a]) => a === 0).map(([r]) => r).concat(COLS, [[2.15, 6.05, 3.05, 6.085], [2.75, 9.5, 2.785, 10.15]], OBST);
 const RAD = 0.2;
 const inside = (x, y) => WALK.some(r => x >= r[0] && x <= r[2] && y >= r[1] && y <= r[3]);
 const free = (x, y) => inside(x, y) && !SOLID.some(o => x > o[0] - RAD && x < o[2] + RAD && y > o[1] - RAD && y < o[3] + RAD);
 const cam = new THREE.PerspectiveCamera(68, 1, 0.05, 300);
-const P = { x: 5.05, y: 6.2, yaw: 0, pitch: -0.05, eye: 1.6, eyeTo: 1.6 };
+const P = { x: 3.75, y: 6.5, yaw: 0, pitch: -0.05, eye: 1.6, eyeTo: 1.6 };
 let mode = 'walk', target = null, anim = null;
 const bird = { az: 0.35, el: 1.05, r: 8.8 };
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -523,16 +541,17 @@ function step(dx, dy) {
   return false;
 }
 const VIEWS = [
-  { name: 'From the lobby', p: [5.05, 6.2], t: [5.8, 9.8], th: 1.3 },
-  { name: 'Doorway', p: [5.05, 7.6], t: [7.4, 9.9], th: 1.0 },
-  { name: 'Sitting on bed A', p: [7.32, 7.83], eye: 1.05, t: [5.39, 9.87], th: 1.3 },
-  { name: 'At desk A', p: [6.55, 9.5], eye: 1.3, t: [7.85, 9.5], th: 0.8 },
-  { name: 'Sitting on bed B', p: [7.28, 10.87], eye: 1.05, t: [5.39, 9.87], th: 1.35 },
-  { name: 'At desk B', p: [6.5, 9.8], eye: 1.3, t: [5.35, 9.8], th: 1.0 },
-  { name: 'By the window', p: [6.6, 9.05], t: [6.6, 11.6], th: 1.25 },
-  { name: 'Wardrobes', p: [5.75, 8.7], t: [4.05, 8.6], th: 1.05 },
-  { name: 'Bedside tables', p: [6.2, 9.2], eye: 1.45, t: [7.7, 9.25], th: 0.55 },
-  { name: 'Toilet', p: [4.92, 9.1], t: [4.65, 11.5], th: 0.55 },
+  { name: 'From the lobby', p: [3.75, 6.5], t: [1.2, 7.6], th: 1.2 },
+  { name: 'Doorway', p: [2.8, 7.25], t: [0.9, 10.2], th: 1.0 },
+  { name: 'Sitting on bed A', p: [0.9, 6.55], eye: 1.05, t: [2.4, 10.2], th: 1.0 },
+  { name: 'At desk A', p: [1.55, 9.85], eye: 1.3, t: [2.65, 9.85], th: 0.8 },
+  { name: 'Sitting on bed B', p: [0.9, 11.1], eye: 1.05, t: [2.0, 6.6], th: 1.2 },
+  { name: 'At desk B', p: [1.55, 10.65], eye: 1.3, t: [2.65, 10.65], th: 0.8 },
+  { name: 'By the window', p: [1.75, 9.2], t: [1.2, 11.6], th: 1.1 },
+  { name: 'Wardrobe A', p: [1.75, 7.75], t: [1.75, 6.05], th: 1.1 },
+  { name: 'Wardrobe B', p: [2.45, 8.3], t: [3.95, 8.3], th: 1.1 },
+  { name: 'Shared bedside table', p: [1.6, 8.85], eye: 1.4, t: [0.15, 8.82], th: 0.5 },
+  { name: 'Bathroom', p: [3.07, 9.15], t: [3.35, 11.5], th: 0.9 },
 ];
 function goView(v, btn) {
   setMode('walk'); target = null;
@@ -603,7 +622,7 @@ function frameLoop(now) {
     P.eye += (P.eyeTo - P.eye) * Math.min(1, dt * 4);
   }
   if (mode === 'walk') { cam.fov = 68; cam.position.set(P.x, P.eye, P.y); const c = Math.cos(P.pitch); cam.lookAt(P.x + Math.sin(P.yaw) * c, P.eye + Math.sin(P.pitch), P.y - Math.cos(P.yaw) * c); }
-  else { cam.fov = 45; const cx = 5.95, cz = 9.3; cam.position.set(cx + Math.sin(bird.az) * Math.cos(bird.el) * bird.r, Math.sin(bird.el) * bird.r, cz + Math.cos(bird.az) * Math.cos(bird.el) * bird.r); cam.lookAt(cx, 0.2, cz); }
+  else { cam.fov = 45; const cx = 1.9, cz = 8.8; cam.position.set(cx + Math.sin(bird.az) * Math.cos(bird.el) * bird.r, Math.sin(bird.el) * bird.r, cz + Math.cos(bird.az) * Math.cos(bird.el) * bird.r); cam.lookAt(cx, 0.2, cz); }
   cam.updateProjectionMatrix();
   renderer.render(scene, cam);
   requestAnimationFrame(frameLoop);
