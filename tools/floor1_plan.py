@@ -15,6 +15,20 @@ TK = json.loads((ROOT / "model/takeoff.json").read_text())
 AS = json.loads((ROOT / "model/assumptions.json").read_text())
 FU = json.loads((ROOT / "model/furniture.json").read_text())
 fl = TK["floors"]["F1-3"]
+# optional: draw a PROPOSAL (internal brick walls / doors changed) from a variant file
+#   python3 tools/floor1_plan.py <variant.json> <out-name> "<one-line description>"
+VAR = json.loads(Path(sys.argv[1]).read_text()) if len(sys.argv) > 1 else None
+OUT = sys.argv[2] if len(sys.argv) > 2 else "floor1-plan"
+DESC = sys.argv[3] if len(sys.argv) > 3 else ""
+WALLS0 = [list(w) for w in fl["walls"]]
+if VAR:
+    fl = VAR["TK"]
+    AS["doors"]["F1-3"] = VAR["doors"]
+    for rn, lay in VAR["layouts"].items():
+        if lay:
+            FU["F1-3"][rn] = lay
+    for rn, items in FU["F1-3"].items():   # drop any kept item that now overlaps a new wall
+        FU["F1-3"][rn] = [i for i in items if not any(min(i["rect"][2], w[2]) - max(i["rect"][0], w[0]) > 0.01 and min(i["rect"][3], w[3]) - max(i["rect"][1], w[1]) > 0.01 for w in fl["walls"])]
 FR = {" 1/8": "⅛", " 1/4": "¼", " 3/8": "⅜", " 1/2": "½", " 5/8": "⅝", " 3/4": "¾", " 7/8": "⅞"}
 
 
@@ -38,7 +52,7 @@ s = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}"
      '<rect width="100%" height="100%" fill="#ffffff"/>',
      '<style>text{paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}</style>',
      '<defs><marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#111"/></marker></defs>']
-s.append(f'<text x="{MX}" y="34" font-size="22" font-weight="bold" fill="#111">Bella Vita 2 · Floor 1 (floors 2 and 3 identical)</text>')
+s.append(f'<text x="{MX}" y="34" font-size="22" font-weight="bold" fill="{"#c2410c" if VAR else "#111"}">Bella Vita 2 · Floor 1 (floors 2 and 3 identical){" · PROPOSAL" if VAR else ""}</text>')
 s.append(f'<text x="{MX}" y="58" font-size="13" fill="#444">Every student: own bed, compact study table + chair, Twill wardrobe, bedside socket. Twin rooms: A and B; roommates may share the Tinker. Feet and inches.</text>')
 # room floors
 for sp in fl["spaces"]:
@@ -109,6 +123,32 @@ for c in columns("F1-3"):
     anc = "end" if cx < 0.5 else "start"
     if cx < 0.5 or cx > 7.5 or c["name"] in ("C10", "C13", "C16", "C7"):
         s.append(f'<text x="{lx:.1f}" y="{Y(cy)+4:.1f}" font-size="10" font-weight="bold" text-anchor="{anc}" fill="#b91c1c">{c["name"]}</text>')
+def wall_minus(a_list, b_list):
+    """Parts of walls in a_list not covered by walls in b_list (5 cm raster, merged into runs)."""
+    import itertools
+    out = []
+    for a in a_list:
+        nx, ny = max(1, round((a[2] - a[0]) / 0.05)), max(1, round((a[3] - a[1]) / 0.05))
+        horiz = nx >= ny
+        cells = []
+        for i, j in itertools.product(range(nx), range(ny)):
+            cx, cy = a[0] + (i + 0.5) * (a[2] - a[0]) / nx, a[1] + (j + 0.5) * (a[3] - a[1]) / ny
+            if not any(b[0] - 1e-6 <= cx <= b[2] + 1e-6 and b[1] - 1e-6 <= cy <= b[3] + 1e-6 for b in b_list):
+                cells.append(i if horiz else j)
+        for _, g in itertools.groupby(enumerate(sorted(set(cells))), lambda t: t[1] - t[0]):
+            g = [c for _, c in g]
+            if horiz:
+                out.append([a[0] + g[0] * (a[2] - a[0]) / nx, a[1], a[0] + (g[-1] + 1) * (a[2] - a[0]) / nx, a[3]])
+            else:
+                out.append([a[0], a[1] + g[0] * (a[3] - a[1]) / ny, a[2], a[1] + (g[-1] + 1) * (a[3] - a[1]) / ny])
+    return out
+
+
+if VAR:   # changed brickwork: removed walls dashed, new walls orange
+    for w in wall_minus(WALLS0, fl["walls"]):
+        s.append(f'<rect x="{X(w[0]):.1f}" y="{Y(w[1]):.1f}" width="{(w[2]-w[0])*K:.1f}" height="{(w[3]-w[1])*K:.1f}" fill="#fff" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5 3"/>')
+    for w in wall_minus(fl["walls"], WALLS0):
+        s.append(f'<rect x="{X(w[0]):.1f}" y="{Y(w[1]):.1f}" width="{(w[2]-w[0])*K:.1f}" height="{(w[3]-w[1])*K:.1f}" fill="#f97316"/>')
 # windows
 for wdw in fl["windows"]:
     y0 = 0.0 if wdw["wall"] == "rear" else 11.6
@@ -178,5 +218,7 @@ for i, t in enumerate([f"Blue = Wakefit furniture. Students per room: {_txt} = {
                        "Walls, doors and windows from the architect's AFTER O.C. drawing. Furniture positions are proposals."]):
     s.append(f'<text x="{MX}" y="{lg + i*18:.0f}" font-size="12" fill="#333">{t}</text>')
 s.append("</svg>")
-(ROOT / "docs/floor1-plan.svg").write_text("\n".join(s))
-print("wrote docs/floor1-plan.svg", W, H)
+if VAR:
+    s.insert(-1, f'<text x="{MX}" y="{lg + 4*18:.0f}" font-size="12" font-weight="bold" fill="#c2410c">Orange = new brick wall; red dashed = brick wall removed. {DESC}</text>')
+(ROOT / f"docs/{OUT}.svg").write_text("\n".join(s))
+print(f"wrote docs/{OUT}.svg", W, H)
