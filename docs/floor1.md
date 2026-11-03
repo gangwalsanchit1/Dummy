@@ -1,6 +1,6 @@
 # Floor 1: rooms, furniture and checks (feet and inches)
 
-Floors 2 and 3 are identical to floor 1 on the drawing. Walls, doors and windows are DRAWN; furniture positions and electrical/plumbing points are proposals. All doors open inwards. ROOM-1 and ROOM-4: one student (Orion queen). ROOM-2 and ROOM-3: two students (Centaur singles). 6 students on floor 1.
+Floors 2 and 3 are identical to floor 1 on the drawing. Walls, doors and windows are DRAWN; furniture positions and electrical/plumbing points are proposals. All doors open inwards. ROOM-1, ROOM-3 and ROOM-4: one student each (Orion queen). ROOM-2: two students (Centaur singles), two of everything. 5 students on floor 1, every student with the same kit. ROOM-3 became single on 03.11.2026: it cannot take two full kits (every arrangement checked).
 
 ## Rooms (DRAWN)
 
@@ -24,24 +24,20 @@ Floors 2 and 3 are identical to floor 1 on the drawing. Walls, doors and windows
 |---|---|---|---|---|
 | ROOM-1 | Orion queen bed | 7'-3 7/8" x 5'-3 1/4" x 2'-10 5/8" | 1'-11 5/8" on the open side (long side on wall) | [link](https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2) |
 | ROOM-1 | Tinker side table | 1'-4 7/8" x 0'-11 3/4" x 1'-9 3/4" | at the bed head, on the open side | [link](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) |
-| ROOM-1 | AMATA sofa cum bed | 6'-2 3/4" x 3'-1 3/4" x 2'-10 5/8" | at the bed head, on the open side | [link](https://www.amazon.in/dp/B0B68JZTDP) |
-| ROOM-1 | Gingham 2-door wardrobe (mirror) | 2'-7 7/8" x 1'-6 3/4" x 6'-0 7/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/gingham-2-door-wardrobe-with-mirror-one-hanging-space/WWRB2DMH1GINGHAMCWR2) |
+| ROOM-1 | Twill 2-door compact wardrobe | 1'-11 5/8" x 1'-6 3/4" x 5'-11 5/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) |
 | ROOM-1 | Sage study table (with hutch) | 3'-3 3/8" x 1'-10 1/2" x 4'-4 7/8" | 2'-5 1/2" chair pull-out | [link](https://www.wakefit.co/study-tables/sage-study-table/WSTSAGER1) |
 | ROOM-2 | Centaur single bed | 7'-0" x 3'-5 3/8" x 3'-1 3/4" | 1'-11 5/8" on the open side (long side on wall) | [link](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) |
 | ROOM-2 | Tinker side table | 1'-4 7/8" x 0'-11 3/4" x 1'-9 3/4" | at the bed head, on the open side | [link](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) |
 | ROOM-2 | Centaur single bed | 7'-0" x 3'-5 3/8" x 3'-1 3/4" | 1'-11 5/8" on the open side (long side on wall) | [link](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) |
 | ROOM-2 | Tinker side table | 1'-4 7/8" x 0'-11 3/4" x 1'-9 3/4" | at the bed head, on the open side | [link](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) |
-| ROOM-2 | Gingham 2-door wardrobe (mirror) | 2'-7 7/8" x 1'-6 3/4" x 6'-0 7/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/gingham-2-door-wardrobe-with-mirror-one-hanging-space/WWRB2DMH1GINGHAMCWR2) |
-| ROOM-2 | Gingham 2-door wardrobe (mirror) | 2'-7 7/8" x 1'-6 3/4" x 6'-0 7/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/gingham-2-door-wardrobe-with-mirror-one-hanging-space/WWRB2DMH1GINGHAMCWR2) |
+| ROOM-2 | Twill 2-door compact wardrobe | 1'-11 5/8" x 1'-6 3/4" x 5'-11 5/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) |
+| ROOM-2 | Twill 2-door compact wardrobe | 1'-11 5/8" x 1'-6 3/4" x 5'-11 5/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) |
 | ROOM-2 | Sage study table (with hutch) | 3'-3 3/8" x 1'-10 1/2" x 4'-4 7/8" | 2'-5 1/2" chair pull-out | [link](https://www.wakefit.co/study-tables/sage-study-table/WSTSAGER1) |
 | ROOM-2 | Sage study table (with hutch) | 3'-3 3/8" x 1'-10 1/2" x 4'-4 7/8" | 2'-5 1/2" chair pull-out | [link](https://www.wakefit.co/study-tables/sage-study-table/WSTSAGER1) |
-| ROOM-3 | Centaur single bed | 7'-0" x 3'-5 3/8" x 3'-1 3/4" | 1'-11 5/8" on the open side (long side on wall) | [link](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) |
-| ROOM-3 | Tinker side table | 1'-4 7/8" x 0'-11 3/4" x 1'-9 3/4" | at the bed head, on the open side | [link](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) |
-| ROOM-3 | Centaur single bed | 7'-0" x 3'-5 3/8" x 3'-1 3/4" | 1'-11 5/8" on the open side (long side on wall) | [link](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) |
+| ROOM-3 | Orion queen bed | 7'-3 7/8" x 5'-3 1/4" x 2'-10 5/8" | 1'-11 5/8" on both sides | [link](https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2) |
 | ROOM-3 | Tinker side table | 1'-4 7/8" x 0'-11 3/4" x 1'-9 3/4" | at the bed head, on the open side | [link](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) |
 | ROOM-3 | Twill 2-door compact wardrobe | 1'-11 5/8" x 1'-6 3/4" x 5'-11 5/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) |
-| ROOM-3 | Twill 2-door compact wardrobe | 1'-11 5/8" x 1'-6 3/4" x 5'-11 5/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) |
-| ROOM-3 | Wall desk 3'-0" (shared) | 2'-11 3/8" x 1'-5 3/4" x 2'-5 1/2" | 2'-5 1/2" chair pull-out | - |
+| ROOM-3 | Sage study table (with hutch) | 3'-3 3/8" x 1'-10 1/2" x 4'-4 7/8" | 2'-5 1/2" chair pull-out | [link](https://www.wakefit.co/study-tables/sage-study-table/WSTSAGER1) |
 | ROOM-4 | Orion queen bed | 7'-3 7/8" x 5'-3 1/4" x 2'-10 5/8" | 1'-11 5/8" on the open side (long side on wall) | [link](https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2) |
 | ROOM-4 | Tinker side table | 1'-4 7/8" x 0'-11 3/4" x 1'-9 3/4" | at the bed head, on the open side | [link](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) |
 | ROOM-4 | Twill 2-door compact wardrobe | 1'-11 5/8" x 1'-6 3/4" x 5'-11 5/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) |
@@ -52,16 +48,24 @@ Floors 2 and 3 are identical to floor 1 on the drawing. Walls, doors and windows
 - Every item is inside its room and clear of walls, the other items, every door swing and every clearance; a 1'-9 5/8" walking path reaches every bed side, wardrobe front, chair and the toilet door. **All rooms PASS.**
 - Layout search results:
 
-  | ROOM-1 | Orion queen (long side on wall), Gingham wardrobe, Sage desk, **AMATA sofa fits** |
-  | ROOM-2 | 2 Centaur singles, 2 Gingham wardrobes, 2 Sage desks |
-  | ROOM-3 | 2 Centaur singles, 2 Twill wardrobes, 1 wall desk (0.90 m), shared - **2 Sage desks do not fit** |
-  | ROOM-4 | Orion queen (long side on wall), Twill wardrobe, Sage desk, **no room for the AMATA sofa** |
+  | ROOM-1 | 1 student: Orion queen (long side on wall), Tinker, Twill wardrobe, Sage study table |
+  | ROOM-2 | 2 students, each: Centaur single bed, Tinker, Twill wardrobe, Sage study table; beds 1'-0" or more apart |
+  | ROOM-3 | 1 student: Orion queen (0.60 m both sides), Tinker, Twill wardrobe, Sage study table |
+  | ROOM-4 | 1 student: Orion queen (long side on wall), Tinker, Twill wardrobe, Sage study table |
 
-- **ROOM-3 options** (re-checked with the columns; 2 Sage desks + 2 wardrobes with the beds apart cannot fit): A) 2 beds + 2 Twill + 1 shared 2'-11⅜" wall desk, beds 1'-11⅝" apart (in the model); C) 2 beds + 2 Gingham, no desk; D) 2 Gingham + 1 Sage + 1 wall desk, but only with the two single beds pushed together side by side. Option B from before (a Sage desk in the window alcove) no longer fits: the alcove's only clear wall is in front of the window, and the Sage hutch (4'-4⅞") would cover it.
-- **ROOM-4:** column C13 takes the first 11¾" of the study wall, leaving 5'-3". Twill + Sage fit exactly (Gingham + Sage are 8¼" too long). The AMATA sofa still does not fit. Details: `docs/room4-check.md`.
-- **New rules in this run:** nothing taller than the window sill stands in front of a window; no bed head sits against a window; two students' single beds stay at least 1'-0" apart.
-- **Queens in ROOM-1 and ROOM-4** have one long side on the wall (needed for the sofa in ROOM-1; family rule in ROOM-4).
+- **Standard kit (family, 03.11.2026):** every student gets the same items, and a twin room gets two of everything. The wardrobe is the Twill for everyone, because it is the one that fits every room (ROOM-4's study wall is 5'-3" beside column C13). The AMATA sofa is dropped, because it fits only ROOM-1.
+- **Rules kept:** nothing taller than the window sill stands in front of a window; no bed head against a window; twin beds kept 1'-0" or more apart wherever the room allows it.
+- **Queens in ROOM-1 and ROOM-4** have one long side on the wall where needed (family rule in ROOM-4).
 - **Headboards vs window sill (assumed 2'-11 3/8"):** Orion 2'-10 5/8", Centaur 3'-1 3/4". No bed head sits under a window in this floor-1 layout (checked); keep it that way if beds move, because the Centaur headboard is taller than the assumed sill.
+
+## Kit per room (count)
+
+| Room | Students | Beds | Tinker side tables | Wardrobes | Study tables |
+|---|---|---|---|---|---|
+| ROOM-1 | 1 | 1 | 1 | 1 Twill 2-door compact wardrobe | 1 Sage study table (with hutch) |
+| ROOM-2 | 2 | 2 | 2 | 2 Twill 2-door compact wardrobe | 2 Sage study table (with hutch) |
+| ROOM-3 | 1 | 1 | 1 | 1 Twill 2-door compact wardrobe | 1 Sage study table (with hutch) |
+| ROOM-4 | 1 | 1 | 1 | 1 Twill 2-door compact wardrobe | 1 Sage study table (with hutch) |
 
 ## AC lines (below the bathroom windows)
 
@@ -118,9 +122,8 @@ Mounting heights and positions are in `docs/schedules/points_schedule.csv` and o
 
 ## Open decisions for floor 1
 
-1. Confirm the Wakefit overall sizes from the product pages (bed, Tinker, Twill, Gingham).
-2. ROOM-3: choose option A, B or C.
-3. OK the queen beds with one long side on the wall (ROOM-1, ROOM-4).
-4. AC clashes: choose what moves (outdoor units, pipes or route).
-5. Architect: window sill height and floor height (heights are assumed; the structural drawing does not give them either).
-6. Structural engineer: confirm the column schedule covers the fourth floor, and send the floor beam layout.
+1. Confirm the Wakefit overall sizes from the product pages (beds, Tinker, Twill, Sage).
+2. OK the queen beds with one long side on the wall (ROOM-1, ROOM-4).
+3. AC clashes: choose what moves (outdoor units, pipes or route).
+4. Architect: window sill height and floor height (heights are assumed; the structural drawing does not give them either).
+5. Structural engineer: confirm the column schedule covers the fourth floor, and send the floor beam layout.

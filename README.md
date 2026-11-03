@@ -18,7 +18,7 @@ This is a student PG at Plot C-89, Sector 12, Kharghar, Navi Mumbai: stilt, four
 | Open the BIM model | `model/bella-vita-2.ifc` | Free tools: BlenderBIM/Bonsai, FreeCAD, BIMvision, or https://ifcviewer.com |
 | See where the structural columns sit on floor 1 and what they touch | `docs/structure-check.md` | Column-by-column table in feet and inches, plus points for the structural engineer |
 | Read how the drawing was interpreted | `docs/drawing-takeoff.md` | Sizes, conflicts with earlier notes, safety items, **13 open questions** |
-| See the room layouts (single occupancy, Wakefit) | `docs/furniture-fit.md`, `docs/room4-check.md`, `docs/room4-plan.png` | Orion queen + Tinker + Gingham/Twill + study table; sizes in feet and inches |
+| See the floor 1 room layouts (standard kit per student) | `docs/floor1-plan.png`, `docs/floor1.md`, `docs/room4-check.md` | Every student: bed, Tinker, Twill wardrobe, Sage study table + chair. ROOM-2 twin (two of everything); ROOM-1, 3, 4 single (Orion queen) |
 | See the PG amenities (matched to the existing Bella Vita) | `docs/amenities.md` | RFID, backup power, RO water, terrace laundry and lounge, sub-meters |
 | See where the floors 1–3 AC lines run and what they clash with | `docs/ac-routing.md` | Routed below the bathroom windows |
 | Read the model and MEP reports | `docs/phase2-model.md`, `docs/phase3-mep.md` | Includes the code references and their verification status |

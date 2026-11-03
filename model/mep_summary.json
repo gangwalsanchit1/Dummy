@@ -63,7 +63,7 @@
   "RWP": 71.1,
   "VENT": 0.0,
   "HW": 53.9,
-  "COND": 2655.8,
+  "COND": 2671.0,
   "ACP": 53.3
  },
  "connected_load_W": {
@@ -76,5 +76,5 @@
  },
  "lift_kW": 5.5,
  "pump_kW": 1.5,
- "water_demand_L_day": 3105
+ "water_demand_L_day": 2700
 }

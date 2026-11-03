@@ -369,8 +369,11 @@ for s in ["F1", "F2", "F3", "F4"]:
                     placed = False
                     tall = [o["rect"] for o in items if o is not it and FS_[o["type"]][2] > 0.85]
 
+                    rrects = next(sp["rects"] for sp in TK["floors"][pk]["spaces"] if sp["name"] == room)
+
                     def free(px, py):
-                        return not any(t[0] - 0.06 <= px <= t[2] + 0.06 and t[1] - 0.06 <= py <= t[3] + 0.06 for t in tall)
+                        inroom = any(q[0] - 0.01 <= px <= q[2] + 0.01 and q[1] - 0.01 <= py <= q[3] + 0.01 for q in rrects)
+                        return inroom and not any(t[0] - 0.06 <= px <= t[2] + 0.06 and t[1] - 0.06 <= py <= t[3] + 0.06 for t in tall)
                     if side in ("N", "S"):
                         wy, face = (r[3], "-y") if side == "N" else (r[1], "+y")
                         for xa, xb in ((r[2] + 0.12, r[2] + 0.30), (r[0] - 0.12, r[0] - 0.30)):

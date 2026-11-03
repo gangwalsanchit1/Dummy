@@ -48,8 +48,9 @@ col_end = max([c["rect"][3] for c in cw], default=WALL_Y0)
 free_len = WALL_Y1 - col_end
 if cw:
     rows.append(f"| Column {', '.join(c['name'] for c in cw)} on the study wall (structural drawing) | - | stands {ftin(cw[0]['rect'][2] - WALL_X)} out, first {ftin(col_end - WALL_Y0)} of the wall | note | usable study wall {ftin(free_len)} of {ftin(wall_len)} |")
-row("Study wall: Gingham wardrobe + Sage study table", Gw + Nw, free_len, Gw + Nw <= free_len + 0.002, "used" if ward["type"] == "gingham_wardrobe" else "")
-row("Study wall: Twill wardrobe + Sage study table", Tw + Nw, free_len, Tw + Nw <= free_len + 0.002, "used" if ward["type"] == "twill_wardrobe" else "")
+lab = {"orion_queen_bed": "Orion queen bed", "tinker_side_table": "Tinker", "gingham_wardrobe": "Gingham wardrobe", "twill_wardrobe": "Twill wardrobe", "notiq_desk": "Notiq study table", "sage_desk": "Sage study table"}
+Wu = FS[ward["type"]][0]
+row(f"Study wall: {lab[ward['type']]} + Sage study table (standard kit)", Wu + Nw, free_len, Wu + Nw <= free_len + 0.002, "used")
 sofa_need = FS["amata_sofa"][1] + AS["clearances"]["sofa_legroom"]
 rows.append(f"| AMATA sofa ({ftin(FS['amata_sofa'][0])} x {ftin(FS['amata_sofa'][1])}) + {ftin(AS['clearances']['sofa_legroom'])} legroom | a free wall {ftin(FS['amata_sofa'][0])} long, {ftin(sofa_need)} deep | none left after bed, wardrobe, table and their clearances | **does not fit** | full search of all arrangements |")
 to_bed = bed["rect"][0] - WALL_X
@@ -79,7 +80,6 @@ rows.append(f"| 0.55 m path: door to bed side, wardrobe, chair and toilet door |
 for nm, L in (("Gingham + Sage", Gw + Nw), ("Twill + Sage", Tw + Nw)):
     nm += " (used)" if (ward["type"] == "gingham_wardrobe") == nm.startswith("Gingham") else ""
     opts.append(f"| {nm} | {ftin(L)} | {'fits, ' + ftin(free_len - L) + ' spare' if L <= free_len + 0.002 else 'short by ' + ftin(L - free_len)} |")
-lab = {"orion_queen_bed": "Orion queen bed", "tinker_side_table": "Tinker", "gingham_wardrobe": "Gingham wardrobe", "twill_wardrobe": "Twill wardrobe", "notiq_desk": "Notiq study table", "sage_desk": "Sage study table"}
 cat = AS["wakefit_catalog"]
 md = ["# ROOM-4 (F1-F3) check: family layout, feet and inches", "",
       "Fixed walls, doors and windows are as DRAWN. Single occupancy. Family rule for this room: the queen bed has one long side on a wall, "

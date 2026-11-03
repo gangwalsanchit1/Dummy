@@ -1,95 +1,75 @@
 {
- "_about": "Floor 1 (F1-3) by tools/fit_floor1.py: ROOM-2/3 two Centaur singles, ROOM-1/4 Orion queen (+ AMATA sofa where it fits). F4 from tools/fit_furniture.py.",
+ "_about": "Floor 1 (F1-3) by tools/fit_floor1.py: standard kit per student (assumptions.json standard_kit). F4 from tools/fit_furniture.py.",
  "F1-3": {
   "ROOM-1": [
    {
     "type": "orion_queen_bed",
     "rect": [
-     5.618,
+     5.35,
+     9.995,
+     7.582,
+     11.6
+    ],
+    "access": [
+     "N"
+    ],
+    "zones": [
+     [
+      5.7,
+      9.395,
+      7.582,
+      9.995
+     ]
+    ],
+    "head": "W"
+   },
+   {
+    "type": "tinker_side_table",
+    "rect": [
+     5.35,
+     9.565,
+     5.65,
+     9.995
+    ],
+    "access": []
+   },
+   {
+    "type": "twill_wardrobe",
+    "rect": [
+     5.95,
      7.1,
-     7.85,
-     8.705
+     6.55,
+     7.576
     ],
     "access": [
      "S"
     ],
     "zones": [
      [
-      5.618,
-      8.705,
-      7.5,
-      9.305
-     ]
-    ],
-    "head": "E"
-   },
-   {
-    "type": "tinker_side_table",
-    "rect": [
-     7.55,
-     8.705,
-     7.85,
-     9.135
-    ],
-    "access": []
-   },
-   {
-    "type": "amata_sofa",
-    "rect": [
-     5.35,
-     9.4,
-     6.31,
-     11.3
-    ],
-    "access": [
-     "E"
-    ],
-    "zones": [
-     [
-      6.31,
-      9.4,
-      6.76,
-      11.3
-     ]
-    ]
-   },
-   {
-    "type": "gingham_wardrobe",
-    "rect": [
-     4.05,
-     7.05,
-     4.526,
-     7.86
-    ],
-    "access": [
-     "E"
-    ],
-    "zones": [
-     [
-      4.526,
-      7.05,
-      5.126,
-      7.86
+      5.95,
+      7.576,
+      6.55,
+      8.176
      ]
     ]
    },
    {
     "type": "sage_desk",
     "rect": [
-     7.2,
-     9.35,
-     7.77,
-     10.35
+     6.55,
+     7.05,
+     7.55,
+     7.62
     ],
     "access": [
-     "W"
+     "S"
     ],
     "zones": [
      [
-      6.45,
-      9.35,
-      7.2,
-      10.35
+      6.55,
+      7.62,
+      7.55,
+      8.37
      ]
     ]
    }
@@ -158,12 +138,12 @@
     "access": []
    },
    {
-    "type": "gingham_wardrobe",
+    "type": "twill_wardrobe",
     "rect": [
      3.474,
      7.05,
      3.95,
-     7.86
+     7.65
     ],
     "access": [
      "W"
@@ -173,17 +153,17 @@
       2.874,
       7.05,
       3.474,
-      7.86
+      7.65
      ]
     ]
    },
    {
-    "type": "gingham_wardrobe",
+    "type": "twill_wardrobe",
     "rect": [
      3.474,
-     7.9,
+     7.65,
      3.95,
-     8.71
+     8.25
     ],
     "access": [
      "W"
@@ -191,9 +171,9 @@
     "zones": [
      [
       2.874,
-      7.9,
+      7.65,
       3.474,
-      8.71
+      8.25
      ]
     ]
    },
@@ -240,53 +220,29 @@
   ],
   "ROOM-3": [
    {
-    "type": "centaur_single_bed",
-    "rect": [
-     0.15,
-     3.7,
-     2.283,
-     4.75
-    ],
-    "access": [
-     "S"
-    ],
-    "zones": [
-     [
-      0.5,
-      4.75,
-      2.283,
-      5.35
-     ]
-    ],
-    "head": "W"
-   },
-   {
-    "type": "tinker_side_table",
-    "rect": [
-     0.15,
-     4.75,
-     0.45,
-     5.18
-    ],
-    "access": []
-   },
-   {
-    "type": "centaur_single_bed",
+    "type": "orion_queen_bed",
     "rect": [
      0.229,
-     2.05,
-     2.362,
-     3.1
+     2.65,
+     2.461,
+     4.255
     ],
     "access": [
+     "N",
      "S"
     ],
     "zones": [
      [
       0.579,
-      3.1,
-      2.362,
-      3.7
+      2.05,
+      2.461,
+      2.65
+     ],
+     [
+      0.229,
+      4.255,
+      2.461,
+      4.855
      ]
     ],
     "head": "W"
@@ -295,18 +251,18 @@
     "type": "tinker_side_table",
     "rect": [
      0.229,
-     3.1,
+     2.22,
      0.529,
-     3.53
+     2.65
     ],
     "access": []
    },
    {
     "type": "twill_wardrobe",
     "rect": [
-     0.45,
+     0.15,
      5.474,
-     1.05,
+     0.75,
      5.95
     ],
     "access": [
@@ -314,50 +270,30 @@
     ],
     "zones": [
      [
-      0.45,
+      0.15,
       4.874,
-      1.05,
+      0.75,
       5.474
      ]
     ]
    },
    {
-    "type": "twill_wardrobe",
+    "type": "sage_desk",
     "rect": [
-     1.05,
-     5.474,
-     1.65,
-     5.95
+     0.15,
+     0.449,
+     0.72,
+     1.449
     ],
     "access": [
-     "N"
+     "E"
     ],
     "zones": [
      [
-      1.05,
-      4.874,
-      1.65,
-      5.474
-     ]
-    ]
-   },
-   {
-    "type": "wall_desk",
-    "rect": [
-     1.65,
-     5.5,
-     2.55,
-     5.95
-    ],
-    "access": [
-     "N"
-    ],
-    "zones": [
-     [
-      1.65,
-      4.75,
-      2.55,
-      5.5
+      0.72,
+      0.449,
+      1.47,
+      1.449
      ]
     ]
    }

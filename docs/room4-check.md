@@ -16,8 +16,7 @@ Fixed walls, doors and windows are as DRAWN. Single occupancy. Family rule for t
 | Check | Needed | Available | Result | Note |
 |---|---|---|---|---|
 | Column C13 on the study wall (structural drawing) | - | stands 0'-5 1/8" out, first 0'-11 3/4" of the wall | note | usable study wall 5'-3" of 6'-2 3/4" |
-| Study wall: Gingham wardrobe + Sage study table | 5'-11 1/4" | 5'-3" | **FAIL** short by 0'-8 1/4" |  |
-| Study wall: Twill wardrobe + Sage study table | 5'-3" | 5'-3" | PASS | used |
+| Study wall: Twill wardrobe + Sage study table (standard kit) | 5'-3" | 5'-3" | PASS | used |
 | AMATA sofa (6'-2 3/4" x 3'-1 3/4") + 1'-5 3/4" legroom | a free wall 6'-2 3/4" long, 4'-7 1/2" deep | none left after bed, wardrobe, table and their clearances | **does not fit** | full search of all arrangements |
 | Chair pull-out 2'-5 1/2" in front of the Sage table | clear | clear, 0'-3 3/4" to nearest furniture | PASS | |
 | Wardrobe access 1'-11 5/8" in front (hinged doors) | clear | clear | PASS | |

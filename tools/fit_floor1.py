@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Floor 1 furniture fit (family brief, feet and inches).
 
-ROOM-2, ROOM-3 : 2 students - 2 Wakefit Centaur single beds, 2 Tinker side tables, 2 wardrobes, 2 Sage study tables
-ROOM-1, ROOM-4 : 1 student  - Wakefit Orion queen bed, Tinker, 1 wardrobe, 1 Sage study table, + AMATA sofa if it fits
-Wardrobe: Gingham (mirror) first, Twill (compact) if Gingham does not fit.
+STANDARD KIT (family: "everyone having similar things"; 2 students = 2 of everything), from assumptions.json standard_kit:
+ROOM-2         : 2 students - each: Centaur single bed, Tinker, kit wardrobe, kit study table
+ROOM-1, 3, 4   : 1 student  - Orion queen bed, Tinker, kit wardrobe, kit study table (no sofa: it fits only one room)
+(ROOM-3 was twin; it cannot take two full kits, so the family made it single on 03.11.2026.)
 ROOM-4 keeps the family rule (queen with one long side on a wall + Tinker on the open side at the head;
 study table and wardrobe on the study wall where the wardrobe was).
 Everything else is searched ("move things around and optimise"), with every check: inside the drawn room,
@@ -25,6 +26,9 @@ FS, CL = F.FS, F.CL
 ovl, zone, inside, touches_wall, wall_vals = F.ovl, F.zone, F.inside, F.touches_wall, F.wall_vals
 TW, TD = FS["tinker_side_table"][:2]
 TRIM = CL["queen_head_table_trim"]
+KIT = F.AS["standard_kit"]  # the same items for every student (family: "everyone having similar things")
+KNAME = {"twill_wardrobe": "Twill wardrobe", "gingham_wardrobe": "Gingham wardrobe", "sage_desk": "Sage study table"}
+KNAME.update({k: v.get("name", k) for k, v in KIT.get("desk_types", {}).items()})
 CHAIR, WFRONT, BSIDE, LEG = CL["desk_chair_zone"], CL["sliding_wardrobe_front"], CL["single_bed_access_side"], CL["sofa_legroom"]
 
 
@@ -47,6 +51,8 @@ def wall_items(room, typ, front, allow_grey=False, only_wall_x=None):
                         continue
                     z = zone(r, b[4], front)
                     if F.blocks_window(room, r, FS[typ][2]):
+                        continue
+                    if FS[typ][2] > 1.0 and ovl(r, room.switch_zone):   # keep the switchboard beside the door reachable
                         continue
                     if room.ok_fixed(r, [], []) and inside(z, room.rects) and not any(ovl(z, wl) for wl in room.walls):
                         out.append({"type": typ, "rect": r, "access": [b[4]], "zones": [[round(v, 3) for v in z]], "grey": in_grey, "fixed": [r]})
@@ -123,6 +129,8 @@ TWIN_GAP = 0.30  # ASSUMED: two students' single beds never pushed together; at 
 def compat(a, b):
     if any(ovl(p, q) for p in a["fixed"] for q in b["fixed"]):
         return False
+    if a["type"].endswith("desk") and b["type"].endswith("desk") and any(ovl(z, y) for z in a["zones"] for y in b["zones"]):
+        return False  # two students' chairs may not use the same floor space
     if a["type"] == b["type"] == "centaur_single_bed":
         ra, rb = a["rect"], b["rect"]
         if max(rb[0] - ra[2], ra[0] - rb[2], rb[1] - ra[3], ra[1] - rb[3]) < TWIN_GAP - 1e-3:
@@ -193,41 +201,33 @@ def main():
         room = F.Room("F1-3", name, door, others)
         is4 = name == "ROOM-4"
         chosen, note = None, ""
-        if name in ("ROOM-2", "ROOM-3"):
+        if name in KIT["twin_rooms"]:
             beds = single_beds(room)
-            sage, wdesk = wall_items(room, "sage_desk", CHAIR), wall_items(room, "wall_desk", CHAIR)
-            tiers = [("2 Sage desks", [("desk", sage), ("desk", sage)]), ("1 Sage desk + 1 wall desk (0.90 m)", [("desk", sage), ("desk2", wdesk)]),
-                     ("1 Sage desk only", [("desk", sage)]), ("1 wall desk (0.90 m), shared", [("desk2", wdesk)])]
-            for tname, dslots in tiers:
-                for wt in (("twill_wardrobe",) if "shared" in tname else ("gingham_wardrobe", "twill_wardrobe")):
-                    wards = wall_items(room, wt, WFRONT)
-                    wards.sort(key=lambda w: -w["grey"])
-                    found = search(room, [("bed", beds), ("bed", beds), ("ward", wards), ("ward", wards)] + dslots, max_walk=40000)
-                    if found:
-                        chosen = max(found, key=lambda f: sum(p.get("score", 0) for p in f[0]))
-                        note = f"2 Centaur singles, 2 {wt.split('_')[0].title()} wardrobes, {tname}" + ("" if tname == "2 Sage desks" else " - **2 Sage desks do not fit**")
-                        break
-                if chosen:
+            wards = wall_items(room, KIT["wardrobe"], WFRONT)
+            desks = wall_items(room, KIT["desk"], CHAIR)
+            low = wall_items(room, "nohutch_desk", CHAIR)
+            global TWIN_GAP
+            # 1) full kit, beds apart; 2) beds side by side; 3) beds side by side, one desk without hutch (under a window)
+            for gap, dslots, tag in ((0.30, [("desk", desks), ("desk", desks)], "beds 1'-0\" or more apart"),
+                                     (0.0, [("desk", desks), ("desk", desks)], "**beds side by side** (the room is too small to keep them apart)"),
+                                     (0.0, [("desk", desks), ("desk2", low)], "**beds side by side**, and **one study table without the hutch** because it sits under the window")):
+                TWIN_GAP = gap
+                found = search(room, [("bed", beds), ("bed", beds), ("ward", wards), ("ward", wards)] + dslots, max_walk=60000)
+                if found:
+                    chosen = max(found, key=lambda f: sum(p.get("score", 0) for p in f[0]))
+                    note = f"2 students, each: Centaur single bed, Tinker, {KNAME[KIT['wardrobe']]}, {KNAME[KIT['desk']]}; {tag}"
                     break
+            TWIN_GAP = 0.30
         else:
-            sofas = wall_items(room, "amata_sofa", LEG)
-            for with_sofa in (True, False):
-                for rule in (["wall"] if is4 else ["both", "wall"]):
-                    beds = queen_beds(room, rule)
-                    for wt in ("gingham_wardrobe", "twill_wardrobe"):
-                        wards = wall_items(room, wt, WFRONT, allow_grey=is4, only_wall_x=4.45 if is4 else None)
-                        wards.sort(key=lambda w: -w["grey"])
-                        desks = wall_items(room, "sage_desk", CHAIR, allow_grey=is4, only_wall_x=4.45 if is4 else None)
-                        slots = [("bed", beds)] + ([("sofa", sofas)] if with_sofa else []) + [("ward", wards), ("desk", desks)]
-                        found = search(room, slots, max_walk=40000, want=3)
-                        if found:
-                            chosen = found[0]
-                            note = (f"Orion queen ({'0.60 m both sides' if rule == 'both' else 'long side on wall'}), {wt.split('_')[0].title()} wardrobe, Sage desk"
-                                    + (", **AMATA sofa fits**" if with_sofa else ", **no room for the AMATA sofa**"))
-                            break
-                    if chosen:
-                        break
-                if chosen:
+            for rule in (["wall"] if is4 else ["both", "wall"]):
+                beds = queen_beds(room, rule)
+                wards = wall_items(room, KIT["wardrobe"], WFRONT, allow_grey=is4, only_wall_x=4.45 if is4 else None)
+                desks = wall_items(room, KIT["desk"], CHAIR, allow_grey=is4, only_wall_x=4.45 if is4 else None)
+                found = search(room, [("bed", beds), ("ward", wards), ("desk", desks)], max_walk=60000, want=3)
+                if found:
+                    chosen = found[0]
+                    note = (f"1 student: Orion queen ({'0.60 m both sides' if rule == 'both' else 'long side on wall'}), Tinker, "
+                            f"{KNAME[KIT['wardrobe']]}, {KNAME[KIT['desk']]}")
                     break
         if not chosen:
             rep.append(f"| {name} | **no layout found** |")
@@ -238,12 +238,12 @@ def main():
         print(name, note, flush=True)
     FU = json.loads((ROOT / "model/furniture.json").read_text())
     FU["F1-3"] = res
-    FU["_about"] = "Floor 1 (F1-3) by tools/fit_floor1.py: ROOM-2/3 two Centaur singles, ROOM-1/4 Orion queen (+ AMATA sofa where it fits). F4 from tools/fit_furniture.py."
+    FU["_about"] = "Floor 1 (F1-3) by tools/fit_floor1.py: standard kit per student (assumptions.json standard_kit). F4 from tools/fit_furniture.py."
     (ROOT / "model/furniture.json").write_text(json.dumps(FU, indent=1))
     md = ["# Floor 1 furniture fit (generated by tools/fit_floor1.py)", "",
-          "Family brief: ROOM-2 and ROOM-3 have **two students** (2 Wakefit Centaur single beds, 2 Tinker, 2 wardrobes, 2 Sage study tables). "
-          "ROOM-1 and ROOM-4 have **one student** (Wakefit Orion queen, Tinker, wardrobe, Sage study table) plus the **AMATA sofa** where it fits. "
-          f"Clearances: bed open side {ftin(BSIDE)}, wardrobe front {ftin(WFRONT)}, chair pull-out {ftin(CHAIR)}, sofa legroom {ftin(LEG)}, walking path {ftin(0.55)}.", "",
+          f"Standard kit, the same for every student: bed, Tinker side table, {KNAME[KIT['wardrobe']]}, {KNAME[KIT['desk']]} and chair. "
+          "ROOM-2: **two students, two of everything** (Centaur single beds, at least 1'-0\" apart). ROOM-1, ROOM-3 and ROOM-4: **one student** (Orion queen). "
+          f"Clearances: bed open side {ftin(BSIDE)}, wardrobe front {ftin(WFRONT)}, chair pull-out {ftin(CHAIR)}, walking path {ftin(0.55)}.", "",
           "| Room | Result |", "|---|---|"] + rep
     (ROOT / "docs/floor1-fit.md").write_text("\n".join(md) + "\n")
 

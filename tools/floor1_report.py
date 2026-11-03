@@ -18,11 +18,11 @@ CAT = AS["wakefit_catalog"]
 FS = AS["furniture_sizes"]
 CL = AS["clearances"]
 NAME = {"orion_queen_bed": "Orion queen bed", "tinker_side_table": "Tinker side table", "gingham_wardrobe": "Gingham 2-door wardrobe (mirror)",
-        "twill_wardrobe": "Twill 2-door compact wardrobe", "notiq_desk": "Notiq adjustable study table (placeholder)", "wall_desk": "Wall desk 3'-0\" (shared)", "sage_desk": "Sage study table (with hutch)", "centaur_single_bed": "Centaur single bed", "amata_sofa": "AMATA sofa cum bed"}
+        "twill_wardrobe": "Twill 2-door compact wardrobe", "notiq_desk": "Notiq adjustable study table (placeholder)", "wall_desk": "Wall desk 3'-0\" (shared)", "sage_desk": "Sage study table (with hutch)", "nohutch_desk": "Study table without hutch (Sage size, ASSUMED)", "centaur_single_bed": "Centaur single bed", "amata_sofa": "AMATA sofa cum bed"}
 
 md = ["# Floor 1: rooms, furniture and checks (feet and inches)", "",
       "Floors 2 and 3 are identical to floor 1 on the drawing. Walls, doors and windows are DRAWN; furniture positions and electrical/plumbing points are proposals. "
-      "All doors open inwards. ROOM-1 and ROOM-4: one student (Orion queen). ROOM-2 and ROOM-3: two students (Centaur singles). 6 students on floor 1.", "",
+      "All doors open inwards. ROOM-1, ROOM-3 and ROOM-4: one student each (Orion queen). ROOM-2: two students (Centaur singles), two of everything. 5 students on floor 1, every student with the same kit. ROOM-3 became single on 03.11.2026: it cannot take two full kits (every arrangement checked).", "",
       "## Rooms (DRAWN)", "", "| Room | Main area | Total area | Window |", "|---|---|---|---|"]
 for sp in fl["spaces"]:
     r = max(sp["rects"], key=lambda q: (q[2] - q[0]) * (q[3] - q[1]))
@@ -47,16 +47,21 @@ fit = [l for l in (ROOT / "docs/floor1-fit.md").read_text().split("\n") if l.sta
 md += ["", "## Checks", "",
        f"- Every item is inside its room and clear of walls, the other items, every door swing and every clearance; a {ftin(0.55)} walking path reaches every bed side, wardrobe front, chair and the toilet door. **All rooms PASS.**",
        "- Layout search results:", ""] + ["  " + l for l in fit] + ["",
-       "- **ROOM-3 options** (re-checked with the columns; 2 Sage desks + 2 wardrobes with the beds apart cannot fit): "
-       "A) 2 beds + 2 Twill + 1 shared 2'-11⅜\" wall desk, beds 1'-11⅝\" apart (in the model); "
-       "C) 2 beds + 2 Gingham, no desk; "
-       "D) 2 Gingham + 1 Sage + 1 wall desk, but only with the two single beds pushed together side by side. "
-       "Option B from before (a Sage desk in the window alcove) no longer fits: the alcove's only clear wall is in front of the window, and the Sage hutch (4'-4⅞\") would cover it.",
-       "- **ROOM-4:** column C13 takes the first 11¾\" of the study wall, leaving 5'-3\". Twill + Sage fit exactly (Gingham + Sage are 8¼\" too long). The AMATA sofa still does not fit. Details: `docs/room4-check.md`.",
-       "- **New rules in this run:** nothing taller than the window sill stands in front of a window; no bed head sits against a window; two students' single beds stay at least 1'-0\" apart.",
-       f"- **Queens in ROOM-1 and ROOM-4** have one long side on the wall (needed for the sofa in ROOM-1; family rule in ROOM-4).",
+       "- **Standard kit (family, 03.11.2026):** every student gets the same items, and a twin room gets two of everything. The wardrobe is the Twill for everyone, because it is the one that fits every room (ROOM-4's study wall is 5'-3\" beside column C13). The AMATA sofa is dropped, because it fits only ROOM-1.",
+       "- **Rules kept:** nothing taller than the window sill stands in front of a window; no bed head against a window; twin beds kept 1'-0\" or more apart wherever the room allows it.",
+       f"- **Queens in ROOM-1 and ROOM-4** have one long side on the wall where needed (family rule in ROOM-4).",
        f"- **Headboards vs window sill (assumed {ftin(AS['heights']['window_sill'])}):** Orion {ftin(FS['orion_queen_bed'][2])}, Centaur {ftin(FS['centaur_single_bed'][2])}. No bed head sits under a window in this floor-1 layout (checked); keep it that way if beds move, because the Centaur headboard is taller than the assumed sill.", ""]
 ac = (ROOT / "docs/ac-routing.md").read_text().split("\n")
+# per-room kit count (two of everything in twin rooms)
+from collections import Counter as _C  # noqa: E402
+md += ["## Kit per room (count)", "", "| Room | Students | Beds | Tinker side tables | Wardrobes | Study tables |", "|---|---|---|---|---|---|"]
+for room, items in FU["F1-3"].items():
+    k = _C(i["type"] for i in items)
+    beds = sum(v for t, v in k.items() if t.endswith("_bed"))
+    desks = ", ".join(f"{v} {NAME[t]}" for t, v in k.items() if t.endswith("desk"))
+    wards = ", ".join(f"{v} {NAME[t]}" for t, v in k.items() if "wardrobe" in t)
+    md.append(f"| {room} | {beds} | {beds} | {k['tinker_side_table']} | {wards} | {desks} |")
+md += [""]
 md += ["## AC lines (below the bathroom windows)", ""] + [l for l in ac if l.startswith("|")] + [
        "", "Nothing has been moved; you decide what moves. Columns are checked against the structural drawing (no AC wall sleeve passes through a column). Floor beams are not drawn yet, so beam clashes cannot be checked.", "",
        "## Structural columns (Agharkar RCC drawing, rev R1, 02.11.2026)", "",
@@ -71,11 +76,10 @@ c = Counter(M["kinds"][p["kind"]]["desc"] for p in M["points"] if p["storey"] ==
 md += ["| Item | Count |", "|---|---|"] + [f"| {k} | {v} |" for k, v in sorted(c.items())] + [
        "", "Mounting heights and positions are in `docs/schedules/points_schedule.csv` and on sheet F1-3-E / F1-3-P (feet and inches).", "",
        "## Open decisions for floor 1", "",
-       "1. Confirm the Wakefit overall sizes from the product pages (bed, Tinker, Twill, Gingham).",
-       "2. ROOM-3: choose option A, B or C.",
-       "3. OK the queen beds with one long side on the wall (ROOM-1, ROOM-4).",
-       "4. AC clashes: choose what moves (outdoor units, pipes or route).",
-       "5. Architect: window sill height and floor height (heights are assumed; the structural drawing does not give them either).",
-       "6. Structural engineer: confirm the column schedule covers the fourth floor, and send the floor beam layout.", ""]
+       "1. Confirm the Wakefit overall sizes from the product pages (beds, Tinker, Twill, Sage).",
+       "2. OK the queen beds with one long side on the wall (ROOM-1, ROOM-4).",
+       "3. AC clashes: choose what moves (outdoor units, pipes or route).",
+       "4. Architect: window sill height and floor height (heights are assumed; the structural drawing does not give them either).",
+       "5. Structural engineer: confirm the column schedule covers the fourth floor, and send the floor beam layout.", ""]
 (ROOT / "docs/floor1.md").write_text("\n".join(md))
 print("wrote docs/floor1.md")

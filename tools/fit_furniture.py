@@ -119,6 +119,16 @@ class Room:
         self.swings = list(dmap.values())
         self.door = dmap[door]
         self.targets_doors = [dmap[o] for o in others]
+        # switch strip beside the latch side of the room door (room switchboard at 1.2 m): no tall furniture there
+        hx, hy = self.door["hinge"]
+        qx, qy = self.door["quadrant"]
+        w_ = self.door["width"]
+        if self.door.get("leaf_axis") == "x":
+            lx = hx + qx * w_
+            self.switch_zone = [min(lx, lx + qx * 0.45), min(hy, hy + qy * 0.35), max(lx, lx + qx * 0.45), max(hy, hy + qy * 0.35)]
+        else:
+            ly = hy + qy * w_
+            self.switch_zone = [min(hx, hx + qx * 0.35), min(ly, ly + qy * 0.45), max(hx, hx + qx * 0.35), max(ly, ly + qy * 0.45)]
         self.grey = [g["rect"] for g in fl.get("grey_items", []) if inside(g["rect"], self.rects)]
         xs = [c for r in self.rects for c in (r[0], r[2])]
         ys = [c for r in self.rects for c in (r[1], r[3])]
