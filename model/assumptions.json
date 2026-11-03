@@ -73,12 +73,12 @@
   "twill_wardrobe": [
    0.6,
    0.476,
-   1.82
+   1.824
   ],
   "gingham_wardrobe": [
    0.81,
    0.476,
-   1.85
+   1.856
   ],
   "notiq_desk": [
    1.2,
@@ -409,34 +409,53 @@
   ]
  },
  "wakefit_catalog": {
-  "_note": "Family-chosen Wakefit products (ultra-luxury, single occupancy). wakefit.co blocks automated access (HTTP 403), so overall sizes come from search-indexed listings of the same products; where listings differ the LARGER figure is used. Confirm on the product page before ordering.",
+  "_note": "Family-chosen Wakefit products. Finishes, sizes and prices confirmed on wakefit.co on 03.11.2026 in the family's Chrome (docs/wakefit-pages). Plan sizes keep the larger figure where pages differ (Gingham drawn 81 wide, real 80; Centaur drawn 105 wide, page 103.6).",
   "orion_queen_bed": {
    "product": "Wakefit Orion Engineered Wood Bed with Storage, Queen, Omega Grey",
    "link": "https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2",
-   "size_cm": "223.2 L x 160.5 W x 87.8 H (overall frame)",
-   "source": "Flipkart (223.2 x 160.5, H 87.8) and IndiaMART (223.1 x 158.4 x 87.5) listings of the Orion queen; wakefit.co lists the 78 x 60 in mattress size",
-   "status": "overall size from third-party listings of this product"
+   "size_cm": "160 W x 223 L x 87.8 H",
+   "source": "wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026",
+   "status": "confirmed on wakefit.co 03.11.2026",
+   "finishes": [
+    "frame Columbian Walnut with Omega Grey upholstery (WEWB7860SUPOGRORIONR2) Rs 16,244",
+    "frame Columbian Walnut with Omega Pearl upholstery (WEWB7860SUPOPLORIONR2) Rs 16,310"
+   ],
+   "design": "headboard with two fabric pads and an open bookshelf niche between them; box storage to the floor"
   },
   "tinker_side_table": {
    "product": "Wakefit Tinker Bedside Table",
    "link": "https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER",
-   "size_cm": "43 W x 30 D x 55.2 H",
-   "source": "Amazon.in and Flipkart listings (Pepperfry swaps W/D)",
-   "status": "from listings"
+   "size_cm": "30 W (door front) x 43 D x 55.2 H",
+   "source": "wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026",
+   "status": "confirmed on wakefit.co 03.11.2026",
+   "finishes": [
+    "Columbian Walnut only (WBDSTTINKER) Rs 4,339"
+   ],
+   "design": "one full-height door with a round knob on the 30 cm front, lift-up top with two cup holders, no drawers"
   },
   "twill_wardrobe": {
    "product": "Wakefit Twill 2 Door Compact Wardrobe with One Internal Drawer",
    "link": "https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2",
-   "size_cm": "60 W x 47.6 D x 182 H (approx.)",
-   "source": "Amazon Twill compact (60 x 47.6 x 182) and Pepperfry (59.9 x 46.5 x 180.1); exact SKU size not in index",
-   "status": "APPROXIMATE - confirm"
+   "size_cm": "60 W x 47.6 D x 180 H (Columbia Walnut) / 182.4 H (Dark Brown)",
+   "source": "wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026",
+   "status": "confirmed on wakefit.co 03.11.2026",
+   "finishes": [
+    "Columbia Walnut (WWRB2DTWILLCWR2) Rs 9,819",
+    "Dark Brown (WWRB2DTWILLDBR2) Rs 10,308"
+   ],
+   "design": "this configuration has shelves (1 fixed, 3 adjustable) and one internal drawer, NO hanging rail; key lock; wall-anchored"
   },
   "gingham_wardrobe": {
    "product": "Wakefit Gingham 2 Door Wardrobe with Mirror, One Hanging Space",
    "link": "https://www.wakefit.co/wardrobes/gingham-2-door-wardrobe-with-mirror-one-hanging-space/WWRB2DMH1GINGHAMCWR2",
-   "size_cm": "81 W x 47.6 D x 185 H (approx., largest of variants)",
-   "source": "Pepperfry mirror variant 81 x 46 x 180; Flipkart 80 x 47.6 x 182; Pepperfry 80 x 47.2 x 184.9",
-   "status": "APPROXIMATE - confirm"
+   "size_cm": "80 W x 47.2-47.6 D x 182-185.6 H (Wenge / Columbia Walnut)",
+   "source": "wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026",
+   "status": "confirmed on wakefit.co 03.11.2026",
+   "finishes": [
+    "Columbia Walnut (WWRB2DMH1GINGHAMCWR2) Rs 12,228",
+    "Wenge (WWRB2DMH1GINGHAMWER2) Rs 12,279"
+   ],
+   "design": "1 hanging rod, 1 drawer, 2 shelves; full-height mirror strip 121 x 25 cm on the right door; key lock; wall-anchored"
   },
   "notiq_desk": {
    "product": "Wakefit Notiq Electric Adjustable Study Table (120 cm)",
@@ -452,9 +471,13 @@
   "centaur_single_bed": {
    "product": "Wakefit Centaur Single size Storage bed, 78 x 36, Frosty White",
    "link": "https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR",
-   "size_cm": "213.3 L x 105 W overall, headboard 96 H, bed 37.5 H",
-   "source": "family screenshot of the Wakefit product page",
-   "status": "from Wakefit page (family screenshot)"
+   "size_cm": "213.3 L x 105 W overall (family screenshot); wakefit.co's inch figures give 213.3 L x 103.6 W, headboard 96 H; storage box 198.1 x 91.5 x 31 H. Drawn at 105 W.",
+   "source": "wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026",
+   "status": "confirmed on wakefit.co 03.11.2026",
+   "finishes": [
+    "Frosty White (WEWB7836SCNTR) Rs 12,427",
+    "Wyoming Maple, a dark charcoal woodgrain (WEWB7836SCNTRWM) Rs 10,659"
+   ]
   },
   "sage_desk": {
    "product": "Wakefit Sage Study Table, Columbian Walnut",
@@ -473,16 +496,25 @@
   "cabrera_desk": {
    "product": "Wakefit Cabrera Study Table (engineered wood, open shelf under the top)",
    "link": "https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA",
-   "size_cm": "79.8 W x 45 D x 75.9 H (Amazon.in item dimensions); 80 x 45 x 76 on other listings",
-   "source": "Amazon.in B0BWRFNMCD and Flipkart listings (wakefit.co blocks automated reading); confirm on the product page before ordering",
-   "status": "real Wakefit product; size from retailer listings"
+   "size_cm": "80 W x 45 D x 76 H",
+   "source": "wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026",
+   "status": "confirmed on wakefit.co 03.11.2026",
+   "finishes": [
+    "Urban Teak & White: white top, teak sides and shelves (WSTCABRERA) Rs 3,309",
+    "Pumic Grey: grey sides and shelves, teak-look top (WSTCABRERAPG) Rs 3,089"
+   ]
   },
   "flipper_sofa": {
    "product": "Wakefit Flipper Sofa Cum Bed, Two Seater (opens to 6' x 4')",
    "link": "https://www.wakefit.co/sofa-set/flipper-sofa-cum-bed-two-seater/WSFAFLPN2FWGR",
-   "size_cm": "116.8 W x 76.2 D x 71.2 H (Flipkart); 117 x 76.2 x 66 (Amazon.in WarpKnit Grey)",
-   "source": "Flipkart and Amazon.in B0B1J9F5XL listings (wakefit.co blocks automated reading)",
-   "status": "real Wakefit product; size from retailer listings"
+   "size_cm": "116-117 W x 76 D x 70-71 H (sofa); opens to 116-117 x 182-183 x 19-20 bed",
+   "source": "wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026",
+   "status": "confirmed on wakefit.co 03.11.2026",
+   "finishes": [
+    "Warpknit: Grey Rs 8,711, Blue, Beige, Purple Rs 9,170",
+    "Omega: Blue, Grey, Pearl, Rose, Ash Grey, Choco Brown Rs 10,472-10,474"
+   ],
+   "design": "all-foam, no frame or legs, sits on the floor; two scatter cushions"
   },
   "tv_42": {
    "product": "Wall-mounted TV, 42-inch class (any brand, not Wakefit)",

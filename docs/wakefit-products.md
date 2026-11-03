@@ -2,7 +2,7 @@
 
 Floors 1, 2 and 3 share one plan, so floors 1-3 are three times floor 1. Floor 4 has its own plan and is counted once.
 
-Sizes come from the Wakefit pages the family shared or from retailer listings (wakefit.co blocks automated reading). **Confirm every size on the product page before ordering**, especially the Twill and Gingham (marked approximate).
+Sizes, finishes and prices were confirmed on the wakefit.co product pages on 03.11.2026 (read in the family's Chrome; photos and notes in docs/wakefit-pages). Prices were Diwali sale prices, so check them again before ordering.
 
 ## Plan A (saved): ROOM-1, ROOM-2, ROOM-3 twin, ROOM-4 luxury single; one brick wall and two doors moved
 
@@ -10,11 +10,11 @@ Students: ROOM-1 2, ROOM-2 2, ROOM-3 2, ROOM-4 1 = **7 per floor, 21 on floors 1
 
 | Wakefit product | Size W x D x H (cm) | Size (ft-in, W x D) | ROOM-1 | ROOM-2 | ROOM-3 | ROOM-4 | Floor 1 | Floors 1-3 |
 |---|---|---|---|---|---|---|---|---|
-| [Centaur single bed](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) | 213.3 L x 105 W overall, headboard 96 H, bed 37.5 H | 7'-0" x 3'-5 3/8" | 2 | 2 | 2 | - | 6 | 18 |
-| [Orion queen bed](https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2) | 223.2 L x 160.5 W x 87.8 H (overall frame) | 7'-3 7/8" x 5'-3 1/4" | - | - | - | 1 | 1 | 3 |
-| [Tinker bedside table](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) | 43 W x 30 D x 55.2 H | 1'-4 7/8" x 0'-11 3/4" | 2 | 2 | 1 | 1 | 6 | 18 |
-| [Twill 2-door compact wardrobe](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) | 60 W x 47.6 D x 182 H (approx.) | 1'-11 5/8" x 1'-6 3/4" | 2 | 2 | 2 | 1 | 7 | 21 |
-| [Cabrera study table](https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA) | 79.8 W x 45 D x 75.9 H (Amazon.in item dimensions); 80 x 45 x 76 on other listings | 2'-7 3/8" x 1'-5 3/4" | 2 | 2 | 2 | 1 | 7 | 21 |
+| [Centaur single bed](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) | 213.3 L x 105 W overall (family screenshot); wakefit.co's inch figures give 213.3 L x 103.6 W, headboard 96 H; storage box 198.1 x 91.5 x 31 H. Drawn at 105 W. | 7'-0" x 3'-5 3/8" | 2 | 2 | 2 | - | 6 | 18 |
+| [Orion queen bed](https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2) | 160 W x 223 L x 87.8 H | 7'-3 7/8" x 5'-3 1/4" | - | - | - | 1 | 1 | 3 |
+| [Tinker bedside table](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) | 30 W (door front) x 43 D x 55.2 H | 1'-4 7/8" x 0'-11 3/4" | 2 | 2 | 1 | 1 | 6 | 18 |
+| [Twill 2-door compact wardrobe](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) | 60 W x 47.6 D x 180 H (Columbia Walnut) / 182.4 H (Dark Brown) | 1'-11 5/8" x 1'-6 3/4" | 2 | 2 | 2 | 1 | 7 | 21 |
+| [Cabrera study table](https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA) | 80 W x 45 D x 76 H | 2'-7 3/8" x 1'-5 3/4" | 2 | 2 | 2 | 1 | 7 | 21 |
 
 **Also needed, not chosen yet (no size risk, they sit on or by the items above):**
 
@@ -28,11 +28,11 @@ Students: ROOM-1 2, ROOM-2 2, ROOM-3 1, ROOM-4 1 = **6 per floor, 18 on floors 1
 
 | Wakefit product | Size W x D x H (cm) | Size (ft-in, W x D) | ROOM-1 | ROOM-2 | ROOM-3 | ROOM-4 | Floor 1 | Floors 1-3 |
 |---|---|---|---|---|---|---|---|---|
-| [Centaur single bed](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) | 213.3 L x 105 W overall, headboard 96 H, bed 37.5 H | 7'-0" x 3'-5 3/8" | 2 | 2 | - | - | 4 | 12 |
-| [Orion queen bed](https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2) | 223.2 L x 160.5 W x 87.8 H (overall frame) | 7'-3 7/8" x 5'-3 1/4" | - | - | 1 | 1 | 2 | 6 |
-| [Tinker bedside table](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) | 43 W x 30 D x 55.2 H | 1'-4 7/8" x 0'-11 3/4" | 2 | 2 | 1 | 2 | 7 | 21 |
-| [Twill 2-door compact wardrobe](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) | 60 W x 47.6 D x 182 H (approx.) | 1'-11 5/8" x 1'-6 3/4" | 2 | 2 | 1 | 1 | 6 | 18 |
-| [Cabrera study table](https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA) | 79.8 W x 45 D x 75.9 H (Amazon.in item dimensions); 80 x 45 x 76 on other listings | 2'-7 3/8" x 1'-5 3/4" | 2 | 2 | - | - | 4 | 12 |
+| [Centaur single bed](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) | 213.3 L x 105 W overall (family screenshot); wakefit.co's inch figures give 213.3 L x 103.6 W, headboard 96 H; storage box 198.1 x 91.5 x 31 H. Drawn at 105 W. | 7'-0" x 3'-5 3/8" | 2 | 2 | - | - | 4 | 12 |
+| [Orion queen bed](https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2) | 160 W x 223 L x 87.8 H | 7'-3 7/8" x 5'-3 1/4" | - | - | 1 | 1 | 2 | 6 |
+| [Tinker bedside table](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) | 30 W (door front) x 43 D x 55.2 H | 1'-4 7/8" x 0'-11 3/4" | 2 | 2 | 1 | 2 | 7 | 21 |
+| [Twill 2-door compact wardrobe](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) | 60 W x 47.6 D x 180 H (Columbia Walnut) / 182.4 H (Dark Brown) | 1'-11 5/8" x 1'-6 3/4" | 2 | 2 | 1 | 1 | 6 | 18 |
+| [Cabrera study table](https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA) | 80 W x 45 D x 76 H | 2'-7 3/8" x 1'-5 3/4" | 2 | 2 | - | - | 4 | 12 |
 | [Sage study table (with hutch)](https://www.wakefit.co/study-tables/sage-study-table/WSTSAGER1) | 100 W x 57 D, desk top 74 H, hutch 134.3 H | 3'-3 3/8" x 1'-10 1/2" | - | - | 1 | 1 | 2 | 6 |
 
 **Also needed, not chosen yet (no size risk, they sit on or by the items above):**
@@ -47,11 +47,11 @@ Students: ROOM-1 2, ROOM-2 2, ROOM-3 2, ROOM-4 1 = **7 per floor, 21 on floors 1
 
 | Wakefit product | Size W x D x H (cm) | Size (ft-in, W x D) | ROOM-1 | ROOM-2 | ROOM-3 | ROOM-4 | Floor 1 | Floors 1-3 |
 |---|---|---|---|---|---|---|---|---|
-| [Centaur single bed](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) | 213.3 L x 105 W overall, headboard 96 H, bed 37.5 H | 7'-0" x 3'-5 3/8" | 2 | 2 | 2 | - | 6 | 18 |
-| [Orion queen bed](https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2) | 223.2 L x 160.5 W x 87.8 H (overall frame) | 7'-3 7/8" x 5'-3 1/4" | - | - | - | 1 | 1 | 3 |
-| [Tinker bedside table](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) | 43 W x 30 D x 55.2 H | 1'-4 7/8" x 0'-11 3/4" | 2 | 2 | 1 | 1 | 6 | 18 |
-| [Twill 2-door compact wardrobe](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) | 60 W x 47.6 D x 182 H (approx.) | 1'-11 5/8" x 1'-6 3/4" | 2 | 2 | 2 | 1 | 7 | 21 |
-| [Cabrera study table](https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA) | 79.8 W x 45 D x 75.9 H (Amazon.in item dimensions); 80 x 45 x 76 on other listings | 2'-7 3/8" x 1'-5 3/4" | 2 | 2 | 2 | - | 6 | 18 |
+| [Centaur single bed](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) | 213.3 L x 105 W overall (family screenshot); wakefit.co's inch figures give 213.3 L x 103.6 W, headboard 96 H; storage box 198.1 x 91.5 x 31 H. Drawn at 105 W. | 7'-0" x 3'-5 3/8" | 2 | 2 | 2 | - | 6 | 18 |
+| [Orion queen bed](https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2) | 160 W x 223 L x 87.8 H | 7'-3 7/8" x 5'-3 1/4" | - | - | - | 1 | 1 | 3 |
+| [Tinker bedside table](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) | 30 W (door front) x 43 D x 55.2 H | 1'-4 7/8" x 0'-11 3/4" | 2 | 2 | 1 | 1 | 6 | 18 |
+| [Twill 2-door compact wardrobe](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) | 60 W x 47.6 D x 180 H (Columbia Walnut) / 182.4 H (Dark Brown) | 1'-11 5/8" x 1'-6 3/4" | 2 | 2 | 2 | 1 | 7 | 21 |
+| [Cabrera study table](https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA) | 80 W x 45 D x 76 H | 2'-7 3/8" x 1'-5 3/4" | 2 | 2 | 2 | - | 6 | 18 |
 | [Sage study table (with hutch)](https://www.wakefit.co/study-tables/sage-study-table/WSTSAGER1) | 100 W x 57 D, desk top 74 H, hutch 134.3 H | 3'-3 3/8" x 1'-10 1/2" | - | - | - | 1 | 1 | 3 |
 | Wall-mounted TV, 42-inch (any brand, not Wakefit) | about 94 W x 8 D on a wall bracket, bottom edge about 3'-7" (1.1 m) above floor | 3'-1" x 0'-3 1/8" | 1 | 1 | 1 | - | 3 | 9 |
 | Wall-mounted TV, 40-inch (any brand, not Wakefit) | about 89 W x 8 D on a wall bracket | 2'-11" x 0'-3 1/8" | - | - | - | 1 | 1 | 3 |
@@ -68,13 +68,13 @@ Students: ROOM-1 2, ROOM-2 2, ROOM-3 1, ROOM-4 1 = **6 per floor, 18 on floors 1
 
 | Wakefit product | Size W x D x H (cm) | Size (ft-in, W x D) | ROOM-1 | ROOM-2 | ROOM-3 | ROOM-4 | Floor 1 | Floors 1-3 |
 |---|---|---|---|---|---|---|---|---|
-| [Centaur single bed](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) | 213.3 L x 105 W overall, headboard 96 H, bed 37.5 H | 7'-0" x 3'-5 3/8" | 2 | 2 | - | 1 | 5 | 15 |
-| [Orion queen bed](https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2) | 223.2 L x 160.5 W x 87.8 H (overall frame) | 7'-3 7/8" x 5'-3 1/4" | - | - | 1 | - | 1 | 3 |
-| [Tinker bedside table](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) | 43 W x 30 D x 55.2 H | 1'-4 7/8" x 0'-11 3/4" | 2 | 2 | 2 | 2 | 8 | 24 |
-| [Twill 2-door compact wardrobe](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) | 60 W x 47.6 D x 182 H (approx.) | 1'-11 5/8" x 1'-6 3/4" | 2 | 2 | - | - | 4 | 12 |
-| [Gingham 2-door wardrobe with mirror](https://www.wakefit.co/wardrobes/gingham-2-door-wardrobe-with-mirror-one-hanging-space/WWRB2DMH1GINGHAMCWR2) | 81 W x 47.6 D x 185 H (approx., largest of variants) | 2'-7 7/8" x 1'-6 3/4" | - | - | 1 | 1 | 2 | 6 |
-| [Cabrera study table](https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA) | 79.8 W x 45 D x 75.9 H (Amazon.in item dimensions); 80 x 45 x 76 on other listings | 2'-7 3/8" x 1'-5 3/4" | 2 | 2 | 1 | 1 | 6 | 18 |
-| [Flipper 2-seater sofa cum bed (opens to 6' x 4')](https://www.wakefit.co/sofa-set/flipper-sofa-cum-bed-two-seater/WSFAFLPN2FWGR) | 116.8 W x 76.2 D x 71.2 H (Flipkart); 117 x 76.2 x 66 (Amazon.in WarpKnit Grey) | 3'-10" x 2'-6" | - | - | 1 | - | 1 | 3 |
+| [Centaur single bed](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) | 213.3 L x 105 W overall (family screenshot); wakefit.co's inch figures give 213.3 L x 103.6 W, headboard 96 H; storage box 198.1 x 91.5 x 31 H. Drawn at 105 W. | 7'-0" x 3'-5 3/8" | 2 | 2 | - | 1 | 5 | 15 |
+| [Orion queen bed](https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2) | 160 W x 223 L x 87.8 H | 7'-3 7/8" x 5'-3 1/4" | - | - | 1 | - | 1 | 3 |
+| [Tinker bedside table](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) | 30 W (door front) x 43 D x 55.2 H | 1'-4 7/8" x 0'-11 3/4" | 2 | 2 | 2 | 2 | 8 | 24 |
+| [Twill 2-door compact wardrobe](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) | 60 W x 47.6 D x 180 H (Columbia Walnut) / 182.4 H (Dark Brown) | 1'-11 5/8" x 1'-6 3/4" | 2 | 2 | - | - | 4 | 12 |
+| [Gingham 2-door wardrobe with mirror](https://www.wakefit.co/wardrobes/gingham-2-door-wardrobe-with-mirror-one-hanging-space/WWRB2DMH1GINGHAMCWR2) | 80 W x 47.2-47.6 D x 182-185.6 H (Wenge / Columbia Walnut) | 2'-7 7/8" x 1'-6 3/4" | - | - | 1 | 1 | 2 | 6 |
+| [Cabrera study table](https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA) | 80 W x 45 D x 76 H | 2'-7 3/8" x 1'-5 3/4" | 2 | 2 | 1 | 1 | 6 | 18 |
+| [Flipper 2-seater sofa cum bed (opens to 6' x 4')](https://www.wakefit.co/sofa-set/flipper-sofa-cum-bed-two-seater/WSFAFLPN2FWGR) | 116-117 W x 76 D x 70-71 H (sofa); opens to 116-117 x 182-183 x 19-20 bed | 3'-10" x 2'-6" | - | - | 1 | - | 1 | 3 |
 | Wall-mounted TV, 42-inch (any brand, not Wakefit) | about 94 W x 8 D on a wall bracket, bottom edge about 3'-7" (1.1 m) above floor | 3'-1" x 0'-3 1/8" | 1 | 1 | - | - | 2 | 6 |
 | Wall-mounted TV, 32-inch (any brand, not Wakefit) | about 73 W x 8 D on a wall bracket | 2'-4 3/4" x 0'-3 1/8" | - | - | 1 | 1 | 2 | 6 |
 
@@ -90,12 +90,12 @@ Students: ROOM-3 (suite) 2, ROOM-2 1, ROOM-1 1 = **4 per floor**.
 
 | Wakefit product | Size W x D x H (cm) | Size (ft-in, W x D) | ROOM-3 (suite) | ROOM-2 | ROOM-1 | Floor 4 |
 |---|---|---|---|---|---|---|
-| [Centaur single bed](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) | 213.3 L x 105 W overall, headboard 96 H, bed 37.5 H | 7'-0" x 3'-5 3/8" | - | 1 | 1 | 2 |
-| [Orion queen bed](https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2) | 223.2 L x 160.5 W x 87.8 H (overall frame) | 7'-3 7/8" x 5'-3 1/4" | 2 | - | - | 2 |
-| [Tinker bedside table](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) | 43 W x 30 D x 55.2 H | 1'-4 7/8" x 0'-11 3/4" | 3 | 1 | 1 | 5 |
-| [Twill 2-door compact wardrobe](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) | 60 W x 47.6 D x 182 H (approx.) | 1'-11 5/8" x 1'-6 3/4" | - | 1 | 1 | 2 |
-| [Gingham 2-door wardrobe with mirror](https://www.wakefit.co/wardrobes/gingham-2-door-wardrobe-with-mirror-one-hanging-space/WWRB2DMH1GINGHAMCWR2) | 81 W x 47.6 D x 185 H (approx., largest of variants) | 2'-7 7/8" x 1'-6 3/4" | 2 | - | - | 2 |
-| [Cabrera study table](https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA) | 79.8 W x 45 D x 75.9 H (Amazon.in item dimensions); 80 x 45 x 76 on other listings | 2'-7 3/8" x 1'-5 3/4" | 2 | 1 | 1 | 4 |
+| [Centaur single bed](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) | 213.3 L x 105 W overall (family screenshot); wakefit.co's inch figures give 213.3 L x 103.6 W, headboard 96 H; storage box 198.1 x 91.5 x 31 H. Drawn at 105 W. | 7'-0" x 3'-5 3/8" | - | 1 | 1 | 2 |
+| [Orion queen bed](https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2) | 160 W x 223 L x 87.8 H | 7'-3 7/8" x 5'-3 1/4" | 2 | - | - | 2 |
+| [Tinker bedside table](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) | 30 W (door front) x 43 D x 55.2 H | 1'-4 7/8" x 0'-11 3/4" | 3 | 1 | 1 | 5 |
+| [Twill 2-door compact wardrobe](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) | 60 W x 47.6 D x 180 H (Columbia Walnut) / 182.4 H (Dark Brown) | 1'-11 5/8" x 1'-6 3/4" | - | 1 | 1 | 2 |
+| [Gingham 2-door wardrobe with mirror](https://www.wakefit.co/wardrobes/gingham-2-door-wardrobe-with-mirror-one-hanging-space/WWRB2DMH1GINGHAMCWR2) | 80 W x 47.2-47.6 D x 182-185.6 H (Wenge / Columbia Walnut) | 2'-7 7/8" x 1'-6 3/4" | 2 | - | - | 2 |
+| [Cabrera study table](https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA) | 80 W x 45 D x 76 H | 2'-7 3/8" x 1'-5 3/4" | 2 | 1 | 1 | 4 |
 
 **Also needed, not chosen yet (no size risk, they sit on or by the items above):**
 
@@ -123,14 +123,14 @@ Students: 18 on floors 1-3 + 4 on floor 4 = **22**. Study chairs: **22**. Mattre
 
 | Product | Source and status |
 |---|---|
-| Centaur single bed | family screenshot of the Wakefit product page (from Wakefit page (family screenshot)) |
-| Orion queen bed | Flipkart (223.2 x 160.5, H 87.8) and IndiaMART (223.1 x 158.4 x 87.5) listings of the Orion queen; wakefit.co lists the 78 x 60 in mattress size (overall size from third-party listings of this product) |
-| Tinker bedside table | Amazon.in and Flipkart listings (Pepperfry swaps W/D) (from listings) |
-| Twill 2-door compact wardrobe | Amazon Twill compact (60 x 47.6 x 182) and Pepperfry (59.9 x 46.5 x 180.1); exact SKU size not in index (APPROXIMATE - confirm) |
-| Gingham 2-door wardrobe with mirror | Pepperfry mirror variant 81 x 46 x 180; Flipkart 80 x 47.6 x 182; Pepperfry 80 x 47.2 x 184.9 (APPROXIMATE - confirm) |
-| Cabrera study table | Amazon.in B0BWRFNMCD and Flipkart listings (wakefit.co blocks automated reading); confirm on the product page before ordering (real Wakefit product; size from retailer listings) |
+| Centaur single bed | wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026 (confirmed on wakefit.co 03.11.2026) |
+| Orion queen bed | wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026 (confirmed on wakefit.co 03.11.2026) |
+| Tinker bedside table | wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026 (confirmed on wakefit.co 03.11.2026) |
+| Twill 2-door compact wardrobe | wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026 (confirmed on wakefit.co 03.11.2026) |
+| Gingham 2-door wardrobe with mirror | wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026 (confirmed on wakefit.co 03.11.2026) |
+| Cabrera study table | wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026 (confirmed on wakefit.co 03.11.2026) |
 | Sage study table (with hutch) | family screenshot of the Wakefit product page (from Wakefit page (family screenshot)) |
-| Flipper 2-seater sofa cum bed (opens to 6' x 4') | Flipkart and Amazon.in B0B1J9F5XL listings (wakefit.co blocks automated reading) (real Wakefit product; size from retailer listings) |
+| Flipper 2-seater sofa cum bed (opens to 6' x 4') | wakefit.co product page, read in the family's Chrome on 03.11.2026 (docs/wakefit-pages/notes.md, with photos and swatches); prices are Diwali sale prices incl. taxes, sale ends 10.11.2026 (confirmed on wakefit.co 03.11.2026) |
 | AMATA sofa cum bed (Amazon, not Wakefit) | family screenshot of the Amazon listing (from listing (family screenshot)) |
 | Wall-mounted TV, 42-inch (any brand, not Wakefit) | typical 42-inch TV size, ASSUMED (ASSUMED - not a Wakefit product) |
 | Wall-mounted TV, 40-inch (any brand, not Wakefit) | typical 40-inch TV size, ASSUMED (ASSUMED - not a Wakefit product) |
