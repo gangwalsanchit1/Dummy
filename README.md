@@ -17,8 +17,9 @@ This is a student PG at Plot C-89, Sector 12, Kharghar, Navi Mumbai: stilt, four
 | Know what must happen **before each slab pour** | `docs/pre-slab-checklist.md` (also in `schedules.pdf`) | Any Markdown viewer, or GitHub |
 | Open the BIM model | `model/bella-vita-2.ifc` | Free tools: BlenderBIM/Bonsai, FreeCAD, BIMvision, or https://ifcviewer.com |
 | See where the structural columns sit on floor 1 and what they touch | `docs/structure-check.md` | Column-by-column table in feet and inches, plus points for the structural engineer |
+| See what was changed from the architect's drawing (one brick wall, two doors) | `docs/floor1-changes.md`, `model/changes.json` | Family-approved 03.11.2026; architect and structural engineer to confirm |
 | Read how the drawing was interpreted | `docs/drawing-takeoff.md` | Sizes, conflicts with earlier notes, safety items, **13 open questions** |
-| See the floor 1 room layouts (standard kit per student) | `docs/floor1-plan.png`, `docs/floor1.md`, `docs/room4-check.md` | Every student: own bed, compact study table + chair, Twill wardrobe, bedside socket (roommates may share the Tinker). ROOM-1 and ROOM-2 twin; ROOM-3 and ROOM-4 single (Orion queen). 6 students |
+| See the floor 1 room layouts (standard kit per student) | `docs/floor1-plan.png`, `docs/floor1.md`, `docs/room4-check.md` | Every student: own bed, compact study table + chair, Twill wardrobe, bedside socket (roommates may share the Tinker). ROOM-1, ROOM-2, ROOM-3 twin; ROOM-4 single (Orion queen). 7 students per floor |
 | See the PG amenities (matched to the existing Bella Vita) | `docs/amenities.md` | RFID, backup power, RO water, terrace laundry and lounge, sub-meters |
 | See where the floors 1–3 AC lines run and what they clash with | `docs/ac-routing.md` | Routed below the bathroom windows |
 | Read the model and MEP reports | `docs/phase2-model.md`, `docs/phase3-mep.md` | Includes the code references and their verification status |
@@ -70,6 +71,8 @@ The number after a code is the mounting height above floor level in metres.
 - [x] Phase 2: architectural 3D model (IFC and viewer)
 - [x] Phase 3: electrical and plumbing proposal, with clash checks (0 hard clashes)
 - [x] Phase 4: DXF and PDF package, schedules, quantities, pre-slab checklist
+
+**03.11.2026:** one internal brick wall and two doors moved (family-approved, `model/changes.json`; the architect's takeoff is kept as drawn). All tools read the plan through `tools/takeoff.py`.
 
 **02.11.2026 structural update:** floor 1 (plan, furniture, points, checks, `docs/floor1.md`, `docs/structure-check.md`) now includes the columns. The IFC, the 3D viewer and the PDF/DXF package have **not** been rebuilt yet; they will be once floor 1 is final.
 

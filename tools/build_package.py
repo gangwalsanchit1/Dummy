@@ -20,7 +20,9 @@ _sys.path.insert(0, str(Path(__file__).resolve().parent))
 from units import ftin, size as ftsize  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-TK = json.loads((ROOT / "model/takeoff.json").read_text())
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from takeoff import load_takeoff  # noqa: E402
+TK = load_takeoff()
 AS = json.loads((ROOT / "model/assumptions.json").read_text())
 FU = json.loads((ROOT / "model/furniture.json").read_text())
 SC = json.loads((ROOT / "model/scene.json").read_text())

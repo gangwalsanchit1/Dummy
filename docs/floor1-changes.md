@@ -1,6 +1,6 @@
-# Floor 1 proposal: move one brick wall and two doors (feet and inches)
+# Floor 1 changes: one brick wall and two doors moved (feet and inches)
 
-**Status: PROPOSAL, not yet in the main model.** The current plan (`docs/floor1-plan.png`) still follows the architect's drawing. This proposal is drawn in `docs/floor1-proposal.png` (orange = new brick wall, red dashed = brick wall removed).
+**Status: APPROVED by the family on 03.11.2026 and built into the model** (floors 1, 2 and 3 share this plan). Stored in `model/changes.json`; the architect's takeoff (`model/takeoff.json`) is unchanged, and every tool applies the changes through `tools/takeoff.py`. The plan `docs/floor1-plan.png` shows them: orange = new brick wall, red dashed = brick wall removed.
 
 The family said the internal brickwork can still change (03.11.2026). The question asked: which changes let more rooms take two students with the **same kit** (each student: own bed, own Tinker, own Twill wardrobe, own compact study table + chair, own bedside socket), and with every student able to walk up to their window?
 
@@ -18,7 +18,7 @@ Never touched: columns, lift walls, outer walls, windows, toilets (their drains 
 |---|---|---|
 | ROOM-1 | 2 students, 155 sq ft | 2 students (unchanged) |
 | ROOM-2 | 2 students, 187 sq ft | 2 students, 155 sq ft |
-| ROOM-3 | 1 student, 154 sq ft | **2 students, 186 sq ft**, both desks beside the alcove window |
+| ROOM-3 | 1 student, 154 sq ft | **2 students, 186 sq ft**, beds side by side with one shared Tinker (family choice) |
 | ROOM-4 | 1 student, 130 sq ft | 1 student (unchanged) |
 | **Floor 1** | **6 students** | **7 students** (21 over floors 1-3) |
 
@@ -36,6 +36,6 @@ Every student keeps the full kit; nobody shares a desk, chair or wardrobe. Each 
 
 - **Structural engineer (Agharkar):** confirm the floor beam under the new wall line (a 9'-10" brick wall moves onto it) and that removing the old wall is fine.
 - **Architect:** update the floor 1-3 plans (and confirm a 2'-7½" door for ROOM-2 is acceptable).
-- **Electrical and plumbing points** for ROOM-2 and ROOM-3 will be re-placed once you approve (switchboards move with the doors).
+- Electrical points for ROOM-2 and ROOM-3 have been re-placed (switchboards and door locks moved with the doors; ROOM-3 gained a light in its new front part).
 
-Tool: `tools/explore_walls.py` (each change is a named variant; results in `model/proposals/`).
+Tool used to find this: `tools/explore_walls.py` (each change is a named variant).

@@ -10,7 +10,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import fit_furniture as F  # noqa: E402
 import fit_floor1 as G  # noqa: E402
 
-TK0, AS0 = copy.deepcopy(F.TK), copy.deepcopy(F.AS)
+from takeoff import load_takeoff  # noqa: E402
+TK0, AS0 = load_takeoff(raw=True), copy.deepcopy(F.AS)   # variants start from the architect's drawing (doors as in assumptions.json)
 DOORS = {"ROOM-1": ("F-D1", ["F-D1T"]), "ROOM-2": ("F-D2", ["F-D2T"]), "ROOM-3": ("F-D3", ["F-D3T"]), "ROOM-4": ("F-D4", ["F-D4T"])}
 
 
@@ -86,4 +87,4 @@ if __name__ == "__main__":
         print(vname, rn, "TWIN FITS (" + tag + ")" if tag else "twin does not fit", flush=True)
         out[rn] = lay
     json.dump({"variant": vname, "TK": TK["floors"]["F1-3"], "doors": AS["doors"]["F1-3"], "layouts": out},
-              open(Path(__file__).resolve().parent.parent / f"model/proposals/var_{vname}.json", "w"))
+              open(f"var_{vname}.json", "w"))

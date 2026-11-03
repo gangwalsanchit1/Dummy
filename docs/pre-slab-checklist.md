@@ -33,7 +33,7 @@ Everything below must be fixed, marked or cast in **before that slab is poured**
 | 5 | Toilet slab depression 300 mm for ROOM-1 TOILET (floor trap + WC branch) | 4.65, 10.55 | sunk |
 | 6 | Fan hook box for F1 ROOM-1 (cast in this slab = its ceiling) | 5.95, 8.22 | fanbox |
 | 7 | Fan hook box for F1 ROOM-2 (cast in this slab = its ceiling) | 2.05, 8.22 | fanbox |
-| 8 | Fan hook box for F1 ROOM-3 (cast in this slab = its ceiling) | 1.60, 4.00 | fanbox |
+| 8 | Fan hook box for F1 ROOM-3 (cast in this slab = its ceiling) | 1.60, 4.50 | fanbox |
 | 9 | Fan hook box for F1 ROOM-4 (cast in this slab = its ceiling) | 6.15, 1.55 | fanbox |
 | + | Embedded conduits + junction boxes for 26 ceiling points of F1: 4 x Ceiling fan point (48" sweep, fan box cast in slab), 16 x Ceiling light point (LED downlight), 4 x LED cove strip over window (pelmet/cornice, warm white), 1 x Wi-Fi access point (ceiling), 1 x CCTV camera (PoE) (see points_schedule.csv) | various | conduit |
 
@@ -48,7 +48,7 @@ Everything below must be fixed, marked or cast in **before that slab is poured**
 | 5 | Toilet slab depression 300 mm for ROOM-1 TOILET (floor trap + WC branch) | 4.65, 10.55 | sunk |
 | 6 | Fan hook box for F2 ROOM-1 (cast in this slab = its ceiling) | 5.95, 8.22 | fanbox |
 | 7 | Fan hook box for F2 ROOM-2 (cast in this slab = its ceiling) | 2.05, 8.22 | fanbox |
-| 8 | Fan hook box for F2 ROOM-3 (cast in this slab = its ceiling) | 1.60, 4.00 | fanbox |
+| 8 | Fan hook box for F2 ROOM-3 (cast in this slab = its ceiling) | 1.60, 4.50 | fanbox |
 | 9 | Fan hook box for F2 ROOM-4 (cast in this slab = its ceiling) | 6.15, 1.55 | fanbox |
 | + | Embedded conduits + junction boxes for 26 ceiling points of F2: 4 x Ceiling fan point (48" sweep, fan box cast in slab), 16 x Ceiling light point (LED downlight), 4 x LED cove strip over window (pelmet/cornice, warm white), 1 x Wi-Fi access point (ceiling), 1 x CCTV camera (PoE) (see points_schedule.csv) | various | conduit |
 
@@ -62,7 +62,7 @@ Everything below must be fixed, marked or cast in **before that slab is poured**
 | 4 | Toilet slab depression 300 mm for ROOM-1 TOILET (floor trap + WC branch) | 4.65, 9.74 | sunk |
 | 5 | Fan hook box for F3 ROOM-1 (cast in this slab = its ceiling) | 5.95, 8.22 | fanbox |
 | 6 | Fan hook box for F3 ROOM-2 (cast in this slab = its ceiling) | 2.05, 8.22 | fanbox |
-| 7 | Fan hook box for F3 ROOM-3 (cast in this slab = its ceiling) | 1.60, 4.00 | fanbox |
+| 7 | Fan hook box for F3 ROOM-3 (cast in this slab = its ceiling) | 1.60, 4.50 | fanbox |
 | 8 | Fan hook box for F3 ROOM-4 (cast in this slab = its ceiling) | 6.15, 1.55 | fanbox |
 | 9 | RWO in F4 private-terrace slab | 7.60, 0.40 | rwo |
 | 10 | RWO in F4 front-terrace slab (F3 roof) | 2.40, 11.40 | rwo |

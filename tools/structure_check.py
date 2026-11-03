@@ -11,7 +11,9 @@ from columns import columns  # noqa: E402
 from units import ftin  # noqa: E402
 
 ST = json.loads((ROOT / "model/structure.json").read_text())
-fl = json.loads((ROOT / "model/takeoff.json").read_text())["floors"]["F1-3"]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from takeoff import load_takeoff  # noqa: E402
+fl = load_takeoff()["floors"]["F1-3"]
 FU = json.loads((ROOT / "model/furniture.json").read_text())["F1-3"]
 MEP = json.loads((ROOT / "model/mep.json").read_text())
 NM = {"orion_queen_bed": "Orion queen bed", "tinker_side_table": "Tinker side table", "gingham_wardrobe": "Gingham wardrobe",

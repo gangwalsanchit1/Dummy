@@ -16,9 +16,9 @@
 
 | IFC class | Count |
 |---|---|
-| IfcBuildingElementProxy | 104 |
+| IfcBuildingElementProxy | 110 |
 | IfcDoor | 34 |
-| IfcFurniture | 84 |
+| IfcFurniture | 93 |
 | IfcRailing | 3 |
 | IfcSite | 1 |
 | IfcSlab | 50 |
@@ -37,7 +37,7 @@ Rules: fixed furniture inside the room, clear of walls, other furniture, every c
 |---|---|---|---|---|
 | F1-3 | ROOM-1 | centaur_single_bed, tinker_side_table, centaur_single_bed, tinker_side_table, twill_wardrobe, twill_wardrobe, compact_desk, compact_desk | 14 checks | PASS |
 | F1-3 | ROOM-2 | centaur_single_bed, tinker_side_table, centaur_single_bed, tinker_side_table, twill_wardrobe, twill_wardrobe, compact_desk, compact_desk | 14 checks | PASS |
-| F1-3 | ROOM-3 | orion_queen_bed, tinker_side_table, twill_wardrobe, compact_desk | 8 checks | PASS |
+| F1-3 | ROOM-3 | centaur_single_bed, centaur_single_bed, tinker_side_table, twill_wardrobe, twill_wardrobe, compact_desk, compact_desk | 13 checks | PASS |
 | F1-3 | ROOM-4 | orion_queen_bed, tinker_side_table, twill_wardrobe, compact_desk | 7 checks | PASS |
 | F4 | ROOM-1 | orion_queen_bed, tinker_side_table, gingham_wardrobe, notiq_desk | 7 checks | PASS |
 | F4 | ROOM-2 | orion_queen_bed, tinker_side_table, gingham_wardrobe, notiq_desk | 7 checks | PASS |
@@ -50,9 +50,9 @@ Rules: fixed furniture inside the room, clear of walls, other furniture, every c
 | GF | GF-D1 | 0.65 | ASSUMED hinge side; opens INWARDS (family instruction) | PASS |
 | GF | GF-D2 | 0.65 | ASSUMED hinge side; opens INWARDS (family instruction) | PASS |
 | GF | GF-D3 | 0.75 | ASSUMED into servant room - opens inwards (family instruction) | PASS |
-| F1-3 | F-D3 | 0.90 | ASSUMED - opens inwards (family instruction) | PASS |
+| F1-3 | F-D3 | 0.90 | CHANGED 03.11.2026 (family): slid to the lobby corner, hinged at the moved wall; opens inwards | PASS |
 | F1-3 | F-D4 | 0.90 | ASSUMED - opens inwards (family instruction) | PASS |
-| F1-3 | F-D2 | 0.90 | ASSUMED - opens inwards (family instruction) | PASS |
+| F1-3 | F-D2 | 0.80 | CHANGED 03.11.2026 (family): moved to the lobby front wall; opens inwards | PASS |
 | F1-3 | F-D1 | 0.90 | ASSUMED - opens inwards (family instruction) | PASS |
 | F1-3 | F-D3T | 0.65 | ASSUMED hinge side; opens INWARDS (family instruction) | PASS |
 | F1-3 | F-D4T | 0.65 | ASSUMED hinge side; opens INWARDS (family instruction) | PASS |
@@ -82,14 +82,14 @@ Clear distance between the model's wall faces, measured through the centre of ea
 | GF | LIFT | 1.400 x 1.500 | 1.400 x 1.500 | +0 / +0 | 4'11"x4'11" |
 | GF | LIFT LOBBY | 1.450 x 2.300 | 1.450 x 2.250 | +0 / -50 |  |
 | GF | STAIR | 2.100 x 3.850 | 2.100 x 3.850 | +0 / +0 |  |
-| F1 | ROOM-3 | 2.900 x 3.900 | 2.900 x 5.800 | +0 / +1900 | 9'6"x12'9" + alcove 5'3"x6'3" |
+| F1 | ROOM-3 | 2.900 x 4.900 | 2.900 x 6.800 | +0 / +1900 | 9'6"x12'9" + alcove 5'3"x6'3" |
 | F1 | ROOM-3 TOILET | 1.200 x 1.800 | 1.200 x 1.800 | +0 / +0 | 3'11"x5'11" |
 | F1 | ROOM-4 | 3.400 x 2.800 | 3.400 x 2.800 | +0 / +0 | 11'1"x9'2" |
 | F1 | ROOM-4 TOILET | 1.200 x 1.800 | 1.200 x 1.800 | +0 / +0 | 3'7"x5'11" |
 | F1 | LOBBY | 2.450 x 2.200 | 2.450 x 2.200 | +0 / +0 | 8'4"x7'3" |
 | F1 | LIFT | 1.400 x 1.500 | 1.400 x 1.500 | +0 / +0 | 4'11"x4'11" |
 | F1 | STAIR | 2.100 x 3.850 | 2.100 x 3.850 | +0 / +0 |  |
-| F1 | ROOM-2 | 3.800 x 2.350 | 3.800 x 5.550 | +0 / +3200 | 12'6"x7'8" + 9'6"x3'3" + 8'2"x7'3" |
+| F1 | ROOM-2 | 3.800 x 2.350 | 3.800 x 4.550 | +0 / +2200 | 12'6"x7'8" + 9'6"x3'3" + 8'2"x7'3" |
 | F1 | ROOM-2 TOILET | 1.200 x 2.100 | 1.200 x 2.100 | +0 / +0 | 3'11"x6'11" |
 | F1 | ROOM-1 | 3.800 x 2.350 | 3.800 x 4.550 | +0 / +2200 | 12'6"x7'8" + 8'2"x7'3" |
 | F1 | ROOM-1 TOILET | 1.200 x 2.100 | 1.200 x 2.100 | +0 / +0 | 3'11"x6'11" |

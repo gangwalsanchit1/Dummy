@@ -25,13 +25,19 @@ from columns import columns
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-TK = json.loads((ROOT / "model/takeoff.json").read_text())
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from takeoff import load_takeoff  # noqa: E402
+TK = load_takeoff()
 AS = json.loads((ROOT / "model/assumptions.json").read_text())
 FS = AS["furniture_sizes"]
 CL = AS["clearances"]
 STEP = 0.05
 PATH_R = 0.275
 COL_GAP = 0.085  # largest gap allowed behind furniture where a column projects (columns stand 0.08 m proud of 0.15 walls)
+# Family 03.11.2026, "uneven things look ugly": with FLUSH on, every item's back sits flush on a plain brick wall along
+# its whole length - never on a column face and never standing proud of the wall because of a column.
+FLUSH = False
+COL_RECTS = set()
 ROOMS = {"F1-3": {"ROOM-1": ("F-D1", ["F-D1T"]), "ROOM-2": ("F-D2", ["F-D2T"]), "ROOM-3": ("F-D3", ["F-D3T"]), "ROOM-4": ("F-D4", ["F-D4T"])},
          "F4": {"ROOM-1": ("F4-D1", ["F4-D1T"]), "ROOM-2": ("F4-D2", ["F4-D2T"]), "ROOM-3 (suite)": ("F4-D3", ["F4-D3T", "F4-DT"])}}
 
@@ -82,13 +88,16 @@ def touches_wall(edge, walls):
     item can stand against a column that projects out of the wall, with a small gap behind it elsewhere.
     Overlaps are rejected separately (ok_fixed), so a face 'in front of' the edge never gets this far."""
     ax, c, a0, a1 = edge
+    gap = 0.0 if FLUSH else COL_GAP
+    if FLUSH:
+        walls = [w for w in walls if tuple(w) not in COL_RECTS]
     i, j = (0, 2) if ax == "x" else (1, 3)
     span = lambda w: (w[1], w[3]) if ax == "x" else (w[0], w[2])
     near = lambda w, tol: abs(w[i] - c) < tol or abs(w[j] - c) < tol
     flush = [span(w) for w in walls if near(w, 0.011)]
     if not any(s0 < a1 - 0.01 and s1 > a0 + 0.01 for s0, s1 in flush):
         return False
-    segs = sorted(span(w) for w in walls if near(w, COL_GAP + 0.011))
+    segs = sorted(span(w) for w in walls if near(w, gap + 0.011))
     reach = a0 + 0.01
     for s0, s1 in segs:
         if s0 <= reach:
@@ -110,6 +119,7 @@ class Room:
         self.pk, self.name = pk, name
         self.rects = next(s for s in fl["spaces"] if s["name"] == name)["rects"]
         self.cols = [c["rect"] for c in columns(pk)] if pk != "GF" else []
+        COL_RECTS.update(tuple(c) for c in self.cols)
         H_ = AS["heights"]
         ylim = fl["outline"][3]
         self.windows = [([w["span_x"][0], 0.0 if w["wall"] == "rear" else ylim - 0.15, w["span_x"][1], 0.15 if w["wall"] == "rear" else ylim],
@@ -126,9 +136,16 @@ class Room:
         if self.door.get("leaf_axis") == "x":
             lx = hx + qx * w_
             self.switch_zone = [min(lx, lx + qx * 0.45), min(hy, hy + qy * 0.35), max(lx, lx + qx * 0.45), max(hy, hy + qy * 0.35)]
+            if not inside([(self.switch_zone[0] + self.switch_zone[2]) / 2 - 0.02, (self.switch_zone[1] + self.switch_zone[3]) / 2 - 0.02,
+                           (self.switch_zone[0] + self.switch_zone[2]) / 2 + 0.02, (self.switch_zone[1] + self.switch_zone[3]) / 2 + 0.02], self.rects):
+                # latch is at a corner: the switch goes on the return wall
+                self.switch_zone = [min(lx, lx - qx * 0.35), min(hy, hy + qy * 0.45), max(lx, lx - qx * 0.35), max(hy, hy + qy * 0.45)]
         else:
             ly = hy + qy * w_
             self.switch_zone = [min(hx, hx + qx * 0.35), min(ly, ly + qy * 0.45), max(hx, hx + qx * 0.35), max(ly, ly + qy * 0.45)]
+            if not inside([(self.switch_zone[0] + self.switch_zone[2]) / 2 - 0.02, (self.switch_zone[1] + self.switch_zone[3]) / 2 - 0.02,
+                           (self.switch_zone[0] + self.switch_zone[2]) / 2 + 0.02, (self.switch_zone[1] + self.switch_zone[3]) / 2 + 0.02], self.rects):
+                self.switch_zone = [min(hx, hx + qx * 0.45), min(ly, ly - qy * 0.35), max(hx, hx + qx * 0.45), max(ly, ly - qy * 0.35)]
         self.grey = [g["rect"] for g in fl.get("grey_items", []) if inside(g["rect"], self.rects)]
         xs = [c for r in self.rects for c in (r[0], r[2])]
         ys = [c for r in self.rects for c in (r[1], r[3])]

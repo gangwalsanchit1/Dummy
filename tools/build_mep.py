@@ -17,7 +17,9 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-TK = json.loads((ROOT / "model/takeoff.json").read_text())
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from takeoff import load_takeoff  # noqa: E402
+TK = load_takeoff()
 AS = json.loads((ROOT / "model/assumptions.json").read_text())
 FU = json.loads((ROOT / "model/furniture.json").read_text())
 SC = json.loads((ROOT / "model/scene.json").read_text())
@@ -136,9 +138,8 @@ def rooms_F13(s):
         ("FT", 4.65, 11.25, 0.0, "F", "shower zone", ""), ("GZ", 4.05, 10.69, 1.85, "+x", "above WC", ""),
     ]
     c["ROOM-2"] = [
-        ("SB", 3.25, 7.05, 1.2, "+y", "latch side of F-D2 (just inside)", "L/F"),
+        ("SB", 3.95, 7.40, 1.2, "-x", "latch side of F-D2 (door moved 03.11.2026), on the ROOM-1 partition", "L/F"),
         ("FAN", 2.05, 8.225, CEIL, "C", "", "L/F"), ("LT", 1.05, 8.225, CEIL, "C", "", "L/F"), ("LT", 1.40, 10.50, CEIL, "C", "front part", "L/F"),
-        ("LT", 1.60, 6.55, CEIL, "C", "entry strip", "L/F"),
         ("ACI", 1.40, 11.60, 2.40, "-y", "above front window", "AC"), ("ACS", 0.80, 11.60, 2.35, "-y", "", "AC"),
     ]
     c["ROOM-2 TOILET"] = [
@@ -150,8 +151,8 @@ def rooms_F13(s):
         ("FT", 3.35, 11.25, 0.0, "F", "", ""), ("GZ", 3.95, 10.45, 1.85, "-x", "above WC", ""),
     ]
     c["ROOM-3"] = [
-        ("SB", 3.05, 4.22, 1.2, "-x", "latch side of F-D3", "L/F"),
-        ("FAN", 1.60, 4.00, CEIL, "C", "", "L/F"), ("LT", 2.40, 3.00, CEIL, "C", "", "L/F"), ("LT", 0.95, 1.10, CEIL, "C", "alcove", "L/F"),
+        ("SB", 3.05, 5.85, 1.2, "-x", "latch side of F-D3 (door moved 03.11.2026)", "L/F"),
+        ("FAN", 1.60, 4.50, CEIL, "C", "", "L/F"), ("LT", 1.60, 6.20, CEIL, "C", "front part (room enlarged 03.11.2026)", "L/F"), ("LT", 2.40, 3.00, CEIL, "C", "", "L/F"), ("LT", 0.95, 1.10, CEIL, "C", "alcove", "L/F"),
         ("ACI", 0.95, 0.15, 2.40, "+y", "above alcove window", "AC"), ("ACS", 1.55, 0.15, 2.35, "+y", "", "AC"),
     ]
     c["ROOM-3 TOILET"] = [
@@ -417,7 +418,7 @@ for s in ["F1", "F2", "F3", "F4"]:
         wy = 0.15 + 0.25 if wdw["wall"] == "rear" else fl["outline"][3] - 0.15 - 0.25
         LAYOUT[s][room].append(("COVE", cx, wy, CEIL, "C", f"LED cove strip over {wdw['id']}", "L/F"))
 
-RLOCK = {"F1-3": {"ROOM-1": (5.45, 7.00), "ROOM-2": (3.10, 6.90), "ROOM-3": (3.10, 4.55), "ROOM-4": (3.20, 4.50)},
+RLOCK = {"F1-3": {"ROOM-1": (5.45, 7.00), "ROOM-2": (3.90, 7.00), "ROOM-3": (3.10, 6.10), "ROOM-4": (3.20, 4.50)},
          "F4": {"ROOM-1": (5.45, 7.00), "ROOM-2": (3.15, 6.90), "ROOM-3 (suite)": (3.20, 6.05)}}
 for s in ["F1", "F2", "F3", "F4"]:
     for room, (x, y) in RLOCK["F1-3" if s != "F4" else "F4"].items():

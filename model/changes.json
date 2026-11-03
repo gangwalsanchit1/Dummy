@@ -1,0 +1,120 @@
+{
+ "_about": "Internal brick changes approved by the family on 03.11.2026 (they apply to floors 1, 2 and 3, which share one plan). Not on the architect's AFTER O.C. drawing: the architect must update the plans, and the structural engineer must confirm the floor beam under the moved wall. Columns, outer walls, windows, lift walls and toilets are unchanged.",
+ "changes": [
+  "ROOM-3/ROOM-2 wall moved 3'-3 3/8\" (1.00 m) towards the road, onto the line of the lobby wall and plinth beam PB3",
+  "ROOM-2 door moved from the lobby side wall to the lobby front wall: clear 2'-7 1/2\" (0.80 m), x 3.15-3.95",
+  "ROOM-3 door slid 5'-1\" (1.55 m) along the lobby wall to the corner by the moved wall (y 6.05-6.95)"
+ ],
+ "floors": {
+  "F1-3": {
+   "walls_remove": [
+    [
+     3.05,
+     0.15,
+     3.15,
+     4.5
+    ],
+    [
+     3.05,
+     5.4,
+     3.15,
+     6.05
+    ],
+    [
+     0.15,
+     5.95,
+     3.15,
+     6.05
+    ],
+    [
+     3.05,
+     6.95,
+     4.6,
+     7.05
+    ]
+   ],
+   "walls_add": [
+    [
+     0.15,
+     6.95,
+     3.15,
+     7.05
+    ],
+    [
+     3.05,
+     6.95,
+     3.15,
+     7.05
+    ],
+    [
+     3.95,
+     6.95,
+     4.6,
+     7.05
+    ],
+    [
+     3.05,
+     0.15,
+     3.15,
+     6.05
+    ]
+   ],
+   "spaces": {
+    "ROOM-3": [
+     [
+      0.15,
+      2.05,
+      3.05,
+      6.95
+     ],
+     [
+      0.15,
+      0.15,
+      1.75,
+      2.05
+     ]
+    ],
+    "ROOM-2": [
+     [
+      0.15,
+      7.05,
+      3.95,
+      9.4
+     ],
+     [
+      0.15,
+      9.4,
+      2.65,
+      11.6
+     ]
+    ]
+   },
+   "openings": {
+    "F-D2": {
+     "id": "F-D2",
+     "type": "door-opening",
+     "to": "ROOM-2 from lobby",
+     "wall": "y=6.95-7.05",
+     "span_x": [
+      3.15,
+      3.95
+     ],
+     "width": 0.8,
+     "swing": "CHANGED 03.11.2026"
+    },
+    "F-D3": {
+     "id": "F-D3",
+     "type": "door-opening",
+     "to": "ROOM-3 from lobby",
+     "wall": "x=3.05-3.15",
+     "span_y": [
+      6.05,
+      6.95
+     ],
+     "width": 0.9,
+     "swing": "CHANGED 03.11.2026"
+    }
+   }
+  }
+ }
+}

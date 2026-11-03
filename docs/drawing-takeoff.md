@@ -286,3 +286,13 @@ Source: `drawings/C-89 SEC-12 KHR RCC DETAILS.pdf`. Agharkar Consulting Engineer
 - **Plinth beams:** PB1–PB3 230×500, PB4 150×500, PB5 230×300, PB6 150×300. **Floor beams are not drawn.**
 - **Not on the sheet:** floor-to-floor heights, slab thickness, sill and lintel levels. These stay ASSUMED.
 - **Floor 1 check** (columns stand about 3⅛" out of the 6" walls, 6" into the ROOM-1 toilet): see `docs/structure-check.md`.
+
+## 16. Changes to the drawing (added 03.11.2026)
+
+The family approved three internal changes on floors 1-3 (see `docs/floor1-changes.md`). They are kept in `model/changes.json`; this takeoff and `model/takeoff.json` still describe the architect's drawing exactly.
+
+- ROOM-3/ROOM-2 brick wall moved 3'-3⅜" towards the road (from Y 5.95-6.05 to Y 6.95-7.05), onto the line of the lobby wall and plinth beam PB3.
+- ROOM-2 door moved to the lobby's front wall (X 3.15-3.95, 2'-7½" clear).
+- ROOM-3 door slid to Y 6.05-6.95 on the lobby wall.
+
+**For the architect:** update the floor 1-3 plans. **For the structural engineer:** confirm the floor beam under the moved wall.

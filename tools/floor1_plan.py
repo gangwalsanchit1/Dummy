@@ -11,7 +11,9 @@ sys.path.insert(0, str(ROOT / "tools"))
 from units import ftin  # noqa: E402
 from columns import columns  # noqa: E402
 
-TK = json.loads((ROOT / "model/takeoff.json").read_text())
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from takeoff import load_takeoff  # noqa: E402
+TK = load_takeoff()
 AS = json.loads((ROOT / "model/assumptions.json").read_text())
 FU = json.loads((ROOT / "model/furniture.json").read_text())
 fl = TK["floors"]["F1-3"]
@@ -20,7 +22,7 @@ fl = TK["floors"]["F1-3"]
 VAR = json.loads(Path(sys.argv[1]).read_text()) if len(sys.argv) > 1 else None
 OUT = sys.argv[2] if len(sys.argv) > 2 else "floor1-plan"
 DESC = sys.argv[3] if len(sys.argv) > 3 else ""
-WALLS0 = [list(w) for w in fl["walls"]]
+WALLS0 = [list(w) for w in load_takeoff(raw=True)["floors"]["F1-3"]["walls"]]   # the architect's drawing
 if VAR:
     fl = VAR["TK"]
     AS["doors"]["F1-3"] = VAR["doors"]
@@ -47,7 +49,7 @@ K = 105.0
 MX, MY = 70, 125
 X = lambda x: MX + x * K
 Y = lambda y: MY + y * K
-W, H = int(MX * 2 + 8.0 * K + 40), int(MY + 11.75 * K + 228)
+W, H = int(MX * 2 + 8.0 * K + 40), int(MY + 11.75 * K + 250)
 s = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" font-family="Arial, Helvetica, sans-serif">',
      '<rect width="100%" height="100%" fill="#ffffff"/>',
      '<style>text{paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}</style>',
@@ -144,10 +146,11 @@ def wall_minus(a_list, b_list):
     return out
 
 
-if VAR:   # changed brickwork: removed walls dashed, new walls orange
-    for w in wall_minus(WALLS0, fl["walls"]):
+REMOVED, ADDED = wall_minus(WALLS0, fl["walls"]), wall_minus(fl["walls"], WALLS0)
+if REMOVED or ADDED:   # changed brickwork vs the architect's drawing: removed walls dashed, new walls orange
+    for w in REMOVED:
         s.append(f'<rect x="{X(w[0]):.1f}" y="{Y(w[1]):.1f}" width="{(w[2]-w[0])*K:.1f}" height="{(w[3]-w[1])*K:.1f}" fill="#fff" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5 3"/>')
-    for w in wall_minus(fl["walls"], WALLS0):
+    for w in ADDED:
         s.append(f'<rect x="{X(w[0]):.1f}" y="{Y(w[1]):.1f}" width="{(w[2]-w[0])*K:.1f}" height="{(w[3]-w[1])*K:.1f}" fill="#f97316"/>')
 # windows
 for wdw in fl["windows"]:
@@ -218,7 +221,9 @@ for i, t in enumerate([f"Blue = Wakefit furniture. Students per room: {_txt} = {
                        "Walls, doors and windows from the architect's AFTER O.C. drawing. Furniture positions are proposals."]):
     s.append(f'<text x="{MX}" y="{lg + i*18:.0f}" font-size="12" fill="#333">{t}</text>')
 s.append("</svg>")
-if VAR:
-    s.insert(-1, f'<text x="{MX}" y="{lg + 4*18:.0f}" font-size="12" font-weight="bold" fill="#c2410c">Orange = new brick wall; red dashed = brick wall removed. {DESC}</text>')
+if REMOVED or ADDED:
+    note = DESC or "ROOM-3/ROOM-2 wall moved 3'-3 3/8\" towards the road; ROOM-2 and ROOM-3 doors moved (docs/floor1-changes.md)."
+    s.insert(-1, f'<text x="{MX}" y="{lg + 4*18:.0f}" font-size="12" font-weight="bold" fill="#c2410c">Orange = new brick wall; red dashed = brick wall removed. Changed from the architect\'s drawing, family-approved 03.11.2026:</text>')
+    s.insert(-1, f'<text x="{MX}" y="{lg + 5*18:.0f}" font-size="12" font-weight="bold" fill="#c2410c">{note}</text>')
 (ROOT / f"docs/{OUT}.svg").write_text("\n".join(s))
 print(f"wrote docs/{OUT}.svg", W, H)

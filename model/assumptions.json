@@ -129,7 +129,7 @@
     "id": "F-D3",
     "hinge": [
      3.05,
-     5.4
+     6.95
     ],
     "width": 0.9,
     "quadrant": [
@@ -137,7 +137,7 @@
      -1
     ],
     "leaf_axis": "y",
-    "tag": "ASSUMED - opens inwards (family instruction)"
+    "tag": "CHANGED 03.11.2026 (family): slid to the lobby corner, hinged at the moved wall; opens inwards"
    },
    {
     "id": "F-D4",
@@ -156,16 +156,16 @@
    {
     "id": "F-D2",
     "hinge": [
-     3.05,
-     6.05
+     3.15,
+     7.05
     ],
-    "width": 0.9,
+    "width": 0.8,
     "quadrant": [
-     -1,
+     1,
      1
     ],
-    "leaf_axis": "y",
-    "tag": "ASSUMED - opens inwards (family instruction)"
+    "leaf_axis": "x",
+    "tag": "CHANGED 03.11.2026 (family): moved to the lobby front wall; opens inwards"
    },
    {
     "id": "F-D1",
@@ -465,9 +465,14 @@
   },
   "twin_rooms": [
    "ROOM-1",
-   "ROOM-2"
+   "ROOM-2",
+   "ROOM-3"
   ],
-  "_occupancy": "Family 03.11.2026: ROOM-1 and ROOM-2 twin, ROOM-3 and ROOM-4 single. Roommates may share the side table; each student has their own bed, study table, chair and wardrobe.",
-  "shared_side_table_ok": true
+  "_occupancy": "Family 03.11.2026 (final): internal wall moved; ROOM-1, ROOM-2, ROOM-3 twin, ROOM-4 single = 7 students per floor. ROOM-3 beds share one Tinker. Each student has their own bed, study table + chair and wardrobe.",
+  "shared_side_table_ok": true,
+  "shared_tinker_rooms": [
+   "ROOM-3"
+  ],
+  "_aesthetics": "Family 03.11.2026: uneven things look ugly. Every item flush on a plain wall (never on or proud of a column); matching items line up on one wall or face each other."
  }
 }

@@ -4,7 +4,6 @@
 <defs><pattern id="h" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#f87171" stroke-width="1.2"/></pattern><marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#111"/></marker></defs>
 <rect x="18.0" y="90.0" width="600.0" height="18.0" fill="#374151"/>
 <rect x="600.0" y="90.0" width="18.0" height="552.0" fill="#374151"/>
-<rect x="24.0" y="108.0" width="12.0" height="522.0" fill="#374151"/>
 <rect x="18.0" y="324.0" width="6.0" height="12.0" fill="#374151"/>
 <rect x="36.0" y="324.0" width="66.0" height="12.0" fill="#374151"/>
 <rect x="180.0" y="108.0" width="12.0" height="228.0" fill="#374151"/>
@@ -12,6 +11,7 @@
 <rect x="144.0" y="444.0" width="18.0" height="198.0" fill="#374151"/>
 <rect x="330.0" y="462.0" width="18.0" height="180.0" fill="#374151"/>
 <rect x="468.0" y="582.0" width="12.0" height="60.0" fill="#374151"/>
+<rect x="24.0" y="108.0" width="12.0" height="534.0" fill="#374151"/>
 <rect x="144.0" y="444.0" width="18.0" height="198.0" fill="#b91c1c"/>
 <rect x="162.0" y="444.0" width="168.0" height="18.0" fill="#b91c1c"/>
 <rect x="330.0" y="444.0" width="18.0" height="198.0" fill="#b91c1c"/>

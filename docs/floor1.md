@@ -1,19 +1,27 @@
 # Floor 1: rooms, furniture and checks (feet and inches)
 
-Floors 2 and 3 are identical to floor 1 on the drawing. Walls, doors and windows are DRAWN; furniture positions and electrical/plumbing points are proposals. All doors open inwards. ROOM-1: 2 students (Centaur singles). ROOM-2: 2 students (Centaur singles). ROOM-3: 1 student (Orion queen). ROOM-4: 1 student (Orion queen). 6 students on floor 1, every student with the same kit (roommates share only the side table). ROOM-3 became single on 03.11.2026: it cannot take two full kits (every arrangement checked).
+Floors 2 and 3 are identical to floor 1 on the drawing. Walls, doors and windows are DRAWN; furniture positions and electrical/plumbing points are proposals. All doors open inwards. ROOM-1: 2 students (Centaur singles). ROOM-2: 2 students (Centaur singles). ROOM-3: 2 students (Centaur singles). ROOM-4: 1 student (Orion queen). 7 students on floor 1, every student with the same kit (roommates share only the side table). **Final version (family, 03.11.2026):** one internal brick wall and two doors moved (see below), so ROOM-3 takes two students.
 
-## Rooms (DRAWN)
+## Changed from the architect's drawing (family-approved 03.11.2026)
+
+- ROOM-3/ROOM-2 wall moved 3'-3 3/8" (1.00 m) towards the road, onto the line of the lobby wall and plinth beam PB3
+- ROOM-2 door moved from the lobby side wall to the lobby front wall: clear 2'-7 1/2" (0.80 m), x 3.15-3.95
+- ROOM-3 door slid 5'-1" (1.55 m) along the lobby wall to the corner by the moved wall (y 6.05-6.95)
+- Never touched: columns, outer walls, windows, lift walls, toilets.
+- **Architect:** update the floor 1-3 plans. **Structural engineer:** confirm the floor beam under the moved wall (plinth beam PB3 runs on that line). Details and what else was tried: `docs/floor1-changes.md`.
+
+## Rooms (DRAWN; ROOM-2 and ROOM-3 as changed)
 
 | Room | Main area | Total area | Window |
 |---|---|---|---|
-| ROOM-3 | 9'-6 1/8" x 12'-9 1/2" | 154 sq ft | F-W1 4'-11" |
+| ROOM-3 | 9'-6 1/8" x 16'-0 7/8" | 186 sq ft | F-W1 4'-11" |
 | ROOM-3 TOILET | 3'-11 1/4" x 5'-10 7/8" | 23 sq ft | F-W2 1'-11 5/8" |
 | ROOM-4 | 11'-1 7/8" x 9'-2 1/4" | 130 sq ft | F-W4 4'-11" |
 | ROOM-4 TOILET | 3'-11 1/4" x 5'-10 7/8" | 23 sq ft | F-W3 1'-11 5/8" |
 | LOBBY | 8'-0 1/2" x 7'-2 5/8" | 60 sq ft | - |
 | LIFT | 4'-7 1/8" x 4'-11" | 23 sq ft | - |
 | STAIR | 6'-10 5/8" x 12'-7 5/8" | 87 sq ft | - |
-| ROOM-2 | 12'-5 5/8" x 7'-8 1/2" | 187 sq ft | F-W5 4'-11" |
+| ROOM-2 | 12'-5 5/8" x 7'-8 1/2" | 155 sq ft | F-W5 4'-11" |
 | ROOM-2 TOILET | 3'-11 1/4" x 6'-10 5/8" | 27 sq ft | F-W6 1'-11 5/8" |
 | ROOM-1 | 12'-5 5/8" x 7'-8 1/2" | 155 sq ft | F-W8 4'-11" |
 | ROOM-1 TOILET | 3'-11 1/4" x 6'-10 5/8" | 27 sq ft | F-W7 1'-11 5/8" |
@@ -38,9 +46,12 @@ Floors 2 and 3 are identical to floor 1 on the drawing. Walls, doors and windows
 | ROOM-2 | Twill 2-door compact wardrobe | 1'-11 5/8" x 1'-6 3/4" x 5'-11 5/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) |
 | ROOM-2 | Compact study table (2'-11⅜" × 1'-5¾", no hutch, ASSUMED size) | 2'-11 3/8" x 1'-5 3/4" x 2'-5 1/2" | 2'-5 1/2" chair pull-out | - |
 | ROOM-2 | Compact study table (2'-11⅜" × 1'-5¾", no hutch, ASSUMED size) | 2'-11 3/8" x 1'-5 3/4" x 2'-5 1/2" | 2'-5 1/2" chair pull-out | - |
-| ROOM-3 | Orion queen bed | 7'-3 7/8" x 5'-3 1/4" x 2'-10 5/8" | 1'-11 5/8" on both sides | [link](https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2) |
+| ROOM-3 | Centaur single bed | 7'-0" x 3'-5 3/8" x 3'-1 3/4" | 1'-11 5/8" on the open side (long side on wall) | [link](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) |
+| ROOM-3 | Centaur single bed | 7'-0" x 3'-5 3/8" x 3'-1 3/4" | 1'-11 5/8" on the open side (long side on wall) | [link](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) |
 | ROOM-3 | Tinker side table | 1'-4 7/8" x 0'-11 3/4" x 1'-9 3/4" | at the bed head, on the open side | [link](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) |
 | ROOM-3 | Twill 2-door compact wardrobe | 1'-11 5/8" x 1'-6 3/4" x 5'-11 5/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) |
+| ROOM-3 | Twill 2-door compact wardrobe | 1'-11 5/8" x 1'-6 3/4" x 5'-11 5/8" | 1'-11 5/8" in front | [link](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) |
+| ROOM-3 | Compact study table (2'-11⅜" × 1'-5¾", no hutch, ASSUMED size) | 2'-11 3/8" x 1'-5 3/4" x 2'-5 1/2" | 2'-5 1/2" chair pull-out | - |
 | ROOM-3 | Compact study table (2'-11⅜" × 1'-5¾", no hutch, ASSUMED size) | 2'-11 3/8" x 1'-5 3/4" x 2'-5 1/2" | 2'-5 1/2" chair pull-out | - |
 | ROOM-4 | Orion queen bed | 7'-3 7/8" x 5'-3 1/4" x 2'-10 5/8" | 1'-11 5/8" on the open side (long side on wall) | [link](https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2) |
 | ROOM-4 | Tinker side table | 1'-4 7/8" x 0'-11 3/4" x 1'-9 3/4" | at the bed head, on the open side | [link](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) |
@@ -52,13 +63,15 @@ Floors 2 and 3 are identical to floor 1 on the drawing. Walls, doors and windows
 - Every item is inside its room and clear of walls, the other items, every door swing and every clearance; a 1'-9 5/8" walking path reaches every bed side, wardrobe front, chair and the toilet door. **All rooms PASS.**
 - Layout search results:
 
-  | ROOM-1 | 2 students, each: Centaur single bed, Twill wardrobe, Compact study table + chair; beds apart, each with its own Tinker |
-  | ROOM-2 | 2 students, each: Centaur single bed, Twill wardrobe, Compact study table + chair; beds apart, each with its own Tinker |
-  | ROOM-3 | 1 student: Orion queen (0.60 m both sides), Tinker, Twill wardrobe, Compact study table |
+  | ROOM-1 | 2 students, each: Centaur single bed, Twill wardrobe, Compact study table + chair; beds apart, each with its own Tinker; wardrobes side by side on one wall; **desks face each other but are staggered** (no mirrored layout fits) |
+  | ROOM-2 | 2 students, each: Centaur single bed, Twill wardrobe, Compact study table + chair; beds apart, each with its own Tinker; beds parallel on one wall; desks face each other; **wardrobes form an L at the door corner** (tightest twin room: no layout lines up both pairs) |
+  | ROOM-3 | 2 students, each: Centaur single bed, Twill wardrobe, Compact study table + chair; beds side by side with **one shared Tinker** between them; wardrobes mirror each other across the alcove; desks side by side on the moved wall |
   | ROOM-4 | 1 student: Orion queen (long side on wall), Tinker, Twill wardrobe, Compact study table |
 
 - **Standard kit (family, 03.11.2026):** every student gets the same items: their own bed, compact study table + chair, and Twill wardrobe; roommates may share the Tinker side table. The compact table (about 2'-11" × 1'-6", no hutch) is used for everyone so that ROOM-1 can take two students; two Sage tables do not fit there. The wardrobe is the Twill for everyone, because it is the one that fits every room (ROOM-4's study wall is 5'-3" beside column C13). The AMATA sofa is dropped, because it fits only ROOM-1.
-- **Rules kept:** nothing taller than the window sill stands in front of a window; no bed head against a window; twin beds kept 1'-0" or more apart wherever the room allows it.
+- **Rules kept:** nothing taller than the window sill stands in front of a window; no bed head against a window; twin beds 1'-0" or more apart (in ROOM-3 the two beds sit side by side with one shared Tinker between them, as the family asked); the switch strip beside each room door stays clear.
+- **Windows:** in ROOM-3 and ROOM-4 a student can walk right up to the window. In ROOM-1 and ROOM-2 one bed runs along the front window, so that window is opened by leaning over the bed (the bed is below the assumed 2'-11⅜" sill).
+- **Even look (family, 03.11.2026: uneven things look ugly):** every item stands flush on a plain wall, never on a column face and never pushed out from the wall by a column (beds excepted: a headboard may rest on a column); matching wardrobes and desks either line up on one wall or mirror each other on opposite walls. Achieved fully in ROOM-3; in ROOM-1 the two desks face each other but are staggered, and in ROOM-2 (the tightest twin room) the two wardrobes form an L at the door corner, because no layout lines up both pairs there.
 - **Queens in ROOM-1 and ROOM-4** have one long side on the wall where needed (family rule in ROOM-4).
 - **Headboards vs window sill (assumed 2'-11 3/8"):** Orion 2'-10 5/8", Centaur 3'-1 3/4". No bed head sits under a window in this floor-1 layout (checked); keep it that way if beds move, because the Centaur headboard is taller than the assumed sill.
 
@@ -68,7 +81,7 @@ Floors 2 and 3 are identical to floor 1 on the drawing. Walls, doors and windows
 |---|---|---|---|---|---|
 | ROOM-1 | 2 | 2 | 2 | 2 Twill 2-door compact wardrobe | 2 Compact study table (2'-11⅜" × 1'-5¾", no hutch, ASSUMED size) |
 | ROOM-2 | 2 | 2 | 2 | 2 Twill 2-door compact wardrobe | 2 Compact study table (2'-11⅜" × 1'-5¾", no hutch, ASSUMED size) |
-| ROOM-3 | 1 | 1 | 1 | 1 Twill 2-door compact wardrobe | 1 Compact study table (2'-11⅜" × 1'-5¾", no hutch, ASSUMED size) |
+| ROOM-3 | 2 | 2 | 1 | 2 Twill 2-door compact wardrobe | 2 Compact study table (2'-11⅜" × 1'-5¾", no hutch, ASSUMED size) |
 | ROOM-4 | 1 | 1 | 1 | 1 Twill 2-door compact wardrobe | 1 Compact study table (2'-11⅜" × 1'-5¾", no hutch, ASSUMED size) |
 
 ## Living in the room (a student's view)
@@ -82,7 +95,7 @@ Floors 2 and 3 are identical to floor 1 on the drawing. Walls, doors and windows
 |---|---|---|---|---|---|
 | ROOM-1 | 2 | yes (2) | yes (2 + 2) | yes (2) | yes (2) |
 | ROOM-2 | 2 | yes (2) | yes (2 + 2) | yes (2) | yes (2) |
-| ROOM-3 | 1 | yes (2) | yes (1 + 1) | yes (1) | yes (1) |
+| ROOM-3 | 2 | yes (2) | yes (2 + 2) | yes (2) | yes (2) |
 | ROOM-4 | 1 | yes (1) | yes (1 + 1) | yes (1) | yes (1) |
 
 ## AC lines (below the bathroom windows)
@@ -116,7 +129,7 @@ Nothing has been moved; you decide what moves. Columns are checked against the s
 | CCTV camera (PoE) | 1 |
 | Ceiling fan point (48" sweep, fan box cast in slab) | 4 |
 | Ceiling light point (LED downlight) | 16 |
-| Data outlet (Cat6) at desk | 6 |
+| Data outlet (Cat6) at desk | 7 |
 | Drinking-water dispenser (floor) + 16A socket | 1 |
 | Electrical riser trunking 8" x 4" | 1 |
 | Exhaust fan (in ventilator, IPX4) | 4 |
@@ -129,7 +142,7 @@ Nothing has been moved; you decide what moves. Columns are checked against the s
 | RFID door lock (battery, no wiring) on room door | 4 |
 | Room switchboard at door (incl. 2-way for light) | 4 |
 | Shower mixer + overhead shower | 4 |
-| Study desk: 2 x 6A socket + USB | 6 |
+| Study desk: 2 x 6A socket + USB | 7 |
 | Toilet switchboard outside toilet (light, exhaust, geyser DP+indicator) | 4 |
 | Wall light point | 2 |
 | Wash basin (compact) | 4 |

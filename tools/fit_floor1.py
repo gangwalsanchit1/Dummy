@@ -14,6 +14,7 @@ Writes model/furniture.json (F1-3 part) and docs/floor1-fit.md.
 """
 import json
 import math
+import os
 import sys
 from pathlib import Path
 
@@ -171,8 +172,58 @@ def queen_beds(room, rule):
 TWIN_GAP = 0.30  # ASSUMED: two students' single beds never pushed together; at least 1'-0" between them
 
 
+KIND = lambda t: "bed" if t.endswith("_bed") else "wardrobe" if "wardrobe" in t else "desk" if t.endswith("desk") else t
+OPP = {"E": "W", "W": "E", "N": "S", "S": "N"}
+# beds are exempt: they may rest on a column and sit in different parts of an L-shaped room; wardrobes and desks are not
+EVEN_KINDS = tuple(k for k in os.environ.get("EVEN_KINDS", "wardrobe,desk").split(",") if k)
+EVEN = "strict"   # family 03.11.2026: matching items (A/B) line up on one wall, or mirror each other on opposite walls
+                  # ("relaxed" also allows facing items that are staggered; used only if nothing strict fits)
+
+
+def orient(it):
+    """(direction, back line) of an item: beds by their head, others by the side they open to."""
+    r = it["rect"]
+    if it["type"].endswith("_bed"):
+        sd = it["head"]
+        return sd, {"W": r[0], "E": r[2], "N": r[1], "S": r[3]}[sd]
+    sd = it["access"][0]
+    return sd, {"E": r[0], "W": r[2], "N": r[3], "S": r[1]}[sd]
+
+
+def span(it):
+    r = it["rect"]
+    sd = orient(it)[0]
+    return (r[1], r[3]) if sd in ("E", "W") else (r[0], r[2])
+
+
+def even(a, b):
+    (sa, ba), (sb, bb) = orient(a), orient(b)
+    if sa == sb and abs(ba - bb) < 0.005:
+        return True                                   # side by side on one wall
+    if sa == OPP[sb]:
+        if EVEN == "relaxed":
+            return True
+        (a0, a1), (b0, b1) = span(a), span(b)
+        return abs(a0 - b0) < 0.005 and abs(a1 - b1) < 0.005   # exact mirror across the room
+    return False
+
+
+def layout_score(f):
+    """Prefer matching items side by side on one wall, then facing each other."""
+    items = f[0]
+    sc = sum(p.get("score", 0) for p in items)
+    for i, a in enumerate(items):
+        for b in items[i + 1:]:
+            if KIND(a["type"]) == KIND(b["type"]) and KIND(a["type"]) in ("bed", "wardrobe", "desk"):
+                (sa, ba), (sb, bb) = orient(a), orient(b)
+                sc += 3 if (sa == sb and abs(ba - bb) < 0.005) else 2 if span(a) == span(b) else 0
+    return sc
+
+
 def compat(a, b):
     if any(ovl(p, q) for p in a["fixed"] for q in b["fixed"]):
+        return False
+    if EVEN != "none" and KIND(a["type"]) == KIND(b["type"]) and KIND(a["type"]) in EVEN_KINDS and not even(a, b):
         return False
     if a["type"].endswith("desk") and b["type"].endswith("desk") and any(ovl(z, y) for z in a["zones"] for y in b["zones"]):
         return False  # two students' chairs may not use the same floor space
@@ -237,6 +288,9 @@ def flatten(layout, extra):
 
 def main():
     TK = F.TK
+    F.FLUSH = True          # every item flush on a plain wall (never on or proud of a column)
+    if sys.argv[1:2] == ["--merge"]:     # merge per-room results written with FIT_PART=<file>
+        return merge(sys.argv[2:])
     res, rep = {}, []
     rooms = {"ROOM-1": ("F-D1", ["F-D1T"]), "ROOM-2": ("F-D2", ["F-D2T"]), "ROOM-3": ("F-D3", ["F-D3T"]), "ROOM-4": ("F-D4", ["F-D4T"])}
     only = sys.argv[1:]  # optional: re-fit only these rooms, keep the others from model/furniture.json
@@ -250,21 +304,34 @@ def main():
         is4 = name == "ROOM-4"
         chosen, note = None, ""
         if name in KIT["twin_rooms"]:
+            F.FLUSH = False   # beds may rest against a column (the headboard hides the gap); wardrobes and desks stay flush
             beds = single_beds(room)
+            pairs = twin_pairs(room, single_beds(room, own_table=False))
+            F.FLUSH = True
             wards = wall_items(room, KIT["wardrobe"], WFRONT)
             desks = wall_items(room, KIT["desk"], CHAIR)
-            global TWIN_GAP
+            global TWIN_GAP, EVEN
             # 1) beds apart, each with its own Tinker; 2) beds side by side sharing one Tinker (family: roommates may share it)
-            pairs = twin_pairs(room, single_beds(room, own_table=False))
             dd = [("desk", desks), ("desk", desks)]
-            for gap, bslots, dslots, tag in ((0.30, [("bed", beds), ("bed", beds)], dd, "beds apart, each with its own Tinker"),
-                                             (0.30, [("pair", pairs)], dd, "beds side by side with **one shared Tinker** between them")):
-                TWIN_GAP = gap
-                found = search(room, bslots + [("ward", wards), ("ward", wards)] + dslots, max_walk=60000)
-                if found:
-                    chosen = max(found, key=lambda f: sum(p.get("score", 0) for p in f[0]))
-                    note = f"2 students, each: Centaur single bed, {KNAME[KIT['wardrobe']]}, {KNAME[KIT['desk']]} + chair; {tag}"
+            tiers = [(0.30, [("bed", beds), ("bed", beds)], dd, "beds apart, each with its own Tinker"),
+                     (0.30, [("pair", pairs)], dd, "beds side by side with **one shared Tinker** between them")]
+            if name in KIT.get("shared_tinker_rooms", []):   # family: ROOM-3 beds share one Tinker between them
+                tiers.reverse()
+            for level in ("strict", "relaxed", "none"):
+                EVEN = level
+                for gap, bslots, dslots, tag in tiers:
+                    TWIN_GAP = gap
+                    found = search(room, bslots + [("ward", wards), ("ward", wards)] + dslots, max_walk=60000)
+                    if found:
+                        chosen = max(found, key=layout_score)
+                        note = (f"2 students, each: Centaur single bed, {KNAME[KIT['wardrobe']]}, {KNAME[KIT['desk']]} + chair; {tag}"
+                                + {"strict": "; matching items line up or mirror each other",
+                                   "relaxed": "; **matching items face each other but are staggered** (no mirrored layout fits)",
+                                   "none": "; **not all matching items can line up or mirror here** (tightest twin room; best layout shown)"}[level])
+                        break
+                if chosen:
                     break
+            EVEN = "strict"
             TWIN_GAP = 0.30
         else:
             for rule in (["wall"] if is4 else ["both", "wall"]):
@@ -273,7 +340,7 @@ def main():
                 desks = wall_items(room, KIT["desk"], CHAIR, allow_grey=is4, only_wall_x=4.45 if is4 else None)
                 found = search(room, [("bed", beds), ("ward", wards), ("desk", desks)], max_walk=60000, want=3)
                 if found:
-                    chosen = found[0]
+                    chosen = max(found, key=layout_score)
                     note = (f"1 student: Orion queen ({'0.60 m both sides' if rule == 'both' else 'long side on wall'}), Tinker, "
                             f"{KNAME[KIT['wardrobe']]}, {KNAME[KIT['desk']]}")
                     break
@@ -284,13 +351,35 @@ def main():
         res[name] = flatten(*chosen)
         rep.append(f"| {name} | {note} |")
         print(name, note, flush=True)
+    if os.environ.get("FIT_PART"):
+        Path(os.environ["FIT_PART"]).write_text(json.dumps({"res": {k: v for k, v in res.items() if not only or k in only},
+                                                             "rep": [l for l in rep if not only or l[2:].split(" | ")[0] in only]}))
+        return
+    write(res, rep)
+
+
+def merge(parts):
+    FU = json.loads((ROOT / "model/furniture.json").read_text())
+    res = dict(FU["F1-3"])
+    old_rep = {l.split(" | ")[0][2:]: l for l in (ROOT / "docs/floor1-fit.md").read_text().split("\n") if l.startswith("| ROOM")}
+    for pth in parts:
+        P = json.loads(Path(pth).read_text())
+        res.update(P["res"])
+        old_rep.update({l.split(" | ")[0][2:]: l for l in P["rep"]})
+    names = ("ROOM-1", "ROOM-2", "ROOM-3", "ROOM-4")
+    write({k: res[k] for k in names if k in res}, [old_rep[k] for k in names if k in old_rep])
+
+
+def write(res, rep):
     FU = json.loads((ROOT / "model/furniture.json").read_text())
     FU["F1-3"] = res
     FU["_about"] = "Floor 1 (F1-3) by tools/fit_floor1.py: standard kit per student (assumptions.json standard_kit). F4 from tools/fit_furniture.py."
     (ROOT / "model/furniture.json").write_text(json.dumps(FU, indent=1))
     md = ["# Floor 1 furniture fit (generated by tools/fit_floor1.py)", "",
           f"Standard kit, the same for every student: bed, Tinker side table, {KNAME[KIT['wardrobe']]}, {KNAME[KIT['desk']]} and chair. "
-          "ROOM-2: **two students, two of everything** (Centaur single beds, at least 1'-0\" apart). ROOM-1, ROOM-3 and ROOM-4: **one student** (Orion queen). "
+          f"Twin rooms ({', '.join(KIT['twin_rooms'])}): **two students, each with their own bed, desk + chair and wardrobe** (Centaur single beds, at least 1'-0\" apart; "
+          f"shared Tinker in {', '.join(KIT.get('shared_tinker_rooms', [])) or 'none'}). Other rooms: one student (Orion queen). "
+          "Every item sits flush on a plain wall (never on a column); matching items line up on one wall or face each other. "
           f"Clearances: bed open side {ftin(BSIDE)}, wardrobe front {ftin(WFRONT)}, chair pull-out {ftin(CHAIR)}, walking path {ftin(0.55)}.", "",
           "| Room | Result |", "|---|---|"] + rep
     (ROOT / "docs/floor1-fit.md").write_text("\n".join(md) + "\n")

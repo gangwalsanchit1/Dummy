@@ -16,7 +16,9 @@ sys.path.insert(0, str(ROOT / "tools"))
 from units import ftin, size  # noqa: E402
 import fit_furniture as FF  # noqa: E402
 
-TK = json.loads((ROOT / "model/takeoff.json").read_text())
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from takeoff import load_takeoff  # noqa: E402
+TK = load_takeoff()
 AS = json.loads((ROOT / "model/assumptions.json").read_text())
 FU = json.loads((ROOT / "model/furniture.json").read_text())
 CAT = AS["wakefit_catalog"]

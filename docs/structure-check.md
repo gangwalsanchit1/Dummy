@@ -11,7 +11,7 @@ How the columns were placed: the plinth layout on the sheet has no dimensions, s
 | C3 | 150x1400 mm | inside the wall line | clear | - | clear |
 | C4 | 150x1800 mm | inside the wall line | clear | - | clear |
 | C5 | 230x600 mm | STAIR: 0'-3 1/8" × 1'-5 3/4" | clear | - | clear |
-| C6 | 230x600 mm | ROOM-2: 0'-3 1/8" × 1'-7 5/8" | clear | - | clear |
+| C6 | 230x600 mm | ROOM-3: 0'-3 1/8" × 1'-11 5/8" | clear | - | clear |
 | C7 | 230x600 mm | STAIR: 0'-3 1/4" × 1'-5 5/8"; ROOM-1: 0'-2" × 1'-11 5/8" | clear | - | clear |
 | C8 | 230x600 mm | STAIR: 0'-3 1/8" × 1'-5 3/4"; ROOM-1: 0'-2" × 0'-3 1/8" | clear | - | clear |
 | C9 | 230x600 mm | ROOM-2: 0'-3 1/8" × 1'-11 3/4" | clear | - | clear |

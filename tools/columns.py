@@ -6,6 +6,7 @@ GF uses the 300-wide plinth-to-first-floor size.
 """
 import json
 from pathlib import Path
+from takeoff import load_takeoff
 
 ROOT = Path(__file__).resolve().parent.parent
 SNAP = 0.015
@@ -13,7 +14,7 @@ SNAP = 0.015
 
 def columns(pk):
     st = json.loads((ROOT / "model/structure.json").read_text())
-    walls = json.loads((ROOT / "model/takeoff.json").read_text())["floors"][pk]["walls"]
+    walls = load_takeoff()["floors"][pk]["walls"]
     fx = sorted({w[i] for w in walls for i in (0, 2)})
     fy = sorted({w[i] for w in walls for i in (1, 3)})
 
