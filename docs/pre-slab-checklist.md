@@ -101,14 +101,8 @@ Everything below must be fixed, marked or cast in **before that slab is poured**
 These points sit on the room face of an RCC column, because the column stands proud of the wall there. Fix the conduit and box in the column cage before concreting; do not chase the column afterwards. The structural engineer to approve.
 
 - F1-SB1 on column C7
-- F1-DATA1 on column C8
-- F1-DATA2 on column C9
 - F2-SB1 on column C7
-- F2-DATA1 on column C8
-- F2-DATA2 on column C9
 - F3-SB1 on column C7
-- F3-DATA1 on column C8
-- F3-DATA2 on column C9
 - F4-SB1 on column C7
 - F4-DESK1 on column C7
 - F4-DESK3 on column C1

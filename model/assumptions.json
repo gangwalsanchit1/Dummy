@@ -104,6 +104,11 @@
    1.0,
    0.57,
    0.74
+  ],
+  "compact_desk": [
+   0.9,
+   0.45,
+   0.75
   ]
  },
  "clearances": {
@@ -444,7 +449,7 @@
  "standard_kit": {
   "_note": "Family 03.11.2026: standardise - every student gets the same items; 2 students = 2 of everything. Twill is the wardrobe that fits every room (ROOM-4 study wall is 5'-3\" beside column C13). Sofa dropped: it fits only ROOM-1.",
   "wardrobe": "twill_wardrobe",
-  "desk": "sage_desk",
+  "desk": "compact_desk",
   "side_table": "tinker_side_table",
   "twin_bed": "centaur_single_bed",
   "single_bed": "orion_queen_bed",
@@ -452,11 +457,17 @@
    "nohutch_desk": {
     "name": "study table without hutch (Sage size)",
     "note": "Only where the desk must sit under a window (the Sage hutch, 4'-4 7/8\", would cover it). Same 3'-3 3/8\" x 1'-10 1/2\" top as the Sage; ask Wakefit for the Sage without hutch or pick a matching table. ASSUMED."
+   },
+   "compact_desk": {
+    "name": "Compact study table",
+    "note": "Family 03.11.2026: one compact study table for every student (fully standard) so ROOM-1 can take 2 students. Size 2'-11 3/8\" x 1'-5 3/4\" x 2'-5 1/2\" high, no hutch, ASSUMED: pick a Wakefit table of about this size and re-check."
    }
   },
   "twin_rooms": [
+   "ROOM-1",
    "ROOM-2"
   ],
-  "_occupancy": "Family 03.11.2026: ROOM-3 is 1 student (it cannot take two full kits). Floor 1: ROOM-2 twin, ROOM-1/3/4 single = 5 students."
+  "_occupancy": "Family 03.11.2026: ROOM-1 and ROOM-2 twin, ROOM-3 and ROOM-4 single. Roommates may share the side table; each student has their own bed, study table, chair and wardrobe.",
+  "shared_side_table_ok": true
  }
 }

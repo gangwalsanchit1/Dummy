@@ -48,9 +48,9 @@ col_end = max([c["rect"][3] for c in cw], default=WALL_Y0)
 free_len = WALL_Y1 - col_end
 if cw:
     rows.append(f"| Column {', '.join(c['name'] for c in cw)} on the study wall (structural drawing) | - | stands {ftin(cw[0]['rect'][2] - WALL_X)} out, first {ftin(col_end - WALL_Y0)} of the wall | note | usable study wall {ftin(free_len)} of {ftin(wall_len)} |")
-lab = {"orion_queen_bed": "Orion queen bed", "tinker_side_table": "Tinker", "gingham_wardrobe": "Gingham wardrobe", "twill_wardrobe": "Twill wardrobe", "notiq_desk": "Notiq study table", "sage_desk": "Sage study table"}
+lab = {"orion_queen_bed": "Orion queen bed", "tinker_side_table": "Tinker", "gingham_wardrobe": "Gingham wardrobe", "twill_wardrobe": "Twill wardrobe", "notiq_desk": "Notiq study table", "sage_desk": "Sage study table", "compact_desk": "Compact study table"}
 Wu = FS[ward["type"]][0]
-row(f"Study wall: {lab[ward['type']]} + Sage study table (standard kit)", Wu + Nw, free_len, Wu + Nw <= free_len + 0.002, "used")
+row(f"Study wall: {lab[ward['type']]} + {lab[desk['type']]} (standard kit)", Wu + Nw, free_len, Wu + Nw <= free_len + 0.002, "used")
 sofa_need = FS["amata_sofa"][1] + AS["clearances"]["sofa_legroom"]
 rows.append(f"| AMATA sofa ({ftin(FS['amata_sofa'][0])} x {ftin(FS['amata_sofa'][1])}) + {ftin(AS['clearances']['sofa_legroom'])} legroom | a free wall {ftin(FS['amata_sofa'][0])} long, {ftin(sofa_need)} deep | none left after bed, wardrobe, table and their clearances | **does not fit** | full search of all arrangements |")
 to_bed = bed["rect"][0] - WALL_X
@@ -58,7 +58,7 @@ others = [i["rect"] for i in items if i is not desk]
 dzr = FF.zone(desk["rect"], desk["access"][0], CHAIR)
 gap = min(max(0.0, max(o[0] - dzr[2], dzr[0] - o[2], o[1] - dzr[3], dzr[1] - o[3])) for o in others)
 clash = [i["type"] for i in items if i is not desk and FF.ovl(i["rect"], dzr)]
-rows.append(f"| Chair pull-out {ftin(CHAIR)} in front of the Sage table | clear | {'clear, ' + ftin(gap) + ' to nearest furniture' if not clash else 'hits ' + ', '.join(clash)} | {'PASS' if not clash else '**FAIL**'} | |")
+rows.append(f"| Chair pull-out {ftin(CHAIR)} in front of the study table | clear | {'clear, ' + ftin(gap) + ' to nearest furniture' if not clash else 'hits ' + ', '.join(clash)} | {'PASS' if not clash else '**FAIL**'} | |")
 wzr = FF.zone(ward["rect"], ward["access"][0], ACCESS)
 clash = [i["type"] for i in items if i is not ward and FF.ovl(i["rect"], wzr)]
 rows.append(f"| Wardrobe access {ftin(ACCESS)} in front (hinged doors) | clear | {'clear' if not clash else 'hits ' + ', '.join(clash)} | {'PASS' if not clash else '**FAIL**'} | |")
@@ -77,8 +77,7 @@ room = FF.Room("F1-3", "ROOM-4", "F-D4", ["F-D4T"])
 zones = [("bed open side", bed["zones"][0]), ("wardrobe front", FF.zone(ward["rect"], ward["access"][0], ACCESS)), ("chair", FF.zone(desk["rect"], desk["access"][0], CHAIR))]
 ok, why = room.walkable([i["rect"] for i in items], zones)
 rows.append(f"| 0.55 m path: door to bed side, wardrobe, chair and toilet door | {ftin(0.55)} wide | {'reached' if ok else why} | {'PASS' if ok else '**FAIL**'} | |")
-for nm, L in (("Gingham + Sage", Gw + Nw), ("Twill + Sage", Tw + Nw)):
-    nm += " (used)" if (ward["type"] == "gingham_wardrobe") == nm.startswith("Gingham") else ""
+for nm, L in ((f"Twill + {lab[desk['type']]} (used)", Tw + Nw), ("Twill + Sage (with hutch)", Tw + FS["sage_desk"][0]), ("Gingham + Sage", Gw + FS["sage_desk"][0])):
     opts.append(f"| {nm} | {ftin(L)} | {'fits, ' + ftin(free_len - L) + ' spare' if L <= free_len + 0.002 else 'short by ' + ftin(L - free_len)} |")
 cat = AS["wakefit_catalog"]
 md = ["# ROOM-4 (F1-F3) check: family layout, feet and inches", "",
@@ -177,7 +176,7 @@ s.append(f'<text x="{X(3.55):.1f}" y="{Y(1.25):.1f}" font-size="12" text-anchor=
 yb = VH * K + 18
 legend = ["ROOM-4, floors 1-3: top view. Walls, doors and windows DRAWN. Dimensions in feet and inches.",
           "Blue = Wakefit furniture. Red hatch = clearances (bed side and wardrobe 1'-11 5/8\", chair 2'-5 1/2\"). Yellow = door swing.",
-          f"Queen: one long side on a wall, Tinker at the head (family rule). Study wall: {lab[ward['type']]} + Sage table beside column C13.",
+          f"Queen: one long side on a wall, Tinker at the head (family rule). Study wall: {lab[ward['type']]} + {lab[desk['type']].lower()} beside column C13.",
           "Red = RCC columns (structural drawing, rev R1).",
           "Toilet door opens inwards (into the toilet); entry door opens into the passage."]
 for i, t in enumerate(legend):

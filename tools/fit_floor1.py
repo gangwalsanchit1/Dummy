@@ -59,7 +59,7 @@ def wall_items(room, typ, front, allow_grey=False, only_wall_x=None):
     return out
 
 
-def single_beds(room):
+def single_beds(room, own_table=True):
     """Centaur single: head or long side on a wall; 0.60 m on the open long side; Tinker at the head on that side."""
     L, W = FS["centaur_single_bed"][:2]
     out = []
@@ -81,15 +81,60 @@ def single_beds(room):
                         continue
                     for side, _ in longs:
                         z = zone(r, side, BSIDE)
-                        if not inside(z, room.rects) or any(ovl(z, wl) for wl in room.walls):
+                        zt = trim(z, hd)   # the head end of the side zone is the side table's spot, so a column there is fine
+                        if not inside(zt, room.rects) or any(ovl(zt, wl) for wl in room.walls):
                             continue
-                        t = tinker(r, hd, side, long_x)
-                        if not room.ok_fixed(t, [r], []):
+                        t = tinker(r, hd, side, long_x) if own_table else None
+                        if own_table and not room.ok_fixed(t, [r], []):
                             continue
-                        zt = trim(z, hd)
                         walls_long = sum(touches_wall(e, room.walls) for _, e in longs)
                         out.append({"type": "centaur_single_bed", "rect": r, "access": [side], "zones": [[round(v, 3) for v in zt]], "head": hd,
-                                    "fixed": [r, t], "table": t, "score": walls_long})
+                                    "fixed": [r, t] if t else [r], "table": t, "score": walls_long})
+    out.sort(key=lambda it: -it["score"])
+    return out
+
+
+def twin_pairs(room, beds):
+    """Two Centaur singles side by side, heads on the same wall, open sides facing each other across a shared
+    gap of 0.60-0.80 m, with ONE Tinker shared at the head end of the gap (family: roommates can share the side table)."""
+    out = []
+    for i, a in enumerate(beds):
+        ra, hd, sa = a["rect"], a["head"], a["access"][0]
+        long_x = hd in ("W", "E")
+        for b in beds[i + 1:]:
+            rb = b["rect"]
+            if b["head"] != hd or b["rect"] == ra:
+                continue
+            sb = b["access"][0]
+            if long_x:   # heads may differ by up to a column's projection (3 1/8")
+                if abs(ra[0] - rb[0]) > 0.09 or abs(ra[2] - rb[2]) > 0.09:
+                    continue
+                lo, hi = (ra, rb) if ra[1] < rb[1] else (rb, ra)
+                gap = hi[1] - lo[3]
+                if not (BSIDE - 1e-3 <= gap <= 0.80) or (sa, sb) not in (("S", "N"), ("N", "S")) or (lo is ra) != (sa == "S"):
+                    continue
+                g = [max(ra[0], rb[0]), lo[3], min(ra[2], rb[2]), hi[1]]
+                y0 = (g[1] + g[3]) / 2 - TW / 2
+                x0 = g[0] if hd == "W" else g[2] - TD
+                t = [round(x0, 3), round(y0, 3), round(x0 + TD, 3), round(y0 + TW, 3)]
+            else:
+                if abs(ra[1] - rb[1]) > 0.09 or abs(ra[3] - rb[3]) > 0.09:
+                    continue
+                lo, hi = (ra, rb) if ra[0] < rb[0] else (rb, ra)
+                gap = hi[0] - lo[2]
+                if not (BSIDE - 1e-3 <= gap <= 0.80) or (sa, sb) not in (("E", "W"), ("W", "E")) or (lo is ra) != (sa == "E"):
+                    continue
+                g = [lo[2], max(ra[1], rb[1]), hi[0], min(ra[3], rb[3])]
+                x0 = (g[0] + g[2]) / 2 - TW / 2
+                y0 = g[1] if hd == "N" else g[3] - TD
+                t = [round(x0, 3), round(y0, 3), round(x0 + TW, 3), round(y0 + TD, 3)]
+            if not room.ok_fixed(t, [ra, rb], []):
+                continue
+            z = [round(v, 3) for v in trim(g, hd)]
+            out.append({"type": "twin_pair", "fixed": [ra, rb, t], "zones": [z], "table": t, "head": hd,
+                        "beds": [{"type": "centaur_single_bed", "rect": ra, "access": [sa], "zones": [z], "head": hd},
+                                 {"type": "centaur_single_bed", "rect": rb, "access": [sb], "zones": [z], "head": hd}],
+                        "score": a["score"] + b["score"]})
     out.sort(key=lambda it: -it["score"])
     return out
 
@@ -181,6 +226,9 @@ def search(room, slots, max_walk=25000, want=6, optional=None):
 def flatten(layout, extra):
     out = []
     for it in layout + ([extra] if extra else []):
+        if it["type"] == "twin_pair":
+            out += [dict(b) for b in it["beds"]] + [{"type": "tinker_side_table", "rect": it["table"], "access": [], "shared": True}]
+            continue
         out.append({k: it[k] for k in ("type", "rect", "access", "zones") if k in it} | ({"head": it["head"]} if "head" in it else {}))
         if it.get("table"):
             out.append({"type": "tinker_side_table", "rect": it["table"], "access": []})
@@ -205,17 +253,17 @@ def main():
             beds = single_beds(room)
             wards = wall_items(room, KIT["wardrobe"], WFRONT)
             desks = wall_items(room, KIT["desk"], CHAIR)
-            low = wall_items(room, "nohutch_desk", CHAIR)
             global TWIN_GAP
-            # 1) full kit, beds apart; 2) beds side by side; 3) beds side by side, one desk without hutch (under a window)
-            for gap, dslots, tag in ((0.30, [("desk", desks), ("desk", desks)], "beds 1'-0\" or more apart"),
-                                     (0.0, [("desk", desks), ("desk", desks)], "**beds side by side** (the room is too small to keep them apart)"),
-                                     (0.0, [("desk", desks), ("desk2", low)], "**beds side by side**, and **one study table without the hutch** because it sits under the window")):
+            # 1) beds apart, each with its own Tinker; 2) beds side by side sharing one Tinker (family: roommates may share it)
+            pairs = twin_pairs(room, single_beds(room, own_table=False))
+            dd = [("desk", desks), ("desk", desks)]
+            for gap, bslots, dslots, tag in ((0.30, [("bed", beds), ("bed", beds)], dd, "beds apart, each with its own Tinker"),
+                                             (0.30, [("pair", pairs)], dd, "beds side by side with **one shared Tinker** between them")):
                 TWIN_GAP = gap
-                found = search(room, [("bed", beds), ("bed", beds), ("ward", wards), ("ward", wards)] + dslots, max_walk=60000)
+                found = search(room, bslots + [("ward", wards), ("ward", wards)] + dslots, max_walk=60000)
                 if found:
                     chosen = max(found, key=lambda f: sum(p.get("score", 0) for p in f[0]))
-                    note = f"2 students, each: Centaur single bed, Tinker, {KNAME[KIT['wardrobe']]}, {KNAME[KIT['desk']]}; {tag}"
+                    note = f"2 students, each: Centaur single bed, {KNAME[KIT['wardrobe']]}, {KNAME[KIT['desk']]} + chair; {tag}"
                     break
             TWIN_GAP = 0.30
         else:

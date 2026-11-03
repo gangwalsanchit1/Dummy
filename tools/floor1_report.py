@@ -18,11 +18,15 @@ CAT = AS["wakefit_catalog"]
 FS = AS["furniture_sizes"]
 CL = AS["clearances"]
 NAME = {"orion_queen_bed": "Orion queen bed", "tinker_side_table": "Tinker side table", "gingham_wardrobe": "Gingham 2-door wardrobe (mirror)",
-        "twill_wardrobe": "Twill 2-door compact wardrobe", "notiq_desk": "Notiq adjustable study table (placeholder)", "wall_desk": "Wall desk 3'-0\" (shared)", "sage_desk": "Sage study table (with hutch)", "nohutch_desk": "Study table without hutch (Sage size, ASSUMED)", "centaur_single_bed": "Centaur single bed", "amata_sofa": "AMATA sofa cum bed"}
+        "twill_wardrobe": "Twill 2-door compact wardrobe", "notiq_desk": "Notiq adjustable study table (placeholder)", "wall_desk": "Wall desk 3'-0\" (shared)", "sage_desk": "Sage study table (with hutch)", "compact_desk": "Compact study table (2'-11⅜\" × 1'-5¾\", no hutch, ASSUMED size)", "nohutch_desk": "Study table without hutch (Sage size, ASSUMED)", "centaur_single_bed": "Centaur single bed", "amata_sofa": "AMATA sofa cum bed"}
 
+_n = {r: sum(1 for i in its if i["type"].endswith("_bed")) for r, its in FU["F1-3"].items()}
+NSTU = sum(_n.values())
+OCC = " ".join(f"{r}: {n} student{'s' if n > 1 else ''} ({'Centaur singles' if n > 1 else 'Orion queen'})." for r, n in _n.items())
 md = ["# Floor 1: rooms, furniture and checks (feet and inches)", "",
       "Floors 2 and 3 are identical to floor 1 on the drawing. Walls, doors and windows are DRAWN; furniture positions and electrical/plumbing points are proposals. "
-      "All doors open inwards. ROOM-1, ROOM-3 and ROOM-4: one student each (Orion queen). ROOM-2: two students (Centaur singles), two of everything. 5 students on floor 1, every student with the same kit. ROOM-3 became single on 03.11.2026: it cannot take two full kits (every arrangement checked).", "",
+      f"All doors open inwards. {OCC} {NSTU} students on floor 1, every student with the same kit (roommates share only the side table). "
+      "ROOM-3 became single on 03.11.2026: it cannot take two full kits (every arrangement checked).", "",
       "## Rooms (DRAWN)", "", "| Room | Main area | Total area | Window |", "|---|---|---|---|"]
 for sp in fl["spaces"]:
     r = max(sp["rects"], key=lambda q: (q[2] - q[0]) * (q[3] - q[1]))
@@ -47,7 +51,7 @@ fit = [l for l in (ROOT / "docs/floor1-fit.md").read_text().split("\n") if l.sta
 md += ["", "## Checks", "",
        f"- Every item is inside its room and clear of walls, the other items, every door swing and every clearance; a {ftin(0.55)} walking path reaches every bed side, wardrobe front, chair and the toilet door. **All rooms PASS.**",
        "- Layout search results:", ""] + ["  " + l for l in fit] + ["",
-       "- **Standard kit (family, 03.11.2026):** every student gets the same items, and a twin room gets two of everything. The wardrobe is the Twill for everyone, because it is the one that fits every room (ROOM-4's study wall is 5'-3\" beside column C13). The AMATA sofa is dropped, because it fits only ROOM-1.",
+       "- **Standard kit (family, 03.11.2026):** every student gets the same items: their own bed, compact study table + chair, and Twill wardrobe; roommates may share the Tinker side table. The compact table (about 2'-11\" × 1'-6\", no hutch) is used for everyone so that ROOM-1 can take two students; two Sage tables do not fit there. The wardrobe is the Twill for everyone, because it is the one that fits every room (ROOM-4's study wall is 5'-3\" beside column C13). The AMATA sofa is dropped, because it fits only ROOM-1.",
        "- **Rules kept:** nothing taller than the window sill stands in front of a window; no bed head against a window; twin beds kept 1'-0\" or more apart wherever the room allows it.",
        f"- **Queens in ROOM-1 and ROOM-4** have one long side on the wall where needed (family rule in ROOM-4).",
        f"- **Headboards vs window sill (assumed {ftin(AS['heights']['window_sill'])}):** Orion {ftin(FS['orion_queen_bed'][2])}, Centaur {ftin(FS['centaur_single_bed'][2])}. No bed head sits under a window in this floor-1 layout (checked); keep it that way if beds move, because the Centaur headboard is taller than the assumed sill.", ""]
@@ -61,6 +65,28 @@ for room, items in FU["F1-3"].items():
     desks = ", ".join(f"{v} {NAME[t]}" for t, v in k.items() if t.endswith("desk"))
     wards = ", ".join(f"{v} {NAME[t]}" for t, v in k.items() if "wardrobe" in t)
     md.append(f"| {room} | {beds} | {beds} | {k['tinker_side_table']} | {wards} | {desks} |")
+md += [""]
+# living in the room: own vs shared, and a per-room check that every student has their own points
+md += ["## Living in the room (a student's view)", "",
+       "**Each student has their own:** bed (with storage under it), study table, chair, wardrobe, a bedside socket + USB + reading-light switch "
+       "within reach of the pillow, and 2 sockets + USB + data at the desk.",
+       "**Roommates can share:** the side table (in a twin room it sits between the two bed heads), the room light, the fan, the AC, the Wi-Fi and the toilet.",
+       "**Checked in the model for every student:** they get to their bed without climbing over the other bed; "
+       "their chair has its own floor space; their wardrobe doors open without hitting anything; "
+       "nothing tall blocks a window; the switchboard by the door is reachable; and a walking path reaches all of it.",
+       "**To add at fit-out (no space needed on the plan):** a full-length mirror (the Twill has none), "
+       "a towel hook outside the toilet, a shoe rack or shelf by the door, curtains or blinds, and a desk lamp for each desk.", "",
+       "| Room | Students | Own bedside socket | Own desk socket + data | Own wardrobe | Own chair space |", "|---|---|---|---|---|---|"]
+for room, items in FU["F1-3"].items():
+    nb = sum(1 for i in items if i["type"].endswith("_bed"))
+    pts = [q for q in M["points"] if q["storey"] == "F1" and q["room"] == room]
+    nbs = sum(1 for q in pts if q["kind"] == "BS")
+    nds = sum(1 for q in pts if q["kind"] == "DESK")
+    ndt = sum(1 for q in pts if q["kind"] == "DATA")
+    nw = sum(1 for i in items if "wardrobe" in i["type"])
+    nd = sum(1 for i in items if i["type"].endswith("desk"))
+    ok = lambda c: "yes" if c else "**NO**"
+    md.append(f"| {room} | {nb} | {ok(nbs >= nb)} ({nbs}) | {ok(nds >= nd >= nb and ndt >= nb)} ({nds} + {ndt}) | {ok(nw >= nb)} ({nw}) | {ok(nd >= nb)} ({nd}) |")
 md += [""]
 md += ["## AC lines (below the bathroom windows)", ""] + [l for l in ac if l.startswith("|")] + [
        "", "Nothing has been moved; you decide what moves. Columns are checked against the structural drawing (no AC wall sleeve passes through a column). Floor beams are not drawn yet, so beam clashes cannot be checked.", "",
@@ -76,7 +102,7 @@ c = Counter(M["kinds"][p["kind"]]["desc"] for p in M["points"] if p["storey"] ==
 md += ["| Item | Count |", "|---|---|"] + [f"| {k} | {v} |" for k, v in sorted(c.items())] + [
        "", "Mounting heights and positions are in `docs/schedules/points_schedule.csv` and on sheet F1-3-E / F1-3-P (feet and inches).", "",
        "## Open decisions for floor 1", "",
-       "1. Confirm the Wakefit overall sizes from the product pages (beds, Tinker, Twill, Sage).",
+       "1. Confirm the Wakefit overall sizes from the product pages (beds, Tinker, Twill) and choose the compact study table model (about 2'-11\" × 1'-6\").",
        "2. OK the queen beds with one long side on the wall (ROOM-1, ROOM-4).",
        "3. AC clashes: choose what moves (outdoor units, pipes or route).",
        "4. Architect: window sill height and floor height (heights are assumed; the structural drawing does not give them either).",
