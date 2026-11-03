@@ -1196,53 +1196,60 @@
   ],
   "ROOM-4": [
    {
-    "type": "orion_queen_bed",
+    "type": "centaur_single_bed",
     "rect": [
-     5.77,
-     0.718,
-     7.375,
-     2.95
+     5.717,
+     1.025,
+     7.85,
+     2.075
     ],
     "access": [
-     "W"
+     "N",
+     "S"
     ],
+    "head": "E",
     "zones": [
      [
-      5.17,
-      1.018,
-      5.77,
-      2.5
+      6.017,
+      0.425,
+      7.4,
+      1.025
+     ],
+     [
+      6.017,
+      2.075,
+      7.4,
+      2.675
      ]
-    ],
-    "head": "S"
+    ]
    },
    {
     "type": "tinker_side_table",
     "rect": [
-     5.34,
-     2.65,
-     5.77,
-     2.95
+     7.55,
+     0.595,
+     7.85,
+     1.025
     ],
     "access": []
    },
    {
     "type": "tinker_side_table",
     "rect": [
-     7.375,
-     2.65,
-     7.805,
-     2.95
+     7.55,
+     2.075,
+     7.85,
+     2.505
     ],
     "access": []
    },
    {
-    "type": "twill_wardrobe",
+    "type": "gingham_wardrobe",
     "rect": [
      4.45,
      0.449,
      4.926,
-     1.049
+     1.259
     ],
     "access": [
      "E"
@@ -1252,40 +1259,40 @@
       4.926,
       0.449,
       5.526,
-      1.049
+      1.259
      ]
     ]
    },
    {
-    "type": "sage_desk",
+    "type": "cabrera_desk",
     "rect": [
      4.45,
-     1.05,
-     5.02,
-     2.05
+     1.259,
+     4.9,
+     2.057
     ],
     "access": [
      "E"
     ],
     "zones": [
      [
-      5.02,
-      1.05,
-      5.77,
-      2.05
+      4.9,
+      1.259,
+      5.65,
+      2.057
      ]
     ]
    },
    {
-    "type": "tv_40",
+    "type": "tv_32",
     "rect": [
-     6.86,
-     0.15,
-     7.75,
-     0.23
+     4.45,
+     1.293,
+     4.53,
+     2.023
     ],
     "access": [
-     "S"
+     "E"
     ],
     "zones": []
    }
@@ -1298,5 +1305,6 @@
  "walk_override": {
   "ROOM-3": 0.585
  },
- "_room3": "Father 03.11.2026: hotel layout (asked for ROOM-4, which is 2 ft too small; moved to ROOM-3 by family choice): queen in the middle with the headboard opposite the entry door and a Tinker each side; Flipper sofa in the window alcove facing a 32\" TV; Cabrera desk under the window beside the TV (no room for it under the TV); Gingham on the wall facing the bed. Walkway beside the bed 1'-11 1/4\" (approved exception to 2'-0\")."
+ "_room3": "Father 03.11.2026: hotel layout (asked for ROOM-4, which is 2 ft too small; moved to ROOM-3 by family choice): queen in the middle with the headboard opposite the entry door and a Tinker each side; Flipper sofa in the window alcove facing a 32\" TV; Cabrera desk under the window beside the TV (no room for it under the TV); Gingham on the wall facing the bed. Walkway beside the bed 1'-11 1/4\" (approved exception to 2'-0\").",
+ "_room4": "Family 03.11.2026: ROOM-4 single bed (Centaur), turned across the room with its head on the outer side wall, centred, Tinker each side; Gingham and Cabrera on the left (study) wall with a 32\" TV above the desk facing the bed."
 }

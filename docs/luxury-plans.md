@@ -75,3 +75,15 @@ ROOM-4 (11'-2" × 9'-2") is about 2 ft too small for that. Every arrangement was
   - It is the Cabrera rather than the Sage, because the Sage's hutch would block the window.
 - **Wardrobe:** the Gingham (the bigger wardrobe, with mirror) is on the wall facing the bed.
 - **One exception, approved by the family:** the walkway beside the foot of the bed is 1'-11¼" (rule 2'-0").
+
+## Update 03.11.2026: ROOM-4 is now a single bed (family decision)
+
+This replaces the ROOM-4 queen layout described above. It is the layout in the final drawing (`docs/final/floor1-final.pdf`).
+
+- **Bed:** Centaur single bed, turned across the room, with its headboard on the outer side wall. It is centred on that wall and has a Tinker on each side.
+  - Both long sides are clear: the smallest gap is 1'-10⅝" (to column C14).
+  - The bed is 4'-5⅞" from the toilet door.
+- **Left (study) wall:** Gingham wardrobe, then a Cabrera study table, with a 32" TV on the wall above the desk facing the bed. The TV is 10'-0½" from the pillow.
+- **Why 32":** the stretch of wall beside the Gingham is only 2'-7⅛" long, so a 40" TV (2'-11") does not fit there. 32" is on the small side for a 10 ft viewing distance.
+- **Tight fit:** the Gingham and Cabrera together are 5'-3¼" on a 5'-3" wall (beside column C13). The desk runs ¼" past the end of the wall, which is within the column accuracy, but check both sizes on site before ordering.
+- **Audit:** ROOM-4 passes every rule (`docs/final-floor1-audit.md`).

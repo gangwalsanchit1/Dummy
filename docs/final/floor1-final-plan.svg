@@ -98,20 +98,20 @@
 <text x="211.6" y="168.9" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Desk</text>
 <rect x="133.0" y="699.8" width="85.0" height="50.0" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
 <text x="175.5" y="729.3" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Gingham</text>
-<circle cx="628.6" cy="287.8" r="22.1" fill="#e0e7ff" stroke="#3730a3" stroke-dasharray="3 2"/>
-<text x="628.6" y="290.8" font-size="8" text-anchor="middle" fill="#3730a3">chair</text>
-<rect x="675.8" y="200.4" width="168.5" height="234.4" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
-<text x="760.1" y="322.1" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 760.1 317.6)">Queen bed</text>
-<rect x="630.7" y="403.2" width="45.1" height="31.5" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
-<text x="653.3" y="422.5" font-size="10.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Tinker</text>
-<rect x="844.4" y="403.2" width="45.1" height="31.5" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
-<text x="866.9" y="422.5" font-size="10.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Tinker</text>
-<rect x="537.2" y="172.1" width="50.0" height="63.0" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
-<text x="562.2" y="208.2" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Twill</text>
-<rect x="537.2" y="235.2" width="59.8" height="105.0" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
-<text x="567.2" y="292.3" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 567.2 287.8)">Sage desk</text>
-<rect x="790.3" y="140.8" width="93.4" height="8.4" fill="#111827"/>
-<text x="837.0" y="172.1" font-size="10.5" font-weight="bold" text-anchor="middle" fill="#111827">TV 40"</text>
+<circle cx="616.0" cy="299.1" r="22.1" fill="#e0e7ff" stroke="#3730a3" stroke-dasharray="3 2"/>
+<text x="616.0" y="302.1" font-size="8" text-anchor="middle" fill="#3730a3">chair</text>
+<rect x="670.3" y="232.6" width="224.0" height="110.3" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="782.3" y="292.3" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b">Bed</text>
+<rect x="862.8" y="187.5" width="31.5" height="45.1" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="878.5" y="213.6" font-size="10.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 878.5 210.1)">Tinker</text>
+<rect x="862.8" y="342.9" width="31.5" height="45.1" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="878.5" y="369.0" font-size="10.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 878.5 365.5)">Tinker</text>
+<rect x="537.2" y="172.1" width="50.0" height="85.0" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="562.2" y="219.2" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 562.2 214.7)">Gingham</text>
+<rect x="537.2" y="257.2" width="47.3" height="83.8" fill="#c7d2fe" stroke="#3730a3" stroke-width="1.4"/>
+<text x="560.9" y="303.6" font-size="13.0" text-anchor="middle" font-weight="bold" fill="#1e1b4b" transform="rotate(-90 560.9 299.1)">Desk</text>
+<rect x="537.2" y="260.8" width="8.4" height="76.7" fill="#111827"/>
+<text x="541.5" y="252.2" font-size="10.5" font-weight="bold" text-anchor="middle" fill="#111827">TV 32"</text>
 <rect x="70.0" y="125.0" width="840.0" height="15.8" fill="#292524"/>
 <rect x="70.0" y="1343.0" width="840.0" height="15.8" fill="#292524"/>
 <rect x="70.0" y="125.0" width="15.8" height="1233.8" fill="#292524"/>
@@ -205,9 +205,9 @@
 <text x="327.2" y="229.2" font-size="11" text-anchor="middle" font-weight="bold" fill="#0e7490">TOILET</text>
 <text x="327.2" y="243.2" font-size="10" text-anchor="middle" fill="#0e7490">3'-11¼" ×</text>
 <text x="327.2" y="255.2" font-size="10" text-anchor="middle" fill="#0e7490">5'-10⅞"</text>
-<text x="580.5" y="376.2" font-size="16" text-anchor="middle" font-weight="bold" fill="#111">ROOM-4</text>
-<text x="580.5" y="393.2" font-size="12" text-anchor="middle" fill="#111">11'-1⅞" × 9'-2¼"</text>
-<text x="580.5" y="408.2" font-size="11" text-anchor="middle" fill="#444">130 sq ft</text>
+<text x="634.6" y="187.2" font-size="16" text-anchor="middle" font-weight="bold" fill="#111">ROOM-4</text>
+<text x="634.6" y="204.2" font-size="12" text-anchor="middle" fill="#111">11'-1⅞" × 9'-2¼"</text>
+<text x="634.6" y="219.2" font-size="11" text-anchor="middle" fill="#444">130 sq ft</text>
 <text x="463.8" y="229.2" font-size="11" text-anchor="middle" font-weight="bold" fill="#0e7490">TOILET</text>
 <text x="463.8" y="243.2" font-size="10" text-anchor="middle" fill="#0e7490">3'-11¼" ×</text>
 <text x="463.8" y="255.2" font-size="10" text-anchor="middle" fill="#0e7490">5'-10⅞"</text>
@@ -238,9 +238,9 @@
 <text x="27.2" y="741.9" font-size="13" font-weight="bold" text-anchor="middle" transform="rotate(-90 27.2 741.9)">38'-6⅝" overall</text>
 <text x="490.0" y="1432.2" font-size="14" text-anchor="middle" fill="#57534e">ROAD (19'-8¼" wide) · front of building</text>
 <text x="70" y="1470" font-size="12.5" font-weight="bold" fill="#1e1b4b">Wakefit kit (W × D): Centaur single bed 7'-0" × 3'-5⅜" · Orion queen bed 7'-3⅞" × 5'-3¼" · Tinker side table 1'-4⅞" × 0'-11¾"</text>
-<text x="70" y="1488" font-size="12.5" font-weight="bold" fill="#1e1b4b">Twill wardrobe 1'-11⅝" × 1'-6¾" · Cabrera study table 2'-7⅜" × 1'-5¾" · Sage study table (hutch) 3'-3⅜" × 1'-10½"</text>
-<text x="70" y="1506" font-size="12.5" font-weight="bold" fill="#1e1b4b">Gingham wardrobe 2'-7⅞" × 1'-6¾" · Flipper 2-seater sofa cum bed 3'-10" × 2'-6" · chair space 2'-5½" (dashed circle). A / B = student</text>
-<text x="70" y="1528" font-size="12" fill="#333">Blue = Wakefit furniture. Students per room: ROOM-1 2, ROOM-2 2, ROOM-3 1, ROOM-4 1 = 6 on this floor. Twin rooms use Centaur singles, single rooms the Orion queen.</text>
+<text x="70" y="1488" font-size="12.5" font-weight="bold" fill="#1e1b4b">Twill wardrobe 1'-11⅝" × 1'-6¾" · Cabrera study table 2'-7⅜" × 1'-5¾" · Gingham wardrobe 2'-7⅞" × 1'-6¾"</text>
+<text x="70" y="1506" font-size="12.5" font-weight="bold" fill="#1e1b4b">Flipper 2-seater sofa cum bed 3'-10" × 2'-6" · chair space 2'-5½" (dashed circle). A / B = student</text>
+<text x="70" y="1528" font-size="12" fill="#333">Blue = Wakefit furniture. Students per room: ROOM-1 2, ROOM-2 2, ROOM-3 1, ROOM-4 1 = 6 on this floor. Orion queen in ROOM-3; Centaur singles in every other room.</text>
 <text x="70" y="1546" font-size="12" fill="#333">Yellow = door swing; every door opens inwards. Light blue on walls = windows.</text>
 <text x="70" y="1564" font-size="12" fill="#333">Red = RCC columns from the structural drawing (Agharkar, rev R1, 02.11.2026), 9" wide on this floor; they stand out of the 6" walls.</text>
 <text x="70" y="1582" font-size="12" fill="#333">Walls, doors and windows from the architect's AFTER O.C. drawing. Furniture positions are proposals.</text>

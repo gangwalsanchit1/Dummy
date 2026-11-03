@@ -237,6 +237,8 @@ s.append(f'<text x="{X(4):.1f}" y="{Y(12.45):.1f}" font-size="14" text-anchor="m
 lg = Y(12.85) + 36
 _occ = {r: sum(1 for i in its if i["type"].endswith("_bed")) for r, its in FU["F1-3"].items()}
 _txt = ", ".join(f"{r} {n}" for r, n in _occ.items())
+_queen = [r for r, its in FU["F1-3"].items() if any(i["type"] == "orion_queen_bed" for i in its)]
+_beds = (f"Orion queen in {', '.join(_queen)}; Centaur singles in every other room." if _queen else "Centaur single beds in every room.")
 FSZ = AS["furniture_sizes"]
 _kit = [("Centaur single bed", "centaur_single_bed"), ("Orion queen bed", "orion_queen_bed"), ("Tinker side table", "tinker_side_table"),
         ("Twill wardrobe", "twill_wardrobe"), ("Cabrera study table", "cabrera_desk"), ("Sage study table (hutch)", "sage_desk"),
@@ -248,7 +250,7 @@ _rows = [_k[i:i + 3] for i in range(0, len(_k), 3)]
 for i, row in enumerate(_rows):
     s.append(f'<text x="{MX}" y="{lg - 40 + i * 18:.0f}" font-size="12.5" font-weight="bold" fill="#1e1b4b">{"Wakefit kit (W × D): " if i == 0 else ""}{" · ".join(row)}</text>')
 lg += 18 * (len(_rows) - 2)
-for i, t in enumerate([f"Blue = Wakefit furniture. Students per room: {_txt} = {sum(_occ.values())} on this floor. Twin rooms use Centaur singles, single rooms the Orion queen.",
+for i, t in enumerate([f"Blue = Wakefit furniture. Students per room: {_txt} = {sum(_occ.values())} on this floor. {_beds}",
                        "Yellow = door swing; every door opens inwards. Light blue on walls = windows.",
                        "Red = RCC columns from the structural drawing (Agharkar, rev R1, 02.11.2026), 9\" wide on this floor; they stand out of the 6\" walls.",
                        "Walls, doors and windows from the architect's AFTER O.C. drawing. Furniture positions are proposals."]):

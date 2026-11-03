@@ -68,22 +68,20 @@ Students: ROOM-1 2, ROOM-2 2, ROOM-3 1, ROOM-4 1 = **6 per floor, 18 on floors 1
 
 | Wakefit product | Size W x D x H (cm) | Size (ft-in, W x D) | ROOM-1 | ROOM-2 | ROOM-3 | ROOM-4 | Floor 1 | Floors 1-3 |
 |---|---|---|---|---|---|---|---|---|
-| [Centaur single bed](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) | 213.3 L x 105 W overall, headboard 96 H, bed 37.5 H | 7'-0" x 3'-5 3/8" | 2 | 2 | - | - | 4 | 12 |
-| [Orion queen bed](https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2) | 223.2 L x 160.5 W x 87.8 H (overall frame) | 7'-3 7/8" x 5'-3 1/4" | - | - | 1 | 1 | 2 | 6 |
+| [Centaur single bed](https://www.wakefit.co/bed/centaur-storage-bed/WEWB7836SCNTR) | 213.3 L x 105 W overall, headboard 96 H, bed 37.5 H | 7'-0" x 3'-5 3/8" | 2 | 2 | - | 1 | 5 | 15 |
+| [Orion queen bed](https://www.wakefit.co/bed/engineered-wood-bed-with-storage-orion/WEWB7860SUPOGRORIONR2) | 223.2 L x 160.5 W x 87.8 H (overall frame) | 7'-3 7/8" x 5'-3 1/4" | - | - | 1 | - | 1 | 3 |
 | [Tinker bedside table](https://www.wakefit.co/bedside-tables/tinker-bedside-table/WBDSTTINKER) | 43 W x 30 D x 55.2 H | 1'-4 7/8" x 0'-11 3/4" | 2 | 2 | 2 | 2 | 8 | 24 |
-| [Twill 2-door compact wardrobe](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) | 60 W x 47.6 D x 182 H (approx.) | 1'-11 5/8" x 1'-6 3/4" | 2 | 2 | - | 1 | 5 | 15 |
-| [Gingham 2-door wardrobe with mirror](https://www.wakefit.co/wardrobes/gingham-2-door-wardrobe-with-mirror-one-hanging-space/WWRB2DMH1GINGHAMCWR2) | 81 W x 47.6 D x 185 H (approx., largest of variants) | 2'-7 7/8" x 1'-6 3/4" | - | - | 1 | - | 1 | 3 |
-| [Cabrera study table](https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA) | 79.8 W x 45 D x 75.9 H (Amazon.in item dimensions); 80 x 45 x 76 on other listings | 2'-7 3/8" x 1'-5 3/4" | 2 | 2 | 1 | - | 5 | 15 |
-| [Sage study table (with hutch)](https://www.wakefit.co/study-tables/sage-study-table/WSTSAGER1) | 100 W x 57 D, desk top 74 H, hutch 134.3 H | 3'-3 3/8" x 1'-10 1/2" | - | - | - | 1 | 1 | 3 |
+| [Twill 2-door compact wardrobe](https://www.wakefit.co/wardrobes/twill-2-door-compact-wardrobe-with-one-internal-drawer/WWRB2DTWILLCWR2) | 60 W x 47.6 D x 182 H (approx.) | 1'-11 5/8" x 1'-6 3/4" | 2 | 2 | - | - | 4 | 12 |
+| [Gingham 2-door wardrobe with mirror](https://www.wakefit.co/wardrobes/gingham-2-door-wardrobe-with-mirror-one-hanging-space/WWRB2DMH1GINGHAMCWR2) | 81 W x 47.6 D x 185 H (approx., largest of variants) | 2'-7 7/8" x 1'-6 3/4" | - | - | 1 | 1 | 2 | 6 |
+| [Cabrera study table](https://www.wakefit.co/study-tables/cabrera-study-table/WSTCABRERA) | 79.8 W x 45 D x 75.9 H (Amazon.in item dimensions); 80 x 45 x 76 on other listings | 2'-7 3/8" x 1'-5 3/4" | 2 | 2 | 1 | 1 | 6 | 18 |
 | [Flipper 2-seater sofa cum bed (opens to 6' x 4')](https://www.wakefit.co/sofa-set/flipper-sofa-cum-bed-two-seater/WSFAFLPN2FWGR) | 116.8 W x 76.2 D x 71.2 H (Flipkart); 117 x 76.2 x 66 (Amazon.in WarpKnit Grey) | 3'-10" x 2'-6" | - | - | 1 | - | 1 | 3 |
 | Wall-mounted TV, 42-inch (any brand, not Wakefit) | about 94 W x 8 D on a wall bracket, bottom edge about 3'-7" (1.1 m) above floor | 3'-1" x 0'-3 1/8" | 1 | 1 | - | - | 2 | 6 |
-| Wall-mounted TV, 40-inch (any brand, not Wakefit) | about 89 W x 8 D on a wall bracket | 2'-11" x 0'-3 1/8" | - | - | - | 1 | 1 | 3 |
-| Wall-mounted TV, 32-inch (any brand, not Wakefit) | about 73 W x 8 D on a wall bracket | 2'-4 3/4" x 0'-3 1/8" | - | - | 1 | - | 1 | 3 |
+| Wall-mounted TV, 32-inch (any brand, not Wakefit) | about 73 W x 8 D on a wall bracket | 2'-4 3/4" x 0'-3 1/8" | - | - | 1 | 1 | 2 | 6 |
 
 **Also needed, not chosen yet (no size risk, they sit on or by the items above):**
 
-- Wakefit single mattress 78 x 36 in (6'-6" x 3'-0") to suit the Centaur: 4 per floor, 12 on floors 1-3
-- Wakefit queen mattress 78 x 60 in (6'-6" x 5'-0") to suit the Orion: 2 per floor, 6 on floors 1-3
+- Wakefit single mattress 78 x 36 in (6'-6" x 3'-0") to suit the Centaur: 5 per floor, 15 on floors 1-3
+- Wakefit queen mattress 78 x 60 in (6'-6" x 5'-0") to suit the Orion: 1 per floor, 3 on floors 1-3
 - Study chair, one per desk: 6 per floor, 18 on floors 1-3 (fits the 2'-5½" chair space shown on the plan)
 
 ## Where each size came from
